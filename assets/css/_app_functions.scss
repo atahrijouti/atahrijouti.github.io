@@ -1,0 +1,14 @@
+@function contains($list,$var) {
+  @return (false == index($list, $var));
+}
+
+@function getColor($color){
+  @if $color == blue { @return $blue; }
+  @if $color == light-blue { @return $light-blue; }
+  @if $color == dark-grey-blue { @return $dark-grey-blue; }
+}
+
+@function altColor($color,$collection){
+  @if contains($collection,$color) == false { @return lighten( getColor($color),11); }
+  @else { @return darken( getColor($color),11); }
+}
