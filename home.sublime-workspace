@@ -1,0 +1,296 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"f",
+				"f	Anonymous Function"
+			],
+			[
+				"a",
+				"attr"
+			],
+			[
+				"fu",
+				"function"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 217.0,
+		"selected_items":
+		[
+			[
+				"sava",
+				"Project: Save As"
+			],
+			[
+				"javas",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"close",
+				"Project: Close"
+			],
+			[
+				"pro",
+				"Project: Save As"
+			],
+			[
+				"ga",
+				"Git: Amend Commit"
+			],
+			[
+				"ga.",
+				"Git: Add..."
+			],
+			[
+				"gl",
+				"Git: Log All"
+			],
+			[
+				"gc",
+				"Git: Commit"
+			],
+			[
+				"fetc",
+				"Fetch: File"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"git:",
+				"Git: Blame"
+			],
+			[
+				"ggra",
+				"Git: Graph All"
+			],
+			[
+				"gi",
+				"Git: Diff Staged"
+			],
+			[
+				"gd.",
+				"Git: Add..."
+			],
+			[
+				"ame",
+				"Git: Amend Commit"
+			],
+			[
+				"g am",
+				"Git: Amend Commit"
+			],
+			[
+				"gsu",
+				"Git: Status"
+			],
+			[
+				"prefe",
+				"Preferences: Settings - Default"
+			],
+			[
+				"gitco",
+				"Git: Quick Commit"
+			],
+			[
+				"gitad",
+				"Git: Add Current File"
+			],
+			[
+				"git",
+				"Git: Init"
+			],
+			[
+				"pclos",
+				"Project: Close"
+			],
+			[
+				"termi",
+				"Preferences: Terminal Settings – User"
+			],
+			[
+				"termina",
+				"Preferences: Terminal Key Bindings – Default"
+			],
+			[
+				"term",
+				"Preferences: Terminal Settings – Default"
+			],
+			[
+				"fetch",
+				"Fetch: Manage"
+			],
+			[
+				"save",
+				"Project: Save As"
+			]
+		],
+		"width": 435.0
+	},
+	"console":
+	{
+		"height": 0.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/home/atj/.config/sublime-text-2/Settings/Session.sublime_session",
+		"/home/atj/www/vhosts/tests/orimono/index.php",
+		"/home/atj/tests/clojure/mire/src/mire.clj",
+		"/home/atj/tests/web/joo/assets/js/helpers.js",
+		"/home/atj/tests/web/joo/assets/js/libpeerconnection.log",
+		"/home/atj/tests/web/joo/.gitignore",
+		"/home/atj/.config/sublime-text-2/Packages/LiveReload/LiveReload.sublime-settings",
+		"/home/atj/tests/web/joo/assets/js/resources.js",
+		"/home/atj/.config/sublime-text-2/Packages/Default/Preferences.sublime-settings",
+		"/home/atj/.config/sublime-text-2/Packages/User/Preferences.sublime-settings",
+		"/home/atj/.config/sublime-text-3/Packages/User/Terminal.sublime-settings",
+		"/home/atj/.config/sublime-text-3/Packages/Terminal/Default (Linux).sublime-keymap",
+		"/home/atj/.config/sublime-text-3/Packages/Terminal/Terminal.sublime-settings",
+		"/home/atj/Desktop/extension/manifest.json",
+		"/home/atj/.config/sublime-text-2/Packages/User/Fetch.sublime-settings",
+		"/home/atj/.config/sublime-text-3/Packages/User/Fetch.sublime-settings",
+		"/home/atj/.config/sublime-text-2/Packages/User/Package Control.sublime-settings",
+		"/home/atj/.config/sublime-text-2/Packages/User/Side Bar.sublime-settings",
+		"/home/atj/.config/sublime-text-2/Packages/User/Terminal.sublime-settings",
+		"/home/atj/.config/sublime-text-3/Packages/User/Default (Linux).sublime-keymap",
+		"/home/atj/.config/sublime-text-3/Packages/User/Preferences.sublime-settings"
+	],
+	"find":
+	{
+		"height": 37.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"joo",
+			"project",
+			"ignore"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 35.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.git":
+	{
+		"height": 227.0
+	},
+	"replace":
+	{
+		"height": 66.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"hel",
+				"assets/js/helpers.js"
+			],
+			[
+				"",
+				"html/popup.html"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+			[
+				"",
+				"/home/atj/tests/web/good-parts/good-parts.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"show_minimap": false,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": false,
+	"side_bar_width": 214.0,
+	"status_bar_visible": true
+}
