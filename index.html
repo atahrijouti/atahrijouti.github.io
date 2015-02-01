@@ -2,64 +2,90 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9" lang="en" > <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>Abderrahmane</title>
-    <link rel="stylesheet" href="assets/css/foundation.css" />
-    <link rel="stylesheet" href="assets/css/app.css" />
-    <script src="assets/js/vendor/custom.modernizr.js"></script>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width" />
+<title>Abderrahmane</title>
+<style>
+* {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html {
+  width: 100%;
+  height: 100%;
+}
+
+body { width: 100%; height: 100%;
+    display: box; box-align: center; box-pack: center;
+    overflow: hidden;
+    background: #222; 
+    transform: translate3d(0, 0, 0); }
+
+.leaf {
+  opacity: .88;
+  width: 75px;
+  height: 75px;
+  border-radius: 0px;
+  background: #eeeeee;
+  margin: auto;
+  transform-origin: center center;
+  transition: background 1s;
+}
+.leaf .leaf {
+  transform: scale(0.707) translateY(-140%) translateX(-70%) rotate(-45deg);
+}
+.leaf + .leaf {
+  transform: scale(0.707) translateY(-280%) translateX(70%) rotate(45deg);
+}
+
+.base {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -37.5px;
+  margin-top: -37.5px;
+}
+
+.full {
+  background: grey !important;
+}
+
+</style>
 </head>
 <body class='index'>
-<!-- Page Container -->
-<div class="row page-container"><div class="columns">
-    <div class="row page-inner">
-        <!-- West Side -->
-        <section class="columns large-3 west-side">
-            <h4>Abderrahmane <br class="hide-for-small" />TAHRI JOUTI</h4>
-            <p>Lorem Is the best text filler, because latin people are special, don't you think ?</p>
-        </section>
-        <!-- /West Side -->
-        <!-- East Side -->
-        <section class="columns large-9 small-12 east-side" >
-            <div class="row">
-                <div class="columns index-content">
-                    <article>
-                        <h3><a style='color: royalblue' href="article.html">Lorem ipsum dolor sit amet</a></h3>
-                        <h4><small>18 days ago</small></h4>
-                    </article>
-                    <article>
-                        <h3><a style='color: rosybrown' href="article.html">consectetur adipisicing elit.</a></h3>
-                        <h4><small>23 days ago</small></h4>
-                    </article>
-                    <article>
-                        <h3><a style='color: orangered' href="article.html">Aspernatur autem consectetur</a></h3>
-                        <h4><small>30 days ago</small></h4>
-                    </article>
-                    <article>
-                        <h3><a style='color: dimgray' href="article.html">delectus dignissimos dolorem</a></h3>
-                        <h4><small>39 days ago</small></h4>
-                    </article>
-                    <article>
-                        <h3><a style='color: yellowgreen' href="article.html">doloribus fugit id illum iste</a></h3>
-                        <h4><small>42 days ago</small></h4>
-                    </article>
-                    <article>
-                        <h3><a style='color: crimson' href="article.html">itaque laudantium mollitia</a></h3>
-                        <h4><small>44 days ago</small></h4>
-                    </article>
-                    <article>
-                        <h3><a style='color: darkviolet' href="article.html">nam nostrum nulla repudiandae</a></h3>
-                        <h4><small>60 days ago</small></h4>
-                    </article>
-                </div>
-            </div>
-        </section>
-        <!-- /East Side -->
-    </div>
-</div></div>
-<!-- /Page Container -->
-<script src="assets/js/vendor/jquery.js"></script>
-<script src="assets/js/vendor/foundation.min.js"></script>
-<script src="assets/js/app.js"></script>
+
+<style id='custom-style'></style>
+<div class='base current leaf'></div>
+
+
+<script>
+var colors = [["#FEFED7","#F63E62"], ["#FEFED7","#75A63A"], ["#FEFED7","#844A87"]];
+document.getElementById("custom-style").innerHTML = (function(){
+  var r = Math.floor(Math.random()*colors.length);
+  return ".leaf{background:"+colors[r][1]+"}"+"body{background:"+colors[r][0]+"}";
+})();
+
+var base = document.querySelector('.base'), leaves = [base], children;
+var animation = function(){
+  var currentLeaf = leaves[Math.floor(Math.random()*leaves.length)];
+  var newLeaf = document.createElement('div');
+  newLeaf.classList.add('leaf');
+  currentLeaf.appendChild(newLeaf);
+  leaves.push(newLeaf);
+
+  if(currentLeaf.children.length ===2 ){
+
+
+    currentLeaf.classList.add('full');
+
+    leaves.splice(leaves.indexOf(currentLeaf),1);
+  }
+}
+var animationInterval = setInterval(animation,100);
+setTimeout(function(){ clearInterval(animationInterval) },8000)
+</script>
+
 </body>
 </html>
