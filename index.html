@@ -80,12 +80,11 @@ var animation = function(){
   }
 }
 refreshStyle();
-var animationInterval = setInterval(animation,1250);
+var animationInterval = setInterval(animation,450);
 var styleInterval = setInterval(refreshStyle,4000);
 setTimeout(function(){ 
     clearInterval(animationInterval);
-    clearInterval(styleInterval);
-},800000);
+},20000);
 </script>
 
 </body>
