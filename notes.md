@@ -1,1 +1,0 @@
-time to recreate this temple
