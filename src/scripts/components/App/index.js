@@ -1,10 +1,22 @@
-import React from "react";
-import "./App.css";
+import React, { createContext, useState } from "react"
+import "./App.css"
+import { Node } from "../Node"
 
-export default function App() {
+export const LevelsContext = createContext({ reachedLevel: 0 })
+
+export function App() {
+  const [reachedLevel, setLevel] = useState(0)
+  function updateReachedLevel(nextLevel) {
+    if (nextLevel > reachedLevel) {
+      setLevel(nextLevel)
+    }
+  }
+
   return (
-    <div className="App">
-
-    </div>
-  );
+    <LevelsContext.Provider value={{ reachedLevel, updateReachedLevel }}>
+      <div className="App">
+        <Node level={0} base id="1-0-2-3" maxChildren={2} />
+      </div>
+    </LevelsContext.Provider>
+  )
 }
