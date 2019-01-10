@@ -68,9 +68,9 @@
         ["#FEFED7", "#F63E62"],
         ["#FEFED7", "#75A63A"],
         ["#FEFED7", "#844A87"]
-      ];
+      ]
       var randomColor = function() {
-        var r = Math.floor(Math.random() * colors.length);
+        var r = Math.floor(Math.random() * colors.length)
         return (
           ".leaf{background:" +
           colors[r][1] +
@@ -78,38 +78,38 @@
           "body{background:" +
           colors[r][0] +
           "}"
-        );
-      };
+        )
+      }
       var refreshStyle = function() {
-        document.getElementById("custom-style").innerHTML = randomColor();
-      };
+        document.getElementById("custom-style").innerHTML = randomColor()
+      }
 
       var base = document.querySelector(".base"),
         leaves = [base],
         children,
         currentLeaf = base,
         newLeaf,
-        leavesIndex = 0;
+        leavesIndex = 0
 
       var animation = function() {
-        currentLeaf = leaves[Math.floor(Math.random() * leaves.length)];
-        newLeaf = document.createElement("div");
-        newLeaf.classList.add("leaf");
-        currentLeaf.appendChild(newLeaf);
-        leaves[++leavesIndex] = newLeaf;
+        currentLeaf = leaves[Math.floor(Math.random() * leaves.length)]
+        newLeaf = document.createElement("div")
+        newLeaf.classList.add("leaf")
+        currentLeaf.appendChild(newLeaf)
+        leaves[++leavesIndex] = newLeaf
 
         if (currentLeaf.children.length === 2) {
-          currentLeaf.classList.add("full");
-          leaves.splice(leaves.indexOf(currentLeaf), 1);
-          leavesIndex--;
+          currentLeaf.classList.add("full")
+          leaves.splice(leaves.indexOf(currentLeaf), 1)
+          leavesIndex--
         }
-      };
-      refreshStyle();
-      var animationInterval = setInterval(animation, 450);
-      var styleInterval = setInterval(refreshStyle, 4000);
+      }
+      refreshStyle()
+      var animationInterval = setInterval(animation, 450)
+      var styleInterval = setInterval(refreshStyle, 4000)
       setTimeout(function() {
-        clearInterval(animationInterval);
-      }, 20000);
+        clearInterval(animationInterval)
+      }, 20000)
     </script>
   </body>
 </html>

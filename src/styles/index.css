@@ -1,0 +1,13 @@
+body, #root {
+    display: flex;
+}
+
+body {
+    height: 100vh;
+    overflow: hidden;
+    background-color: #FEFED7;
+}
+
+#root {
+    flex: 1;
+}
