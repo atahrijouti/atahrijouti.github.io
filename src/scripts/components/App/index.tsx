@@ -24,9 +24,6 @@ export function App() {
 
   return (
     <LevelsContext.Provider value={{ levelReached, updateLevelReached }}>
-      <div className="debug">
-        <pre>level reached : {levelReached}</pre>
-      </div>
       <div className="App">
         <Node level={0} id="0" maxChildren={MAX_LEAVES_PER_NODE} />
       </div>
