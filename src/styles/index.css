@@ -1,13 +1,38 @@
-body, #root {
-    display: flex;
+:root {
+  /* colors */
+  --light-yellow: #fefed7;
+  --pinkred: #f63e62;
+  --leafy-green: #75a63a;
+  --mud-purple: #844a87;
+
+  /* default theme */
+  --leaf-background: var(--leafy-green);
+  --leaf-full: grey;
+}
+
+body,
+#root {
+  display: flex;
 }
 
 body {
-    height: 100vh;
-    overflow: hidden;
-    background-color: #FEFED7;
+  height: 100vh;
+  overflow: hidden;
+  background-color: var(--light-yellow);
 }
 
 #root {
-    flex: 1;
+  flex: 1;
+}
+
+.green-theme {
+  --leaf-background: var(--leafy-green);
+}
+
+.red-theme {
+  --leaf-background: var(--pinkred);
+}
+
+.purple-theme {
+  --leaf-background: var(--mud-purple);
 }

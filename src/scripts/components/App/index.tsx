@@ -1,6 +1,7 @@
-import React, { createContext, useCallback, useState } from "react"
-import "./App.css"
+import React, { createContext, useCallback, useMemo, useState } from "react"
+import classNames from "classnames"
 import { MAX_LEAVES_PER_NODE, Node } from "../Node"
+import "./App.css"
 
 type LevelsContextType = {
   levelReached: number
@@ -22,9 +23,16 @@ export function App() {
     [levelReached]
   )
 
+  const theme: string = useMemo(() => {
+    const themes = ["green", "red", "purple"]
+    return themes.map(name => `${name}-theme`)[
+      ((Math.random() * 100) | 0) % themes.length
+    ]
+  }, [])
+
   return (
     <LevelsContext.Provider value={{ levelReached, updateLevelReached }}>
-      <div className="App">
+      <div className={classNames("App", theme)}>
         <Node level={0} id="0" maxChildren={MAX_LEAVES_PER_NODE} />
       </div>
     </LevelsContext.Provider>
