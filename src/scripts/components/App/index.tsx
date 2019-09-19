@@ -33,7 +33,9 @@ export function App() {
   return (
     <LevelsContext.Provider value={{ levelReached, updateLevelReached }}>
       <div className={classNames("App", theme)}>
-        <Node level={0} id="0" maxChildren={MAX_LEAVES_PER_NODE} />
+        <div className="base">
+          <Node level={0} id="0" maxChildren={MAX_LEAVES_PER_NODE} />
+        </div>
       </div>
     </LevelsContext.Provider>
   )

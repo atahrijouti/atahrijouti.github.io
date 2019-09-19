@@ -21,7 +21,6 @@ export const Node = ({
 
   const hasMaxChildren = childNodes.length >= maxChildren
   const isFull = hasMaxChildren && maxChildren === MAX_LEAVES_PER_NODE
-  const isBase = level === 0
   const isEvenLevel = level % 2 === 0
 
   useEffect(() => {
@@ -38,7 +37,7 @@ export const Node = ({
       : Math.random() > 0.6
       ? 1
       : MAX_LEAVES_PER_NODE
-    const speed = Math.random() * 1000
+    const speed = Math.random() * 500
     const timeTillNextUpdate =
       speed + speed * Math.random() * levelReached * level
 
@@ -71,7 +70,6 @@ export const Node = ({
   return (
     <div
       className={cx("Node", {
-        base: isBase,
         "Node--even-level": isEvenLevel,
         "Node--full": isFull,
       })}

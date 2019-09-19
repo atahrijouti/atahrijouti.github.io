@@ -5,3 +5,7 @@
     align-items: center;
     flex-direction: column;
 }
+
+.base {
+  margin-bottom: 10vh;
+}

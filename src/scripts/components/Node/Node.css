@@ -14,7 +14,7 @@
   transform: scale(0.707) translateY(-280%) translateX(70%) rotate(47deg);
 }
 
-.Node.base {
+.base {
   margin-bottom: 10vh;
 }
 
