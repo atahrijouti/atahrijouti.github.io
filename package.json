@@ -7,12 +7,15 @@
     "normalize.css": "8.0.1",
     "react": "16.9.0",
     "react-dom": "16.9.0",
+    "ts-node": "^8.4.1",
     "uuid": "3.3.2"
   },
   "scripts": {
-    "deploy": "gh-pages -d build -b master",
+    "deploy": "yarn build && gh-pages -d build -b master",
+    "move-assets": "cp -R static build",
+    "config-custom-site": "cp CNAME build",
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && yarn move-assets && yarn config-custom-site",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -32,14 +35,13 @@
     ]
   },
   "devDependencies": {
-    "prettier": "1.18.2",
     "@types/classnames": "2.2.9",
-    "@types/uuid": "3.4.5",
     "@types/jest": "24.0.18",
     "@types/node": "12.7.5",
     "@types/react": "16.9.2",
     "@types/react-dom": "16.9.0",
     "gh-pages": "2.0.1",
+    "prettier": "1.18.2",
     "react-scripts": "3.1.1",
     "typescript": "3.6.3"
   }
