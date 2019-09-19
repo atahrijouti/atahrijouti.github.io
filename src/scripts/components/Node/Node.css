@@ -8,11 +8,11 @@
 
 .Node .Node {
   transform: scale(0.707) translateY(-140%) translateX(-70%)
-  rotate(-45deg);
+  rotate(-47deg);
 }
 
 .Node + .Node {
-  transform: scale(0.707) translateY(-280%) translateX(70%) rotate(45deg);
+  transform: scale(0.707) translateY(-280%) translateX(70%) rotate(47deg);
 }
 
 .Node.base {
