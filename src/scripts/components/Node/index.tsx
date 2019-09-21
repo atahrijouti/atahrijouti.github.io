@@ -37,7 +37,7 @@ export const Node = ({
       : Math.random() > 0.6
       ? 1
       : MAX_LEAVES_PER_NODE
-    const speed = Math.random() * 50
+    const speed = Math.random() * 500
     const timeTillNextUpdate =
       speed + speed * Math.random() * levelReached * level
 
