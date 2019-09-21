@@ -18,6 +18,7 @@ export function App() {
     (nextLevel: number) => {
       if (nextLevel > levelReached) {
         setLevel(nextLevel)
+        console.log(`arrived at level ${nextLevel}`)
       }
     },
     [levelReached]
@@ -34,7 +35,7 @@ export function App() {
     <LevelsContext.Provider value={{ levelReached, updateLevelReached }}>
       <div className={classNames("App", theme)}>
         <div className="base">
-          <Node level={0} id="0" maxChildren={MAX_LEAVES_PER_NODE} />
+          <Node level={1} id="1" maxChildren={MAX_LEAVES_PER_NODE} />
         </div>
       </div>
     </LevelsContext.Provider>

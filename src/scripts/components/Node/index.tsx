@@ -17,7 +17,7 @@ export const Node = ({
 }) => {
   const { levelReached, updateLevelReached } = useContext(LevelsContext)
   const [childNodes, setChildNodes] = useState<ReactNode[]>([])
-  const reachedSproutingLimit = level > 5
+  const reachedSproutingLimit = level >= 7
 
   const hasMaxChildren = childNodes.length >= maxChildren
   const isFull = hasMaxChildren && maxChildren === MAX_LEAVES_PER_NODE
@@ -37,12 +37,12 @@ export const Node = ({
       : Math.random() > 0.6
       ? 1
       : MAX_LEAVES_PER_NODE
-    const speed = Math.random() * 500
+    const speed = Math.random() * 50
     const timeTillNextUpdate =
       speed + speed * Math.random() * levelReached * level
 
     const timeout = setTimeout(() => {
-      const newId = `${id}-${childNodes.length}`
+      const newId = `${id}-${childNodes.length + 1}`
       const newChildren = [
         ...childNodes,
         <Node
