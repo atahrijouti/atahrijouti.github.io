@@ -1,21 +1,48 @@
 .Node {
+  --width: 75px;
+  --height: 75px;
+  --scale: 1;
+}
+
+.Node {
+  --scaled-width: calc(var(--width) * var(--scale));
+  --scaled-height: calc(var(--height) * var(--scale));
+  position: absolute;
+  bottom: 100%;
   background-color: var(--leaf-background);
-  width: 75px;
-  height: 75px;
+  width: var(--scaled-width);
+  height: var(--scaled-height);
   opacity: 0.88;
   transition: background 1s;
 }
 
-.Node .Node {
-  transform: scale(0.707) translateY(-140%) translateX(-70%) rotate(-47deg);
+.Node--inner {
+  position: relative;
+  width: var(--scaled-width);
+  height: var(--scaled-height);
+}
+
+.Node--inner .Node {
+  left: calc(100% - var(--scaled-width));
+  right: initial;
+  transform: rotate(45deg);
+  /*transform: scale(0.707) translateY(-140%) translateX(-70%) rotate(-47deg);*/
+  transform-origin: bottom right;
 }
 
 .Node + .Node {
-  transform: scale(0.707) translateY(-280%) translateX(70%) rotate(47deg);
+  left: initial;
+  right: calc(100% - var(--scaled-width));
+  transform: rotate(-45deg);
+  transform-origin: bottom left;
+  /*transform: scale(0.707) translateY(-280%) translateX(70%) rotate(47deg);*/
 }
 
-.base {
-  margin-bottom: 10vh;
+.base > .Node {
+  position: relative;
+  top: 0;
+  left: 0;
+  transform: none;
 }
 
 .Node--even-level {
