@@ -11,21 +11,22 @@ import { LevelsContext } from "../App"
 import "./Node.css"
 
 export const MAX_LEAVES_PER_NODE = 2
-const SPROUT_SCALE = 0.707
-const SPROUT_SPEED_LIMIT = 750
-const MAX_SPROUT_LEVELS = 8
-const SPROUTING_CHANCE = 60 / 100
+const SPROUT_SPEED_LIMIT = 250
+const MAX_SPROUT_LEVELS = 4
+const SPROUTING_CHANCE = 35 / 100
 
 export const Node = ({
   level,
   id,
   maxChildren,
-  scale,
+  isFirst = false,
+  isSecond = false,
 }: {
   level: number
   id: string
   maxChildren: number
-  scale: number
+  isFirst?: boolean
+  isSecond?: boolean
 }) => {
   const { levelReached, updateLevelReached } = useContext(LevelsContext)
   const [childNodes, setChildNodes] = useState<ReactNode[]>([])
@@ -54,9 +55,9 @@ export const Node = ({
       speed + speed * Math.random() * levelReached * level
 
     const timeout = setTimeout(() => {
-      const newId = `${id}-${childNodes.length + 1}`
+      const position = childNodes.length
+      const newId = `${id}-${position + 1}`
       const newLevel = level + 1
-      const newScale = scale * SPROUT_SCALE
       const newChildren = [
         ...childNodes,
         <Node
@@ -64,7 +65,8 @@ export const Node = ({
           id={newId}
           level={newLevel}
           maxChildren={maxChildren}
-          scale={newScale}
+          isFirst={position === 0}
+          isSecond={position === 1}
         />,
       ]
       setChildNodes(newChildren)
@@ -80,7 +82,6 @@ export const Node = ({
     level,
     levelReached,
     reachedSproutingLimit,
-    scale,
   ])
 
   return (
@@ -88,15 +89,13 @@ export const Node = ({
       className={cx("Node", {
         "Node--even-level": isEvenLevel,
         "Node--full": isFull,
+        "Node--first": isFirst,
+        "Node--second": isSecond,
       })}
       id={id}
-      style={
-        {
-          "--scale": scale,
-        } as CSSProperties
-      }
+      style={{} as CSSProperties}
     >
-      <div className="Node--inner">{childNodes}</div>
+      {childNodes}
     </div>
   )
 }
