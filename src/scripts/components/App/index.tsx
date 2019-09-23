@@ -18,7 +18,6 @@ export function App() {
     (nextLevel: number) => {
       if (nextLevel > levelReached) {
         setLevel(nextLevel)
-        console.log(`arrived at level ${nextLevel}`)
       }
     },
     [levelReached]

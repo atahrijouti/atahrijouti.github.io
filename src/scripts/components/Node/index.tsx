@@ -12,21 +12,21 @@ import "./Node.css"
 
 export const MAX_LEAVES_PER_NODE = 2
 const SPROUT_SPEED_LIMIT = 250
-const MAX_SPROUT_LEVELS = 4
+const MAX_SPROUT_LEVELS = 5
 const SPROUTING_CHANCE = 35 / 100
 
 export const Node = ({
   level,
   id,
   maxChildren,
-  isFirst = false,
-  isSecond = false,
+  isRight = false,
+  isLeft = false,
 }: {
   level: number
   id: string
   maxChildren: number
-  isFirst?: boolean
-  isSecond?: boolean
+  isRight?: boolean
+  isLeft?: boolean
 }) => {
   const { levelReached, updateLevelReached } = useContext(LevelsContext)
   const [childNodes, setChildNodes] = useState<ReactNode[]>([])
@@ -45,18 +45,30 @@ export const Node = ({
       return
     }
 
-    const maxChildren = reachedSproutingLimit
-      ? 0
-      : Math.random() > SPROUTING_CHANCE
-      ? 1
-      : MAX_LEAVES_PER_NODE
     const speed = Math.random() * SPROUT_SPEED_LIMIT
     const timeTillNextUpdate =
       speed + speed * Math.random() * levelReached * level
 
     const timeout = setTimeout(() => {
-      const position = childNodes.length
-      const newId = `${id}-${position + 1}`
+      const maxChildren = reachedSproutingLimit
+        ? 0
+        : Math.random() > SPROUTING_CHANCE
+        ? 1
+        : MAX_LEAVES_PER_NODE
+      const hasSibling = childNodes.length > 0
+      const existingSibling = hasSibling ? (childNodes[0] as any) : null
+      const existingPosition = hasSibling
+        ? existingSibling.props.isRight
+          ? 0
+          : 1
+        : null
+      const newPosition = hasSibling
+        ? existingPosition === 1
+          ? 0
+          : 1
+        : Math.round(Math.random())
+
+      const newId = `${id}-${newPosition + 1}`
       const newLevel = level + 1
       const newChildren = [
         ...childNodes,
@@ -65,8 +77,8 @@ export const Node = ({
           id={newId}
           level={newLevel}
           maxChildren={maxChildren}
-          isFirst={position === 0}
-          isSecond={position === 1}
+          isRight={newPosition === 0}
+          isLeft={newPosition === 1}
         />,
       ]
       setChildNodes(newChildren)
@@ -89,8 +101,8 @@ export const Node = ({
       className={cx("Node", {
         "Node--even-level": isEvenLevel,
         "Node--full": isFull,
-        "Node--first": isFirst,
-        "Node--second": isSecond,
+        "Node--right": isRight,
+        "Node--left": isLeft,
       })}
       id={id}
       style={{} as CSSProperties}
