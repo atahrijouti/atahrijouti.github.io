@@ -1,29 +1,38 @@
-.Node {
-  --width: 75px;
-  --height: 75px;
+.base {
+  --base: 75px;
   --scale: 0.707;
+  --top-angle: 90deg;
+  --right-angle: 45deg;
+  --left-angle: 45deg;
+  --right-rotation: var(--right-angle);
+  --left-rotation: calc(-1 * var(--left-angle));
+  --right-scale: 0.707;
+  --left-scale: 0.707;
 }
 
+.Node,
+.Node--inner {
+  width: var(--base);
+  height: var(--base);
+}
 .Node {
   background-color: var(--leaf-background);
-  width: var(--width);
-  height: var(--height);
-  opacity: .90;
+  opacity: 0.9;
   transition: background 1s;
 }
 
-.Node.Node--right {
-  transform: scale(var(--scale)) rotate(45deg);
+.Node--right {
   right: 0;
-  transform-origin: bottom right;
   top: -100%;
+  transform-origin: bottom right;
+  transform: scale(var(--right-scale)) rotate(var(--right-rotation));
 }
 
-.Node.Node--left {
-  transform: scale(var(--scale)) rotate(-45deg);
-  transform-origin: bottom left;
-  left: 0;
+.Node--left {
   top: -100%;
+  left: 0;
+  transform: scale(var(--left-scale)) rotate(var(--left-rotation));
+  transform-origin: bottom left;
 }
 
 .Node--even-level {
@@ -35,8 +44,6 @@
 
 .Node--inner {
   position: relative;
-  width: var(--width);
-  height: var(--height);
 }
 
 .Node--inner .Node {
