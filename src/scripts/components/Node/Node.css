@@ -1,25 +1,29 @@
 .Node {
   --width: 75px;
   --height: 75px;
+  --scale: 0.707;
 }
 
 .Node {
   background-color: var(--leaf-background);
   width: var(--width);
   height: var(--height);
-  opacity: 1;
+  opacity: .90;
   transition: background 1s;
 }
 
 .Node.Node--right {
-  transform: scale(0.707) translateY(-140%) translateX(-70%) rotate(-45deg);
+  transform: scale(var(--scale)) rotate(45deg);
+  right: 0;
+  transform-origin: bottom right;
+  top: -100%;
 }
 
 .Node.Node--left {
-  /*left: 0;*/
-  /*transform: rotate(-45deg);*/
-  /*transform-origin: bottom left;*/
-  transform: scale(0.707) translateY(-280%) translateX(70%) rotate(45deg);
+  transform: scale(var(--scale)) rotate(-45deg);
+  transform-origin: bottom left;
+  left: 0;
+  top: -100%;
 }
 
 .Node--even-level {
@@ -27,4 +31,14 @@
 
 .Node--full {
   background: var(--leaf-full);
+}
+
+.Node--inner {
+  position: relative;
+  width: var(--width);
+  height: var(--height);
+}
+
+.Node--inner .Node {
+  position: absolute;
 }

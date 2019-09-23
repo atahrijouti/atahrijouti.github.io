@@ -13,7 +13,7 @@ import "./Node.css"
 export const MAX_LEAVES_PER_NODE = 2
 const SPROUT_SPEED_LIMIT = 250
 const MAX_SPROUT_LEVELS = 5
-const SPROUTING_CHANCE = 35 / 100
+const SPROUTING_CHANCE = 65 / 100
 
 export const Node = ({
   level,
@@ -107,7 +107,7 @@ export const Node = ({
       id={id}
       style={{} as CSSProperties}
     >
-      {childNodes}
+      <div className="Node--inner">{childNodes}</div>
     </div>
   )
 }
