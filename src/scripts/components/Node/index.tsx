@@ -11,9 +11,9 @@ import { LevelsContext } from "../App"
 import "./Node.css"
 
 export const MAX_LEAVES_PER_NODE = 2
-const SPROUT_SPEED_LIMIT = 50
-const MAX_SPROUT_LEVELS = 9
-const SPROUTING_CHANCE = 65 / 100
+const SPROUT_SPEED_LIMIT = 500
+const MAX_SPROUT_LEVELS = 4
+const SPROUTING_CHANCE = 100
 
 export const Node = ({
   level,
