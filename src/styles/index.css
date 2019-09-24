@@ -25,6 +25,16 @@ body {
   flex: 1;
 }
 
+.debug {
+  position: fixed;
+  flex: none;
+  top: 10px;
+  left: 10px;
+  color: white;
+  background: black;
+  width: 200px;
+}
+
 .green-theme {
   --leaf-background: var(--leafy-green);
 }
