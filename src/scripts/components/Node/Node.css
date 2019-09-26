@@ -1,5 +1,7 @@
 .base {
   --base: 75px;
+  --base-width: var(--base);
+  --base-height: var(--base);
   --scale: 0.707;
   --top-angle: 90deg;
   --right-angle: 45deg;
@@ -12,13 +14,13 @@
 
 .Node,
 .Node--inner {
-  width: var(--base);
-  height: var(--base);
+  width: var(--base-width);
+  height: var(--base-height);
 }
 .Node {
   background-color: var(--leaf-background);
   opacity: 0.9;
-  transition: background 1s;
+  transition: background 1s, transform 16ms;
 }
 
 .Node--right {
