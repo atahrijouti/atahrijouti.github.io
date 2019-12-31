@@ -10,8 +10,8 @@
 /coverage
 
 # production
+/.cache
 /build
-
 # misc
 .DS_Store
 .env.local

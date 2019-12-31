@@ -1,0 +1,2 @@
+:root{--light-yellow:#fefed7;--pinkred:#f63e62;--leafy-green:#75a63a;--mud-purple:#844a87;--leaf-background:var(--leafy-green);--leaf-full:grey}#root,body{display:flex}body{height:100vh;overflow:hidden;background-color:var(--light-yellow)}#root{flex:1}.debug{position:fixed;flex:none;top:10px;left:10px;color:#fff;background:#000;width:200px}.green-theme{--leaf-background:var(--leafy-green)}.red-theme{--leaf-background:var(--pinkred)}.purple-theme{--leaf-background:var(--mud-purple)}
+/*# sourceMappingURL=/styles.205a10ea.css.map */

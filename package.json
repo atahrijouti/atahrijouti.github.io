@@ -3,22 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "classnames": "2.2.6",
+    "classnames": "^2.2.6",
     "lodash": "^4.17.15",
-    "normalize.css": "8.0.1",
-    "react": "16.12.0",
-    "react-dom": "16.12.0",
-    "ts-node": "^8.4.1",
-    "uuid": "3.3.3"
+    "normalize.css": "^8.0.1",
+    "uuid": "^3.3.3"
   },
   "scripts": {
-    "deploy": "yarn build && gh-pages -d build -b master",
-    "move-assets": "cp -R static build",
-    "config-custom-site": "cp CNAME build",
-    "start": "react-scripts start",
-    "build": "react-scripts build && yarn move-assets && yarn config-custom-site",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "deploy": "yarn build-site && gh-pages -d dist -b master",
+    "move-assets": "cp -R static dist",
+    "config-custom-site": "cp CNAME dist",
+    "start": "parcel serve -d build src/view/*.html",
+    "parcel-build": "parcel build -d dist src/view/*.html",
+    "build-site": "yarn parcel-build && yarn move-assets && yarn config-custom-site"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -36,15 +32,11 @@
     ]
   },
   "devDependencies": {
-    "@types/classnames": "2.2.9",
-    "@types/jest": "24.0.25",
-    "@types/lodash": "^4.14.139",
-    "@types/node": "13.1.1",
-    "@types/react": "16.9.17",
-    "@types/react-dom": "16.9.4",
-    "gh-pages": "2.1.1",
-    "prettier": "1.19.1",
-    "react-scripts": "3.3.0",
-    "typescript": "3.7.4"
+    "@babel/core": "^7.7.7",
+    "@babel/plugin-proposal-class-properties": "^7.7.4",
+    "gh-pages": "^2.1.1",
+    "parcel-bundler": "^1.12.4",
+    "prettier": "^1.19.1",
+    "typescript": "^3.7.4"
   }
 }
