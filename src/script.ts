@@ -1,24 +1,6 @@
-import React, {
-  createContext,
-  useCallback,
-  useEffect,
-  useMemo,
-  useState,
-} from "react"
-import classNames from "classnames"
 import _throttle from "lodash/throttle"
-
-import { MAX_LEAVES_PER_NODE, Node } from "../Node"
-import "../../../App.css"
-
-type LevelsContextType = {
-  levelReached: number
-  updateLevelReached: (nextLevel: number) => void
-}
-export const LevelsContext = createContext<LevelsContextType>({
-  levelReached: 0,
-  updateLevelReached: () => {},
-})
+import "./App.css"
+import "./Node.css"
 
 const d2r = (degree: number) => (degree * Math.PI) / 180
 const r2d = (radian: number) => (radian / Math.PI) * 180
@@ -27,22 +9,9 @@ const clamp = (value: number, min: number, max: number) => {
   return value >= max ? max : value <= min ? min : value
 }
 
-// const pageWidth = document.body.clientWidth
-// const pageHeight = document.body.clientHeight
-
 let debugElement: HTMLElement | null = null
 let baseElement: HTMLElement | null = null
 let basePosition: ClientRect | DOMRect = {} as ClientRect | DOMRect
-
-window.addEventListener(
-  "resize",
-  () => {
-    if (baseElement) {
-      basePosition = baseElement.getBoundingClientRect()
-    }
-  },
-  false
-)
 
 const base = 75
 const d = base / Math.sin(Math.PI / 2)
@@ -117,42 +86,19 @@ topAngle = ${topAngle}
   }
 }, 60)
 
-export function App() {
-  const [levelReached, setLevel] = useState(0)
+function App() {
+  debugElement = document.getElementById("debug")
+  baseElement = document.getElementById("base")
+  basePosition = baseElement!.getBoundingClientRect()
 
-  useEffect(() => {
-    debugElement = document.getElementById("debug")
-    baseElement = document.getElementById("base")
-    basePosition = baseElement!.getBoundingClientRect()
-  }, [])
-
-  const updateLevelReached = useCallback(
-    (nextLevel: number) => {
-      if (nextLevel > levelReached) {
-        setLevel(nextLevel)
-      }
+  window.addEventListener("mousemove", handleMouseMove, false)
+  window.addEventListener(
+    "resize",
+    () => {
+      basePosition = baseElement!.getBoundingClientRect()
     },
-    [levelReached]
-  )
-
-  const theme: string = useMemo(() => {
-    const themes = ["green", "red", "purple"]
-    return themes.map(name => `${name}-theme`)[
-      ((Math.random() * 100) | 0) % themes.length
-    ]
-  }, [])
-
-  useEffect(() => {
-    window.addEventListener("mousemove", handleMouseMove, false)
-  }, [])
-
-  return (
-    <LevelsContext.Provider value={{ levelReached, updateLevelReached }}>
-      <div className={classNames("App", theme)}>
-        <div id="base" className="base">
-          <Node level={1} id="1" maxChildren={MAX_LEAVES_PER_NODE} />
-        </div>
-      </div>
-    </LevelsContext.Provider>
+    false
   )
 }
+
+window.addEventListener("load", App)

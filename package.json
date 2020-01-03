@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@types/lodash": "^4.14.149",
     "classnames": "^2.2.6",
     "lodash": "^4.17.15",
     "normalize.css": "^8.0.1",
@@ -12,8 +13,8 @@
     "deploy": "yarn build-site && gh-pages -d dist -b master",
     "move-assets": "cp -R static dist",
     "config-custom-site": "cp CNAME dist",
-    "start": "parcel serve -d build src/view/*.html",
-    "parcel-build": "parcel build -d dist src/view/*.html",
+    "start": "parcel serve -d build src/*.html",
+    "parcel-build": "parcel build -d dist src/*.html",
     "build-site": "yarn parcel-build && yarn move-assets && yarn config-custom-site"
   },
   "eslintConfig": {

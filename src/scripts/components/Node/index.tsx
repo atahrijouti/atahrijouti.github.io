@@ -8,7 +8,7 @@ import React, {
 import cx from "classnames"
 
 import { LevelsContext } from "../App"
-import "./Node.css"
+import "../../../Node.css"
 
 export const MAX_LEAVES_PER_NODE = 2
 const SPROUT_SPEED_LIMIT = 500
