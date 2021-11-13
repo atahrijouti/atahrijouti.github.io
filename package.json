@@ -13,7 +13,7 @@
     "move-assets": "cp -R static dist",
     "config-custom-site": "cp CNAME dist",
     "start": "parcel serve --dist-dir serve-dist src/*.html",
-    "parcel-build": "parcel build -d dist src/*.html",
+    "parcel-build": "parcel build --dist-dir dist src/*.html",
     "build-site": "yarn parcel-build && yarn move-assets && yarn config-custom-site"
   },
   "eslintConfig": {
