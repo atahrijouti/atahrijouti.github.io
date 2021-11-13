@@ -11,7 +11,7 @@
 
 # build
 /.parcel-cache
-/.serve-dist
+/serve-dist
 /.cache
 # misc
 .DS_Store
