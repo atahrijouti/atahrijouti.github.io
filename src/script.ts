@@ -95,8 +95,6 @@ const animateTheme = () => {
   document.querySelector(".App")?.classList.add(`${theme}-theme`)
   document.querySelector(".App")?.classList.remove(`${currentTheme}-theme`)
   currentTheme = theme
-
-  console.log(theme)
   setTimeout(animateTheme, 2000)
 }
 
