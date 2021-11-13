@@ -1,4 +1,6 @@
 import _throttle from "lodash/throttle"
+import _sample from "lodash/sample"
+
 import "./App.css"
 import "./Node.css"
 
@@ -13,6 +15,8 @@ let debugElement: HTMLElement | null = null
 let baseElement: HTMLElement | null = null
 let basePosition: ClientRect | DOMRect = {} as ClientRect | DOMRect
 
+const themeList = ["green", "red", "purple"]
+let currentTheme = themeList[0]
 const base = 75
 const d = base / Math.sin(Math.PI / 2)
 
@@ -86,11 +90,22 @@ topAngle = ${topAngle}
   }
 }, 60)
 
+const animateTheme = () => {
+  const theme = _sample(themeList) ?? "green"
+  document.querySelector(".App")?.classList.add(`${theme}-theme`)
+  document.querySelector(".App")?.classList.remove(`${currentTheme}-theme`)
+  currentTheme = theme
+
+  console.log(theme)
+  setTimeout(animateTheme, 2000)
+}
+
 function App() {
   debugElement = document.getElementById("debug")
   baseElement = document.getElementById("base")
   basePosition = baseElement!.getBoundingClientRect()
 
+  animateTheme()
   window.addEventListener("mousemove", handleMouseMove, false)
   window.addEventListener(
     "resize",

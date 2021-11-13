@@ -1,1 +1,0 @@
-{"version":3,"sources":["App.css"],"names":[],"mappings":"AAAA,KACE,YAAa,CACb,MAAO,CACP,wBAAyB,CACzB,kBAAmB,CACnB,qBACF,CAEA,MACE,kBACF","file":"App.6493ce3e.css","sourceRoot":"../src/view","sourcesContent":[".App {\n  display: flex;\n  flex: 1;\n  justify-content: flex-end;\n  align-items: center;\n  flex-direction: column;\n}\n\n.base {\n  margin-bottom: 10vh;\n}\n"]}
