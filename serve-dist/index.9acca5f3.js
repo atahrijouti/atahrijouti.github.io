@@ -140,12 +140,12 @@
       this[globalName] = mainExports;
     }
   }
-})({"iRSrf":[function(require,module,exports) {
+})({"3JLd4":[function(require,module,exports) {
 var HMR_HOST = null;
 var HMR_PORT = null;
 var HMR_SECURE = false;
 var HMR_ENV_HASH = "4a236f9275d0a351";
-module.bundle.HMR_BUNDLE_ID = "f6f4376aabe0c6a4";
+module.bundle.HMR_BUNDLE_ID = "a5a337b49acca5f3";
 "use strict";
 function _createForOfIteratorHelper(o, allowArrayLike) {
     var it;
@@ -541,7 +541,6 @@ const animateTheme = ()=>{
     document.querySelector(".App")?.classList.add(`${theme}-theme`);
     document.querySelector(".App")?.classList.remove(`${currentTheme}-theme`);
     currentTheme = theme;
-    console.log(theme);
     setTimeout(animateTheme, 2000);
 };
 function App() {
@@ -1591,6 +1590,6 @@ exports.export = function(dest, destName, get) {
     });
 };
 
-},{}]},["iRSrf","Yx9M4"], "Yx9M4", "parcelRequire2e73")
+},{}]},["3JLd4","Yx9M4"], "Yx9M4", "parcelRequire2e73")
 
-//# sourceMappingURL=index.abe0c6a4.js.map
+//# sourceMappingURL=index.9acca5f3.js.map
