@@ -35,6 +35,7 @@
     "@parcel/packager-raw-url": "^2.0.1",
     "@parcel/transformer-webmanifest": "^2.0.1",
     "@types/lodash": "^4.14.176",
+    "gh-pages": "^3.2.3",
     "parcel": "^2.0.1",
     "prettier": "^2.4.1"
   }
