@@ -14,7 +14,7 @@
     "config-custom-site": "cp CNAME dist",
     "start": "parcel serve --dist-dir serve-dist src/*.html",
     "parcel-build": "parcel build --dist-dir dist src/*.html",
-    "build-site": "yarn parcel-build && yarn move-assets && yarn config-custom-site"
+    "build-site": "rm -r dist && yarn parcel-build && yarn move-assets && yarn config-custom-site"
   },
   "eslintConfig": {
     "extends": "react-app"
