@@ -14,8 +14,8 @@ export const computeFractalFromMouse = (
   const topAngle = 90
   const d = baseWidth / Math.sin(Math.PI / 2)
 
-  const MH = mouseX - basePosition.top
-  const HC = mouseY - (basePosition.left + baseWidth / 2)
+  const MH = mouseY - basePosition.top
+  const HC = mouseX - (basePosition.left + baseWidth / 2)
   const MC = Math.sqrt(MH * MH + HC * HC)
   const TCL_RAW = r2d(Math.asin(MH / MC))
   let position: "top-left" | "bottom-left" | "top-right" | "bottom-right" | "" =
