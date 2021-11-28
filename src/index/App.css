@@ -10,6 +10,11 @@
   --leaf-full: grey;
 }
 
+body {
+  padding: 0;
+  margin: 0;
+}
+
 body,
 #root {
   display: flex;
