@@ -28,24 +28,26 @@ const handleMouseMove = _throttle((e: MouseEvent) => {
   baseElement!.setAttribute("style", computedStyle)
 }, 60)
 
-const animateTheme = () => {
+const animateTheme = (app: Element) => {
   const theme = _sample(themeList) ?? "green"
-  document.querySelector(".App")?.classList.add(`${theme}-theme`)
-  document.querySelector(".App")?.classList.remove(`${currentTheme}-theme`)
+  app.classList.remove(`${currentTheme}-theme`)
+  app.classList.add(`${theme}-theme`)
   currentTheme = theme
-  setTimeout(animateTheme, 2000)
+  setTimeout(() => animateTheme(app), 2000)
 }
 
 function App() {
+  const app = document.querySelector(".App")
   debugElement = document.getElementById("debug")
   baseElement = document.getElementById("base")
-  if (!baseElement) {
-    return new Error("missing #base element")
+  if (!baseElement || !app) {
+    console.error({ app, baseElement })
+    return new Error("required elements missing!")
   }
 
   basePosition = baseElement.getBoundingClientRect()
 
-  animateTheme()
+  animateTheme(app)
   window.addEventListener("mousemove", handleMouseMove, false)
   window.addEventListener(
     "resize",
