@@ -7,18 +7,22 @@ import "./Node.css"
 
 let debugElement: HTMLElement | null = null
 let baseElement: HTMLElement | null = null
-let basePosition: ClientRect | DOMRect = {} as ClientRect | DOMRect
+let basePosition: DOMRect | undefined = {} as DOMRect
+const relativeWidth = 25
+let absoluteWidth: number = 75
 
 const themeList = ["green", "red", "purple"]
 let currentTheme = themeList[0]
-const baseWidth = 75
 
 const handleMouseMove = _throttle((e: MouseEvent) => {
+  if (!basePosition) {
+    return false
+  }
   const { rightScale, leftScale, topAngle, rightAngle, leftAngle } =
-    computeFractalFromMouse(e.pageX, e.pageY, basePosition, baseWidth)
+    computeFractalFromMouse(e.pageX, e.pageY, basePosition, absoluteWidth)
 
   const computedStyle = `
---base: ${baseWidth}px;
+--base: ${relativeWidth}vh;
 --right-scale: ${rightScale};
 --left-scale: ${leftScale};
 --top-angle: ${topAngle}deg;
@@ -27,6 +31,11 @@ const handleMouseMove = _throttle((e: MouseEvent) => {
 
   baseElement!.setAttribute("style", computedStyle)
 }, 60)
+
+const handleResize = () => {
+  basePosition = baseElement?.getBoundingClientRect()
+  absoluteWidth = (window.innerHeight * relativeWidth) / 100
+}
 
 const animateTheme = (app: Element) => {
   const theme = _sample(themeList) ?? "green"
@@ -40,6 +49,7 @@ function App() {
   const app = document.querySelector(".App")
   debugElement = document.getElementById("debug")
   baseElement = document.getElementById("base")
+
   if (!baseElement || !app) {
     console.error({ app, baseElement })
     return new Error("required elements missing!")
@@ -48,14 +58,9 @@ function App() {
   basePosition = baseElement.getBoundingClientRect()
 
   animateTheme(app)
+  handleResize()
   window.addEventListener("mousemove", handleMouseMove, false)
-  window.addEventListener(
-    "resize",
-    () => {
-      basePosition = baseElement!.getBoundingClientRect()
-    },
-    false
-  )
+  window.addEventListener("resize", handleResize, false)
 }
 
 window.addEventListener("load", App)

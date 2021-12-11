@@ -8,7 +8,7 @@ export const clamp = (value: number, min: number, max: number) => {
 export const computeFractalFromMouse = (
   mouseX: number,
   mouseY: number,
-  basePosition: ClientRect | DOMRect,
+  basePosition: DOMRect,
   baseWidth: number
 ) => {
   const topAngle = 90
