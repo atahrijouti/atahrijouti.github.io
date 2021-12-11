@@ -8,7 +8,7 @@ import "./Node.css"
 let debugElement: HTMLElement | null = null
 let baseElement: HTMLElement | null = null
 let basePosition: DOMRect | undefined = {} as DOMRect
-const relativeWidth = 25
+const relativeWidth = 12.5
 let absoluteWidth: number = 75
 
 const themeList = ["green", "red", "purple"]
@@ -22,7 +22,7 @@ const handleMouseMove = _throttle((e: MouseEvent) => {
     computeFractalFromMouse(e.pageX, e.pageY, basePosition, absoluteWidth)
 
   const computedStyle = `
---base: ${relativeWidth}vh;
+--base: ${absoluteWidth}px;
 --right-scale: ${rightScale};
 --left-scale: ${leftScale};
 --top-angle: ${topAngle}deg;
@@ -34,7 +34,7 @@ const handleMouseMove = _throttle((e: MouseEvent) => {
 
 const handleResize = () => {
   basePosition = baseElement?.getBoundingClientRect()
-  absoluteWidth = (window.innerHeight * relativeWidth) / 100
+  // absoluteWidth = (window.innerHeight * relativeWidth) / 100
 }
 
 const animateTheme = (app: Element) => {
