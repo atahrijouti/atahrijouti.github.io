@@ -5,7 +5,7 @@
 /**
  * @type {import('next').NextConfig}
  **/
-let config = {
+const nextConfig = {
   // basePath: '/gh-pages-test',
   // assetPrefix: isProd ? '/your-github-repo-name/' : '',
   images: {
@@ -13,19 +13,4 @@ let config = {
   },
 }
 
-/**
- * Github pages
- */
-if (process.env.GITHUB_REPOSITORY) {
-  const repositoryName = process.env.GITHUB_REPOSITORY.split("/")[1]
-
-  config = {
-    ...config,
-    assetPrefix: `/${repositoryName}/`,
-    basePath: `/${repositoryName}`,
-  }
-}
-
-console.log(config)
-
-module.exports = config
+module.exports = nextConfig
