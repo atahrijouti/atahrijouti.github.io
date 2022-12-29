@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+  <!--<![endif]-->
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Abderrahmane</title>
+    <style>
+      * {
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+      }
+      html {
+        width: 100%;
+        height: 100%;
+      }
+
+      body {
+        width: 100%;
+        height: 100%;
+        display: box;
+        box-align: center;
+        box-pack: center;
+        overflow: hidden;
+        background: #222;
+        transform: translate3d(0, 0, 0);
+      }
+      .leaf {
+        opacity: 0.88;
+        width: 75px;
+        height: 75px;
+        border-radius: 0px;
+        background: #eeeeee;
+        margin: auto;
+        transform-origin: center center;
+        transition: background 1s;
+      }
+      .leaf .leaf {
+        transform: scale(0.707) translateY(-140%) translateX(-70%)
+          rotate(-45deg);
+      }
+      .leaf + .leaf {
+        transform: scale(0.707) translateY(-280%) translateX(70%) rotate(45deg);
+      }
+      .wrapper {
+        position: absolute;
+        width: 75px;
+        height: 75px;
+        top: 50%;
+        left: 50%;
+        margin-left: -37.5px;
+        margin-top: -37.5px;
+      }
+      .full {
+        background: grey !important;
+      }
+    </style>
+  </head>
+  <body class="index">
+    <style id="custom-style"></style>
+    <div class="wrapper"><div class="base current leaf"></div></div>
+
+    <script>
+      var colors = [
+        ["#FEFED7", "#F63E62"],
+        ["#FEFED7", "#75A63A"],
+        ["#FEFED7", "#844A87"]
+      ]
+      var randomColor = function() {
+        var r = Math.floor(Math.random() * colors.length)
+        return (
+          ".leaf{background:" +
+          colors[r][1] +
+          "}" +
+          "body{background:" +
+          colors[r][0] +
+          "}"
+        )
+      }
+      var refreshStyle = function() {
+        document.getElementById("custom-style").innerHTML = randomColor()
+      }
+
+      var base = document.querySelector(".base"),
+        leaves = [base],
+        children,
+        currentLeaf = base,
+        newLeaf,
+        leavesIndex = 0
+
+      var animation = function() {
+        currentLeaf = leaves[Math.floor(Math.random() * leaves.length)]
+        newLeaf = document.createElement("div")
+        newLeaf.classList.add("leaf")
+        currentLeaf.appendChild(newLeaf)
+        leaves[++leavesIndex] = newLeaf
+
+        if (currentLeaf.children.length === 2) {
+          currentLeaf.classList.add("full")
+          leaves.splice(leaves.indexOf(currentLeaf), 1)
+          leavesIndex--
+        }
+      }
+      refreshStyle()
+      var animationInterval = setInterval(animation, 450)
+      var styleInterval = setInterval(refreshStyle, 4000)
+      setTimeout(function() {
+        clearInterval(animationInterval)
+      }, 20000)
+    </script>
+  </body>
+</html>
