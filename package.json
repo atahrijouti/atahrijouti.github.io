@@ -1,42 +1,22 @@
 {
-  "name": "tahri.dev",
-  "version": "0.1.0",
   "private": true,
-  "dependencies": {
-    "classnames": "^2.3.1",
-    "lodash": "^4.17.21",
-    "normalize.css": "^8.0.1",
-    "uuid": "^8.3.2"
-  },
   "scripts": {
-    "deploy": "yarn build-site && gh-pages -d dist -b master",
-    "move-assets": "cp -R static dist",
-    "config-custom-site": "cp CNAME dist",
-    "start": "parcel serve --dist-dir serve-dist src/*.html",
-    "parcel-build": "parcel build --dist-dir dist src/*.html",
-    "build-site": "rm -r dist && yarn parcel-build && yarn move-assets && yarn config-custom-site"
+    "dev": "next",
+    "build": "next build && next export",
+    "deploy": "next build && touch out/.nojekyll && git add out/ && git commit -m \"Deploy\" && git subtree push --prefix out origin gh-pages"
   },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "dependencies": {
+    "lodash": "^4.17.21",
+    "next": "latest",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@parcel/packager-raw-url": "^2.0.1",
-    "@parcel/transformer-webmanifest": "^2.0.1",
-    "@types/lodash": "^4.14.176",
-    "gh-pages": "^3.2.3",
-    "parcel": "^2.0.1",
-    "prettier": "^2.4.1"
+    "@types/lodash": "^4.14.191",
+    "@types/node": "^18.11.5",
+    "@types/react": "^18.0.23",
+    "@types/react-dom": "^18.0.7",
+    "prettier": "^2.8.1",
+    "typescript": "^4.8.4"
   }
 }

@@ -1,4 +1,5 @@
-# ides
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
 /.idea
 
 # dependencies
@@ -9,17 +10,30 @@
 # testing
 /coverage
 
-# build
-/.parcel-cache
-/serve-dist
-/.cache
+# next.js
+/.next/
+# The `out` directory should not be ignored by version control
+# /out/
+
+# production
+/build
+
 # misc
 .DS_Store
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+*.pem
 
+# debug
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+.pnpm-debug.log*
+
+# local env files
+.env*.local
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
