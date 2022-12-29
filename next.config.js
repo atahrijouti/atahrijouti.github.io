@@ -5,12 +5,12 @@
 /**
  * @type {import('next').NextConfig}
  **/
-const nextConfig = {
-    // basePath: '/gh-pages-test',
-    // assetPrefix: isProd ? '/your-github-repo-name/' : '',
-    images: {
-        unoptimized: true,
-    },
+const config = {
+  basePath: "./",
+  // assetPrefix: isProd ? '/your-github-repo-name/' : '',
+  images: {
+    unoptimized: true,
+  },
 }
 
-module.exports = nextConfig
+module.exports = config
