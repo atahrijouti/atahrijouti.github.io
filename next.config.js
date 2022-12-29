@@ -6,7 +6,7 @@
  * @type {import('next').NextConfig}
  **/
 const config = {
-  basePath: "./",
+  basePath: "",
   // assetPrefix: isProd ? '/your-github-repo-name/' : '',
   images: {
     unoptimized: true,
