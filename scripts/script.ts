@@ -48,7 +48,6 @@ const handleMouseMove = (e: MouseEvent) => {
 
 const applyStyles = () => {
   if (geometry && isRepaintNeeded) {
-    console.log("painting again")
     const { rightAngle, leftAngle, rightScale, leftScale, topAngle } = geometry
 
     const computedStyle = `
