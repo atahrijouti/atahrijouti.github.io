@@ -1,8 +1,6 @@
-import _throttle from "lodash/throttle"
 import _sample from "lodash/sample"
 
 import { computeFractalFromMouse } from "./math"
-import exp from "constants"
 
 let debugElement: HTMLElement | null = null
 let baseElement: HTMLElement | null = null
@@ -13,7 +11,17 @@ let absoluteWidth: number = 75
 const themeList = ["green", "red", "purple"]
 let currentTheme = themeList[0]
 
-const handleMouseMove = _throttle((e: MouseEvent) => {
+type Geometry = {
+  rightScale: number
+  leftScale: number
+  topAngle: number
+  rightAngle: number
+  leftAngle: number
+}
+
+let geometry: Geometry | null = null
+
+const handleMouseMove = (e: MouseEvent) => {
   if (!basePosition) {
     return false
   }
@@ -24,7 +32,20 @@ const handleMouseMove = _throttle((e: MouseEvent) => {
     absoluteWidth,
   )
 
-  const computedStyle = `
+  geometry = {
+    rightScale,
+    leftScale,
+    topAngle,
+    rightAngle,
+    leftAngle,
+  }
+}
+
+const applyStyles = () => {
+  if (geometry) {
+    const { rightAngle, leftAngle, rightScale, leftScale, topAngle } = geometry
+
+    const computedStyle = `
 --base: ${absoluteWidth}px;
 --right-scale: ${rightScale};
 --left-scale: ${leftScale};
@@ -32,8 +53,10 @@ const handleMouseMove = _throttle((e: MouseEvent) => {
 --right-angle: ${rightAngle}deg;
 --left-angle: ${leftAngle}deg;`
 
-  baseElement!.setAttribute("style", computedStyle)
-}, 60)
+    baseElement!.setAttribute("style", computedStyle)
+  }
+  window.requestAnimationFrame(applyStyles)
+}
 
 const handleResize = () => {
   basePosition = baseElement?.getBoundingClientRect()
@@ -62,6 +85,7 @@ export function runOldJSCode() {
 
   animateTheme(app)
   handleResize()
+  applyStyles()
   window.addEventListener("mousemove", handleMouseMove, false)
   window.addEventListener("resize", handleResize, false)
 }
