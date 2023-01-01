@@ -21,7 +21,19 @@ type Geometry = {
   leftAngle: number
 }
 
-let geometry: Geometry | null = null
+let geometry: Geometry = {
+  rightScale: 0.707,
+  leftScale: 0.707,
+  topAngle: 90,
+  leftAngle: 45,
+  rightAngle: 45,
+}
+
+const handleResize = () => {
+  isRepaintNeeded = true
+  basePosition = baseElement?.getBoundingClientRect()
+  absoluteWidth = (window.innerHeight * relativeWidth) / 100
+}
 
 const handleMouseMove = (e: MouseEvent) => {
   if (!basePosition) {
@@ -64,11 +76,6 @@ const applyStyles = () => {
   window.requestAnimationFrame(applyStyles)
 }
 
-const handleResize = () => {
-  basePosition = baseElement?.getBoundingClientRect()
-  // absoluteWidth = (window.innerHeight * relativeWidth) / 100
-}
-
 const animateTheme = (app: Element) => {
   const theme = _sample(themeList) ?? "green"
   app.classList.remove(`${currentTheme}-theme`)
@@ -89,8 +96,11 @@ export function runOldJSCode() {
 
   basePosition = baseElement.getBoundingClientRect()
 
+  isRepaintNeeded = true
   animateTheme(app)
+  console.log("before resize")
   handleResize()
+  console.log("after resize")
   applyStyles()
   window.addEventListener("mousemove", handleMouseMove, false)
   window.addEventListener("resize", handleResize, false)
