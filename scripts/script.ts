@@ -11,6 +11,8 @@ let absoluteWidth: number = 75
 const themeList = ["green", "red", "purple"]
 let currentTheme = themeList[0]
 
+let isRepaintNeeded = true
+
 type Geometry = {
   rightScale: number
   leftScale: number
@@ -25,6 +27,9 @@ const handleMouseMove = (e: MouseEvent) => {
   if (!basePosition) {
     return false
   }
+
+  isRepaintNeeded = true
+
   const { rightScale, leftScale, topAngle, rightAngle, leftAngle } = computeFractalFromMouse(
     e.pageX,
     e.pageY,
@@ -42,7 +47,8 @@ const handleMouseMove = (e: MouseEvent) => {
 }
 
 const applyStyles = () => {
-  if (geometry) {
+  if (geometry && isRepaintNeeded) {
+    console.log("painting again")
     const { rightAngle, leftAngle, rightScale, leftScale, topAngle } = geometry
 
     const computedStyle = `
@@ -54,6 +60,7 @@ const applyStyles = () => {
 --left-angle: ${leftAngle}deg;`
 
     baseElement!.setAttribute("style", computedStyle)
+    isRepaintNeeded = false
   }
   window.requestAnimationFrame(applyStyles)
 }
