@@ -28,7 +28,7 @@
 
 .Node {
   background-color: rgba(var(--leaf-background), var(--coefficient));
-  transition: background 1s, transform 16ms;
+  transition: background 1s;
 }
 
 .Node--right {

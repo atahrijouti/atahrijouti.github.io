@@ -29,10 +29,8 @@ const Node = ({ orientation, level }: NodeProps) => {
         {
           "Node--left": orientation == "left",
           "Node--right": orientation == "right",
-          "Node--full": children.length === 2,
-          "Node--growing": children.length < 2,
         },
-        `level-${level}`,
+        children.length < 2 ? "Node--growing" : "Node--full",
       )}
     >
       <div className="Node--inner">
