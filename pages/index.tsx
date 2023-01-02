@@ -1,5 +1,48 @@
-import { useEffect } from "react"
+import { CSSProperties, useEffect, useMemo, useState } from "react"
+import classNames from "classnames"
+import _random from "lodash/random"
 import { runOldJSCode } from "../scripts/script"
+
+type NodeProps = {
+  orientation?: "left" | "right"
+  level: number
+}
+const Node = ({ orientation, level }: NodeProps) => {
+  const [children, setChildren] = useState<NodeProps["orientation"][]>([])
+  const levelCoefficient = useMemo(() => Math.pow(0.8, level), [])
+  useEffect(() => {
+    if (level < 4) {
+      const fireTime = _random(750, 1500)
+      setTimeout(() => {
+        setChildren(["right"])
+      }, fireTime)
+      setTimeout(() => {
+        setChildren(["left", "right"])
+      }, _random(fireTime, 3000))
+    }
+  }, [])
+  return (
+    <div
+      style={{ "--coefficient": levelCoefficient } as CSSProperties}
+      className={classNames(
+        "Node",
+        {
+          "Node--left": orientation == "left",
+          "Node--right": orientation == "right",
+          "Node--full": children.length === 2,
+          "Node--growing": children.length < 2,
+        },
+        `level-${level}`,
+      )}
+    >
+      <div className="Node--inner">
+        {children.map((orientation) => (
+          <Node key={orientation} orientation={orientation} level={level + 1} />
+        ))}
+      </div>
+    </div>
+  )
+}
 
 export default function Home() {
   useEffect(() => {
@@ -8,114 +51,7 @@ export default function Home() {
   return (
     <div className="App">
       <div id="base" className="base">
-        <div className="Node Node--full" id="1">
-          <div className="Node--inner">
-            <div className="Node Node--even-level Node--full Node--left" id="1-2">
-              <div className="Node--inner">
-                <div className="Node Node--full Node--left" id="1-2-2">
-                  <div className="Node--inner">
-                    <div className="Node Node--even-level Node--full Node--left" id="1-2-2-2">
-                      <div className="Node--inner">
-                        <div className="Node Node--left" id="1-2-2-2-2">
-                          <div className="Node--inner"></div>
-                        </div>
-                        <div className="Node Node--right" id="1-2-2-2-1">
-                          <div className="Node--inner"></div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="Node Node--even-level Node--full Node--right" id="1-2-2-1">
-                      <div className="Node--inner">
-                        <div className="Node Node--left" id="1-2-2-1-2">
-                          <div className="Node--inner"></div>
-                        </div>
-                        <div className="Node Node--right" id="1-2-2-1-1">
-                          <div className="Node--inner"></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="Node Node--full Node--right" id="1-2-1">
-                  <div className="Node--inner">
-                    <div className="Node Node--even-level Node--full Node--left" id="1-2-1-2">
-                      <div className="Node--inner">
-                        <div className="Node Node--left" id="1-2-1-2-2">
-                          <div className="Node--inner"></div>
-                        </div>
-                        <div className="Node Node--right" id="1-2-1-2-1">
-                          <div className="Node--inner"></div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="Node Node--even-level Node--full Node--right" id="1-2-1-1">
-                      <div className="Node--inner">
-                        <div className="Node Node--left" id="1-2-1-1-2">
-                          <div className="Node--inner"></div>
-                        </div>
-                        <div className="Node Node--right" id="1-2-1-1-1">
-                          <div className="Node--inner"></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="Node Node--even-level Node--full Node--right" id="1-1">
-              <div className="Node--inner">
-                <div className="Node Node--full Node--right" id="1-1-1">
-                  <div className="Node--inner">
-                    <div className="Node Node--even-level Node--full Node--right" id="1-1-1-1">
-                      <div className="Node--inner">
-                        <div className="Node Node--left" id="1-1-1-1-2">
-                          <div className="Node--inner"></div>
-                        </div>
-                        <div className="Node Node--right" id="1-1-1-1-1">
-                          <div className="Node--inner"></div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="Node Node--even-level Node--full Node--left" id="1-1-1-2">
-                      <div className="Node--inner">
-                        <div className="Node Node--left" id="1-1-1-2-2">
-                          <div className="Node--inner"></div>
-                        </div>
-                        <div className="Node Node--right" id="1-1-1-2-1">
-                          <div className="Node--inner"></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="Node Node--full Node--left" id="1-1-2">
-                  <div className="Node--inner">
-                    <div className="Node Node--even-level Node--full Node--left" id="1-1-2-2">
-                      <div className="Node--inner">
-                        <div className="Node Node--right" id="1-1-2-2-1">
-                          <div className="Node--inner"></div>
-                        </div>
-                        <div className="Node Node--left" id="1-1-2-2-2">
-                          <div className="Node--inner"></div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="Node Node--even-level Node--full Node--right" id="1-1-2-1">
-                      <div className="Node--inner">
-                        <div className="Node Node--left" id="1-1-2-1-2">
-                          <div className="Node--inner"></div>
-                        </div>
-                        <div className="Node Node--right" id="1-1-2-1-1">
-                          <div className="Node--inner"></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <Node level={0} />
       </div>
     </div>
   )

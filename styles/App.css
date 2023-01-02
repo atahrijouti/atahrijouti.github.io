@@ -1,13 +1,13 @@
 :root {
   /* colors */
-  --light-yellow: #fefed7;
-  --pinkred: #f63e62;
-  --leafy-green: #75a63a;
-  --mud-purple: #844a87;
+  --light-yellow: 254, 254, 215;
+  --pinkred: 246, 62, 98;
+  --leafy-green: 117, 166, 58;
+  --mud-purple: 132, 74, 135;
 
   /* default theme */
-  --leaf-background: var(--leafy-green);
-  --leaf-full: grey;
+  --leaf-growing: var(--leafy-green);
+  --leaf-full: 128, 128, 128;
 }
 
 body {
@@ -23,7 +23,7 @@ body,
 body {
   height: 100vh;
   overflow: hidden;
-  background-color: var(--light-yellow);
+  background-color: rgb(var(--light-yellow));
 }
 
 #__next {
@@ -41,15 +41,15 @@ body {
 }
 
 .green-theme {
-  --leaf-background: var(--leafy-green);
+  --leaf-growing: var(--leafy-green);
 }
 
 .red-theme {
-  --leaf-background: var(--pinkred);
+  --leaf-growing: var(--pinkred);
 }
 
 .purple-theme {
-  --leaf-background: var(--mud-purple);
+  --leaf-growing: var(--mud-purple);
 }
 
 .App {

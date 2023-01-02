@@ -10,6 +10,7 @@
   --left-rotation: calc(-1 * var(--left-angle));
   --right-scale: 0.707;
   --left-scale: 0.707;
+  --coefficient: 1;
 }
 
 .Node,
@@ -17,9 +18,16 @@
   width: var(--base-width);
   height: var(--base-height);
 }
+
+.Node--growing {
+  --leaf-background: var(--leaf-growing);
+}
+.Node--full {
+  --leaf-background: var(--leaf-full);
+}
+
 .Node {
-  background-color: var(--leaf-background);
-  opacity: 0.9;
+  background-color: rgba(var(--leaf-background), var(--coefficient));
   transition: background 1s, transform 16ms;
 }
 
@@ -33,15 +41,8 @@
 .Node--left {
   top: -100%;
   left: 0;
-  transform: scale(var(--left-scale)) rotate(var(--left-rotation));
   transform-origin: bottom left;
-}
-
-.Node--even-level {
-}
-
-.Node--full {
-  background: var(--leaf-full);
+  transform: scale(var(--left-scale)) rotate(var(--left-rotation));
 }
 
 .Node--inner {
