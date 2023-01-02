@@ -3,6 +3,8 @@ import classNames from "classnames"
 import _random from "lodash/random"
 import { runOldJSCode } from "../scripts/script"
 
+const MAX_LEVEL = 7
+
 type NodeProps = {
   orientation?: "left" | "right"
   level?: number
@@ -20,8 +22,8 @@ const Node = ({ orientation, level = 0 }: NodeProps) => {
   }, [])
   useEffect(() => {
     // console.log(`#${id} Effect : Mounted`)
-    if (level < 4) {
-      const fireTime = _random(750, 1500)
+    if (level < MAX_LEVEL) {
+      const fireTime = _random(333, 666)
       setTimeout(() => {
         // console.log(`#${id} setState : Right`)
         setChildren(["right"])
@@ -29,7 +31,7 @@ const Node = ({ orientation, level = 0 }: NodeProps) => {
       setTimeout(() => {
         // console.log(`#${id} setState : Left`)
         setChildren(["left", "right"])
-      }, _random(fireTime, 3000))
+      }, _random(fireTime, 999))
     }
   }, [])
   // console.log(`#${id} Rendered`)
