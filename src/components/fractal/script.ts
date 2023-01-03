@@ -1,8 +1,7 @@
-import _sample from "lodash/sample"
+"use client"
 
 import { computeFractalFromMouse } from "./math"
 
-let app: HTMLElement | null = null
 let debugElement: HTMLElement | null = null
 let baseElement: HTMLElement | null = null
 let basePosition: DOMRect | undefined = {} as DOMRect
@@ -77,31 +76,18 @@ const applyStyles = () => {
   window.requestAnimationFrame(applyStyles)
 }
 
-const animateTheme = () => {
-  if (!app) {
-    return
-  }
-  const theme = _sample(themeList) ?? "green"
-  app.classList.remove(`${currentTheme}-theme`)
-  app.classList.add(`${theme}-theme`)
-  currentTheme = theme
-  setTimeout(animateTheme, 2000)
-}
-
 export function runOldJSCode() {
-  app = document.querySelector(".App")
   debugElement = document.getElementById("debug")
   baseElement = document.getElementById("base")
 
-  if (!baseElement || !app) {
-    console.error({ app, baseElement })
+  if (!baseElement) {
+    console.error({ baseElement })
     return new Error("required elements missing!")
   }
 
   basePosition = baseElement.getBoundingClientRect()
 
   isRepaintNeeded = true
-  animateTheme()
   handleResize()
   applyStyles()
   window.addEventListener("mousemove", handleMouseMove, false)
