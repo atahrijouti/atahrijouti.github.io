@@ -1,8 +1,8 @@
 import type { AppProps } from "next/app"
 import Head from "next/head"
 
-import "../styles/App.css"
-import "../styles/Node.css"
+import "styles/App.css"
+import "styles/Node.css"
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   return (

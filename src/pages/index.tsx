@@ -1,7 +1,8 @@
 import { CSSProperties, useEffect, useMemo, useState } from "react"
 import classNames from "classnames"
 import _random from "lodash/random"
-import { runOldJSCode } from "../scripts/script"
+
+import { runOldJSCode } from "scripts/script"
 
 const MAX_LEVEL = 6
 
