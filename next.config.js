@@ -6,10 +6,11 @@
  * @type {import('next').NextConfig}
  **/
 const nextConfig = {
-  // basePath: '/gh-pages-test',
-  // assetPrefix: isProd ? '/your-github-repo-name/' : '',
   images: {
     unoptimized: true,
+  },
+  experimental: {
+    appDir: true,
   },
 }
 
