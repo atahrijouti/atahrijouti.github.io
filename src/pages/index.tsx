@@ -3,7 +3,7 @@ import classNames from "classnames"
 import _random from "lodash/random"
 import { runOldJSCode } from "../scripts/script"
 
-const MAX_LEVEL = 7
+const MAX_LEVEL = 6
 
 type NodeProps = {
   orientation?: "left" | "right"
@@ -12,6 +12,7 @@ type NodeProps = {
 
 const Node = ({ orientation, level = 0 }: NodeProps) => {
   const [children, setChildren] = useState<NodeProps["orientation"][]>([])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const levelCoefficient = useMemo(() => Math.pow(0.8, level), [])
   const id = useMemo(() => {
     if (level === 0) {
@@ -19,6 +20,7 @@ const Node = ({ orientation, level = 0 }: NodeProps) => {
     } else {
       return `Node-${level}-${orientation == "left" ? 0 : 1}`
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   useEffect(() => {
     // console.log(`#${id} Effect : Mounted`)
@@ -33,6 +35,7 @@ const Node = ({ orientation, level = 0 }: NodeProps) => {
         setChildren(["left", "right"])
       }, _random(fireTime, 999))
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   // console.log(`#${id} Rendered`)
   return (
