@@ -24,21 +24,17 @@ export const Node = ({ orientation, level = 0 }: NodeProps) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   useEffect(() => {
-    // console.log(`#${id} Effect : Mounted`)
     if (level < MAX_LEVEL) {
       const fireTime = _random(333, 666)
       setTimeout(() => {
-        // console.log(`#${id} setState : Right`)
         setChildren(["right"])
       }, fireTime)
       setTimeout(() => {
-        // console.log(`#${id} setState : Left`)
         setChildren(["left", "right"])
       }, _random(fireTime, 999))
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
-  // console.log(`#${id} Rendered`)
   return (
     <div
       id={id}

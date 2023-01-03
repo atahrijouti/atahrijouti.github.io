@@ -12,6 +12,11 @@ const nextConfig = {
   experimental: {
     appDir: true,
   },
+  compiler: {
+    styledComponents: {
+      fileName: false,
+    },
+  },
 }
 
 module.exports = nextConfig

@@ -1,4 +1,7 @@
-:root {
+import { createGlobalStyle } from "styled-components"
+
+export const AppStyles = createGlobalStyle`
+  :root {
   /* colors */
   --light-yellow: 254, 254, 215;
   --pinkred: 246, 62, 98;
@@ -13,21 +16,10 @@
 body {
   padding: 0;
   margin: 0;
-}
-
-body,
-#__next {
   display: flex;
-}
-
-body {
   height: 100vh;
   overflow: hidden;
   background-color: rgb(var(--light-yellow));
-}
-
-#__next {
-  flex: 1;
 }
 
 .debug {
@@ -52,13 +44,18 @@ body {
   --leaf-growing: var(--mud-purple);
 }
 
-.App {
-  display: flex;
-  flex: 1;
-  justify-content: flex-end;
-  align-items: center;
-  flex-direction: column;
-}
-
 .base {
+  --base: 75px;
+  --base-width: var(--base);
+  --base-height: var(--base);
+  --scale: 0.707;
+  --top-angle: 90deg;
+  --right-angle: 45deg;
+  --left-angle: 45deg;
+  --right-rotation: var(--right-angle);
+  --left-rotation: calc(-1 * var(--left-angle));
+  --right-scale: 0.707;
+  --left-scale: 0.707;
+  --coefficient: 1;
 }
+`
