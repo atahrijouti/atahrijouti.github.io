@@ -1,9 +1,6 @@
-"use client"
-
-import "./styles.css"
 import { Fractal } from "components/fractal"
 
-const Page = () => {
+const Index = () => {
   return (
     <>
       <Fractal />
@@ -11,4 +8,4 @@ const Page = () => {
   )
 }
 
-export default Page
+export default Index

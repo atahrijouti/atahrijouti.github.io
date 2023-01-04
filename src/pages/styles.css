@@ -11,6 +11,11 @@ body {
   background-color: rgb(var(--light-yellow));
 }
 
+#__next {
+  display: flex;
+  flex: 1;
+}
+
 .debug {
   position: fixed;
   flex: none;

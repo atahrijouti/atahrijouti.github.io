@@ -7,9 +7,6 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  experimental: {
-    appDir: true,
-  },
   compiler: {
     styledComponents: {
       fileName: false,
