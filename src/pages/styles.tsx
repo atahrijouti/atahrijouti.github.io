@@ -1,4 +1,7 @@
-:root {
+import { createGlobalStyle } from "styled-components"
+
+export const GlobalStyles = createGlobalStyle`
+  :root {
   --light-yellow: 254, 254, 215;
 }
 
@@ -25,3 +28,6 @@ body {
   background: black;
   width: 200px;
 }
+`
+
+export default GlobalStyles
