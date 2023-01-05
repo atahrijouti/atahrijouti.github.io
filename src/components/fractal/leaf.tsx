@@ -1,8 +1,9 @@
 import React, { CSSProperties, useEffect, useMemo, useState } from "react"
 import _random from "lodash/random"
+import _shuffle from "lodash/shuffle"
 import styled from "styled-components"
 
-const MAX_LEVEL = 4
+const MAX_LEVEL = 5
 
 const LeafInner = styled.div`
   position: relative;
@@ -11,10 +12,13 @@ const LeafInner = styled.div`
 `
 
 const LeafElement = styled.div`
+  --leaf-background-color: rgba(var(--leaf-background), var(--coefficient));
   width: var(--base-width);
   height: var(--base-height);
-  background-color: rgba(var(--leaf-background), var(--coefficient));
-  transition: background 1s, transform 100ms;
+  transition: background 1s, transform 16ms;
+
+  background-color: var(--leaf-background-color);
+
   ${LeafInner} & {
     position: absolute;
   }
@@ -68,14 +72,15 @@ export const Leaf = React.memo(({ orientation, level = 0 }: LeafProps) => {
   useEffect(() => {
     let timeouts: NodeJS.Timeout[] = []
     if (level < MAX_LEVEL) {
-      const fireTime = _random(1111, 2222)
+      const fireTime = _random(1333, 2666)
+      const [first, second] = _shuffle(["left", "right"]) as LeafProps["orientation"][]
       timeouts = [
         setTimeout(() => {
-          setChildren(["right"])
+          setChildren([first])
         }, fireTime),
         setTimeout(() => {
-          setChildren(["left", "right"])
-        }, _random(fireTime, 3333)),
+          setChildren([first, second])
+        }, _random(fireTime, 3999)),
       ]
     }
     return () => {
@@ -96,8 +101,9 @@ export const Leaf = React.memo(({ orientation, level = 0 }: LeafProps) => {
       }
     >
       <LeafInner>
-        {children.length >= 1 && <Leaf orientation="right" level={level + 1} />}
-        {children.length >= 2 && <Leaf orientation="left" level={level + 1} />}
+        {children.map((o) => (
+          <Leaf key={o} orientation={o} level={level + 1} />
+        ))}
       </LeafInner>
     </StyledElement>
   )
