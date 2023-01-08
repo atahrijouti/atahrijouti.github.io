@@ -35,13 +35,9 @@ export const Fractal = () => {
     }
   }, [])
 
-  console.log("Rendering : Fractal")
-
   return (
     <div id="canvas" className={styles.Canvas} ref={canvasRef}>
-      <div id="base" className={styles.Base}>
-        <Leaf />
-      </div>
+      <Leaf />
     </div>
   )
 }

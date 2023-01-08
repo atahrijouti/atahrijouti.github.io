@@ -1,13 +1,10 @@
 import { computeFractalFromMouse } from "./math"
 
-let debugElement: HTMLElement | null = null
-let baseElement: HTMLElement | null = null
+let rootNodeElement: HTMLElement | null = null
+let rootStylesElement: HTMLElement | null = null
 let basePosition: DOMRect | undefined = {} as DOMRect
 const relativeWidth = 12.5
 let absoluteWidth: number = 75
-
-const themeList = ["green", "red", "purple"]
-let currentTheme = themeList[0]
 
 let isRepaintNeeded = true
 
@@ -29,7 +26,7 @@ let geometry: Geometry = {
 
 const handleResize = () => {
   isRepaintNeeded = true
-  basePosition = baseElement?.getBoundingClientRect()
+  basePosition = rootNodeElement?.getBoundingClientRect() ?? ({} as DOMRect)
   absoluteWidth = (window.innerHeight * relativeWidth) / 100
 }
 
@@ -70,7 +67,7 @@ const applyStyles = () => {
     }
 
     Object.entries(computedStyle).forEach(([key, value]) =>
-      baseElement?.style.setProperty(key, value),
+      rootStylesElement?.style.setProperty(key, value),
     )
     isRepaintNeeded = false
   }
@@ -78,15 +75,15 @@ const applyStyles = () => {
 }
 
 export function runOldJSCode() {
-  debugElement = document.getElementById("debug")
-  baseElement = document.getElementById("base")
+  rootStylesElement = document.getElementById("canvas")
+  rootNodeElement = document.getElementById("root-node")
 
-  if (!baseElement) {
-    console.error({ baseElement })
+  if (!rootNodeElement || !rootStylesElement) {
+    console.error({ rootNodeElement, rootStylesElement })
     return new Error("required elements missing!")
   }
 
-  basePosition = baseElement.getBoundingClientRect()
+  basePosition = rootNodeElement.getBoundingClientRect()
 
   isRepaintNeeded = true
   handleResize()
