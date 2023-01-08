@@ -1,5 +1,3 @@
-"use client"
-
 import { computeFractalFromMouse } from "./math"
 
 let debugElement: HTMLElement | null = null
@@ -62,15 +60,18 @@ const applyStyles = () => {
   if (geometry && isRepaintNeeded) {
     const { rightAngle, leftAngle, rightScale, leftScale, topAngle } = geometry
 
-    const computedStyle = `
---base: ${absoluteWidth}px;
---right-scale: ${rightScale};
---left-scale: ${leftScale};
---top-angle: ${topAngle}deg;
---right-angle: ${rightAngle}deg;
---left-angle: ${leftAngle}deg;`
+    const computedStyle = {
+      "--base": `${absoluteWidth}px`,
+      "--right-scale": `${rightScale}`,
+      "--left-scale": `${leftScale}`,
+      "--top-angle": `${topAngle}deg`,
+      "--right-angle": `${rightAngle}deg`,
+      "--left-angle": `${leftAngle}deg`,
+    }
 
-    baseElement!.setAttribute("style", computedStyle)
+    Object.entries(computedStyle).forEach(([key, value]) =>
+      baseElement?.style.setProperty(key, value),
+    )
     isRepaintNeeded = false
   }
   window.requestAnimationFrame(applyStyles)

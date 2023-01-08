@@ -1,0 +1,32 @@
+.LeafInner {
+  position: relative;
+  width: var(--base-width);
+  height: var(--base-height);
+}
+
+.Leaf {
+  --leaf-background-color: rgba(var(--leaf-background), var(--coefficient));
+  width: var(--base-width);
+  height: var(--base-height);
+  transition: background 1s, transform 16ms;
+
+  background-color: var(--leaf-background-color);
+}
+
+.LeafInner .Leaf {
+  position: absolute;
+}
+
+.RightLeaf {
+  right: 0;
+  top: -100%;
+  transform-origin: bottom right;
+  transform: scale(var(--right-scale)) rotate(var(--right-rotation));
+}
+
+.LeftLeaf {
+  top: -100%;
+  left: 0;
+  transform-origin: bottom left;
+  transform: scale(var(--left-scale)) rotate(var(--left-rotation));
+}

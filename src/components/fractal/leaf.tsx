@@ -1,41 +1,11 @@
 import React, { CSSProperties, useEffect, useMemo, useState } from "react"
 import _random from "lodash/random"
 import _shuffle from "lodash/shuffle"
-import styled from "styled-components"
+import classNames from "classnames"
+
+import styles from "./leaf.module.css"
 
 const MAX_LEVEL = 5
-
-const LeafInner = styled.div`
-  position: relative;
-  width: var(--base-width);
-  height: var(--base-height);
-`
-
-const LeafElement = styled.div`
-  --leaf-background-color: rgba(var(--leaf-background), var(--coefficient));
-  width: var(--base-width);
-  height: var(--base-height);
-  transition: background 1s, transform 16ms;
-
-  background-color: var(--leaf-background-color);
-
-  ${LeafInner} & {
-    position: absolute;
-  }
-`
-const RightLeaf = styled(LeafElement)`
-  right: 0;
-  top: -100%;
-  transform-origin: bottom right;
-  transform: scale(var(--right-scale)) rotate(var(--right-rotation));
-`
-
-const LeftLeaf = styled(LeafElement)`
-  top: -100%;
-  left: 0;
-  transform-origin: bottom left;
-  transform: scale(var(--left-scale)) rotate(var(--left-rotation));
-`
 
 type LeafProps = {
   orientation?: "left" | "right"
@@ -48,17 +18,6 @@ export const Leaf = React.memo(({ orientation, level = 0 }: LeafProps) => {
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const levelCoefficient = useMemo(() => Math.pow(0.8, level), [])
-  const StyledElement = useMemo(() => {
-    switch (orientation) {
-      case "left":
-        return LeftLeaf
-      case "right":
-        return RightLeaf
-      default:
-        return LeafElement
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
 
   const id = useMemo(() => {
     if (level === 0) {
@@ -90,7 +49,11 @@ export const Leaf = React.memo(({ orientation, level = 0 }: LeafProps) => {
   }, [])
 
   return (
-    <StyledElement
+    <div
+      className={classNames(
+        styles.Leaf,
+        orientation ? (orientation === "right" ? styles.RightLeaf : styles.LeftLeaf) : "",
+      )}
       id={id}
       style={
         {
@@ -100,11 +63,11 @@ export const Leaf = React.memo(({ orientation, level = 0 }: LeafProps) => {
         } as CSSProperties
       }
     >
-      <LeafInner>
+      <div className={styles.LeafInner}>
         {children.map((o) => (
           <Leaf key={o} orientation={o} level={level + 1} />
         ))}
-      </LeafInner>
-    </StyledElement>
+      </div>
+    </div>
   )
 })
