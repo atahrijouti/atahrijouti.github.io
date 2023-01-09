@@ -12,6 +12,7 @@
 
   /* default theme */
   --growing-leaf-color: var(--leafy-green);
+  --leaf-background: var(--growing-leaf-color);
   --leaf-full: 128, 128, 128;
 
   /* geometry */
@@ -27,4 +28,11 @@
   --right-scale: 0.707;
   --left-scale: 0.707;
   --coefficient: 1;
+}
+
+.impossible {
+  width: 100px;
+  height: 100px;
+  background: black;
+  border: 4px dashed cyan;
 }

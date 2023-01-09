@@ -1,11 +1,7 @@
-import { Fractal } from "components/fractal"
+import { HomePage } from "page-components/home-page"
 
-const Index = () => {
-  return (
-    <>
-      <Fractal />
-    </>
-  )
+const Home = () => {
+  return <HomePage />
 }
 
-export default Index
+export default Home
