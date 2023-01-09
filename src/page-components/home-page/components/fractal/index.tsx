@@ -17,6 +17,7 @@ const geometry = {
 }
 
 let isRepaintNeeded = true
+let loop = true
 
 const rgbaLeafColors = ["rgb(117, 166, 58)", "rgb(246, 62, 98)", "rgb(132, 74, 135)"] as const
 const leafColors = rgbaLeafColors
@@ -30,9 +31,17 @@ const randomColor = (): LeafColor => _sample(leafColors) as LeafColor
 const applyRandomColorToRef = (ref: RefObject<HTMLElement>) =>
   ref.current?.style.setProperty("--growing-leaf-color", randomColor())
 
+const showDebug = (object: any, debugRef: RefObject<HTMLPreElement>) => {
+  if (!debugRef.current) {
+    return new Error("Don't call showDebug before render")
+  }
+  debugRef.current.innerHTML = JSON.stringify(object, null, 2)
+}
+
 export const Fractal = () => {
   const canvasRef = useRef<HTMLDivElement>(null)
   const baseRef = useRef<HTMLDivElement>(null)
+  const debugRef = useRef<HTMLPreElement>(null)
 
   const applyStyles = useCallback(() => {
     if (isRepaintNeeded) {
@@ -52,14 +61,18 @@ export const Fractal = () => {
       )
       isRepaintNeeded = false
     }
-    window.requestAnimationFrame(applyStyles)
+    loop && window.requestAnimationFrame(applyStyles)
   }, [canvasRef])
 
-  const handleResize = useCallback(() => {
-    isRepaintNeeded = true
+  const fetchBasePosition = useCallback(() => {
     geometry.basePosition = baseRef.current?.getBoundingClientRect() ?? ({} as DOMRect)
     geometry.absoluteWidth = (window.innerHeight * geometry.relativeWidth) / 100
   }, [baseRef])
+
+  const handleResize = useCallback(() => {
+    isRepaintNeeded = true
+    fetchBasePosition()
+  }, [fetchBasePosition])
 
   const handleMouseMove = useCallback((e: MouseEvent) => {
     isRepaintNeeded = true
@@ -82,10 +95,8 @@ export const Fractal = () => {
 
   // on mount
   useEffect(() => {
-    console.log("mounting again")
-
-    handleResize()
     applyRandomColorToRef(canvasRef)
+    fetchBasePosition()
     applyStyles()
 
     window.addEventListener("resize", handleResize, false)
@@ -93,8 +104,10 @@ export const Fractal = () => {
     return () => {
       window.removeEventListener("resize", handleResize)
       window.removeEventListener("mousemove", handleMouseMove)
+      isRepaintNeeded = false
+      loop = false
     }
-  }, [applyStyles, handleMouseMove, handleResize])
+  }, [applyStyles, fetchBasePosition, handleMouseMove, handleResize])
 
   // periodically change theme
   useEffect(() => {
@@ -107,10 +120,9 @@ export const Fractal = () => {
     }
   }, [])
 
-  console.log("rendered again")
-
   return (
     <div id="canvas" className={styles.Canvas} ref={canvasRef}>
+      <pre className={styles.debug} ref={debugRef} />
       <div className="base" id="base" ref={baseRef}>
         <Leaf />
       </div>

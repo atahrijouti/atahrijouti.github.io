@@ -18,13 +18,3 @@ body {
   height: 100vh;
   overflow: hidden;
 }
-
-.debug {
-  position: fixed;
-  flex: none;
-  top: 10px;
-  left: 10px;
-  color: white;
-  background: black;
-  width: 200px;
-}

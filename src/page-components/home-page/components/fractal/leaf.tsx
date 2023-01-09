@@ -31,7 +31,7 @@ export const Leaf = React.memo(({ orientation, level = 0 }: LeafProps) => {
   useEffect(() => {
     let timeouts: NodeJS.Timeout[] = []
     if (level < MAX_LEVEL) {
-      const fireTime = _random(1333, 2666)
+      const fireTime = _random(333, 555)
       const [first, second] = _shuffle(["left", "right"]) as LeafProps["orientation"][]
       timeouts = [
         setTimeout(() => {
@@ -39,9 +39,10 @@ export const Leaf = React.memo(({ orientation, level = 0 }: LeafProps) => {
         }, fireTime),
         setTimeout(() => {
           setChildren([first, second])
-        }, _random(fireTime, 3999)),
+        }, _random(fireTime, 777)),
       ]
     }
+
     return () => {
       timeouts.forEach((t) => clearTimeout(t))
     }

@@ -36,3 +36,13 @@
   background: black;
   border: 4px dashed cyan;
 }
+
+.debug {
+  position: fixed;
+  flex: none;
+  top: 10px;
+  left: 10px;
+  color: white;
+  background: black;
+  width: 200px;
+}
