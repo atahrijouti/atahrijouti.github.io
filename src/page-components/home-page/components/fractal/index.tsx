@@ -64,15 +64,16 @@ export const Fractal = () => {
     loop && window.requestAnimationFrame(applyStyles)
   }, [canvasRef])
 
-  const fetchBasePosition = useCallback(() => {
-    geometry.basePosition = baseRef.current?.getBoundingClientRect() ?? ({} as DOMRect)
+  const updateBaseGeometry = useCallback(() => {
     geometry.absoluteWidth = (window.innerHeight * geometry.relativeWidth) / 100
-  }, [baseRef])
+    canvasRef.current?.style.setProperty("--base", `${geometry.absoluteWidth}px`)
+    geometry.basePosition = baseRef.current?.getBoundingClientRect() ?? ({} as DOMRect)
+  }, [baseRef, canvasRef])
 
   const handleResize = useCallback(() => {
     isRepaintNeeded = true
-    fetchBasePosition()
-  }, [fetchBasePosition])
+    updateBaseGeometry()
+  }, [updateBaseGeometry])
 
   const handleMouseMove = useCallback((e: MouseEvent) => {
     isRepaintNeeded = true
@@ -96,7 +97,7 @@ export const Fractal = () => {
   // on mount
   useEffect(() => {
     applyRandomColorToRef(canvasRef)
-    fetchBasePosition()
+    updateBaseGeometry()
     applyStyles()
 
     window.addEventListener("resize", handleResize, false)
@@ -107,7 +108,7 @@ export const Fractal = () => {
       isRepaintNeeded = false
       loop = false
     }
-  }, [applyStyles, fetchBasePosition, handleMouseMove, handleResize])
+  }, [applyStyles, updateBaseGeometry, handleMouseMove, handleResize])
 
   // periodically change theme
   useEffect(() => {
