@@ -1,4 +1,5 @@
 import { style } from "@vanilla-extract/css"
+import { LeafColorVars } from "../../utils/colors"
 
 export const canvas = style({
   display: "flex",
@@ -8,9 +9,7 @@ export const canvas = style({
   flexDirection: "column",
   vars: {
     /* colors */
-    "--pinkred": "246, 62, 98",
-    "--leafy-green": "117, 166, 58",
-    "--mud-purple": "132, 74, 135",
+    ...LeafColorVars,
 
     /* default theme */
     "--growing-leaf-color": "var(--leafy-green)",

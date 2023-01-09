@@ -1,9 +1,9 @@
 import { Leaf } from "./leaf"
 import { RefObject, useCallback, useEffect, useRef } from "react"
-import _sample from "lodash/sample"
 
 import { mouseToFractalGeometry } from "../../utils/mouse-to-fractal-geometry"
 import { canvas, debug } from "./fractal.css"
+import { randomColor } from "../../utils/colors"
 
 const geometry = {
   rightScale: 0.707,
@@ -18,15 +18,6 @@ const geometry = {
 
 let isRepaintNeeded = true
 let loop = true
-
-const rgbaLeafColors = ["rgb(117, 166, 58)", "rgb(246, 62, 98)", "rgb(132, 74, 135)"] as const
-const leafColors = rgbaLeafColors
-  .map((color) => color.replace("rgb(", ""))
-  .map((s) => s.replace(")", ""))
-
-type LeafColor = typeof leafColors[number]
-
-const randomColor = (): LeafColor => _sample(leafColors) as LeafColor
 
 const applyRandomColorToRef = (ref: RefObject<HTMLElement>) =>
   ref.current?.style.setProperty("--growing-leaf-color", randomColor())
