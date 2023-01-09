@@ -1,5 +1,6 @@
 {
   "private": true,
+  "name": "tahri.dev",
   "engines": {
     "node": ">=18.12"
   },
@@ -21,6 +22,8 @@
     "@types/node": "^18.11.5",
     "@types/react": "^18.0.23",
     "@types/react-dom": "^18.0.7",
+    "@vanilla-extract/css": "^1.9.2",
+    "@vanilla-extract/next-plugin": "^2.1.1",
     "eslint": "8.31.0",
     "eslint-config-next": "13.1.1",
     "prettier": "^2.8.1",
