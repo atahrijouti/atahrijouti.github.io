@@ -2,8 +2,8 @@ import { Leaf } from "./leaf"
 import { RefObject, useCallback, useEffect, useRef } from "react"
 import _sample from "lodash/sample"
 
-import styles from "./fractal.module.css"
 import { mouseToFractalGeometry } from "../../utils/mouse-to-fractal-geometry"
+import { canvas, debug } from "./fractal.css"
 
 const geometry = {
   rightScale: 0.707,
@@ -121,8 +121,8 @@ export const Fractal = () => {
   }, [])
 
   return (
-    <div id="canvas" className={styles.Canvas} ref={canvasRef}>
-      <pre className={styles.debug} ref={debugRef} />
+    <div id="canvas" className={canvas} ref={canvasRef}>
+      <pre className={debug} ref={debugRef} />
       <div className="base" id="base" ref={baseRef}>
         <Leaf />
       </div>

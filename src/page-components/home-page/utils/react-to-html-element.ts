@@ -1,10 +1,10 @@
-import styles from "../components/fractal/fractal.module.css"
 import { renderToString } from "react-dom/server"
+import { impossible } from "../components/fractal/fractal.css"
 
 const impossibleElement = () => {
-  const impossible = document.createElement("div")
-  impossible.classList.add(styles.impossible)
-  return impossible
+  const impossibleElement = document.createElement("div")
+  impossibleElement.classList.add(impossible)
+  return impossibleElement
 }
 
 export const reactToHtmlElement = (reactElement: JSX.Element): HTMLElement => {

@@ -2,8 +2,7 @@ import React, { CSSProperties, useEffect, useMemo, useState } from "react"
 import _random from "lodash/random"
 import _shuffle from "lodash/shuffle"
 import classNames from "classnames"
-
-import styles from "./leaf.module.css"
+import { leaf, leafInner, leftLeaf, rightLeaf } from "./leaf.css"
 
 const MAX_LEVEL = 5
 
@@ -52,8 +51,8 @@ export const Leaf = React.memo(({ orientation, level = 0 }: LeafProps) => {
   return (
     <div
       className={classNames(
-        styles.Leaf,
-        orientation ? (orientation === "right" ? styles.RightLeaf : styles.LeftLeaf) : "",
+        leaf,
+        orientation ? (orientation === "right" ? rightLeaf : leftLeaf) : "",
       )}
       id={id}
       style={
@@ -64,7 +63,7 @@ export const Leaf = React.memo(({ orientation, level = 0 }: LeafProps) => {
         } as CSSProperties
       }
     >
-      <div className={styles.LeafInner}>
+      <div className={leafInner}>
         {children.map((o) => (
           <Leaf key={o} orientation={o} level={level + 1} />
         ))}
