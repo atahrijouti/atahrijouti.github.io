@@ -6,13 +6,12 @@ import { canvas, debug } from "./fractal.css"
 import { randomColor } from "../../utils/colors"
 
 const geometry = {
+  absoluteWidth: 75,
   rightScale: 0.707,
   leftScale: 0.707,
-  topAngle: 90,
   leftAngle: 45,
   rightAngle: 45,
   relativeWidth: 12.5,
-  absoluteWidth: 75,
   basePosition: {} as DOMRect,
 }
 
@@ -36,13 +35,12 @@ export const Fractal = () => {
 
   const applyStyles = useCallback(() => {
     if (isRepaintNeeded) {
-      const { absoluteWidth, leftScale, rightScale, topAngle, leftAngle, rightAngle } = geometry
+      const { absoluteWidth, leftScale, rightScale, leftAngle, rightAngle } = geometry
 
       const computedStyle = {
         "--base": `${absoluteWidth}px`,
         "--left-scale": `${leftScale}`,
         "--right-scale": `${rightScale}`,
-        "--top-angle": `${topAngle}deg`,
         "--left-angle": `${leftAngle}deg`,
         "--right-angle": `${rightAngle}deg`,
       }
@@ -55,23 +53,10 @@ export const Fractal = () => {
     loop && window.requestAnimationFrame(applyStyles)
   }, [canvasRef])
 
-  const updateBaseGeometry = useCallback(() => {
-    geometry.absoluteWidth = (window.innerHeight * geometry.relativeWidth) / 100
-    canvasRef.current?.style.setProperty("--base", `${geometry.absoluteWidth}px`)
-    geometry.basePosition = baseRef.current?.getBoundingClientRect() ?? ({} as DOMRect)
-  }, [baseRef, canvasRef])
-
-  const handleResize = useCallback(() => {
-    isRepaintNeeded = true
-    updateBaseGeometry()
-  }, [updateBaseGeometry])
-
-  const handleMouseMove = useCallback((e: MouseEvent) => {
-    isRepaintNeeded = true
-
-    const { rightScale, leftScale, topAngle, rightAngle, leftAngle } = mouseToFractalGeometry(
-      e.pageX,
-      e.pageY,
+  const computeGeometry = useCallback((focus: { x: number; y: number }) => {
+    const { rightScale, leftScale, rightAngle, leftAngle } = mouseToFractalGeometry(
+      focus.x,
+      focus.y,
       geometry.basePosition,
       geometry.absoluteWidth,
     )
@@ -79,16 +64,37 @@ export const Fractal = () => {
     Object.assign(geometry, {
       rightScale,
       leftScale,
-      topAngle,
       rightAngle,
       leftAngle,
     })
   }, [])
 
+  const computeBaseWidthGeometry = useCallback(() => {
+    const canvasRect = canvasRef.current?.getBoundingClientRect() ?? ({} as DOMRect)
+    // todo: see of we cam rely on css to calculate this
+    geometry.absoluteWidth = (canvasRect.height * geometry.relativeWidth) / 100
+    canvasRef.current?.style.setProperty("--base", `${geometry.absoluteWidth}px`)
+    geometry.basePosition = baseRef.current?.getBoundingClientRect() ?? ({} as DOMRect)
+  }, [baseRef, canvasRef])
+
+  const handleResize = useCallback(() => {
+    isRepaintNeeded = true
+    computeBaseWidthGeometry()
+  }, [computeBaseWidthGeometry])
+
+  const handleMouseMove = useCallback(
+    (e: MouseEvent) => {
+      isRepaintNeeded = true
+      computeGeometry({ x: e.pageX, y: e.pageY })
+    },
+    [computeGeometry],
+  )
+
   // on mount
   useEffect(() => {
     applyRandomColorToRef(canvasRef)
-    updateBaseGeometry()
+    computeBaseWidthGeometry()
+    computeGeometry({ x: 0, y: 0 })
     applyStyles()
 
     window.addEventListener("resize", handleResize, false)
@@ -99,7 +105,7 @@ export const Fractal = () => {
       isRepaintNeeded = false
       loop = false
     }
-  }, [applyStyles, updateBaseGeometry, handleMouseMove, handleResize])
+  }, [applyStyles, computeBaseWidthGeometry, handleMouseMove, handleResize])
 
   // periodically change theme
   useEffect(() => {

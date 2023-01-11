@@ -20,8 +20,6 @@ export const canvas = style({
     "--base": "75px",
     "--base-width": "var(--base)",
     "--base-height": "var(--base)",
-    "--scale": "0.707",
-    "--top-angle": "90deg",
     "--right-angle": "45deg",
     "--left-angle": "45deg",
     "--right-rotation": "var(--right-angle)",
