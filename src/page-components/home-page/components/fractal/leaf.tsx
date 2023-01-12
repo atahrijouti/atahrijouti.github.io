@@ -16,7 +16,7 @@ export const Leaf = React.memo(({ orientation, level = 0 }: LeafProps) => {
   const [children, setChildren] = useState<LeafProps["orientation"][]>([])
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const levelCoefficient = useMemo(() => Math.pow(0.8, level), [])
+  const levelCoefficient = useMemo(() => Math.pow(0.87, level), [])
 
   const id = useMemo(() => {
     if (level === 0) {

@@ -3,7 +3,7 @@ import _clamp from "lodash/clamp"
 export const d2r = (degree: number) => (degree * Math.PI) / 180
 export const r2d = (radian: number) => (radian / Math.PI) * 180
 
-export const mouseToFractalGeometry = (
+export const lookAtPoint = (
   focusX: number,
   focusY: number,
   basePosition: DOMRect,

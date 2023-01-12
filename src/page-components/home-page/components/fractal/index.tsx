@@ -1,7 +1,7 @@
 import { Leaf } from "./leaf"
 import { RefObject, useCallback, useEffect, useRef } from "react"
 
-import { mouseToFractalGeometry } from "../../utils/mouse-to-fractal-geometry"
+import { lookAtPoint } from "../../utils/look-at-point"
 import { canvas, debug } from "./fractal.css"
 import { randomColor } from "../../utils/colors"
 
@@ -20,13 +20,6 @@ let loop = true
 
 const applyRandomColorToRef = (ref: RefObject<HTMLElement>) =>
   ref.current?.style.setProperty("--growing-leaf-color", randomColor())
-
-const showDebug = (object: any, debugRef: RefObject<HTMLPreElement>) => {
-  if (!debugRef.current) {
-    return new Error("Don't call showDebug before render")
-  }
-  debugRef.current.innerHTML = JSON.stringify(object, null, 2)
-}
 
 export const Fractal = () => {
   const canvasRef = useRef<HTMLDivElement>(null)
@@ -54,7 +47,7 @@ export const Fractal = () => {
   }, [canvasRef])
 
   const computeGeometry = useCallback((focus: { x: number; y: number }) => {
-    const { rightScale, leftScale, rightAngle, leftAngle } = mouseToFractalGeometry(
+    const { rightScale, leftScale, rightAngle, leftAngle } = lookAtPoint(
       focus.x,
       focus.y,
       geometry.basePosition,
@@ -71,7 +64,6 @@ export const Fractal = () => {
 
   const computeBaseWidthGeometry = useCallback(() => {
     const canvasRect = canvasRef.current?.getBoundingClientRect() ?? ({} as DOMRect)
-    // todo: see of we cam rely on css to calculate this
     geometry.absoluteWidth = (canvasRect.height * geometry.relativeWidth) / 100
     canvasRef.current?.style.setProperty("--base", `${geometry.absoluteWidth}px`)
     geometry.basePosition = baseRef.current?.getBoundingClientRect() ?? ({} as DOMRect)
@@ -105,7 +97,7 @@ export const Fractal = () => {
       isRepaintNeeded = false
       loop = false
     }
-  }, [applyStyles, computeBaseWidthGeometry, handleMouseMove, handleResize])
+  }, [applyStyles, computeBaseWidthGeometry, computeGeometry, handleMouseMove, handleResize])
 
   // periodically change theme
   useEffect(() => {
