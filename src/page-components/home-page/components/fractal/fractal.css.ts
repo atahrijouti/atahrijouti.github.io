@@ -2,8 +2,10 @@ import { style } from "@vanilla-extract/css"
 import { LeafColorVars } from "../../utils/colors"
 
 export const canvas = style({
+  width: "80vmin",
+  height: "80vmin",
+  border: "4px solid brown",
   display: "flex",
-  flex: "1",
   justifyContent: "flex-end",
   alignItems: "center",
   flexDirection: "column",

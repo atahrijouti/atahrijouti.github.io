@@ -10,15 +10,10 @@ globalStyle("body", {
   padding: 0,
   margin: 0,
   display: "flex",
+  minHeight: "100vh",
   backgroundColor: "rgb(var(--light-yellow))",
 })
 
 globalStyle("#__next", {
-  flex: 1,
-})
-
-globalStyle(".page", {
-  display: "flex",
-  height: "100vh",
-  overflow: "hidden",
+  flex: "1 1 auto",
 })

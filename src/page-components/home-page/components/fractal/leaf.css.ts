@@ -29,7 +29,7 @@ export const leaf = style({
     "--leaf-background-color": "rgba(var(--leaf-background), var(--coefficient))",
   },
   selectors: {
-    [`${leafInner} &`]: {
+    [`${leafInner} > &`]: {
       position: "absolute",
     },
   },

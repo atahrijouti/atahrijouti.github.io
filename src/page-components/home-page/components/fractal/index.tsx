@@ -3,7 +3,7 @@ import { RefObject, useCallback, useEffect, useRef } from "react"
 
 import { lookAtPoint } from "../../utils/look-at-point"
 import { canvas, debug } from "./fractal.css"
-import { randomColor } from "../../utils/colors"
+import { randomColorVar } from "../../utils/colors"
 
 const geometry = {
   absoluteWidth: 75,
@@ -19,7 +19,7 @@ let isRepaintNeeded = true
 let loop = true
 
 const applyRandomColorToRef = (ref: RefObject<HTMLElement>) =>
-  ref.current?.style.setProperty("--growing-leaf-color", randomColor())
+  ref.current?.style.setProperty("--growing-leaf-color", randomColorVar())
 
 export const Fractal = () => {
   const canvasRef = useRef<HTMLDivElement>(null)

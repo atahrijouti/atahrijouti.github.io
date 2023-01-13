@@ -1,7 +1,7 @@
 import _sample from "lodash/sample"
 
 const RgbLeafColors = {
-  "--leafy-green": "rgb(117, 166, 58)",
+  "--leafy-green": "rgb(135,191,67)",
   "--pink-red": "rgb(246, 62, 98)",
   "--mud-purple": "rgb(132, 74, 135)",
 } as const
@@ -20,4 +20,5 @@ const leafColorVarValues: LeafColorVarValue[] = Object.entries(LeafColorVars).ma
   ([_, value]) => value,
 )
 
-export const randomColor = (): LeafColorVarValue => _sample(leafColorVarValues) as LeafColorVarValue
+export const randomColorVar = (): LeafColorVarValue =>
+  _sample(leafColorVarValues) as LeafColorVarValue
