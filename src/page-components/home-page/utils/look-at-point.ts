@@ -9,14 +9,21 @@ export const lookAtPoint = (
   basePosition: DOMRect,
   baseWidth: number,
 ) => {
-  const MH = Math.abs(focusY - basePosition.top)
+  const MHm = focusY - basePosition.top
   const HC = focusX - (basePosition.left + baseWidth / 2)
-  const MC = Math.sqrt(MH * MH + HC * HC)
-  const MCH = r2d(Math.asin(MH / MC))
+  const MC = Math.sqrt(MHm * MHm + HC * HC)
+  const MCH = r2d(Math.asin(Math.abs(MHm) / MC))
 
-  let TCL = HC > 0 ? 180 - MCH : MCH
+  // sin(MCH) = THt / baseWidth
+  // THt = baseWidth * sin(MCH)
 
-  TCL = _clamp(TCL, 30, 150)
+  const TCL_RAW = HC > 0 ? 180 - MCH : MCH
+  const TCR_RAW = 180 - TCL_RAW
+
+  const polarityY = Math.sin(d2r(TCR_RAW)) * Math.sign(-MHm)
+  const polarityX = Math.cos(d2r(TCR_RAW))
+
+  const TCL = _clamp(TCL_RAW, 30, 150)
   const leftAngle = (180 - TCL) / 2
   const rightAngle = TCL / 2
 
@@ -28,5 +35,7 @@ export const lookAtPoint = (
     leftScale,
     rightAngle,
     leftAngle,
+    polarityX,
+    polarityY,
   }
 }

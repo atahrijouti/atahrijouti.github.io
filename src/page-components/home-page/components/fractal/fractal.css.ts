@@ -1,14 +1,8 @@
 import { style } from "@vanilla-extract/css"
 import { LeafColorVars } from "../../utils/colors"
+import { ThemeTimeout } from "../../utils/constants"
 
-export const canvas = style({
-  width: "80vmin",
-  height: "80vmin",
-  border: "4px solid brown",
-  display: "flex",
-  justifyContent: "flex-end",
-  alignItems: "center",
-  flexDirection: "column",
+export const fractalVars = style({
   vars: {
     /* colors */
     ...LeafColorVars,
@@ -17,6 +11,9 @@ export const canvas = style({
     "--growing-leaf-color": "var(--leafy-green)",
     "--leaf-background": "var(--growing-leaf-color)",
     "--leaf-full": "128, 128, 128",
+
+    /* animatin config */
+    "--transition-duration": `${ThemeTimeout / 2}ms`,
 
     /* geometry */
     "--base": "75px",
@@ -29,6 +26,39 @@ export const canvas = style({
     "--right-scale": "0.707",
     "--left-scale": "0.707",
     "--coefficient": "1",
+  },
+})
+
+export const canvas = style({
+  width: "60vmin",
+  height: "60vmin",
+  display: "flex",
+  justifyContent: "flex-end",
+  alignItems: "center",
+  flexDirection: "column",
+  // overflow: "hidden",
+  background: "rgb(var(--light-yellow))",
+  boxShadow:
+    "calc(-0.1 * var(--canvas-width) * var(--polarity-x)) " +
+    "calc(-0.1 * var(--canvas-width) * -1 * var(--polarity-y)) " +
+    "calc(var(--canvas-width) / 2) " +
+    "rgb(var(--growing-leaf-color))",
+  transition: "all var(--transition-duration)",
+  position: "relative",
+  selectors: {
+    "&:before": {
+      content: "",
+      zIndex: "-1",
+      position: "absolute",
+      background: "rgba(var(--growing-leaf-color), .5)",
+      transition: "background var(--transition-duration)",
+      transitionTimingFunction: "ease-in-out",
+      width: "100%",
+      height: "100%",
+      top: "4%",
+      left: "4%",
+      filter: "invert(100%)",
+    },
   },
 })
 

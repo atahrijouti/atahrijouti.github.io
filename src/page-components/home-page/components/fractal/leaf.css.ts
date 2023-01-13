@@ -23,7 +23,7 @@ export const rightLeaf = style({
 export const leaf = style({
   width: "var(--base-width)",
   height: "var(--base-height)",
-  transition: "background 1s , transform 16ms",
+  transition: "background var(--transition-duration)",
   backgroundColor: "var(--leaf-background-color)",
   vars: {
     "--leaf-background-color": "rgba(var(--leaf-background), var(--coefficient))",

@@ -1,10 +1,6 @@
 import _sample from "lodash/sample"
 
-const RgbLeafColors = {
-  "--leafy-green": "rgb(135,191,67)",
-  "--pink-red": "rgb(246, 62, 98)",
-  "--mud-purple": "rgb(132, 74, 135)",
-} as const
+import { RgbLeafColors } from "./constants"
 
 export const LeafColorVars = Object.fromEntries(
   Object.entries(RgbLeafColors).map(([name, color]) => [

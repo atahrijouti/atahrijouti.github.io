@@ -2,8 +2,9 @@ import { Leaf } from "./leaf"
 import { RefObject, useCallback, useEffect, useRef } from "react"
 
 import { lookAtPoint } from "../../utils/look-at-point"
-import { canvas, debug } from "./fractal.css"
+import { canvas, debug, fractalVars } from "./fractal.css"
 import { randomColorVar } from "../../utils/colors"
+import { ThemeTimeout } from "../../utils/constants"
 
 const geometry = {
   absoluteWidth: 75,
@@ -11,6 +12,8 @@ const geometry = {
   leftScale: 0.707,
   leftAngle: 45,
   rightAngle: 45,
+  polarityX: 0,
+  polarityY: 37.5,
   relativeWidth: 12.5,
   basePosition: {} as DOMRect,
 }
@@ -28,7 +31,8 @@ export const Fractal = () => {
 
   const applyStyles = useCallback(() => {
     if (isRepaintNeeded) {
-      const { absoluteWidth, leftScale, rightScale, leftAngle, rightAngle } = geometry
+      const { absoluteWidth, leftScale, rightScale, leftAngle, rightAngle, polarityX, polarityY } =
+        geometry
 
       const computedStyle = {
         "--base": `${absoluteWidth}px`,
@@ -36,6 +40,8 @@ export const Fractal = () => {
         "--right-scale": `${rightScale}`,
         "--left-angle": `${leftAngle}deg`,
         "--right-angle": `${rightAngle}deg`,
+        "--polarity-x": `${polarityX}`,
+        "--polarity-y": `${polarityY}`,
       }
 
       Object.entries(computedStyle).forEach(([key, value]) =>
@@ -47,7 +53,7 @@ export const Fractal = () => {
   }, [canvasRef])
 
   const computeGeometry = useCallback((focus: { x: number; y: number }) => {
-    const { rightScale, leftScale, rightAngle, leftAngle } = lookAtPoint(
+    const { rightScale, leftScale, rightAngle, leftAngle, polarityX, polarityY } = lookAtPoint(
       focus.x,
       focus.y,
       geometry.basePosition,
@@ -59,6 +65,8 @@ export const Fractal = () => {
       leftScale,
       rightAngle,
       leftAngle,
+      polarityX,
+      polarityY,
     })
   }, [])
 
@@ -66,6 +74,7 @@ export const Fractal = () => {
     const canvasRect = canvasRef.current?.getBoundingClientRect() ?? ({} as DOMRect)
     geometry.absoluteWidth = (canvasRect.height * geometry.relativeWidth) / 100
     canvasRef.current?.style.setProperty("--base", `${geometry.absoluteWidth}px`)
+    canvasRef.current?.style.setProperty("--canvas-width", `${canvasRect.width}px`)
     geometry.basePosition = baseRef.current?.getBoundingClientRect() ?? ({} as DOMRect)
   }, [baseRef, canvasRef])
 
@@ -103,7 +112,7 @@ export const Fractal = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       applyRandomColorToRef(canvasRef)
-    }, 2000)
+    }, ThemeTimeout)
 
     return () => {
       clearInterval(interval)
@@ -111,7 +120,7 @@ export const Fractal = () => {
   }, [])
 
   return (
-    <div id="canvas" className={canvas} ref={canvasRef}>
+    <div id="canvas" className={`${fractalVars} ${canvas}`} ref={canvasRef}>
       <pre className={debug} ref={debugRef} />
       <div className="base" id="base" ref={baseRef}>
         <Leaf />
