@@ -43,7 +43,7 @@ export const canvas = style({
     "calc(-0.1 * var(--canvas-width) * -1 * var(--polarity-y)) " +
     "calc(var(--canvas-width) / 2) " +
     "rgb(var(--growing-leaf-color))",
-  transition: "all var(--transition-duration)",
+  transition: "box-shadow var(--transition-duration), box-background var(--transition-duration)",
   position: "relative",
   selectors: {
     "&:before": {
