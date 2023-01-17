@@ -5,3 +5,8 @@ export const RgbLeafColors = {
 } as const
 
 export const ThemeTimeout = 2000
+
+export const GEOMETRY = {
+  canvasToBaseNodeRatio: 12.5 / 100,
+  pageToCanvasRatio: 60 / 100,
+}

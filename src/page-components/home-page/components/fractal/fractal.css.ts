@@ -1,6 +1,6 @@
 import { style } from "@vanilla-extract/css"
 import { LeafColorVars } from "../../utils/colors"
-import { ThemeTimeout } from "../../utils/constants"
+import { GEOMETRY, ThemeTimeout } from "../../utils/constants"
 
 export const fractalVars = style({
   vars: {
@@ -16,22 +16,21 @@ export const fractalVars = style({
     "--transition-duration": `${ThemeTimeout / 2}ms`,
 
     /* geometry */
+    "--right-angle": "45deg",
+    "--left-angle": "45deg",
+    "--right-scale": "0.707",
+    "--left-scale": "0.707",
     "--base": "75px",
     "--base-width": "var(--base)",
     "--base-height": "var(--base)",
-    "--right-angle": "45deg",
-    "--left-angle": "45deg",
     "--right-rotation": "var(--right-angle)",
     "--left-rotation": "calc(-1 * var(--left-angle))",
-    "--right-scale": "0.707",
-    "--left-scale": "0.707",
-    "--coefficient": "1",
   },
 })
 
 export const canvas = style({
-  width: "60vmin",
-  height: "60vmin",
+  width: `${GEOMETRY.pageToCanvasRatio * 100}vmin`,
+  height: `${GEOMETRY.pageToCanvasRatio * 100}vmin`,
   display: "flex",
   justifyContent: "flex-end",
   alignItems: "center",
