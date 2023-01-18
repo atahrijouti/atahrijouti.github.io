@@ -1,5 +1,6 @@
 import { createVar, style } from "@vanilla-extract/css"
 import {
+  colorTransitionVar,
   leafBackgroundVar,
   leftRotationVar,
   leftScaleVar,
@@ -34,6 +35,7 @@ export const leaf = style({
   width: "100%",
   height: "100%",
   backgroundColor: leafBackgroundColor,
+  transition: `background ${colorTransitionVar}`,
   vars: {
     [leafBackgroundColor]: `rgba(${leafBackgroundVar}, ${coefficientVar})`,
   },

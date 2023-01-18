@@ -12,8 +12,8 @@ export const fullLeafVar = createVar()
 
 export const leafBackgroundVar = createVar()
 
-const colorTransitionVar = createVar()
-const movementTransitionVar = createVar()
+export const colorTransitionVar = createVar()
+export const movementTransitionVar = createVar()
 
 export const leftScaleVar = createVar()
 export const rightScaleVar = createVar()
