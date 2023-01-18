@@ -2,8 +2,8 @@ import { style } from "@vanilla-extract/css"
 
 export const leafInner = style({
   position: "relative",
-  width: "var(--base-width)",
-  height: "var(--base-height)",
+  width: "100%",
+  height: "100%",
 })
 
 export const leftLeaf = style({
@@ -21,8 +21,8 @@ export const rightLeaf = style({
 })
 
 export const leaf = style({
-  width: "var(--base-width)",
-  height: "var(--base-height)",
+  width: "100%",
+  height: "100%",
   transition: "background var(--transition-duration)",
   backgroundColor: "var(--leaf-background-color)",
   vars: {

@@ -1,18 +1,17 @@
-import { Leaf } from "./leaf"
 import { RefObject, useCallback, useEffect, useRef } from "react"
 
-import { getBaseRectFromCanvas, lookAtPoint } from "../../utils/math"
-import { canvas, debug, fractalVars } from "./fractal.css"
+import { Leaf } from "./leaf"
+
+import { lookAtPoint } from "../../utils/math"
+import { base, canvas, debug, fractalVars } from "./fractal.css"
 import { randomColorVar } from "../../utils/colors"
 import { ThemeTimeout } from "../../utils/constants"
 
 const geometry = {
-  canvasWidth: 600,
-  base: 75,
   rightScale: 0.707,
   leftScale: 0.707,
-  leftAngle: 45,
   rightAngle: 45,
+  leftAngle: 45,
   polarityX: 0,
   polarityY: 1,
 }
@@ -49,10 +48,9 @@ export const Fractal = () => {
 
   const applyStyles = useCallback(() => {
     if (isRepaintNeeded) {
-      const { base, leftScale, rightScale, leftAngle, rightAngle, polarityX, polarityY } = geometry
+      const { leftScale, rightScale, leftAngle, rightAngle, polarityX, polarityY } = geometry
 
       const computedStyle = {
-        "--base": `${base}px`,
         "--left-scale": `${leftScale}`,
         "--right-scale": `${rightScale}`,
         "--left-angle": `${leftAngle}deg`,
@@ -68,20 +66,6 @@ export const Fractal = () => {
     }
     loop && window.requestAnimationFrame(applyStyles)
   }, [canvasRef])
-
-  const applyBaseGeometryToStyles = useCallback(() => {
-    const canvasRect = canvasRef.current?.getBoundingClientRect() ?? ({} as DOMRect)
-    const baseRect = getBaseRectFromCanvas(canvasRect)
-    geometry.base = baseRect.width
-    geometry.canvasWidth = canvasRect.width
-    canvasRef.current?.style.setProperty("--base", `${baseRect.width}px`)
-    canvasRef.current?.style.setProperty("--canvas-width", `${canvasRect.width}px`)
-  }, [canvasRef])
-
-  const handleResize = useCallback(() => {
-    isRepaintNeeded = true
-    applyBaseGeometryToStyles()
-  }, [applyBaseGeometryToStyles])
 
   const handleMouseMove = useCallback(
     (e: MouseEvent) => {
@@ -99,19 +83,16 @@ export const Fractal = () => {
     isRepaintNeeded = true
     loop = true
     applyRandomColorToRef(canvasRef)
-    applyBaseGeometryToStyles()
     computeGeometry({ x: 0, y: 0 }, canvasRef.current?.getBoundingClientRect() ?? ({} as DOMRect))
     applyStyles()
 
-    window.addEventListener("resize", handleResize, false)
     window.addEventListener("mousemove", handleMouseMove, false)
     return () => {
-      window.removeEventListener("resize", handleResize)
       window.removeEventListener("mousemove", handleMouseMove)
       isRepaintNeeded = false
       loop = false
     }
-  }, [applyStyles, applyBaseGeometryToStyles, handleMouseMove, handleResize])
+  }, [applyStyles, handleMouseMove])
 
   // periodically change theme
   useEffect(() => {
@@ -127,7 +108,7 @@ export const Fractal = () => {
   return (
     <div id="canvas" className={`${fractalVars} ${canvas}`} ref={canvasRef}>
       <pre className={debug} ref={debugRef} />
-      <div className="base" id="base">
+      <div id="base" className={base}>
         <Leaf />
       </div>
     </div>

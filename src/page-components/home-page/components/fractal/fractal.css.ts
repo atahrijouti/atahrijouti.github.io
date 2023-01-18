@@ -13,44 +13,53 @@ export const fractalVars = style({
     "--leaf-full": "128, 128, 128",
 
     /* animatin config */
-    "--transition-duration": `${ThemeTimeout / 2}ms`,
+    "--color-transition": `${ThemeTimeout / 2}ms`,
+    "--movement-transition": `${ThemeTimeout / 3}ms`,
 
     /* geometry */
     "--right-angle": "45deg",
     "--left-angle": "45deg",
     "--right-scale": "0.707",
     "--left-scale": "0.707",
-    "--base": "75px",
-    "--base-width": "var(--base)",
-    "--base-height": "var(--base)",
+    "--polarity-x": "0",
+    "--polarity-y": "1",
     "--right-rotation": "var(--right-angle)",
     "--left-rotation": "calc(-1 * var(--left-angle))",
   },
 })
 
+const canvasWidth = GEOMETRY.pageToCanvasRatio * 100
+
 export const canvas = style({
-  width: `${GEOMETRY.pageToCanvasRatio * 100}vmin`,
-  height: `${GEOMETRY.pageToCanvasRatio * 100}vmin`,
+  width: `${canvasWidth}vmin`,
+  height: `${canvasWidth}vmin`,
   display: "flex",
   justifyContent: "flex-end",
   alignItems: "center",
   flexDirection: "column",
-  // overflow: "hidden",
   background: "rgb(var(--light-yellow))",
-  boxShadow:
-    "calc(-0.1 * var(--canvas-width) * var(--polarity-x)) " +
-    "calc(-0.1 * var(--canvas-width) * -1 * var(--polarity-y)) " +
-    "calc(var(--canvas-width) / 2) " +
-    "rgb(var(--growing-leaf-color))",
-  transition: "box-shadow var(--transition-duration), box-background var(--transition-duration)",
   position: "relative",
   selectors: {
     "&:before": {
       content: "",
       zIndex: "-1",
       position: "absolute",
+      background: "rgb(var(--growing-leaf-color))",
+      transition:
+        "background var(--color-transition) ease-in, top var(--movement-transition) ease-out, left var(--movement-transition) ease-out",
+      transitionTimingFunction: "ease-in-out",
+      width: "100%",
+      height: "100%",
+      top: "calc(-10% * -1 * var(--polarity-y))",
+      left: "calc(-10% * var(--polarity-x))",
+      filter: "blur(100px)",
+    },
+    "&:after": {
+      content: "",
+      zIndex: "-2",
+      position: "absolute",
       background: "rgba(var(--growing-leaf-color), .5)",
-      transition: "background var(--transition-duration)",
+      transition: "background var(--color-transition) ease-in",
       transitionTimingFunction: "ease-in-out",
       width: "100%",
       height: "100%",
@@ -59,6 +68,11 @@ export const canvas = style({
       filter: "invert(100%)",
     },
   },
+})
+
+export const base = style({
+  width: `${GEOMETRY.canvasToBaseNodeRatio * 100}%`,
+  height: `${GEOMETRY.canvasToBaseNodeRatio * 100}%`,
 })
 
 export const impossible = style({
