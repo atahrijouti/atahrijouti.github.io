@@ -1,8 +1,10 @@
-import { globalStyle } from "@vanilla-extract/css"
+import { createVar, globalStyle } from "@vanilla-extract/css"
+
+export const lightYellowColor = createVar()
 
 globalStyle(":root", {
   vars: {
-    "--light-yellow": "254, 254, 215",
+    [lightYellowColor]: "254, 254, 215",
   },
 })
 
@@ -11,7 +13,7 @@ globalStyle("body", {
   margin: 0,
   display: "flex",
   minHeight: "100vh",
-  backgroundColor: "rgb(var(--light-yellow))",
+  backgroundColor: `rgb(${lightYellowColor})`,
 })
 
 globalStyle("#__next", {

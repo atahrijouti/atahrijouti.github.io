@@ -1,4 +1,14 @@
-import { style } from "@vanilla-extract/css"
+import { createVar, style } from "@vanilla-extract/css"
+import {
+  leafBackgroundVar,
+  leftRotationVar,
+  leftScaleVar,
+  rightRotationVar,
+  rightScaleVar,
+} from "./fractal.css"
+
+export const coefficientVar = createVar()
+export const leafBackgroundColor = createVar()
 
 export const leafInner = style({
   position: "relative",
@@ -10,23 +20,22 @@ export const leftLeaf = style({
   top: "-100%",
   left: "0",
   transformOrigin: "bottom left",
-  transform: "scale(var(--left-scale)) rotate(var(--left-rotation))",
+  transform: `scale(${leftScaleVar}) rotate(${leftRotationVar})`,
 })
 
 export const rightLeaf = style({
   right: "0",
   top: "-100%",
   transformOrigin: "bottom right",
-  transform: "scale(var(--right-scale)) rotate(var(--right-rotation))",
+  transform: `scale(${rightScaleVar}) rotate(${rightRotationVar})`,
 })
 
 export const leaf = style({
   width: "100%",
   height: "100%",
-  transition: "background var(--transition-duration)",
-  backgroundColor: "var(--leaf-background-color)",
+  backgroundColor: leafBackgroundColor,
   vars: {
-    "--leaf-background-color": "rgba(var(--leaf-background), var(--coefficient))",
+    [leafBackgroundColor]: `rgba(${leafBackgroundVar}, ${coefficientVar})`,
   },
   selectors: {
     [`${leafInner} > &`]: {

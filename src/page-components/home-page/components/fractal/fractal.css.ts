@@ -1,6 +1,34 @@
-import { style } from "@vanilla-extract/css"
-import { LeafColorVars } from "../../utils/colors"
-import { GEOMETRY, ThemeTimeout } from "../../utils/constants"
+import { createVar, style } from "@vanilla-extract/css"
+
+import { GEOMETRY, LeafColorNumbers, ThemeTimeout } from "../../utils/constants"
+import { lightYellowColor } from "../../../../app.css"
+
+const leafyGreenVar = createVar()
+const pinkRedVar = createVar()
+const mudPurpleVar = createVar()
+
+export const growingLeafVar = createVar()
+export const fullLeafVar = createVar()
+
+export const leafBackgroundVar = createVar()
+
+const colorTransitionVar = createVar()
+const movementTransitionVar = createVar()
+
+export const leftScaleVar = createVar()
+export const rightScaleVar = createVar()
+export const leftAngleVar = createVar()
+export const rightAngleVar = createVar()
+export const polarityXVar = createVar()
+export const polarityYVar = createVar()
+export const rightRotationVar = createVar()
+export const leftRotationVar = createVar()
+
+export const LeafColorVars = {
+  [leafyGreenVar]: LeafColorNumbers["leafyGreen"],
+  [pinkRedVar]: LeafColorNumbers["pinkRed"],
+  [mudPurpleVar]: LeafColorNumbers["mudPurple"],
+} as const
 
 export const fractalVars = style({
   vars: {
@@ -8,23 +36,23 @@ export const fractalVars = style({
     ...LeafColorVars,
 
     /* default theme */
-    "--growing-leaf-color": "var(--leafy-green)",
-    "--leaf-background": "var(--growing-leaf-color)",
-    "--leaf-full": "128, 128, 128",
+    [growingLeafVar]: leafyGreenVar,
+    [leafBackgroundVar]: growingLeafVar,
+    [fullLeafVar]: "128, 128, 128",
 
     /* animatin config */
-    "--color-transition": `${ThemeTimeout / 2}ms`,
-    "--movement-transition": `${ThemeTimeout / 3}ms`,
+    [colorTransitionVar]: `${ThemeTimeout / 2}ms`,
+    [movementTransitionVar]: `${ThemeTimeout / 3}ms`,
 
     /* geometry */
-    "--right-angle": "45deg",
-    "--left-angle": "45deg",
-    "--right-scale": "0.707",
-    "--left-scale": "0.707",
-    "--polarity-x": "0",
-    "--polarity-y": "1",
-    "--right-rotation": "var(--right-angle)",
-    "--left-rotation": "calc(-1 * var(--left-angle))",
+    [rightAngleVar]: "45deg",
+    [leftAngleVar]: "45deg",
+    [rightScaleVar]: "0.707",
+    [leftScaleVar]: "0.707",
+    [polarityXVar]: "0",
+    [polarityYVar]: "1",
+    [rightRotationVar]: rightAngleVar,
+    [leftRotationVar]: `calc(-1 * ${leftAngleVar})`,
   },
 })
 
@@ -37,29 +65,28 @@ export const canvas = style({
   justifyContent: "flex-end",
   alignItems: "center",
   flexDirection: "column",
-  background: "rgb(var(--light-yellow))",
+  background: `rgb(${lightYellowColor})`,
   position: "relative",
   selectors: {
     "&:before": {
       content: "",
       zIndex: "-1",
       position: "absolute",
-      background: "rgb(var(--growing-leaf-color))",
-      transition:
-        "background var(--color-transition) ease-in, top var(--movement-transition) ease-out, left var(--movement-transition) ease-out",
+      background: `rgb(${growingLeafVar})`,
+      transition: `background ${colorTransitionVar} ease-in, top ${movementTransitionVar} ease-out, left ${movementTransitionVar} ease-out`,
       transitionTimingFunction: "ease-in-out",
       width: "100%",
       height: "100%",
-      top: "calc(-10% * -1 * var(--polarity-y))",
-      left: "calc(-10% * var(--polarity-x))",
+      top: `calc(-10% * -1 * ${polarityYVar})`,
+      left: `calc(-10% * ${polarityXVar})`,
       filter: "blur(100px)",
     },
     "&:after": {
       content: "",
       zIndex: "-2",
       position: "absolute",
-      background: "rgba(var(--growing-leaf-color), .5)",
-      transition: "background var(--color-transition) ease-in",
+      background: `rgba(${growingLeafVar}, .5)`,
+      transition: `background ${colorTransitionVar} ease-in`,
       transitionTimingFunction: "ease-in-out",
       width: "100%",
       height: "100%",

@@ -11,6 +11,7 @@
     "export": "next export"
   },
   "dependencies": {
+    "@vanilla-extract/dynamic": "^2.0.3",
     "classnames": "^2.3.2",
     "lodash": "^4.17.21",
     "next": "latest",

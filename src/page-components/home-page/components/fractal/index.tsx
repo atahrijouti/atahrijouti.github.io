@@ -1,9 +1,22 @@
 import { RefObject, useCallback, useEffect, useRef } from "react"
 
-import { Leaf } from "./leaf"
+import { setElementVars } from "@vanilla-extract/dynamic"
 
+import { Leaf } from "./leaf"
 import { lookAtPoint } from "../../utils/math"
-import { base, canvas, debug, fractalVars } from "./fractal.css"
+import {
+  base,
+  canvas,
+  debug,
+  fractalVars,
+  growingLeafVar,
+  leftAngleVar,
+  leftScaleVar,
+  polarityXVar,
+  polarityYVar,
+  rightAngleVar,
+  rightScaleVar,
+} from "./fractal.css"
 import { randomColorVar } from "../../utils/colors"
 import { ThemeTimeout } from "../../utils/constants"
 
@@ -39,8 +52,13 @@ const computeGeometry = (
 let isRepaintNeeded = true
 let loop = true
 
-const applyRandomColorToRef = (ref: RefObject<HTMLElement>) =>
-  ref.current?.style.setProperty("--growing-leaf-color", randomColorVar())
+const applyRandomColorToRef = (ref: RefObject<HTMLElement>) => {
+  if (ref.current) {
+    setElementVars(ref.current, {
+      [growingLeafVar]: randomColorVar(),
+    })
+  }
+}
 
 export const Fractal = () => {
   const canvasRef = useRef<HTMLDivElement>(null)
@@ -50,18 +68,20 @@ export const Fractal = () => {
     if (isRepaintNeeded) {
       const { leftScale, rightScale, leftAngle, rightAngle, polarityX, polarityY } = geometry
 
-      const computedStyle = {
-        "--left-scale": `${leftScale}`,
-        "--right-scale": `${rightScale}`,
-        "--left-angle": `${leftAngle}deg`,
-        "--right-angle": `${rightAngle}deg`,
-        "--polarity-x": `${polarityX}`,
-        "--polarity-y": `${polarityY}`,
+      if (canvasRef.current) {
+        setElementVars(canvasRef.current, {
+          [leftScaleVar]: `${leftScale}`,
+          [rightScaleVar]: `${rightScale}`,
+          [leftAngleVar]: `${leftAngle}deg`,
+          [rightAngleVar]: `${rightAngle}deg`,
+          [polarityXVar]: `${polarityX}`,
+          [polarityYVar]: `${polarityY}`,
+        })
       }
 
-      Object.entries(computedStyle).forEach(([key, value]) =>
-        canvasRef.current?.style.setProperty(key, value),
-      )
+      // Object.entries(computedStyle).forEach(([key, value]) =>
+      //   canvasRef.current?.style.setProperty(key, value),
+      // )
       isRepaintNeeded = false
     }
     loop && window.requestAnimationFrame(applyStyles)

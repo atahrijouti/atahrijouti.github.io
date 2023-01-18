@@ -1,8 +1,12 @@
-import React, { CSSProperties, useEffect, useMemo, useState } from "react"
+import React, { useEffect, useMemo, useState } from "react"
+
 import _random from "lodash/random"
 import _shuffle from "lodash/shuffle"
 import classNames from "classnames"
-import { leaf, leafInner, leftLeaf, rightLeaf } from "./leaf.css"
+
+import { coefficientVar, leaf, leafInner, leftLeaf, rightLeaf } from "./leaf.css"
+import { assignInlineVars } from "@vanilla-extract/dynamic"
+import { fullLeafVar, growingLeafVar, leafBackgroundVar } from "./fractal.css"
 
 const MAX_LEVEL = 5
 
@@ -55,13 +59,10 @@ export const Leaf = React.memo(({ orientation, level = 0 }: LeafProps) => {
         orientation ? (orientation === "right" ? rightLeaf : leftLeaf) : "",
       )}
       id={id}
-      style={
-        {
-          "--coefficient": levelCoefficient,
-          "--leaf-background":
-            children.length < 2 ? "var(--growing-leaf-color)" : "var(--leaf-full)",
-        } as CSSProperties
-      }
+      style={assignInlineVars({
+        [coefficientVar]: levelCoefficient.toString(),
+        [leafBackgroundVar]: children.length < 2 ? growingLeafVar : fullLeafVar,
+      })}
     >
       <div className={leafInner}>
         {children.map((o) => (
