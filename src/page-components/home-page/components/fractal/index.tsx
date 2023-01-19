@@ -34,7 +34,7 @@ const applyRandomColorToRef = (ref: RefObject<HTMLElement>) => {
 export const Fractal = () => {
   const canvasRef = useRef<HTMLDivElement>(null)
 
-  const applyStyles = useCallback(() => {
+  const styleLoop = useCallback(() => {
     if (isRepaintNeeded) {
       const { leftScale, rightScale, leftAngle, rightAngle, polarityX, polarityY } = geometry
 
@@ -51,7 +51,7 @@ export const Fractal = () => {
 
       isRepaintNeeded = false
     }
-    loop && window.requestAnimationFrame(applyStyles)
+    loop && window.requestAnimationFrame(styleLoop)
   }, [canvasRef])
 
   const handleMouseMove = useCallback(
@@ -75,6 +75,7 @@ export const Fractal = () => {
     isRepaintNeeded = true
     loop = true
     applyRandomColorToRef(canvasRef)
+    styleLoop()
 
     window.addEventListener("mousemove", handleMouseMove, false)
     return () => {
@@ -82,7 +83,7 @@ export const Fractal = () => {
       isRepaintNeeded = false
       loop = false
     }
-  }, [applyStyles, handleMouseMove])
+  }, [styleLoop, handleMouseMove])
 
   // periodically change theme
   useEffect(() => {
