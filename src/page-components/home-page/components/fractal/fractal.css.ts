@@ -108,13 +108,3 @@ export const impossible = style({
   background: "black",
   border: "4px dashed cyan",
 })
-
-export const debug = style({
-  position: "fixed",
-  flex: "none",
-  top: "10px",
-  left: "10px",
-  color: "white",
-  background: "black",
-  width: "200px",
-})

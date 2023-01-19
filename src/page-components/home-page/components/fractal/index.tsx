@@ -7,7 +7,6 @@ import { lookAtPoint } from "../../utils/math"
 import {
   base,
   canvas,
-  debug,
   fractalVars,
   growingLeafVar,
   leftAngleVar,
@@ -62,7 +61,6 @@ const applyRandomColorToRef = (ref: RefObject<HTMLElement>) => {
 
 export const Fractal = () => {
   const canvasRef = useRef<HTMLDivElement>(null)
-  const debugRef = useRef<HTMLPreElement>(null)
 
   const applyStyles = useCallback(() => {
     if (isRepaintNeeded) {
@@ -127,7 +125,6 @@ export const Fractal = () => {
 
   return (
     <div id="canvas" className={`${fractalVars} ${canvas}`} ref={canvasRef}>
-      <pre className={debug} ref={debugRef} />
       <div id="base" className={base}>
         <Leaf />
       </div>
