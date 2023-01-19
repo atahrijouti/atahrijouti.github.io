@@ -8,6 +8,7 @@ import {
   base,
   canvas,
   fractalVars,
+  geometry,
   growingLeafVar,
   leftAngleVar,
   leftScaleVar,
@@ -18,35 +19,6 @@ import {
 } from "./fractal.css"
 import { randomColorVar } from "../../utils/colors"
 import { ThemeTimeout } from "../../utils/constants"
-
-const geometry = {
-  rightScale: 0.707,
-  leftScale: 0.707,
-  rightAngle: 45,
-  leftAngle: 45,
-  polarityX: 0,
-  polarityY: 1,
-}
-
-const computeGeometry = (
-  focus: { x: number; y: number },
-  canvasRect: { top: number; left: number; width: number },
-) => {
-  const { rightScale, leftScale, rightAngle, leftAngle, polarityX, polarityY } = lookAtPoint(
-    focus.x,
-    focus.y,
-    canvasRect,
-  )
-
-  Object.assign(geometry, {
-    rightScale,
-    leftScale,
-    rightAngle,
-    leftAngle,
-    polarityX,
-    polarityY,
-  })
-}
 
 let isRepaintNeeded = true
 let loop = true
@@ -77,9 +49,6 @@ export const Fractal = () => {
         })
       }
 
-      // Object.entries(computedStyle).forEach(([key, value]) =>
-      //   canvasRef.current?.style.setProperty(key, value),
-      // )
       isRepaintNeeded = false
     }
     loop && window.requestAnimationFrame(applyStyles)
@@ -88,9 +57,14 @@ export const Fractal = () => {
   const handleMouseMove = useCallback(
     (e: MouseEvent) => {
       isRepaintNeeded = true
-      computeGeometry(
-        { x: e.pageX, y: e.pageY },
-        canvasRef.current?.getBoundingClientRect() ?? ({} as DOMRect),
+
+      Object.assign(
+        geometry,
+        lookAtPoint(
+          e.pageX,
+          e.pageY,
+          canvasRef.current?.getBoundingClientRect() ?? ({} as DOMRect),
+        ),
       )
     },
     [canvasRef],
@@ -101,8 +75,6 @@ export const Fractal = () => {
     isRepaintNeeded = true
     loop = true
     applyRandomColorToRef(canvasRef)
-    computeGeometry({ x: 0, y: 0 }, canvasRef.current?.getBoundingClientRect() ?? ({} as DOMRect))
-    applyStyles()
 
     window.addEventListener("mousemove", handleMouseMove, false)
     return () => {

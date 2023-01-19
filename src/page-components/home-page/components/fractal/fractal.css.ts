@@ -2,6 +2,7 @@ import { createVar, style } from "@vanilla-extract/css"
 
 import { GEOMETRY, LeafColorNumbers, ThemeTimeout } from "../../utils/constants"
 import { lightYellowColor } from "../../../../app.css"
+import { lookAtPoint } from "../../utils/math"
 
 const leafyGreenVar = createVar()
 const pinkRedVar = createVar()
@@ -24,6 +25,12 @@ export const polarityYVar = createVar()
 export const rightRotationVar = createVar()
 export const leftRotationVar = createVar()
 
+export const geometry = lookAtPoint(0, 0, {
+  top: (1 - GEOMETRY.pageToCanvasRatio) / 2,
+  left: (1 - GEOMETRY.pageToCanvasRatio) / 2,
+  width: GEOMETRY.pageToCanvasRatio,
+})
+
 export const LeafColorVars = {
   [leafyGreenVar]: LeafColorNumbers["leafyGreen"],
   [pinkRedVar]: LeafColorNumbers["pinkRed"],
@@ -45,12 +52,12 @@ export const fractalVars = style({
     [movementTransitionVar]: `${ThemeTimeout / 3}ms`,
 
     /* geometry */
-    [rightAngleVar]: "45deg",
-    [leftAngleVar]: "45deg",
-    [rightScaleVar]: "0.707",
-    [leftScaleVar]: "0.707",
-    [polarityXVar]: "0",
-    [polarityYVar]: "1",
+    [leftScaleVar]: `${geometry.leftScale}`,
+    [rightScaleVar]: `${geometry.rightScale}`,
+    [leftAngleVar]: `${geometry.leftAngle}deg`,
+    [rightAngleVar]: `${geometry.rightAngle}deg`,
+    [polarityXVar]: `${geometry.polarityX}`,
+    [polarityYVar]: `${geometry.polarityY}`,
     [rightRotationVar]: rightAngleVar,
     [leftRotationVar]: `calc(-1 * ${leftAngleVar})`,
   },
