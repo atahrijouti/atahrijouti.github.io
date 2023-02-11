@@ -27,7 +27,7 @@
     "@vanilla-extract/css": "^1.9.2",
     "@vanilla-extract/next-plugin": "^2.1.1",
     "eslint": "8.34.0",
-    "eslint-config-next": "13.1.1",
+    "eslint-config-next": "13.1.6",
     "prettier": "^2.8.1",
     "typescript": "^4.8.4",
     "webpack": "^5.75.0"
