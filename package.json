@@ -19,6 +19,7 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@tsconfig/node18": "^1.0.1",
     "@types/lodash": "^4.14.191",
     "@types/node": "^18.11.5",
     "@types/react": "^18.0.23",
