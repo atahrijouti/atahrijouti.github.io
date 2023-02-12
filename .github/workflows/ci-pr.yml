@@ -9,7 +9,7 @@ jobs:
   buildPullRequest:
     runs-on: ubuntu-latest
     concurrency:
-      group: "build"
+      group: "buildPullRequest"
       cancel-in-progress: true
     steps:
       - uses: actions/checkout@v3

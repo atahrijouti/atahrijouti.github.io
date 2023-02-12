@@ -9,7 +9,7 @@ jobs:
   buildMainAndDeploy:
     runs-on: ubuntu-latest
     concurrency:
-      group: "buildAndDeploy"
+      group: "buildMainAndDeploy"
       cancel-in-progress: true
     steps:
       - uses: actions/checkout@v3
