@@ -37,11 +37,14 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-nextjs-${{ hashFiles('**/pnpm-lock.yaml') }}-
 
-      - name: Build
-        run: |
-          pnpm install --frozen-lockfile
-          pnpm run build
-          pnpm run export
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Next.js build
+        run: pnpm run build
+
+      - name: Export static files
+        run: pnpm run export
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
