@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  buildAndDeploy:
+  buildMainAndDeploy:
     runs-on: ubuntu-latest
     concurrency:
       group: "buildAndDeploy"
