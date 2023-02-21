@@ -11,7 +11,7 @@ _paq.push(['enableLinkTracking']);
   g.async=true; g.src='//cdn.matomo.cloud/${MATOMO_ID}/matomo.js'; s.parentNode.insertBefore(g,s);
 })();`
 
-export const tellMatomoAboutPageChange = (...args: any[]) => {
+export const tellMatomoAboutPageChange = () => {
   const _paq = window._paq || []
   _paq.push(["setCustomUrl", window.location])
   _paq.push(["setDocumentTitle", document.title])

@@ -9,7 +9,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - uses: ./.github/pnpm-install@main
+      - uses: ./.github/actions/pnpm-install@main
 
       - name: ESLint
         shell: bash
@@ -21,7 +21,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - uses: ./.github/pnpm-install@main
+      - uses: ./.github/actions/pnpm-install@main
 
       - name: Typecheck
         run: pnpm typecheck
@@ -36,7 +36,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - uses: ./.github/pnpm-install@main
+      - uses: ./.github/actions/pnpm-install@main
 
       - name: Next.js build
         run: pnpm run build
@@ -49,7 +49,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - uses: ./.github/pnpm-install@main
+      - uses: ./.github/actions/pnpm-install@main
 
       - name: Export static files
         run: pnpm run export
