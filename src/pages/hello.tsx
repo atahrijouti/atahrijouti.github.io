@@ -5,7 +5,7 @@ const Hello = () => {
   const router = useRouter()
 
   const handleDblclick = useCallback(() => {
-    router.push("/")
+    void router.push("/")
   }, [router])
   useEffect(() => {
     window.addEventListener("dblclick", handleDblclick)
