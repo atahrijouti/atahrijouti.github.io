@@ -8,8 +8,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
-      - uses: ./.github/actions/pnpm-install@main
+      - uses: ./.github/actions/pnpm-install
 
       - name: ESLint
         shell: bash
@@ -20,8 +22,10 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
-      - uses: ./.github/actions/pnpm-install@main
+      - uses: ./.github/actions/pnpm-install
 
       - name: Typecheck
         run: pnpm typecheck
@@ -35,8 +39,10 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
-      - uses: ./.github/actions/pnpm-install@main
+      - uses: ./.github/actions/pnpm-install
 
       - name: Next.js build
         run: pnpm run build
@@ -48,8 +54,10 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
-      - uses: ./.github/actions/pnpm-install@main
+      - uses: ./.github/actions/pnpm-install
 
       - name: Export static files
         run: pnpm run export
