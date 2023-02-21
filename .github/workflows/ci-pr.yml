@@ -1,51 +1,55 @@
-name: Build branch before merging PR
+name: PR
 
 on:
   pull_request:
-    branches:
-      - main
 
 jobs:
-  buildPullRequest:
+  lint:
     runs-on: ubuntu-latest
-    concurrency:
-      group: "buildPullRequest"
-      cancel-in-progress: true
     steps:
       - uses: actions/checkout@v3
 
-      - uses: pnpm/action-setup@v2
-        with:
-          version: 7.18.2
-
-      - name: Setup Node
-        uses: actions/setup-node@v3
-        with:
-          node-version: "18"
-          cache: "pnpm"
-
-      - name: Restore cache
-        uses: actions/cache@v3
-        with:
-          path: |
-            .next/cache
-          # Generate a new cache whenever packages or source files change.
-          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/pnpm-lock.yaml') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
-          # If source files changed but packages didn't, rebuild from a prior cache.
-          restore-keys: |
-            ${{ runner.os }}-nextjs-${{ hashFiles('**/pnpm-lock.yaml') }}-
-
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+      - uses: ./.github/pnpm-install@main
 
       - name: ESLint
+        shell: bash
         run: pnpm lint
+
+  typecheck:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: ./.github/pnpm-install@main
 
       - name: Typecheck
         run: pnpm typecheck
 
+  build:
+    runs-on: ubuntu-latest
+
+    needs:
+      - lint
+      - typecheck
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: ./.github/pnpm-install@main
+
       - name: Next.js build
         run: pnpm run build
+
+  export:
+    runs-on: ubuntu-latest
+
+    needs: build
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: ./.github/pnpm-install@main
 
       - name: Export static files
         run: pnpm run export
