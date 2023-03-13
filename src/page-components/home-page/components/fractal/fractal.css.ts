@@ -114,14 +114,19 @@ export const visualTargetTransition = "100ms ease-out"
 
 export const visualTarget = style({
   position: "absolute",
+  top: visualYVar,
+  left: visualXVar,
+  transition: `all ${visualTargetTransition}`,
+  userSelect: "none",
+})
+
+export const targetBall = style({
   width: "20px",
   height: "20px",
   borderRadius: "20px",
   background: "black",
-  top: visualYVar,
-  left: visualXVar,
   translate: "-50% -50%",
-  transition: `all ${visualTargetTransition}`,
+  display: "inline-block",
 })
 
 export const impossible = style({

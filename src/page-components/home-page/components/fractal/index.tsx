@@ -11,6 +11,7 @@ import {
   fractalVars,
   startupGeometry,
   growingLeafVar,
+  targetBall,
 } from "./fractal.css"
 import { randomColorVar } from "../../utils/colors"
 import { ThemeTimeout } from "../../utils/constants"
@@ -33,7 +34,8 @@ const geometry: FractalGeometry = computeStartupGeometry()
 
 export const Fractal = () => {
   const canvasRef = useRef<HTMLDivElement>(null)
-  const dragging = useRef(false)
+  const draggingRef = useRef(false)
+  const showTooltipRef = useRef(true)
 
   const styleLoop = useCallback(() => {
     if (isRepaintNeeded) {
@@ -46,23 +48,26 @@ export const Fractal = () => {
     loop && window.requestAnimationFrame(styleLoop)
   }, [canvasRef])
 
-  const handlePointerDown = useCallback((e: MouseEvent) => {
-    isRepaintNeeded = true
-    dragging.current = true
-
-    Object.assign(
-      geometry,
-      lookAtPoint(
-        e.clientX,
-        e.clientY,
-        canvasRef.current?.getBoundingClientRect() ?? ({} as DOMRect),
-      ),
-    )
-  }, [])
+  const handlePointerDown = useCallback(
+    (e: MouseEvent) => {
+      isRepaintNeeded = true
+      draggingRef.current = true
+      showTooltipRef.current = false
+      Object.assign(
+        geometry,
+        lookAtPoint(
+          e.clientX,
+          e.clientY,
+          canvasRef.current?.getBoundingClientRect() ?? ({} as DOMRect),
+        ),
+      )
+    },
+    [showTooltipRef, draggingRef],
+  )
 
   const handlePointerMove = useCallback(
     (e: MouseEvent) => {
-      if (dragging.current) {
+      if (draggingRef.current) {
         isRepaintNeeded = true
 
         Object.assign(
@@ -79,7 +84,7 @@ export const Fractal = () => {
   )
 
   const handlePointerUp = useCallback(() => {
-    dragging.current = false
+    draggingRef.current = false
   }, [])
 
   // on mount
@@ -97,7 +102,7 @@ export const Fractal = () => {
       window.removeEventListener("pointerup", handlePointerDown)
       window.removeEventListener("pointermove", handlePointerMove)
       window.removeEventListener("pointerdown", handlePointerUp)
-      dragging.current = false
+      draggingRef.current = false
       isRepaintNeeded = false
       loop = false
     }
@@ -116,7 +121,9 @@ export const Fractal = () => {
 
   return (
     <div id="canvas" className={`${fractalVars} ${canvas}`} ref={canvasRef}>
-      <div id="visualTarget" className={visualTarget}></div>
+      <div id="visualTarget" className={visualTarget}>
+        <div className={targetBall}></div>
+      </div>
       <div id="base" className={base}>
         <Leaf />
       </div>
