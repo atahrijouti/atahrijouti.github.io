@@ -22,14 +22,18 @@ export const leftAngleVar = createVar()
 export const rightAngleVar = createVar()
 export const polarityXVar = createVar()
 export const polarityYVar = createVar()
+export const visualXVar = createVar()
+export const visualYVar = createVar()
 export const rightRotationVar = createVar()
 export const leftRotationVar = createVar()
 
-export const geometry = lookAtPoint(0, 0, {
+export const startupCanvasRect = {
   top: (1 - GEOMETRY.pageToCanvasRatio) / 2,
   left: (1 - GEOMETRY.pageToCanvasRatio) / 2,
   width: GEOMETRY.pageToCanvasRatio,
-})
+}
+
+export const startupGeometry = lookAtPoint(0, 0, startupCanvasRect)
 
 export const LeafColorVars = {
   [leafyGreenVar]: LeafColorNumbers["leafyGreen"],
@@ -51,13 +55,15 @@ export const fractalVars = style({
     [colorTransitionVar]: `${ThemeTimeout / 2}ms`,
     [movementTransitionVar]: `${ThemeTimeout / 3}ms`,
 
-    /* geometry */
-    [leftScaleVar]: `${geometry.leftScale}`,
-    [rightScaleVar]: `${geometry.rightScale}`,
-    [leftAngleVar]: `${geometry.leftAngle}deg`,
-    [rightAngleVar]: `${geometry.rightAngle}deg`,
-    [polarityXVar]: `${geometry.polarityX}`,
-    [polarityYVar]: `${geometry.polarityY}`,
+    /* startupGeometry */
+    [leftScaleVar]: `${startupGeometry.leftScale}`,
+    [rightScaleVar]: `${startupGeometry.rightScale}`,
+    [leftAngleVar]: `${startupGeometry.leftAngle}deg`,
+    [rightAngleVar]: `${startupGeometry.rightAngle}deg`,
+    [polarityXVar]: `${startupGeometry.polarityX}`,
+    [polarityYVar]: `${startupGeometry.polarityY}`,
+    [visualXVar]: `${startupGeometry.visualTargetX}px`,
+    [visualYVar]: `${startupGeometry.visualTargetY}px`,
     [rightRotationVar]: rightAngleVar,
     [leftRotationVar]: `calc(-1 * ${leftAngleVar})`,
   },
@@ -107,6 +113,19 @@ export const canvas = style({
 export const base = style({
   width: `${GEOMETRY.canvasToBaseNodeRatio * 100}%`,
   height: `${GEOMETRY.canvasToBaseNodeRatio * 100}%`,
+})
+
+export const visualTargetTransition = "100ms ease-out"
+
+export const visualTarget = style({
+  position: "absolute",
+  width: "20px",
+  height: "20px",
+  borderRadius: "20px",
+  background: "black",
+  top: visualYVar,
+  left: visualXVar,
+  transition: `all ${visualTargetTransition}`,
 })
 
 export const impossible = style({

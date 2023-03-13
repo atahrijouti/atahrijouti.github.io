@@ -4,14 +4,25 @@ import { GEOMETRY } from "./constants"
 export const d2r = (degree: number) => (degree * Math.PI) / 180
 export const r2d = (radian: number) => (radian / Math.PI) * 180
 
+export type FractalGeometry = {
+  rightScale: number
+  leftScale: number
+  rightAngle: number
+  leftAngle: number
+  polarityX: number
+  polarityY: number
+  visualTargetX: number
+  visualTargetY: number
+}
+
 export const lookAtPoint = (
-  focusX: number,
-  focusY: number,
+  targetX: number,
+  targetY: number,
   canvasRect: { top: number; left: number; width: number },
-) => {
+): FractalGeometry => {
   const baseRect = getBaseRectFromCanvas(canvasRect)
-  const MHm = focusY - baseRect.top
-  const HC = focusX - (baseRect.left + baseRect.width / 2)
+  const MHm = targetY - baseRect.top
+  const HC = targetX - (baseRect.left + baseRect.width / 2)
   const MC = Math.sqrt(MHm * MHm + HC * HC)
   const MCH = r2d(Math.asin(Math.abs(MHm) / MC))
 
@@ -28,6 +39,9 @@ export const lookAtPoint = (
   const rightScale = Math.sin(d2r(leftAngle))
   const leftScale = Math.sin(d2r(rightAngle))
 
+  const visualTargetX = targetX - canvasRect.left
+  const visualTargetY = targetY - canvasRect.top
+
   return {
     rightScale,
     leftScale,
@@ -35,6 +49,8 @@ export const lookAtPoint = (
     leftAngle,
     polarityX,
     polarityY,
+    visualTargetX,
+    visualTargetY,
   }
 }
 
