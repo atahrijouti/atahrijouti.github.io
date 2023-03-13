@@ -6,6 +6,7 @@ import {
   leftScaleVar,
   rightRotationVar,
   rightScaleVar,
+  visualTargetTransition,
 } from "./fractal.css"
 
 export const coefficientVar = createVar()
@@ -35,7 +36,7 @@ export const leaf = style({
   width: "100%",
   height: "100%",
   backgroundColor: leafBackgroundColor,
-  transition: `background ${colorTransitionVar}`,
+  transition: `background ${colorTransitionVar}, transform ${visualTargetTransition}`,
   vars: {
     [leafBackgroundColor]: `rgba(${leafBackgroundVar}, ${coefficientVar})`,
   },
