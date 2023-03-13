@@ -11,17 +11,11 @@ import {
   fractalVars,
   startupGeometry,
   growingLeafVar,
-  leftAngleVar,
-  leftScaleVar,
-  polarityXVar,
-  polarityYVar,
-  rightAngleVar,
-  rightScaleVar,
-  visualXVar,
-  visualYVar,
+  targetBall,
 } from "./fractal.css"
 import { randomColorVar } from "../../utils/colors"
 import { ThemeTimeout } from "../../utils/constants"
+import { geometryToStyles } from "../../utils/style"
 
 let isRepaintNeeded = true
 let loop = true
@@ -40,32 +34,13 @@ const geometry: FractalGeometry = computeStartupGeometry()
 
 export const Fractal = () => {
   const canvasRef = useRef<HTMLDivElement>(null)
-  const dragging = useRef(false)
+  const draggingRef = useRef(false)
+  const showTooltipRef = useRef(true)
 
   const styleLoop = useCallback(() => {
     if (isRepaintNeeded) {
-      const {
-        leftScale,
-        rightScale,
-        leftAngle,
-        rightAngle,
-        polarityX,
-        polarityY,
-        visualTargetX,
-        visualTargetY,
-      } = geometry
-
       if (canvasRef.current) {
-        setElementVars(canvasRef.current, {
-          [leftScaleVar]: `${leftScale}`,
-          [rightScaleVar]: `${rightScale}`,
-          [leftAngleVar]: `${leftAngle}deg`,
-          [rightAngleVar]: `${rightAngle}deg`,
-          [polarityXVar]: `${polarityX}`,
-          [polarityYVar]: `${polarityY}`,
-          [visualXVar]: `${visualTargetX}px`,
-          [visualYVar]: `${visualTargetY}px`,
-        })
+        setElementVars(canvasRef.current, geometryToStyles(geometry))
       }
 
       isRepaintNeeded = false
@@ -73,23 +48,26 @@ export const Fractal = () => {
     loop && window.requestAnimationFrame(styleLoop)
   }, [canvasRef])
 
-  const handleMouseDown = useCallback((e: MouseEvent) => {
-    isRepaintNeeded = true
-    dragging.current = true
-
-    Object.assign(
-      geometry,
-      lookAtPoint(
-        e.clientX,
-        e.clientY,
-        canvasRef.current?.getBoundingClientRect() ?? ({} as DOMRect),
-      ),
-    )
-  }, [])
-
-  const handleMouseMove = useCallback(
+  const handlePointerDown = useCallback(
     (e: MouseEvent) => {
-      if (dragging.current) {
+      isRepaintNeeded = true
+      draggingRef.current = true
+      showTooltipRef.current = false
+      Object.assign(
+        geometry,
+        lookAtPoint(
+          e.clientX,
+          e.clientY,
+          canvasRef.current?.getBoundingClientRect() ?? ({} as DOMRect),
+        ),
+      )
+    },
+    [showTooltipRef, draggingRef],
+  )
+
+  const handlePointerMove = useCallback(
+    (e: MouseEvent) => {
+      if (draggingRef.current) {
         isRepaintNeeded = true
 
         Object.assign(
@@ -105,8 +83,8 @@ export const Fractal = () => {
     [canvasRef],
   )
 
-  const handleMouseUp = useCallback(() => {
-    dragging.current = false
+  const handlePointerUp = useCallback(() => {
+    draggingRef.current = false
   }, [])
 
   // on mount
@@ -117,18 +95,18 @@ export const Fractal = () => {
     applyRandomColorToRef(canvasRef)
     styleLoop()
 
-    window.addEventListener("mousedown", handleMouseDown)
-    window.addEventListener("mousemove", handleMouseMove)
-    window.addEventListener("mouseup", handleMouseUp)
+    window.addEventListener("pointerdown", handlePointerDown)
+    window.addEventListener("pointermove", handlePointerMove)
+    window.addEventListener("pointerup", handlePointerUp)
     return () => {
-      window.removeEventListener("mouseup", handleMouseDown)
-      window.removeEventListener("mousemove", handleMouseMove)
-      window.removeEventListener("mousedown", handleMouseUp)
-      dragging.current = false
+      window.removeEventListener("pointerup", handlePointerDown)
+      window.removeEventListener("pointermove", handlePointerMove)
+      window.removeEventListener("pointerdown", handlePointerUp)
+      draggingRef.current = false
       isRepaintNeeded = false
       loop = false
     }
-  }, [styleLoop, handleMouseMove, handleMouseDown, handleMouseUp])
+  }, [styleLoop, handlePointerMove, handlePointerDown, handlePointerUp])
 
   // periodically change theme
   useEffect(() => {
@@ -143,7 +121,9 @@ export const Fractal = () => {
 
   return (
     <div id="canvas" className={`${fractalVars} ${canvas}`} ref={canvasRef}>
-      <div id="visualTarget" className={visualTarget}></div>
+      <div id="visualTarget" className={visualTarget}>
+        <div className={targetBall}></div>
+      </div>
       <div id="base" className={base}>
         <Leaf />
       </div>
