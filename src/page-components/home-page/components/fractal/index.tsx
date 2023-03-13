@@ -11,17 +11,10 @@ import {
   fractalVars,
   startupGeometry,
   growingLeafVar,
-  leftAngleVar,
-  leftScaleVar,
-  polarityXVar,
-  polarityYVar,
-  rightAngleVar,
-  rightScaleVar,
-  visualXVar,
-  visualYVar,
 } from "./fractal.css"
 import { randomColorVar } from "../../utils/colors"
 import { ThemeTimeout } from "../../utils/constants"
+import { geometryToStyles } from "../../utils/style"
 
 let isRepaintNeeded = true
 let loop = true
@@ -44,28 +37,8 @@ export const Fractal = () => {
 
   const styleLoop = useCallback(() => {
     if (isRepaintNeeded) {
-      const {
-        leftScale,
-        rightScale,
-        leftAngle,
-        rightAngle,
-        polarityX,
-        polarityY,
-        visualTargetX,
-        visualTargetY,
-      } = geometry
-
       if (canvasRef.current) {
-        setElementVars(canvasRef.current, {
-          [leftScaleVar]: `${leftScale}`,
-          [rightScaleVar]: `${rightScale}`,
-          [leftAngleVar]: `${leftAngle}deg`,
-          [rightAngleVar]: `${rightAngle}deg`,
-          [polarityXVar]: `${polarityX}`,
-          [polarityYVar]: `${polarityY}`,
-          [visualXVar]: `${visualTargetX}px`,
-          [visualYVar]: `${visualTargetY}px`,
-        })
+        setElementVars(canvasRef.current, geometryToStyles(geometry))
       }
 
       isRepaintNeeded = false
@@ -73,7 +46,7 @@ export const Fractal = () => {
     loop && window.requestAnimationFrame(styleLoop)
   }, [canvasRef])
 
-  const handleMouseDown = useCallback((e: MouseEvent) => {
+  const handlePointerDown = useCallback((e: MouseEvent) => {
     isRepaintNeeded = true
     dragging.current = true
 
@@ -87,7 +60,7 @@ export const Fractal = () => {
     )
   }, [])
 
-  const handleMouseMove = useCallback(
+  const handlePointerMove = useCallback(
     (e: MouseEvent) => {
       if (dragging.current) {
         isRepaintNeeded = true
@@ -105,7 +78,7 @@ export const Fractal = () => {
     [canvasRef],
   )
 
-  const handleMouseUp = useCallback(() => {
+  const handlePointerUp = useCallback(() => {
     dragging.current = false
   }, [])
 
@@ -117,18 +90,18 @@ export const Fractal = () => {
     applyRandomColorToRef(canvasRef)
     styleLoop()
 
-    window.addEventListener("mousedown", handleMouseDown)
-    window.addEventListener("mousemove", handleMouseMove)
-    window.addEventListener("mouseup", handleMouseUp)
+    window.addEventListener("pointerdown", handlePointerDown)
+    window.addEventListener("pointermove", handlePointerMove)
+    window.addEventListener("pointerup", handlePointerUp)
     return () => {
-      window.removeEventListener("mouseup", handleMouseDown)
-      window.removeEventListener("mousemove", handleMouseMove)
-      window.removeEventListener("mousedown", handleMouseUp)
+      window.removeEventListener("pointerup", handlePointerDown)
+      window.removeEventListener("pointermove", handlePointerMove)
+      window.removeEventListener("pointerdown", handlePointerUp)
       dragging.current = false
       isRepaintNeeded = false
       loop = false
     }
-  }, [styleLoop, handleMouseMove, handleMouseDown, handleMouseUp])
+  }, [styleLoop, handlePointerMove, handlePointerDown, handlePointerUp])
 
   // periodically change theme
   useEffect(() => {

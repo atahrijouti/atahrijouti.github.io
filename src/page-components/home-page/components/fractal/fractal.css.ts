@@ -3,6 +3,7 @@ import { createVar, style } from "@vanilla-extract/css"
 import { GEOMETRY, LeafColorNumbers, ThemeTimeout } from "../../utils/constants"
 import { lightYellowColor } from "../../../../app.css"
 import { lookAtPoint } from "../../utils/math"
+import { geometryToStyles } from "../../utils/style"
 
 const leafyGreenVar = createVar()
 const pinkRedVar = createVar()
@@ -56,14 +57,8 @@ export const fractalVars = style({
     [movementTransitionVar]: `${ThemeTimeout / 3}ms`,
 
     /* startupGeometry */
-    [leftScaleVar]: `${startupGeometry.leftScale}`,
-    [rightScaleVar]: `${startupGeometry.rightScale}`,
-    [leftAngleVar]: `${startupGeometry.leftAngle}deg`,
-    [rightAngleVar]: `${startupGeometry.rightAngle}deg`,
-    [polarityXVar]: `${startupGeometry.polarityX}`,
-    [polarityYVar]: `${startupGeometry.polarityY}`,
-    [visualXVar]: `${startupGeometry.visualTargetX}px`,
-    [visualYVar]: `${startupGeometry.visualTargetY}px`,
+    ...geometryToStyles(startupGeometry),
+
     [rightRotationVar]: rightAngleVar,
     [leftRotationVar]: `calc(-1 * ${leftAngleVar})`,
   },

@@ -39,8 +39,8 @@ export const lookAtPoint = (
   const rightScale = Math.sin(d2r(leftAngle))
   const leftScale = Math.sin(d2r(rightAngle))
 
-  const visualTargetX = targetX - canvasRect.left
-  const visualTargetY = targetY - canvasRect.top
+  const visualTargetX = _clamp(((targetX - canvasRect.left) / canvasRect.width) * 100, 2, 98)
+  const visualTargetY = _clamp(((targetY - canvasRect.top) / canvasRect.width) * 100, 2, 98)
 
   return {
     rightScale,
