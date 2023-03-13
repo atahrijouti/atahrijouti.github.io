@@ -120,6 +120,7 @@ export const visualTarget = style({
   background: "black",
   top: visualYVar,
   left: visualXVar,
+  translate: "-50% -50%",
   transition: `all ${visualTargetTransition}`,
 })
 
