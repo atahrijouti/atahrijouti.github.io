@@ -9,8 +9,6 @@ globalStyle(":root", {
 })
 
 globalStyle("body", {
-  // todo: move touchAction to a specific layer when a canvas/playground is open
-  touchAction: "none",
   padding: 0,
   margin: 0,
   display: "flex",

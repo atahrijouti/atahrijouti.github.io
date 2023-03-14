@@ -75,6 +75,7 @@ export const canvas = style({
   flexDirection: "column",
   background: `rgb(${lightYellowColor})`,
   position: "relative",
+  touchAction: "none",
   selectors: {
     "&:before": {
       content: "",
