@@ -4,7 +4,7 @@ export const lightYellowColor = createVar()
 
 globalStyle(":root", {
   vars: {
-    [lightYellowColor]: "254, 254, 215",
+    [lightYellowColor]: "255, 255, 255",
   },
 })
 

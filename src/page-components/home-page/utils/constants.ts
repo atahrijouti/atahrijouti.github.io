@@ -2,7 +2,7 @@ export const ThemeTimeout = 2000
 
 export const GEOMETRY = {
   canvasToBaseNodeRatio: 12.5 / 100,
-  pageToCanvasRatio: 60 / 100,
+  pageToCanvasRatio: 65 / 100,
   defaultFractal: {
     rightScale: 0.9371561629564998,
     leftScale: 0.3489101979487707,

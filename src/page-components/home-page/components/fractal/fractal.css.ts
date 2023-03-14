@@ -1,7 +1,6 @@
 import { createVar, style } from "@vanilla-extract/css"
 
 import { GEOMETRY, LeafColorNumbers, ThemeTimeout } from "../../utils/constants"
-import { lightYellowColor } from "../../../../app.css"
 import { lookAtPoint } from "../../utils/math"
 import { geometryToStyles } from "../../utils/style"
 
@@ -12,6 +11,7 @@ const mudPurpleVar = createVar()
 export const growingLeafVar = createVar()
 export const fullLeafVar = createVar()
 
+export const canvasBackgroundVar = createVar()
 export const leafBackgroundVar = createVar()
 
 export const colorTransitionVar = createVar()
@@ -28,13 +28,25 @@ export const visualYVar = createVar()
 export const rightRotationVar = createVar()
 export const leftRotationVar = createVar()
 
-export const startupCanvasRect = {
-  top: (1 - GEOMETRY.pageToCanvasRatio) / 2,
-  left: (1 - GEOMETRY.pageToCanvasRatio) / 2,
-  width: GEOMETRY.pageToCanvasRatio,
+export const startupCoords = {
+  target: {
+    x: 12,
+    y: 12,
+  },
+  canvasRect: {
+    top: 0,
+    left: 0,
+    width: 100,
+  },
 }
 
-export const startupGeometry = lookAtPoint(0, 0, startupCanvasRect)
+export const startupGeometry = lookAtPoint(
+  startupCoords.target.x,
+  startupCoords.target.y,
+  startupCoords.canvasRect,
+)
+
+export const sunColorRgb = "rgb(253 184 19)"
 
 export const LeafColorVars = {
   [leafyGreenVar]: LeafColorNumbers["leafyGreen"],
@@ -45,6 +57,7 @@ export const LeafColorVars = {
 export const fractalVars = style({
   vars: {
     /* colors */
+    [canvasBackgroundVar]: "46, 181, 229",
     ...LeafColorVars,
 
     /* default theme */
@@ -69,13 +82,20 @@ const canvasWidth = GEOMETRY.pageToCanvasRatio * 100
 export const canvas = style({
   width: `${canvasWidth}vmin`,
   height: `${canvasWidth}vmin`,
+  maxWidth: "800px",
+  maxHeight: "800px",
   display: "flex",
-  justifyContent: "flex-end",
-  alignItems: "center",
-  flexDirection: "column",
-  background: `rgb(${lightYellowColor})`,
+  background: `radial-gradient(circle at 50% -1000%, rgba(${canvasBackgroundVar}) 92%, white 96%)`,
   position: "relative",
   touchAction: "none",
+  "@media": {
+    "screen and (max-width: 520px), screen and (max-height: 520px)": {
+      width: "100vmin",
+      height: "100vmin",
+      maxWidth: "none",
+      maxHeight: "none",
+    },
+  },
   selectors: {
     "&:before": {
       content: "",
@@ -106,9 +126,20 @@ export const canvas = style({
   },
 })
 
+export const canvasInner = style({
+  display: "flex",
+  justifyContent: "flex-end",
+  alignItems: "center",
+  flexDirection: "column",
+  width: "100%",
+  position: "relative",
+  overflow: "hidden",
+})
+
 export const base = style({
   width: `${GEOMETRY.canvasToBaseNodeRatio * 100}%`,
   height: `${GEOMETRY.canvasToBaseNodeRatio * 100}%`,
+  zIndex: 2,
 })
 
 export const visualTargetTransition = "100ms ease-out"
@@ -117,17 +148,40 @@ export const visualTarget = style({
   position: "absolute",
   top: visualYVar,
   left: visualXVar,
+  width: "20%",
+  height: "20%",
+  translate: "-50% -50%",
   transition: `all ${visualTargetTransition}`,
   userSelect: "none",
+  zIndex: 1,
 })
 
 export const targetBall = style({
-  width: "20px",
-  height: "20px",
-  borderRadius: "20px",
-  background: "black",
-  translate: "-50% -50%",
-  display: "inline-block",
+  width: "100%",
+  height: "100%",
+  borderRadius: "50%",
+  background: sunColorRgb,
+  opacity: "0.9",
+  boxShadow: `0px 0px 40px 15px ${sunColorRgb}`,
+})
+
+export const ballInner = style({
+  position: "relative",
+  height: "100%",
+  selectors: {
+    "&:before": {
+      content: "← drag me",
+      fontFamily: `"HelveticaNeue", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif`,
+      position: "absolute",
+      top: "50%",
+      translate: "0 -50%",
+      left: "calc(100% + 20px)",
+      whiteSpace: "nowrap",
+    },
+    "&.hidden:before": {
+      visibility: "hidden",
+    },
+  },
 })
 
 export const impossible = style({
