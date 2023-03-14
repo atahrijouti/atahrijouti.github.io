@@ -1,4 +1,4 @@
-import { RefObject, useCallback, useEffect, useRef } from "react"
+import { RefObject, useCallback, useEffect, useRef, useState } from "react"
 
 import { setElementVars } from "@vanilla-extract/dynamic"
 
@@ -12,10 +12,13 @@ import {
   startupGeometry,
   growingLeafVar,
   targetBall,
+  ballInner,
+  canvasInner,
 } from "./fractal.css"
 import { randomColorVar } from "../../utils/colors"
 import { ThemeTimeout } from "../../utils/constants"
 import { geometryToStyles } from "../../utils/style"
+import classNames from "classnames"
 
 let isRepaintNeeded = true
 let loop = true
@@ -35,7 +38,7 @@ const geometry: FractalGeometry = computeStartupGeometry()
 export const Fractal = () => {
   const canvasRef = useRef<HTMLDivElement>(null)
   const draggingRef = useRef(false)
-  const showTooltipRef = useRef(true)
+  const [showTooltip, setShowtooltip] = useState(true)
 
   const styleLoop = useCallback(() => {
     if (isRepaintNeeded) {
@@ -46,13 +49,15 @@ export const Fractal = () => {
       isRepaintNeeded = false
     }
     loop && window.requestAnimationFrame(styleLoop)
-  }, [canvasRef])
+  }, [])
 
   const handlePointerDown = useCallback(
     (e: MouseEvent) => {
       isRepaintNeeded = true
       draggingRef.current = true
-      showTooltipRef.current = false
+      if (showTooltip) {
+        setShowtooltip(false)
+      }
       Object.assign(
         geometry,
         lookAtPoint(
@@ -62,26 +67,22 @@ export const Fractal = () => {
         ),
       )
     },
-    [showTooltipRef, draggingRef],
+    [showTooltip],
   )
 
-  const handlePointerMove = useCallback(
-    (e: MouseEvent) => {
-      if (draggingRef.current) {
-        isRepaintNeeded = true
-
-        Object.assign(
-          geometry,
-          lookAtPoint(
-            e.clientX,
-            e.clientY,
-            canvasRef.current?.getBoundingClientRect() ?? ({} as DOMRect),
-          ),
-        )
-      }
-    },
-    [canvasRef],
-  )
+  const handlePointerMove = useCallback((e: MouseEvent) => {
+    if (draggingRef.current) {
+      isRepaintNeeded = true
+      Object.assign(
+        geometry,
+        lookAtPoint(
+          e.clientX,
+          e.clientY,
+          canvasRef.current?.getBoundingClientRect() ?? ({} as DOMRect),
+        ),
+      )
+    }
+  }, [])
 
   const handlePointerUp = useCallback(() => {
     draggingRef.current = false
@@ -106,7 +107,8 @@ export const Fractal = () => {
       isRepaintNeeded = false
       loop = false
     }
-  }, [styleLoop, handlePointerMove, handlePointerDown, handlePointerUp])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   // periodically change theme
   useEffect(() => {
@@ -121,11 +123,15 @@ export const Fractal = () => {
 
   return (
     <div id="canvas" className={`${fractalVars} ${canvas}`} ref={canvasRef}>
-      <div id="visualTarget" className={visualTarget}>
-        <div className={targetBall}></div>
-      </div>
-      <div id="base" className={base}>
-        <Leaf />
+      <div className={canvasInner}>
+        <div id="base" className={base}>
+          <Leaf />
+        </div>
+        <div id="visualTarget" className={visualTarget}>
+          <div className={targetBall}>
+            <div className={classNames(ballInner, { hidden: !showTooltip })}></div>
+          </div>
+        </div>
       </div>
     </div>
   )

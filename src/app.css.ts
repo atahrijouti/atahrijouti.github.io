@@ -4,13 +4,11 @@ export const lightYellowColor = createVar()
 
 globalStyle(":root", {
   vars: {
-    [lightYellowColor]: "254, 254, 215",
+    [lightYellowColor]: "255, 255, 255",
   },
 })
 
 globalStyle("body", {
-  // todo: move touchAction to a specific layer when a canvas/playground is open
-  touchAction: "none",
   padding: 0,
   margin: 0,
   display: "flex",
