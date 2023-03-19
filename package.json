@@ -28,7 +28,7 @@
     "@types/react-dom": "^18.0.7",
     "@vanilla-extract/css": "^1.9.2",
     "@vanilla-extract/next-plugin": "^2.1.1",
-    "eslint": "8.34.0",
+    "eslint": "8.36.0",
     "eslint-config-next": "13.1.6",
     "prettier": "^2.8.1",
     "typescript": "^5.0.0",
