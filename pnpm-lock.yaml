@@ -11,7 +11,7 @@ specifiers:
   '@vanilla-extract/next-plugin': ^2.1.1
   classnames: ^2.3.2
   eslint: 8.36.0
-  eslint-config-next: 13.1.6
+  eslint-config-next: 13.2.4
   lodash: ^4.17.21
   next: latest
   prettier: ^2.8.1
@@ -37,7 +37,7 @@ devDependencies:
   '@vanilla-extract/css': 1.9.2
   '@vanilla-extract/next-plugin': 2.1.1_next@13.2.4+webpack@5.75.0
   eslint: 8.36.0
-  eslint-config-next: 13.1.6_j4766f7ecgqbon3u7zlxn5zszu
+  eslint-config-next: 13.2.4_j4766f7ecgqbon3u7zlxn5zszu
   prettier: 2.8.1
   typescript: 5.0.2
   webpack: 5.75.0
@@ -384,8 +384,8 @@ packages:
   /@next/env/13.2.4:
     resolution: {integrity: sha512-+Mq3TtpkeeKFZanPturjcXt+KHfKYnLlX6jMLyCrmpq6OOs4i1GqBOAauSkii9QeKCMTYzGppar21JU57b/GEA==}
 
-  /@next/eslint-plugin-next/13.1.6:
-    resolution: {integrity: sha512-o7cauUYsXjzSJkay8wKjpKJf2uLzlggCsGUkPu3lP09Pv97jYlekTC20KJrjQKmSv5DXV0R/uks2ZXhqjNkqAw==}
+  /@next/eslint-plugin-next/13.2.4:
+    resolution: {integrity: sha512-ck1lI+7r1mMJpqLNa3LJ5pxCfOB1lfJncKmRJeJxcJqcngaFwylreLP7da6Rrjr6u2gVRTfmnkSkjc80IiQCwQ==}
     dependencies:
       glob: 7.1.7
     dev: true
@@ -1299,8 +1299,8 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /eslint-config-next/13.1.6_j4766f7ecgqbon3u7zlxn5zszu:
-    resolution: {integrity: sha512-0cg7h5wztg/SoLAlxljZ0ZPUQ7i6QKqRiP4M2+MgTZtxWwNKb2JSwNc18nJ6/kXBI6xYvPraTbQSIhAuVw6czw==}
+  /eslint-config-next/13.2.4_j4766f7ecgqbon3u7zlxn5zszu:
+    resolution: {integrity: sha512-lunIBhsoeqw6/Lfkd6zPt25w1bn0znLA/JCL+au1HoEpSb4/PpsOYsYtgV/q+YPsoKIOzFyU5xnb04iZnXjUvg==}
     peerDependencies:
       eslint: ^7.23.0 || ^8.0.0
       typescript: '>=3.3.1'
@@ -1308,7 +1308,7 @@ packages:
       typescript:
         optional: true
     dependencies:
-      '@next/eslint-plugin-next': 13.1.6
+      '@next/eslint-plugin-next': 13.2.4
       '@rushstack/eslint-patch': 1.2.0
       '@typescript-eslint/parser': 5.48.0_j4766f7ecgqbon3u7zlxn5zszu
       eslint: 8.36.0
@@ -2103,6 +2103,7 @@ packages:
 
   /loose-envify/1.4.0:
     resolution: {integrity: sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==}
+    hasBin: true
     dependencies:
       js-tokens: 4.0.0
 
