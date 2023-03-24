@@ -16,7 +16,6 @@ import {
   canvasInner,
 } from "./fractal.css"
 import { randomColorVar } from "../../utils/colors"
-import { ThemeTimeout } from "../../utils/constants"
 import { geometryToStyles } from "../../utils/style"
 import classNames from "classnames"
 
@@ -108,17 +107,6 @@ export const Fractal = () => {
       loop = false
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-
-  // periodically change theme
-  useEffect(() => {
-    const interval = setInterval(() => {
-      applyRandomColorToRef(canvasRef)
-    }, ThemeTimeout)
-
-    return () => {
-      clearInterval(interval)
-    }
   }, [])
 
   return (
