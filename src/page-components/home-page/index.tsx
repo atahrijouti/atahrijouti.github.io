@@ -8,7 +8,7 @@ export const HomePage = () => {
 
   const handleDblclick = useCallback(() => {
     console.log("nothing happened, on purpose")
-  }, [router])
+  }, [])
   useEffect(() => {
     window.addEventListener("dblclick", handleDblclick)
     return () => {
