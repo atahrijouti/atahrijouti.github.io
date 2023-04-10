@@ -1,10 +1,12 @@
 import { useEffect } from "react"
 import type { AppProps } from "next/app"
 import Head from "next/head"
+import { useRouter } from "next/router"
+
+import { SiteLayout } from "@/page-components/_layout/site-layout"
+import { pageViewedEvent } from "@/meta/tracking"
 
 import "../app.css"
-import { useRouter } from "next/router"
-import { pageViewedEvent } from "../meta/tracking"
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter()
@@ -21,7 +23,9 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         <title>Abderrahmane TAHRI JOUTI</title>
         <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no" />
       </Head>
-      <Component {...pageProps} />
+      <SiteLayout>
+        <Component {...pageProps} />
+      </SiteLayout>
     </>
   )
 }

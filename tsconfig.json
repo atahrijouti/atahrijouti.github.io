@@ -15,7 +15,9 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "baseUrl": "src",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
   },
   "include": [
     "next-env.d.ts",
@@ -23,7 +25,7 @@
     "src/**/*.ts",
     "src/**/*.tsx",
     "next.config.js"
-//    ".next/types/**/*.ts"
+    //    ".next/types/**/*.ts"
   ],
   "exclude": ["node_modules"]
 }
