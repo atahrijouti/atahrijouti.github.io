@@ -23,15 +23,15 @@
     "@tsconfig/node18": "1.0.1",
     "@types/lodash": "4.14.192",
     "@types/node": "18.15.11",
-    "@types/react": "18.0.34",
+    "@types/react": "18.0.35",
     "@types/react-dom": "18.0.11",
     "@vanilla-extract/css": "1.11.0",
     "@vanilla-extract/dynamic": "2.0.3",
-    "@vanilla-extract/next-plugin": "2.1.1",
+    "@vanilla-extract/next-plugin": "2.1.2",
     "eslint": "8.38.0",
     "eslint-config-next": "13.3.0",
     "prettier": "2.8.7",
     "typescript": "5.0.4",
-    "webpack": "5.78.0"
+    "webpack": "5.79.0"
   }
 }
