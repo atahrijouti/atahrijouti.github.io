@@ -1,19 +1,21 @@
-import { PropsWithChildren, ReactNode } from "react"
+import { PropsWithChildren } from "react"
 import Link from "next/link"
+
+import { footer, layout, main, nav } from "@/page-components/_layout/site-layout.css"
 
 type Props = {}
 export const SiteLayout = ({ children }: PropsWithChildren<Props>) => {
   return (
-    <>
-      <nav>
-        <p>🚧🏗️ Under heavy construction 🏗️🚧 Please be careful 🚧</p>
+    <div className={layout}>
+      <nav className={nav}>
         <ul>
           <li><Link href="/">Home</Link></li>
           <li><Link href="/playground">Playground</Link></li>
           <li><Link href="/resume">Resumé</Link></li>
         </ul>
       </nav>
-      <main>{children}</main>
-    </>
+      <main className={main}>{children}</main>
+      <footer className={footer}><p>🚧🏗️ Under heavy construction 🏗️🚧 Please be careful 🚧</p></footer>
+    </div>
   )
 }

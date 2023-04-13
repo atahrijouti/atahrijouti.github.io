@@ -1,5 +1,4 @@
 import { Fractal } from "./components/fractal"
-import { homePage } from "./home-page.css"
 import { useCallback, useEffect } from "react"
 import { useRouter } from "next/router"
 
@@ -16,7 +15,7 @@ export const HomePage = () => {
     }
   }, [handleDblclick])
   return (
-    <div className={`page ${homePage}`}>
+    <div>
       <Fractal />
     </div>
   )
