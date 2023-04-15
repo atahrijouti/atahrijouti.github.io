@@ -6,6 +6,8 @@ export const nav = style({
 
 export const main = style({
   gridArea: "main",
+  alignSelf: "stretch",
+  justifySelf: "stretch"
 })
 export const footer = style({
   gridArea: "footer",
