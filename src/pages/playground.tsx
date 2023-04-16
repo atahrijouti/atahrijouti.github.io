@@ -1,6 +1,6 @@
 
 const Playground = () => {
-  return "This is a place where I showcase all my playthings"
+  return <p>This is a place where I showcase all my playthings</p>
 }
 
 export default Playground
