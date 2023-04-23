@@ -7,7 +7,7 @@ export const nav = style({
 export const menu = style({
   listStyleType: "none",
   margin: 0,
-  padding: "10px"
+  padding: "10px",
 })
 
 export const main = style({
