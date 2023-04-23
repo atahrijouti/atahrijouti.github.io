@@ -8,7 +8,7 @@ export type Task =
 export type Position = {
   title: string
   tasks: Task[]
-  skill?: string[]
+  skills?: string[]
   startDate?: string
   endDate?: string
 }
