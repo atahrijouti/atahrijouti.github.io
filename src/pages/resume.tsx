@@ -1,9 +1,6 @@
 import employments from "@/page-components/resume/data.json"
 import { Employment, Position, Task } from "@/page-components/resume/types"
 
-// type Employments = typeof employments
-// type Employment = Employments[number]
-
 type EmploymentWithSinglePosition = Omit<Employment, "positions"> & { positions: [Position] }
 type EmploymentWithMultiplePositions = Omit<Employment, "positions"> & { positions: Position[] }
 
@@ -30,11 +27,21 @@ const Tasks = ({ tasks }: TasksProps) => {
   )
 }
 
+type SkillsProps = { skills: string[] }
+const Skills = ({ skills }: SkillsProps) => {
+  const skillsText = skills?.join(" &#183; ")
+  return (
+    <span>
+      <strong>Skills</strong>: {skillsText}
+    </span>
+  )
+}
+
 type SinglePositionProps = {
   employment: EmploymentWithSinglePosition
 }
 const SinglePosition = ({ employment }: SinglePositionProps) => {
-  const { title, tasks } = employment.positions[0]
+  const { title, tasks, skills } = employment.positions[0]
 
   return (
     <article>
@@ -52,6 +59,11 @@ const SinglePosition = ({ employment }: SinglePositionProps) => {
         <dd>
           <Tasks tasks={tasks} />
         </dd>
+        {skills ? (
+          <dd>
+            <Skills skills={skills} />
+          </dd>
+        ) : null}
       </dl>
     </article>
   )

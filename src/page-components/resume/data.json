@@ -13,7 +13,7 @@
           "Collaborated with other teams to reduce technical debts in the company's products",
           "Built and documented our Area & Team's domains and processes into a living Knowledge Base"
         ],
-        "skill": ["Team Leadership", "Solution Architecture"],
+        "skills": ["Team Leadership", "Solution Architecture"],
         "startDate": "2021-11"
       },
       {
@@ -23,7 +23,7 @@
           "Responsible for delivering the release of a new accounting integration in a new market",
           "Set the roadmap and priorities for the team Based on Metrics, User Feedback & company’s goals"
         ],
-        "skill": ["Data-driven Decision Making", "Operations Management", "Strategic Planning"],
+        "skills": ["Data-driven Decision Making", "Operations Management", "Strategic Planning"],
         "startDate": "2020-11",
         "endDate": "2021-03"
       },
@@ -34,7 +34,7 @@
           "Collaborated with colleagues from other teams to insure a coherent UX across the entire company offering",
           "Participated in on-call duties to keep our systems up and running"
         ],
-        "skill": ["React", "TypeScript", "GraphQL"],
+        "skills": ["React", "TypeScript", "GraphQL"],
         "startDate": "2021-11",
         "endDate": "2018-10"
       }
@@ -62,7 +62,7 @@
           },
           "Sporthome: Was responsible for finalizing work on a client project and guiding junior developers and code review."
         ],
-        "skill": ["Team Leadership", "Solution Architecture"]
+        "skills": ["Team Leadership", "Solution Architecture"]
       }
     ]
   },
