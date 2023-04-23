@@ -49,13 +49,13 @@ const SinglePosition = ({ employment }: SinglePositionProps) => {
       <dl>
         <dt>{title}</dt>
         <dd>
-          {employment.employerName} &#183; {employment.employmentType}
+          {employment.employerName}&nbsp;&#183;&nbsp;{employment.employmentType}
         </dd>
         <dd>
-          {employment.startDate} - {employment.endDate}
+          {employment.startDate}&nbsp;-&nbsp;{employment.endDate}
         </dd>
         <dd>
-          {employment.location} &#183; {employment.locationType}
+          {employment.location}&nbsp;&#183;&nbsp;{employment.locationType}
         </dd>
         <dd>
           <Tasks tasks={tasks} />
@@ -80,11 +80,11 @@ const MultiplePositions = ({ employment }: MultiplePositionsProps) => {
       <dl>
         <dt>{employment.employerName}</dt>
         <dd>
-          {employment.employmentType} &#183; {employment.startDate} -
+          {employment.employmentType}&nbsp;&#183;&nbsp;{employment.startDate}&nbsp;-&nbsp;
           {employment.endDate ?? "Present"}
         </dd>
         <dd>
-          {employment.location} &#183; {employment.locationType}
+          {employment.location}&nbsp;&#183;&nbsp;{employment.locationType}
         </dd>
         <dd>
           {positions.map((position, i) => {
