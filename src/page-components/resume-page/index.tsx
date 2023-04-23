@@ -94,7 +94,9 @@ const MultiplePositions = ({ employment }: MultiplePositionsProps) => {
           {positions.map((position, i) => {
             return (
               <dl key={i}>
-                <dt>{position.title}</dt>
+                <dt>
+                  <strong>{position.title}</strong>
+                </dt>
                 <dd>
                   {position.startDate} - {position.endDate ?? "Present"}
                 </dd>
