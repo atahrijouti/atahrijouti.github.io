@@ -47,7 +47,9 @@ const SinglePosition = ({ employment }: SinglePositionProps) => {
   return (
     <article className={employmentArticle}>
       <dl>
-        <dt>{title}</dt>
+        <dt>
+          <strong>{title}</strong>
+        </dt>
         <dd>
           {employment.employerName}&nbsp;&#183;&nbsp;{employment.employmentType}
         </dd>
@@ -78,7 +80,9 @@ const MultiplePositions = ({ employment }: MultiplePositionsProps) => {
   return (
     <article className={employmentArticle}>
       <dl>
-        <dt>{employment.employerName}</dt>
+        <dt>
+          <strong>{employment.employerName}</strong>
+        </dt>
         <dd>
           {employment.employmentType}&nbsp;&#183;&nbsp;{employment.startDate}&nbsp;-&nbsp;
           {employment.endDate ?? "Present"}
