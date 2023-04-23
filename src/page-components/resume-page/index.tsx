@@ -30,7 +30,7 @@ const Tasks = ({ tasks }: TasksProps) => {
 
 type SkillsProps = { skills: string[] }
 const Skills = ({ skills }: SkillsProps) => {
-  const skillsText = skills?.join(" &#183; ")
+  const skillsText = skills?.join(" \u00B7 ")
   return (
     <span>
       <strong>Skills</strong>: {skillsText}
