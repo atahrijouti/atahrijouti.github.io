@@ -97,6 +97,11 @@ const MultiplePositions = ({ employment }: MultiplePositionsProps) => {
                 <dd>
                   <Tasks tasks={position.tasks} />
                 </dd>
+                {position.skills ? (
+                  <dd>
+                    <Skills skills={position.skills} />
+                  </dd>
+                ) : null}
               </dl>
             )
           })}
