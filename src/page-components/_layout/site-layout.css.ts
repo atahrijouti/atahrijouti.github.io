@@ -4,10 +4,16 @@ export const nav = style({
   gridArea: "nav",
 })
 
+export const menu = style({
+  listStyleType: "none",
+  margin: 0,
+  padding: "10px"
+})
+
 export const main = style({
   gridArea: "main",
   alignSelf: "stretch",
-  justifySelf: "stretch"
+  justifySelf: "stretch",
 })
 export const footer = style({
   gridArea: "footer",

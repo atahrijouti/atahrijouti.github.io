@@ -1,5 +1,9 @@
 import { createVar, globalStyle } from "@vanilla-extract/css"
 
+globalStyle("*, *::before, *::after", {
+  boxSizing: "border-box",
+})
+
 export const lightYellowColor = createVar()
 
 globalStyle(":root", {
