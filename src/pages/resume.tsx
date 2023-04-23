@@ -1,6 +1,8 @@
+import data from "@/page-components/resume/data.json"
+
 const Resume = () => {
   return (
-    <p>A summary of things I've done. That's what Resumé means. Summary</p>
+    <pre>{JSON.stringify(data, null, 2)}</pre>
   )
 }
 
