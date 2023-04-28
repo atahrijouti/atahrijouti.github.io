@@ -11,7 +11,7 @@ const mudPurpleVar = createVar()
 export const growingLeafVar = createVar()
 export const fullLeafVar = createVar()
 
-export const canvasBackgroundVar = createVar()
+export const skyColorVar = createVar()
 export const leafBackgroundVar = createVar()
 
 export const colorTransitionVar = createVar()
@@ -57,7 +57,7 @@ export const LeafColorVars = {
 export const fractalVars = style({
   vars: {
     /* colors */
-    [canvasBackgroundVar]: "46, 181, 229",
+    [skyColorVar]: "46, 181, 229",
     ...LeafColorVars,
 
     /* default theme */
@@ -134,7 +134,12 @@ export const canvasInner = style({
   width: "100%",
   position: "relative",
   overflow: "hidden",
-  background: `radial-gradient(circle at 50% -1000%, rgba(${canvasBackgroundVar}) 92%, white 96%)`
+  background: `radial-gradient(circle at 50% -1000%, rgba(${skyColorVar}) 92%, white 96%)`,
+  "@media": {
+    "screen and (prefers-color-scheme: dark)": {
+      background: `radial-gradient(circle at 50% -1000%, rgb(0, 0, 30) 95%, rgb(0, 0, 70) 99%)`,
+    },
+  },
 })
 
 export const base = style({
@@ -149,8 +154,8 @@ export const visualTarget = style({
   position: "absolute",
   top: visualYVar,
   left: visualXVar,
-  width: "20%",
-  height: "20%",
+  width: "12%",
+  height: "12%",
   translate: "-50% -50%",
   transition: `all ${visualTargetTransition}`,
   userSelect: "none",
@@ -164,6 +169,12 @@ export const targetBall = style({
   background: sunColorRgb,
   opacity: "0.9",
   boxShadow: `0px 0px 40px 15px ${sunColorRgb}`,
+  "@media": {
+    "screen and (prefers-color-scheme: dark)": {
+      background: "rgb(246, 241, 213)",
+      boxShadow: `0px 0px 40px 15px gray`,
+    },
+  },
 })
 
 export const ballInner = style({
