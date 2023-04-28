@@ -8,7 +8,7 @@ export const lightYellowColor = createVar()
 
 globalStyle(":root", {
   vars: {
-    [lightYellowColor]: "255, 255, 255",
+    [lightYellowColor]: "254, 254, 215",
   },
 })
 
@@ -17,7 +17,6 @@ globalStyle("body", {
   margin: 0,
   display: "flex",
   minHeight: "100vh",
-  backgroundColor: `rgb(${lightYellowColor})`,
 })
 
 globalStyle("#__next", {
