@@ -1,4 +1,4 @@
-import { style } from "@vanilla-extract/css"
+import { globalStyle, style } from "@vanilla-extract/css"
 
 export const nav = style({
   gridArea: "nav",
@@ -6,8 +6,11 @@ export const nav = style({
 
 export const menu = style({
   listStyleType: "none",
-  margin: 0,
-  padding: "10px",
+  padding: 0,
+})
+
+globalStyle(`${menu} li`, {
+  listStyle: "none",
 })
 
 export const main = style({
@@ -17,23 +20,32 @@ export const main = style({
 })
 export const constructionNotice = style({
   gridArea: "construction-notice",
-  textAlign: "center"
+  textAlign: "center",
 })
 
 export const layout = style({
+  flex: 1,
   display: "grid",
-  gridTemplateAreas: `
-    "construction-notice construction-notice"
-    "nav main"
+  gridTemplate: `
+    "construction-notice construction-notice" auto
+    "nav main" 1fr
+    / auto 1fr
   `,
-  gridTemplateRows: "auto 1fr",
-  height: "100vh",
+  gap: "calc(var(--spacing) * 3)",
+  paddingLeft: "calc(var(--spacing) * 1.5)",
+  paddingRight: "calc(var(--spacing) * 3)",
+
   "@media": {
     "screen and (max-width: 520px)": {
-      gridTemplateRows: "auto auto 1fr",
-      gridTemplateAreas: `
-        "construction-notice" "nav" "main"
+      gridTemplate: `
+        "construction-notice" auto
+        "nav" auto
+        "main" 1fr
+        / 1fr
       `,
+      gap: "var(--spacing)",
+      paddingLeft: "var(--spacing)",
+      paddingRight: "var(--spacing)",
     },
   },
 })
