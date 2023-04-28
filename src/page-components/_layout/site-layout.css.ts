@@ -15,19 +15,25 @@ export const main = style({
   alignSelf: "stretch",
   justifySelf: "stretch",
 })
-export const footer = style({
-  gridArea: "footer",
+export const constructionNotice = style({
+  gridArea: "construction-notice",
+  textAlign: "center"
 })
 
 export const layout = style({
   display: "grid",
-  gridTemplateAreas: `"nav main" "footer footer"`,
-  gridTemplateRows: "1fr auto",
+  gridTemplateAreas: `
+    "construction-notice construction-notice"
+    "nav main"
+  `,
+  gridTemplateRows: "auto 1fr",
   height: "100vh",
   "@media": {
-    "screen and (max-width: 520px), screen and (max-height: 520px)": {
-      gridTemplateRows: "auto 1fr auto",
-      gridTemplateAreas: `"nav" "main" "footer"`,
+    "screen and (max-width: 520px)": {
+      gridTemplateRows: "auto auto 1fr",
+      gridTemplateAreas: `
+        "construction-notice" "nav" "main"
+      `,
     },
   },
 })
