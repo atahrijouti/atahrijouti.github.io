@@ -23,6 +23,18 @@ export const constructionNotice = style({
   textAlign: "center",
 })
 
+globalStyle(`${constructionNotice} p`, {
+  marginBottom: 0,
+})
+
+globalStyle(`${constructionNotice} span`, {
+  "@media": {
+    "screen and (max-width: 520px)": {
+      display: "block",
+    },
+  },
+})
+
 export const layout = style({
   flex: 1,
   display: "grid",
