@@ -85,8 +85,8 @@ export const canvas = style({
   maxWidth: "800px",
   maxHeight: "800px",
   display: "flex",
-  background: `radial-gradient(circle at 50% -1000%, rgba(${canvasBackgroundVar}) 92%, white 96%)`,
   position: "relative",
+  zIndex: 1,
   touchAction: "none",
   "@media": {
     "screen and (max-width: 520px), screen and (max-height: 520px)": {
@@ -134,6 +134,7 @@ export const canvasInner = style({
   width: "100%",
   position: "relative",
   overflow: "hidden",
+  background: `radial-gradient(circle at 50% -1000%, rgba(${canvasBackgroundVar}) 92%, white 96%)`
 })
 
 export const base = style({

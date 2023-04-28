@@ -3,6 +3,8 @@ import type { AppProps } from "next/app"
 import Head from "next/head"
 import { useRouter } from "next/router"
 
+import "@picocss/pico/css/pico.slim.min.css"
+
 import { SiteLayout } from "@/page-components/_layout/site-layout"
 import { pageViewedEvent } from "@/meta/tracking"
 

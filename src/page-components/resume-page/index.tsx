@@ -45,11 +45,9 @@ const SinglePosition = ({ employment }: SinglePositionProps) => {
   const { title, tasks, skills } = employment.positions[0]
 
   return (
-    <article className={employmentArticle}>
+    <>
+      <h2>{title}</h2>
       <dl>
-        <dt>
-          <strong>{title}</strong>
-        </dt>
         <dd>
           {employment.employerName}&nbsp;&#183;&nbsp;{employment.employmentType}
         </dd>
@@ -68,7 +66,7 @@ const SinglePosition = ({ employment }: SinglePositionProps) => {
           </dd>
         ) : null}
       </dl>
-    </article>
+    </>
   )
 }
 
@@ -78,10 +76,10 @@ type MultiplePositionsProps = {
 const MultiplePositions = ({ employment }: MultiplePositionsProps) => {
   const { positions } = employment
   return (
-    <article className={employmentArticle}>
+    <>
       <dl>
         <dt>
-          <strong>{employment.employerName}</strong>
+          <h2>{employment.employerName}</h2>
         </dt>
         <dd>
           {employment.employmentType}&nbsp;&#183;&nbsp;{employment.startDate}&nbsp;-&nbsp;
@@ -95,7 +93,7 @@ const MultiplePositions = ({ employment }: MultiplePositionsProps) => {
             return (
               <dl key={i}>
                 <dt>
-                  <strong>{position.title}</strong>
+                  <h3>{position.title}</h3>
                 </dt>
                 <dd>
                   {position.startDate} - {position.endDate ?? "Present"}
@@ -113,7 +111,7 @@ const MultiplePositions = ({ employment }: MultiplePositionsProps) => {
           })}
         </dd>
       </dl>
-    </article>
+    </>
   )
 }
 
@@ -123,10 +121,14 @@ type EmploymentProps = {
 const Employment = ({ employment }: EmploymentProps) => {
   const hasMultiplePositions = employment.positions.length > 1
 
-  return hasMultiplePositions ? (
-    <MultiplePositions employment={employment as EmploymentWithMultiplePositions} />
-  ) : (
-    <SinglePosition employment={employment as EmploymentWithSinglePosition} />
+  return (
+    <article className={employmentArticle}>
+      {hasMultiplePositions ? (
+        <MultiplePositions employment={employment as EmploymentWithMultiplePositions} />
+      ) : (
+        <SinglePosition employment={employment as EmploymentWithSinglePosition} />
+      )}
+    </article>
   )
 }
 

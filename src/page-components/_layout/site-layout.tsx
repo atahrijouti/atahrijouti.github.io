@@ -1,7 +1,13 @@
 import { PropsWithChildren } from "react"
 import Link from "next/link"
 
-import { footer, layout, main, menu, nav } from "@/page-components/_layout/site-layout.css"
+import {
+  constructionNotice,
+  layout,
+  main,
+  menu,
+  nav,
+} from "@/page-components/_layout/site-layout.css"
 
 type Props = {}
 export const SiteLayout = ({ children }: PropsWithChildren<Props>) => {
@@ -21,9 +27,9 @@ export const SiteLayout = ({ children }: PropsWithChildren<Props>) => {
         </ul>
       </nav>
       <main className={main}>{children}</main>
-      <footer className={footer}>
+      <aside className={constructionNotice}>
         <p>🚧🏗️ Under heavy construction 🏗️🚧 Please be careful 🚧</p>
-      </footer>
+      </aside>
     </div>
   )
 }

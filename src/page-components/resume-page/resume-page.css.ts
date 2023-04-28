@@ -3,6 +3,7 @@ import { globalStyle, style } from "@vanilla-extract/css"
 export const resumePage = style({})
 
 export const employmentArticle = style({
+  marginTop: "calc(var(--typography-spacing-vertical) * .5)",
   selectors: {
     "&:not(:last-child)": {
       borderBottom: "1px gray solid",
@@ -11,7 +12,20 @@ export const employmentArticle = style({
 })
 
 // todo: Do a proper reset, together with an actual design system
+globalStyle(`${resumePage} dl`, {
+  paddingLeft: 0,
+  paddingInlineStart: 0,
+})
+
 globalStyle(`${resumePage} dd`, {
-  all: "unset",
-  display: "revert",
+  marginLeft: 0,
+  marginInlineStart: 0,
+})
+
+globalStyle(`${resumePage} h2`, {
+  marginBottom: "calc(var(--typography-spacing-vertical) * .25)"
+})
+
+globalStyle(`${resumePage} h3`, {
+  marginBottom: "calc(var(--typography-spacing-vertical) * .125)"
 })
