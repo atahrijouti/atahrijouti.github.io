@@ -89,7 +89,7 @@ export const canvas = style({
   zIndex: 1,
   touchAction: "none",
   "@media": {
-    "screen and (max-width: 520px), screen and (max-height: 520px)": {
+    "screen and (max-width: 520px)": {
       width: "100vmin",
       height: "100vmin",
       maxWidth: "none",
