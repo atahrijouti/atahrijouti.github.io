@@ -15,18 +15,15 @@ export const GEOMETRY = {
 
 export type RgbNumbers = `${number},${number},${number}`
 export type Rgb = `rgb(${RgbNumbers})`
-export type ColorNames = "leafyGreen" | "pinkRed" | "mudPurple"
 
-export const RgbLeafColors: { [name in ColorNames]: Rgb } = {
-  leafyGreen: "rgb(135,191,67)",
-  pinkRed: "rgb(246,62,98)",
-  mudPurple: "rgb(132,74,135)",
-} as const
+export const COLORS = {
+  clearDaySky: "rgb(46, 181, 229)",
+  clearNightSky: "rgb(0, 0, 30)",
+  duskBlue: "rgb(0, 0, 70)",
+  sun: "rgb(253, 184, 19)",
+  moon: "rgb(246, 241, 213)",
 
-export const LeafColorNumbers = (() => {
-  const entries = Object.entries(RgbLeafColors) as [ColorNames, Rgb][]
-  return entries.reduce((acc, entry) => {
-    acc[entry[0]] = entry[1].replace("rgb(", "").replace(")", "") as RgbNumbers
-    return acc
-  }, {} as { [name in ColorNames]: RgbNumbers })
-})()
+  leafyGreen: "rgb(135, 191, 67)",
+  pinkRed: "rgb(246, 62, 98)",
+  mudPurple: "rgb(132, 74, 135)",
+} as Record<string, Rgb>

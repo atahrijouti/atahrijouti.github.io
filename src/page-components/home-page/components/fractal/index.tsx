@@ -1,6 +1,7 @@
 import { RefObject, useCallback, useEffect, useRef, useState } from "react"
-
 import { setElementVars } from "@vanilla-extract/dynamic"
+import classNames from "classnames"
+import _sample from "lodash/sample"
 
 import { Leaf } from "./leaf"
 import { FractalGeometry, lookAtPoint } from "../../utils/math"
@@ -14,10 +15,13 @@ import {
   targetBall,
   ballInner,
   canvasInner,
+  LeafColorVars,
 } from "./fractal.css"
-import { randomColorVar } from "../../utils/colors"
+
 import { geometryToStyles } from "../../utils/style"
-import classNames from "classnames"
+
+const ColorVarNames = Object.keys(LeafColorVars)
+export const randomColorVar = () => _sample(ColorVarNames) as string
 
 let isRepaintNeeded = true
 let loop = true

@@ -1,8 +1,9 @@
 import { createVar, style } from "@vanilla-extract/css"
 
-import { GEOMETRY, LeafColorNumbers, ThemeTimeout } from "../../utils/constants"
+import { COLORS, GEOMETRY, ThemeTimeout } from "../../utils/constants"
 import { lookAtPoint } from "../../utils/math"
 import { geometryToStyles } from "../../utils/style"
+import { LeafColorNumbers } from "@/page-components/home-page/utils/colors"
 
 const leafyGreenVar = createVar()
 const pinkRedVar = createVar()
@@ -11,7 +12,6 @@ const mudPurpleVar = createVar()
 export const growingLeafVar = createVar()
 export const fullLeafVar = createVar()
 
-export const skyColorVar = createVar()
 export const leafBackgroundVar = createVar()
 
 export const colorTransitionVar = createVar()
@@ -46,8 +46,6 @@ export const startupGeometry = lookAtPoint(
   startupCoords.canvasRect,
 )
 
-export const sunColorRgb = "rgb(253 184 19)"
-
 export const LeafColorVars = {
   [leafyGreenVar]: LeafColorNumbers["leafyGreen"],
   [pinkRedVar]: LeafColorNumbers["pinkRed"],
@@ -57,7 +55,6 @@ export const LeafColorVars = {
 export const fractalVars = style({
   vars: {
     /* colors */
-    [skyColorVar]: "46, 181, 229",
     ...LeafColorVars,
 
     /* default theme */
@@ -114,6 +111,9 @@ export const canvas = style({
   },
 })
 
+export const startColor = createVar()
+export const endColor = createVar()
+
 export const canvasInner = style({
   display: "flex",
   justifyContent: "flex-end",
@@ -122,10 +122,17 @@ export const canvasInner = style({
   width: "100%",
   position: "relative",
   overflow: "hidden",
-  background: `radial-gradient(circle at 50% -1000%, rgba(${skyColorVar}) 92%, white 96%)`,
+  background: `radial-gradient(circle at 50% -1000%, ${startColor} 92%, ${endColor} 96%)`,
+  vars: {
+    [startColor]: COLORS.clearDaySky,
+    [endColor]: "white",
+  },
   "@media": {
     "screen and (prefers-color-scheme: dark)": {
-      background: `radial-gradient(circle at 50% -1000%, rgb(0, 0, 30) 95%, rgb(0, 0, 70) 99%)`,
+      vars: {
+        [startColor]: COLORS.clearNightSky,
+        [endColor]: COLORS.duskBlue,
+      },
     },
   },
 })
@@ -150,17 +157,23 @@ export const visualTarget = style({
   zIndex: 1,
 })
 
+export const targetColorVar = createVar()
+
 export const targetBall = style({
   width: "100%",
   height: "100%",
   borderRadius: "50%",
   opacity: "0.9",
-  background: sunColorRgb,
-  boxShadow: `0px 0px 40px 15px ${sunColorRgb}`,
+  background: targetColorVar,
+  boxShadow: `0px 0px 40px 15px ${targetColorVar}`,
+  vars: {
+    [targetColorVar]: COLORS.sun,
+  },
   "@media": {
     "screen and (prefers-color-scheme: dark)": {
-      background: "rgb(246, 241, 213)",
-      boxShadow: `0px 0px 40px 15px gray`,
+      vars: {
+        [targetColorVar]: COLORS.moon,
+      },
     },
   },
 })
@@ -171,7 +184,6 @@ export const ballInner = style({
   selectors: {
     "&:before": {
       content: "← drag me",
-      fontFamily: `"HelveticaNeue", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif`,
       position: "absolute",
       top: "50%",
       translate: "0 -50%",
