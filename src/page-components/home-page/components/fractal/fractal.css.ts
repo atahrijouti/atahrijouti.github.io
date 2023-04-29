@@ -77,25 +77,13 @@ export const fractalVars = style({
   },
 })
 
-const canvasWidth = GEOMETRY.pageToCanvasRatio * 100
-
 export const canvas = style({
-  width: `${canvasWidth}vmin`,
-  height: `${canvasWidth}vmin`,
-  maxWidth: "800px",
-  maxHeight: "800px",
   display: "flex",
+  width: "100%",
+  aspectRatio: "1",
   position: "relative",
   zIndex: 1,
   touchAction: "none",
-  "@media": {
-    "screen and (max-width: 520px)": {
-      width: "100vmin",
-      height: "100vmin",
-      maxWidth: "none",
-      maxHeight: "none",
-    },
-  },
   selectors: {
     "&:before": {
       content: "",
@@ -166,8 +154,8 @@ export const targetBall = style({
   width: "100%",
   height: "100%",
   borderRadius: "50%",
-  background: sunColorRgb,
   opacity: "0.9",
+  background: sunColorRgb,
   boxShadow: `0px 0px 40px 15px ${sunColorRgb}`,
   "@media": {
     "screen and (prefers-color-scheme: dark)": {
