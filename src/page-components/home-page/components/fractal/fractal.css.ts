@@ -77,25 +77,13 @@ export const fractalVars = style({
   },
 })
 
-const canvasWidth = GEOMETRY.pageToCanvasRatio * 100
-
 export const canvas = style({
-  width: `${canvasWidth}vmin`,
-  height: `${canvasWidth}vmin`,
-  maxWidth: "800px",
-  maxHeight: "800px",
   display: "flex",
+  width: "100%",
+  aspectRatio: "1",
   position: "relative",
   zIndex: 1,
   touchAction: "none",
-  "@media": {
-    "screen and (max-width: 520px)": {
-      width: "100vmin",
-      height: "100vmin",
-      maxWidth: "none",
-      maxHeight: "none",
-    },
-  },
   selectors: {
     "&:before": {
       content: "",
