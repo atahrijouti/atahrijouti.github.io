@@ -1,7 +1,7 @@
 [
   {
     "employerName": "PayPal / iZettle",
-    "employerLinkedinProfile": "https://www.linkedin.com/company/paypal",
+    "employerUrl": "https://paypal.com",
     "employmentType": "Full-time",
     "location": "Stockholm, Sweden",
     "locationType": "On-site",
@@ -61,6 +61,7 @@
   },
   {
     "employerName": "Calyos",
+    "employerUrl": "https://goo.gl/maps/pA5UrmRmoBhR9f3m7",
     "employmentType": "Full-time",
     "location": "Fès, Morocco",
     "locationType": "On-site",
@@ -87,7 +88,7 @@
   },
   {
     "employerName": "Casapplanca",
-    "employerLinkedinProfile": "https://www.linkedin.com/company/casapplanca",
+    "employerUrl": "https://casapplanca.com",
     "employmentType": "Full-time",
     "location": "Casablanca, Morocco",
     "locationType": "On-site",
@@ -106,7 +107,7 @@
   },
   {
     "employerName": "MIS Laboratory / Université de Picardie Jules Verne (Amiens)",
-    "employerLinkedinProfile": "https://www.linkedin.com/school/upjv-univ",
+    "employerUrl": "https://www.mis.u-picardie.fr",
     "employmentType": "Full-time",
     "location": "Amiens, France",
     "locationType": "On-site",
@@ -124,7 +125,7 @@
   },
   {
     "employerName": "Synergie Media",
-    "employerLinkedinProfile": "https://www.linkedin.com/company/synergie-media",
+    "employerUrl": "https://synergie-media.com",
     "employmentType": "Full-time",
     "location": "Agadir, Morocco",
     "locationType": "On-site",

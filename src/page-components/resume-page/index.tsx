@@ -67,13 +67,13 @@ const DateDetail = ({ startDate, endDate }: DateDetailProps) => {
 type EmployerDetailProps = {
   employer: {
     name: Employment["employerName"]
-    linkedinProfile: Employment["employerLinkedinProfile"]
+    url: Employment["employerUrl"]
   }
 }
-const EmployerDetail = ({ employer: { name, linkedinProfile } }: EmployerDetailProps) => {
-  if (linkedinProfile) {
+const EmployerDetail = ({ employer: { name, url } }: EmployerDetailProps) => {
+  if (url) {
     return (
-      <Link href={linkedinProfile} title={`${name} on Linkedin`} className="secondary">
+      <Link href={url} title={`${name} on Linkedin`} className="secondary">
         {name}
       </Link>
     )
@@ -96,7 +96,7 @@ const SinglePosition = ({ employment }: SinglePositionProps) => {
           <EmployerDetail
             employer={{
               name: employment.employerName,
-              linkedinProfile: employment.employerLinkedinProfile,
+              url: employment.employerUrl,
             }}
           />
           &nbsp;&#183;&nbsp;{employment.employmentType}
@@ -136,7 +136,7 @@ const MultiplePositions = ({ employment }: MultiplePositionsProps) => {
             <EmployerDetail
               employer={{
                 name: employment.employerName,
-                linkedinProfile: employment.employerLinkedinProfile,
+                url: employment.employerUrl,
               }}
             />
           </h2>
