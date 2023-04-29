@@ -1,6 +1,7 @@
 [
   {
     "employerName": "PayPal / iZettle",
+    "employerUrl": "https://paypal.com",
     "employmentType": "Full-time",
     "location": "Stockholm, Sweden",
     "locationType": "On-site",
@@ -23,7 +24,12 @@
           "Responsible for delivering the release of a new accounting integration in a new market",
           "Set the roadmap and priorities for the team Based on Metrics, User Feedback & company’s goals"
         ],
-        "skills": ["Data-driven Decision Making", "Operations Management", "Strategic Planning"],
+        "skills": [
+          "Data-driven Decision Making",
+          "Operations Management",
+          "Strategic Planning",
+          "Jira"
+        ],
         "startDate": "2020-11",
         "endDate": "2021-03"
       },
@@ -34,7 +40,20 @@
           "Collaborated with colleagues from other teams to insure a coherent UX across the entire company offering",
           "Participated in on-call duties to keep our systems up and running"
         ],
-        "skills": ["React", "TypeScript", "GraphQL"],
+        "skills": [
+          "React",
+          "TypeScript",
+          "GraphQL",
+          "AWS",
+          "Opsgenie",
+          "Heroku",
+          "Postgres",
+          "Github Actions",
+          "Circle CI",
+          "Kotlin",
+          "Java",
+          "Splunk"
+        ],
         "startDate": "2018-10",
         "endDate": "2021-11"
       }
@@ -42,6 +61,7 @@
   },
   {
     "employerName": "Calyos",
+    "employerUrl": "https://goo.gl/maps/pA5UrmRmoBhR9f3m7",
     "employmentType": "Full-time",
     "location": "Fès, Morocco",
     "locationType": "On-site",
@@ -62,12 +82,13 @@
           },
           "Sporthome: Was responsible for finalizing work on a client project and guiding junior developers and code review."
         ],
-        "skills": ["Team Leadership", "Solution Architecture"]
+        "skills": ["React", "php", "Laravel", "MySQL", "Team Leadership", "Solution Architecture"]
       }
     ]
   },
   {
     "employerName": "Casapplanca",
+    "employerUrl": "https://casapplanca.com",
     "employmentType": "Full-time",
     "location": "Casablanca, Morocco",
     "locationType": "On-site",
@@ -79,14 +100,16 @@
         "tasks": [
           "Built a font-end application in AngularJS, for creating emails visually, without having to code it by hand",
           "Worked on finalizing Kapptain, a social marketing management web platform. Improved the product quality and added new features, both on the front-end in AngularJS, and the back-end in Ruby On Rails"
-        ]
+        ],
+        "skills": ["Angular 1.5", "Ruby on Rails"]
       }
     ]
   },
   {
-    "employerName": "Laboratoire Modélisation, Information & Systèmes (MIS)",
+    "employerName": "MIS Laboratory / Université de Picardie Jules Verne (Amiens)",
+    "employerUrl": "https://www.mis.u-picardie.fr",
     "employmentType": "Full-time",
-    "location": "Casablanca, Morocco",
+    "location": "Amiens, France",
     "locationType": "On-site",
     "startDate": "2014-02",
     "endDate": "2015-01",
@@ -95,12 +118,14 @@
         "title": "Software Engineer",
         "tasks": [
           "Built a tool for navigational aid inside a 3D Model of “La Cathédrale d’Amiens”, as part of my Masters graduation project. (Plugin Protégé [Java], C++, Ogre3D)"
-        ]
+        ],
+        "skills": ["Computer Science Research", "C++", "Ogre 3D", "Java"]
       }
     ]
   },
   {
     "employerName": "Synergie Media",
+    "employerUrl": "https://synergie-media.com",
     "employmentType": "Full-time",
     "location": "Agadir, Morocco",
     "locationType": "On-site",
@@ -112,7 +137,8 @@
         "tasks": [
           "Built several WordPress plugins as well as websites such as http://polarvagnen.com , http://sinobaler.com",
           "Worked on several CSS3 based animations and few front-end applications"
-        ]
+        ],
+        "skills": ["php", "WordPress", "jQuery"]
       }
     ]
   }

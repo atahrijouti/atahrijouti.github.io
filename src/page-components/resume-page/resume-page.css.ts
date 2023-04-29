@@ -23,9 +23,19 @@ globalStyle(`${resumePage} dd`, {
 })
 
 globalStyle(`${resumePage} h2`, {
-  marginBottom: "calc(var(--typography-spacing-vertical) * .25)"
+  marginBottom: "calc(var(--typography-spacing-vertical) * .25)",
 })
 
 globalStyle(`${resumePage} h3`, {
-  marginBottom: "calc(var(--typography-spacing-vertical) * .125)"
+  marginBottom: "calc(var(--typography-spacing-vertical) * .125)",
+})
+
+export const skillItem = style({
+  selectors: {
+    "&:not(:first-child):before": {
+      content: "\u00B7",
+      paddingLeft: ".25rem",
+      paddingRight: ".25rem",
+    },
+  },
 })
