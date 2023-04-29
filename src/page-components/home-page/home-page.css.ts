@@ -19,7 +19,7 @@ globalStyle(`${layout}:has(${homePage}) ${menu}`, {
   paddingRight: "calc(var(--spacing) * 3)",
 
   "@media": {
-    "screen and (max-width: 520px)": {
+    "screen and (max-width: 576px)": {
       paddingLeft: "var(--spacing)",
       paddingRight: "var(--spacing)",
     },
@@ -35,7 +35,7 @@ export const canvasOuter = style({
   maxWidth: `calc(85vh - (4 * var(--spacing)))`,
   aspectRatio: "1",
   "@media": {
-    "screen and (max-width: 520px)": {
+    "screen and (max-width: 576px)": {
       width: "95%",
     },
   },
@@ -51,7 +51,7 @@ globalStyle(`${layout}:has(${homePage}) ${menu}`, {
   paddingRight: "calc(var(--spacing) * 3)",
 
   "@media": {
-    "screen and (max-width: 520px)": {
+    "screen and (max-width: 576px)": {
       paddingLeft: "var(--spacing)",
       paddingRight: "var(--spacing)",
     },

@@ -29,7 +29,7 @@ globalStyle(`${constructionNotice} p`, {
 
 globalStyle(`${constructionNotice} span`, {
   "@media": {
-    "screen and (max-width: 520px)": {
+    "screen and (max-width: 576px)": {
       display: "block",
     },
   },
@@ -48,7 +48,7 @@ export const layout = style({
   paddingRight: "calc(var(--spacing) * 3)",
 
   "@media": {
-    "screen and (max-width: 520px)": {
+    "screen and (max-width: 576px)": {
       gridTemplate: `
         "construction-notice" auto
         "nav" auto
