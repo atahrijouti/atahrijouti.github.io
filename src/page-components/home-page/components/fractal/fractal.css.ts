@@ -154,8 +154,8 @@ export const targetBall = style({
   width: "100%",
   height: "100%",
   borderRadius: "50%",
-  background: sunColorRgb,
   opacity: "0.9",
+  background: sunColorRgb,
   boxShadow: `0px 0px 40px 15px ${sunColorRgb}`,
   "@media": {
     "screen and (prefers-color-scheme: dark)": {

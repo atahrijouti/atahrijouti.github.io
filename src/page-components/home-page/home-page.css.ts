@@ -31,6 +31,7 @@ const canvasWidth = GEOMETRY.pageToCanvasRatio * 100
 export const canvasOuter = style({
   position: "absolute",
   width: `${canvasWidth}%`,
+  maxWidth: `calc(85vh - (4 * var(--spacing)))`,
   aspectRatio: "1",
   "@media": {
     "screen and (max-width: 520px)": {
