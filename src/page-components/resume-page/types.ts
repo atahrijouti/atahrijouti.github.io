@@ -15,6 +15,7 @@ export type Position = {
 
 export type Employment = {
   employerName: string
+  employerLinkedinProfile?: string
   employmentType: string
   location: string
   locationType: string

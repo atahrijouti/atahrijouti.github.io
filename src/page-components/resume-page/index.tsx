@@ -1,6 +1,13 @@
+import Link from "next/link"
+
+import {
+  employmentArticle,
+  resumePage,
+  skillItem,
+} from "@/page-components/resume-page/resume-page.css"
+
 import employments from "./data.json"
 import { Employment, Position, Task } from "./types"
-import { employmentArticle, resumePage } from "@/page-components/resume-page/resume-page.css"
 
 type EmploymentWithSinglePosition = Omit<Employment, "positions"> & { positions: [Position] }
 type EmploymentWithMultiplePositions = Omit<Employment, "positions"> & { positions: Position[] }
@@ -30,12 +37,49 @@ const Tasks = ({ tasks }: TasksProps) => {
 
 type SkillsProps = { skills: string[] }
 const Skills = ({ skills }: SkillsProps) => {
-  const skillsText = skills?.join(" \u00B7 ")
+  return (
+    <small>
+      <strong>Skills</strong>:&nbsp;
+      <em>
+        {skills?.map((skill, i) => (
+          <span key={i} className={skillItem}>
+            {skill}
+          </span>
+        ))}
+      </em>
+    </small>
+  )
+}
+
+type DateDetailProps = {
+  startDate: string
+  endDate?: string
+}
+
+const DateDetail = ({ startDate, endDate }: DateDetailProps) => {
   return (
     <span>
-      <strong>Skills</strong>: {skillsText}
+      <em>{startDate}</em> - <em>{endDate ?? "Present"}</em>
     </span>
   )
+}
+
+type EmployerDetailProps = {
+  employer: {
+    name: Employment["employerName"]
+    linkedinProfile: Employment["employerLinkedinProfile"]
+  }
+}
+const EmployerDetail = ({ employer: { name, linkedinProfile } }: EmployerDetailProps) => {
+  if (linkedinProfile) {
+    return (
+      <Link href={linkedinProfile} title={`${name} on Linkedin`} className="secondary">
+        {name}
+      </Link>
+    )
+  } else {
+    return <u>{name}</u>
+  }
 }
 
 type SinglePositionProps = {
@@ -49,13 +93,22 @@ const SinglePosition = ({ employment }: SinglePositionProps) => {
       <h2>{title}</h2>
       <dl>
         <dd>
-          {employment.employerName}&nbsp;&#183;&nbsp;{employment.employmentType}
+          <EmployerDetail
+            employer={{
+              name: employment.employerName,
+              linkedinProfile: employment.employerLinkedinProfile,
+            }}
+          />
+          &nbsp;&#183;&nbsp;{employment.employmentType}
         </dd>
         <dd>
-          {employment.startDate}&nbsp;-&nbsp;{employment.endDate}
+          <DateDetail startDate={employment.startDate} endDate={employment.endDate} />
         </dd>
         <dd>
-          {employment.location}&nbsp;&#183;&nbsp;{employment.locationType}
+          <span>
+            <small>{employment.location}</small>&nbsp;&#183;&nbsp;
+            <small>{employment.locationType}</small>
+          </span>
         </dd>
         <dd>
           <Tasks tasks={tasks} />
@@ -79,14 +132,25 @@ const MultiplePositions = ({ employment }: MultiplePositionsProps) => {
     <>
       <dl>
         <dt>
-          <h2>{employment.employerName}</h2>
+          <h2>
+            <EmployerDetail
+              employer={{
+                name: employment.employerName,
+                linkedinProfile: employment.employerLinkedinProfile,
+              }}
+            />
+          </h2>
         </dt>
         <dd>
-          {employment.employmentType}&nbsp;&#183;&nbsp;{employment.startDate}&nbsp;-&nbsp;
-          {employment.endDate ?? "Present"}
+          {employment.employmentType}&nbsp;&#183;&nbsp;
+          <DateDetail startDate={employment.startDate} endDate={employment.endDate} />
         </dd>
         <dd>
-          {employment.location}&nbsp;&#183;&nbsp;{employment.locationType}
+          <span>
+            <small>
+              {employment.location}&nbsp;&#183;&nbsp;{employment.locationType}
+            </small>
+          </span>
         </dd>
         <dd>
           {positions.map((position, i) => {
@@ -96,7 +160,9 @@ const MultiplePositions = ({ employment }: MultiplePositionsProps) => {
                   <h3>{position.title}</h3>
                 </dt>
                 <dd>
-                  {position.startDate} - {position.endDate ?? "Present"}
+                  {position.startDate && (
+                    <DateDetail startDate={position.startDate} endDate={position.endDate} />
+                  )}
                 </dd>
                 <dd>
                   <Tasks tasks={position.tasks} />
