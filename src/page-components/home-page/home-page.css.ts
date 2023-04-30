@@ -1,5 +1,4 @@
-import { globalStyle, style } from "@vanilla-extract/css"
-import { layout, menu } from "@/page-components/_layout/site-layout.css"
+import { style } from "@vanilla-extract/css"
 import { GEOMETRY } from "@/page-components/home-page/utils/constants"
 
 export const homePage = style({
