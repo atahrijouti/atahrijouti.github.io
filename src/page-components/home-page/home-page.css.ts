@@ -9,23 +9,6 @@ export const homePage = style({
   position: "relative",
 })
 
-globalStyle(`${layout}:has(${homePage})`, {
-  paddingLeft: 0,
-  paddingRight: 0,
-})
-
-globalStyle(`${layout}:has(${homePage}) ${menu}`, {
-  paddingLeft: "calc(var(--spacing) * 1.5)",
-  paddingRight: "calc(var(--spacing) * 3)",
-
-  "@media": {
-    "screen and (max-width: 576px)": {
-      paddingLeft: "var(--spacing)",
-      paddingRight: "var(--spacing)",
-    },
-  },
-})
-
 const canvasWidth = GEOMETRY.pageToCanvasRatio * 100
 
 export const canvasOuter = style({
@@ -37,23 +20,6 @@ export const canvasOuter = style({
   "@media": {
     "screen and (max-width: 576px)": {
       width: "95%",
-    },
-  },
-})
-
-globalStyle(`${layout}:has(${homePage})`, {
-  paddingLeft: 0,
-  paddingRight: 0,
-})
-
-globalStyle(`${layout}:has(${homePage}) ${menu}`, {
-  paddingLeft: "calc(var(--spacing) * 1.5)",
-  paddingRight: "calc(var(--spacing) * 3)",
-
-  "@media": {
-    "screen and (max-width: 576px)": {
-      paddingLeft: "var(--spacing)",
-      paddingRight: "var(--spacing)",
     },
   },
 })
