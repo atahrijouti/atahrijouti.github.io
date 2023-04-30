@@ -2,10 +2,15 @@ import { style } from "@vanilla-extract/css"
 import { GEOMETRY } from "@/page-components/home-page/utils/constants"
 
 export const homePage = style({
+  position: "relative",
   display: "flex",
   minHeight: "100%",
   justifyContent: "center",
-  position: "relative",
+  "@media": {
+    "screen and (max-width: 576px)": {
+      justifyContent: "start",
+    },
+  },
 })
 
 const canvasWidth = GEOMETRY.pageToCanvasRatio * 100
