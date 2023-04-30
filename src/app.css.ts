@@ -17,7 +17,6 @@ globalStyle("body", {
   margin: 0,
   display: "flex",
   minHeight: "100vh",
-  width: "100vw",
 })
 
 globalStyle("#__next", {

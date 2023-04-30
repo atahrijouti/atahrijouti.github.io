@@ -15,9 +15,8 @@ globalStyle(`${menu} li`, {
 
 export const main = style({
   gridArea: "main",
-  alignSelf: "stretch",
-  justifySelf: "stretch",
 })
+
 export const constructionNotice = style({
   gridArea: "construction-notice",
   textAlign: "center",
@@ -36,7 +35,6 @@ globalStyle(`${constructionNotice} span`, {
 })
 
 export const layout = style({
-  flex: 1,
   display: "grid",
   gridTemplate: `
     "construction-notice construction-notice" auto
@@ -44,6 +42,7 @@ export const layout = style({
     / auto 1fr
   `,
   gap: "calc(var(--spacing) * 3)",
+  flex: 1,
   paddingLeft: "calc(var(--spacing) * 1.5)",
   paddingRight: "calc(var(--spacing) * 3)",
 
@@ -53,7 +52,7 @@ export const layout = style({
         "construction-notice" auto
         "nav" auto
         "main" 1fr
-        / 1fr
+        / minmax(0, 1fr)
       `,
       gap: "var(--spacing)",
       paddingLeft: "var(--spacing)",

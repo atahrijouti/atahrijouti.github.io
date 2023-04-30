@@ -1,5 +1,4 @@
-import { globalStyle, style } from "@vanilla-extract/css"
-import { layout, menu } from "@/page-components/_layout/site-layout.css"
+import { style } from "@vanilla-extract/css"
 import { GEOMETRY } from "@/page-components/home-page/utils/constants"
 
 export const homePage = style({
@@ -7,23 +6,6 @@ export const homePage = style({
   minHeight: "100%",
   justifyContent: "center",
   position: "relative",
-})
-
-globalStyle(`${layout}:has(${homePage})`, {
-  paddingLeft: 0,
-  paddingRight: 0,
-})
-
-globalStyle(`${layout}:has(${homePage}) ${menu}`, {
-  paddingLeft: "calc(var(--spacing) * 1.5)",
-  paddingRight: "calc(var(--spacing) * 3)",
-
-  "@media": {
-    "screen and (max-width: 576px)": {
-      paddingLeft: "var(--spacing)",
-      paddingRight: "var(--spacing)",
-    },
-  },
 })
 
 const canvasWidth = GEOMETRY.pageToCanvasRatio * 100
@@ -37,23 +19,6 @@ export const canvasOuter = style({
   "@media": {
     "screen and (max-width: 576px)": {
       width: "95%",
-    },
-  },
-})
-
-globalStyle(`${layout}:has(${homePage})`, {
-  paddingLeft: 0,
-  paddingRight: 0,
-})
-
-globalStyle(`${layout}:has(${homePage}) ${menu}`, {
-  paddingLeft: "calc(var(--spacing) * 1.5)",
-  paddingRight: "calc(var(--spacing) * 3)",
-
-  "@media": {
-    "screen and (max-width: 576px)": {
-      paddingLeft: "var(--spacing)",
-      paddingRight: "var(--spacing)",
     },
   },
 })
