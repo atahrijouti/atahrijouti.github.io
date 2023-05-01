@@ -24,6 +24,10 @@ export default function MyApp({ Component, pageProps }: AppProps) {
       <Head>
         <title>Abderrahmane TAHRI JOUTI</title>
         <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no" />
+        <meta
+          name="description"
+          content="Product oriented Technical professional with a strong background in building web applications."
+        />
       </Head>
       <SiteLayout>
         <Component {...pageProps} />

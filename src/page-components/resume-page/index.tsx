@@ -1,4 +1,5 @@
 import Link from "next/link"
+import Head from "next/head"
 
 import {
   employmentArticle,
@@ -200,13 +201,19 @@ const Employment = ({ employment }: EmploymentProps) => {
 
 export const ResumePage = () => {
   return (
-    <div className={resumePage}>
-      <h1>Resumé</h1>
-      <section>
-        {employments.map((employment) => (
-          <Employment key={employment.employerName} employment={employment} />
-        ))}
-      </section>
-    </div>
+    <>
+      <Head>
+        <title>Resumé</title>
+        <meta name="description" content="A summary of each step and turn my career took" />
+      </Head>
+      <div className={resumePage}>
+        <h1>Resumé</h1>
+        <section>
+          {employments.map((employment) => (
+            <Employment key={employment.employerName} employment={employment} />
+          ))}
+        </section>
+      </div>
+    </>
   )
 }
