@@ -22,8 +22,8 @@ dependencies:
 
 devDependencies:
   '@tsconfig/node18':
-    specifier: 1.0.1
-    version: 1.0.1
+    specifier: 2.0.1
+    version: 2.0.1
   '@types/lodash':
     specifier: 4.14.192
     version: 4.14.192
@@ -687,8 +687,8 @@ packages:
     dependencies:
       tslib: 2.5.0
 
-  /@tsconfig/node18@1.0.1:
-    resolution: {integrity: sha512-sNFeK6X2ATlhlvzyH4kKYQlfHXE2f2/wxtB9ClvYXevWpmwkUT7VaSrjIN9E76Qebz8qP5JOJJ9jD3QoD/Z9TA==}
+  /@tsconfig/node18@2.0.1:
+    resolution: {integrity: sha512-UqdfvuJK0SArA2CxhKWwwAWfnVSXiYe63bVpMutc27vpngCntGUZQETO24pEJ46zU6XM+7SpqYoMgcO3bM11Ew==}
     dev: true
 
   /@types/eslint-scope@3.7.4:
