@@ -1,5 +1,9 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 dependencies:
   '@picocss/pico':
     specifier: 1.5.10
@@ -22,8 +26,8 @@ dependencies:
 
 devDependencies:
   '@tsconfig/node18':
-    specifier: 1.0.1
-    version: 1.0.1
+    specifier: 18.2.2
+    version: 18.2.2
   '@types/lodash':
     specifier: 4.14.192
     version: 4.14.192
@@ -687,8 +691,8 @@ packages:
     dependencies:
       tslib: 2.5.0
 
-  /@tsconfig/node18@1.0.1:
-    resolution: {integrity: sha512-sNFeK6X2ATlhlvzyH4kKYQlfHXE2f2/wxtB9ClvYXevWpmwkUT7VaSrjIN9E76Qebz8qP5JOJJ9jD3QoD/Z9TA==}
+  /@tsconfig/node18@18.2.2:
+    resolution: {integrity: sha512-d6McJeGsuoRlwWZmVIeE8CUA27lu6jLjvv1JzqmpsytOYYbVi1tHZEnwCNVOXnj4pyLvneZlFlpXUK+X9wBWyw==}
     dev: true
 
   /@types/eslint-scope@3.7.4:
