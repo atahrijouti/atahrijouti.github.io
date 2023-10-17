@@ -111,14 +111,16 @@ const SinglePosition = ({ employment }: SinglePositionProps) => {
             <small>{employment.locationType}</small>
           </span>
         </dd>
-        <dd>
-          <Tasks tasks={tasks} />
-        </dd>
-        {skills ? (
+        {tasks && (
+          <dd>
+            <Tasks tasks={tasks} />
+          </dd>
+        )}
+        {skills && (
           <dd>
             <Skills skills={skills} />
           </dd>
-        ) : null}
+        )}
       </dl>
     </>
   )
@@ -160,19 +162,21 @@ const MultiplePositions = ({ employment }: MultiplePositionsProps) => {
                 <dt>
                   <h3>{position.title}</h3>
                 </dt>
-                <dd>
-                  {position.startDate && (
+                {position.startDate && (
+                  <dd>
                     <DateDetail startDate={position.startDate} endDate={position.endDate} />
-                  )}
-                </dd>
-                <dd>
-                  <Tasks tasks={position.tasks} />
-                </dd>
-                {position.skills ? (
+                  </dd>
+                )}
+                {position.tasks && (
+                  <dd>
+                    <Tasks tasks={position.tasks} />
+                  </dd>
+                )}
+                {position.skills && (
                   <dd>
                     <Skills skills={position.skills} />
                   </dd>
-                ) : null}
+                )}
               </dl>
             )
           })}

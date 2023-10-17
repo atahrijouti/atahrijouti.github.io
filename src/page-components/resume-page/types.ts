@@ -1,13 +1,13 @@
 export type Task =
   | string
   | {
-      task: string
-      subTasks: string[]
-    }
+    task: string
+    subTasks: string[]
+  }
 
 export type Position = {
   title: string
-  tasks: Task[]
+  tasks?: Task[]
   skills?: string[]
   startDate?: string
   endDate?: string
