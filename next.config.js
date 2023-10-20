@@ -15,6 +15,7 @@ const nextConfig = {
     unoptimized: true,
   },
   experimental: {
+    // @ts-ignore
     appDir: true,
   },
 }
