@@ -1,8 +1,12 @@
-import { Fractal } from "./components/fractal"
-import { useCallback, useEffect } from "react"
-import { canvasOuter, homePage } from "@/page-components/home-page/home-page.css"
+"use client"
 
-export const HomePage = () => {
+import { useCallback, useEffect } from "react"
+
+import { Fractal } from "./home/components/fractal"
+
+import { canvasOuter, homePage } from "./home/page.css"
+
+export default () => {
   const handleDblclick = useCallback(() => {
     console.log("nothing happened, on purpose")
   }, [])

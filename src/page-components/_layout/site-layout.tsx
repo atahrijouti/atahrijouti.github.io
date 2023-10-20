@@ -28,7 +28,9 @@ export const SiteLayout = ({ children }: PropsWithChildren<Props>) => {
       </nav>
       <main className={main}>{children}</main>
       <aside className={constructionNotice}>
-        <p><span>🏗️ Under heavy construction 🏗️</span> <span>🚧 Please be careful 🚧</span></p>
+        <p>
+          <span>🏗️ Under heavy construction 🏗️</span> <span>🚧 Please be careful 🚧</span>
+        </p>
       </aside>
     </div>
   )
