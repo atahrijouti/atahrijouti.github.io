@@ -11,8 +11,13 @@ const withVanillaExtract = createVanillaExtractPlugin({
  * @type {import('next').NextConfig}
  **/
 const nextConfig = {
+  output: "export",
   images: {
     unoptimized: true,
+  },
+  experimental: {
+    // @ts-ignore
+    appDir: true,
   },
 }
 

@@ -49,11 +49,8 @@ jobs:
 
       - uses: ./.github/actions/pnpm-install
 
-      - name: Next.js build
+      - name: Next.js build & export
         run: pnpm run build
-
-      - name: Export static files
-        run: pnpm run export
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
