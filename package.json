@@ -2,7 +2,7 @@
   "private": true,
   "name": "tahri.dev",
   "engines": {
-    "node": "18"
+    "node": "20"
   },
   "scripts": {
     "dev": "next dev",
