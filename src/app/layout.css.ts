@@ -17,12 +17,14 @@ export const nav = style({
 })
 
 export const menu = style({
-  listStyleType: "none",
-  padding: 0,
+  // TODO remove unnecessary styles
+  // listStyleType: "none",
+  // padding: 0,
 })
 
 globalStyle(`${menu} li`, {
-  listStyle: "none",
+  // TODO remove unnecessary styles
+  // listStyle: "none",
 })
 
 export const main = style({
