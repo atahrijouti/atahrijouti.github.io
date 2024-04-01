@@ -189,13 +189,13 @@ const Employment = ({ employment }: EmploymentProps) => {
   const hasMultiplePositions = employment.positions.length > 1
 
   return (
-    <article className={employmentArticle}>
+    <div className={employmentArticle}>
       {hasMultiplePositions ? (
         <MultiplePositions employment={employment as EmploymentWithMultiplePositions} />
       ) : (
         <SinglePosition employment={employment as EmploymentWithSinglePosition} />
       )}
-    </article>
+    </div>
   )
 }
 export const metadata: Metadata = {
