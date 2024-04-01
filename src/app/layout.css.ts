@@ -35,11 +35,11 @@ export const layout = style({
     "nav main" 1fr
     / auto 1fr
   `,
-  gap: "calc(var(--spacing) * 3)",
+  gap: "calc(var(--pico-spacing) * 3)",
   flex: 1,
-  paddingLeft: "calc(var(--spacing) * 1.5)",
-  paddingTop: "calc(var(--spacing) * 1.5)",
-  paddingRight: "calc(var(--spacing) * 3)",
+  paddingLeft: "calc(var(--pico-spacing) * 1.5)",
+  paddingTop: "calc(var(--pico-spacing) * 1.5)",
+  paddingRight: "calc(var(--pico-spacing) * 3)",
 
   "@media": {
     "screen and (max-width: 576px)": {
@@ -49,9 +49,9 @@ export const layout = style({
         "main" 1fr
         / minmax(0, 1fr)
       `,
-      gap: "var(--spacing)",
-      paddingLeft: "var(--spacing)",
-      paddingRight: "var(--spacing)",
+      gap: "var(--pico-spacing)",
+      paddingLeft: "var(--pico-spacing)",
+      paddingRight: "var(--pico-spacing)",
     },
   },
 })

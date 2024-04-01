@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { Metadata, Viewport } from "next"
 
-import "@picocss/pico/css/pico.slim.min.css"
+import "@picocss/pico/css/pico.min.css"
 
 import "./global.css"
 
