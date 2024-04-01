@@ -1,14 +1,13 @@
 import Link from "next/link"
-import Head from "next/head"
 
 import { employmentArticle, resumePage, skillItem } from "./page.css"
 
 import employments from "./data.json"
-import { Employment, Position, Task } from "./types"
+import { EmploymentData, Position, Task } from "./types"
 import { Metadata } from "next"
 
-type EmploymentWithSinglePosition = Omit<Employment, "positions"> & { positions: [Position] }
-type EmploymentWithMultiplePositions = Omit<Employment, "positions"> & { positions: Position[] }
+type EmploymentWithSinglePosition = Omit<EmploymentData, "positions"> & { positions: [Position] }
+type EmploymentWithMultiplePositions = Omit<EmploymentData, "positions"> & { positions: Position[] }
 
 type TasksProps = { tasks: Task[] }
 const Tasks = ({ tasks }: TasksProps) => {
@@ -64,8 +63,8 @@ const DateDetail = ({ startDate, endDate }: DateDetailProps) => {
 
 type EmployerDetailProps = {
   employer: {
-    name: Employment["employerName"]
-    url: Employment["employerUrl"]
+    name: EmploymentData["employerName"]
+    url: EmploymentData["employerUrl"]
   }
 }
 const EmployerDetail = ({ employer: { name, url } }: EmployerDetailProps) => {
@@ -184,7 +183,7 @@ const MultiplePositions = ({ employment }: MultiplePositionsProps) => {
 }
 
 type EmploymentProps = {
-  employment: Employment
+  employment: EmploymentData
 }
 const Employment = ({ employment }: EmploymentProps) => {
   const hasMultiplePositions = employment.positions.length > 1

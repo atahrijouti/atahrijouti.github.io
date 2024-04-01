@@ -17,7 +17,7 @@ const nextConfig = {
   },
   experimental: {
     // @ts-ignore
-    appDir: true,
+    // appDir: true,
   },
 }
 

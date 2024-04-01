@@ -29,33 +29,16 @@ export const main = style({
   gridArea: "main",
 })
 
-export const constructionNotice = style({
-  gridArea: "construction-notice",
-  textAlign: "center",
-})
-
-globalStyle(`${constructionNotice} p`, {
-  marginBottom: 0,
-})
-
-globalStyle(`${constructionNotice} span`, {
-  "@media": {
-    "screen and (max-width: 576px)": {
-      display: "block",
-    },
-  },
-})
-
 export const layout = style({
   display: "grid",
   gridTemplate: `
-    "construction-notice construction-notice" auto
     "nav main" 1fr
     / auto 1fr
   `,
   gap: "calc(var(--spacing) * 3)",
   flex: 1,
   paddingLeft: "calc(var(--spacing) * 1.5)",
+  paddingTop: "calc(var(--spacing) * 1.5)",
   paddingRight: "calc(var(--spacing) * 3)",
 
   "@media": {

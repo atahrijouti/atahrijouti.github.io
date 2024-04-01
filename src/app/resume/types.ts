@@ -1,9 +1,9 @@
 export type Task =
   | string
   | {
-    task: string
-    subTasks: string[]
-  }
+      task: string
+      subTasks: string[]
+    }
 
 export type Position = {
   title: string
@@ -13,7 +13,7 @@ export type Position = {
   endDate?: string
 }
 
-export type Employment = {
+export type EmploymentData = {
   employerName: string
   employerUrl?: string
   employmentType: string

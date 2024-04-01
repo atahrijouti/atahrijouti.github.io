@@ -1,20 +1,22 @@
 import Link from "next/link"
-import { Metadata } from "next"
+import { Metadata, Viewport } from "next"
 
 import "@picocss/pico/css/pico.slim.min.css"
 
 import "./global.css"
 
-import { bodyStyle, constructionNotice, layout, main, menu, nav, rootStyle } from "./layout.css"
+import { bodyStyle, layout, main, menu, nav, rootStyle } from "./layout.css"
 
 export const metadata: Metadata = {
   title: "Abderrahmane TAHRI JOUTI",
   description:
     "Product oriented Technical professional with a strong background in building web applications.",
-  viewport: "width=device-width,initial-scale=1,shrink-to-fit=no",
+  manifest: "/manifest.webmanifest",
+}
+
+export const viewport: Viewport = {
   themeColor: "#EF3C46",
   colorScheme: "light dark",
-  manifest: "/manifest.webmanifest",
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -37,11 +39,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               </ul>
             </nav>
             <main className={main}>{children}</main>
-            <aside className={constructionNotice}>
-              <p>
-                <span>🏗️ Under heavy construction 🏗️</span> <span>🚧 Please be careful 🚧</span>
-              </p>
-            </aside>
           </div>
         </div>
       </body>
