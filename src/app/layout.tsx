@@ -22,6 +22,13 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
+      <head>
+        <script
+          defer
+          src="https://static.cloudflareinsights.com/beacon.min.js"
+          data-cf-beacon='{"token": "f262040c05ca4158a7cd6be56b3f1028"}'
+        ></script>
+      </head>
       <body className={bodyStyle}>
         <div className={rootStyle}>
           <div className={layout}>
