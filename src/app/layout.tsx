@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { Metadata, Viewport } from "next"
 
-import "@picocss/pico/css/pico.slim.min.css"
+import "@picocss/pico/css/pico.fluid.classless.min.css"
 
 import "./global.css"
 
@@ -32,19 +32,21 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={bodyStyle}>
         <div className={rootStyle}>
           <div className={layout}>
-            <nav className={nav}>
-              <ul className={menu}>
-                <li>
-                  <Link href="/">Home</Link>
-                </li>
-                <li>
-                  <Link href="/playground">Playground</Link>
-                </li>
-                <li>
-                  <Link href="/resume">Resumé</Link>
-                </li>
-              </ul>
-            </nav>
+            <aside>
+              <nav className={nav}>
+                <ul className={menu}>
+                  <li>
+                    <Link href="/">Home</Link>
+                  </li>
+                  <li>
+                    <Link href="/playground">Playground</Link>
+                  </li>
+                  <li>
+                    <Link href="/resume">Resumé</Link>
+                  </li>
+                </ul>
+              </nav>
+            </aside>
             <main className={main}>{children}</main>
           </div>
         </div>

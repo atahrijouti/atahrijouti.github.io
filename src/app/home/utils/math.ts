@@ -1,8 +1,9 @@
-import _clamp from "lodash/clamp"
 import { GEOMETRY } from "./constants"
 
 export const d2r = (degree: number) => (degree * Math.PI) / 180
 export const r2d = (radian: number) => (radian / Math.PI) * 180
+export const clamp = (number: number, min: number, max: number) =>
+  Math.max(min, Math.min(number, max))
 
 export type FractalGeometry = {
   rightScale: number
@@ -32,15 +33,15 @@ export const lookAtPoint = (
   const polarityY = Math.sin(d2r(TCR_RAW)) * Math.sign(-MHm)
   const polarityX = Math.cos(d2r(TCR_RAW))
 
-  const TCL = _clamp(TCL_RAW, 30, 150)
+  const TCL = clamp(TCL_RAW, 30, 150)
   const leftAngle = (180 - TCL) / 2
   const rightAngle = TCL / 2
 
   const rightScale = Math.sin(d2r(leftAngle))
   const leftScale = Math.sin(d2r(rightAngle))
 
-  const visualTargetX = _clamp(((targetX - canvasRect.left) / canvasRect.width) * 100, 0, 100)
-  const visualTargetY = _clamp(((targetY - canvasRect.top) / canvasRect.width) * 100, 0, 100)
+  const visualTargetX = clamp(((targetX - canvasRect.left) / canvasRect.width) * 100, 0, 100)
+  const visualTargetY = clamp(((targetY - canvasRect.top) / canvasRect.width) * 100, 0, 100)
 
   return {
     rightScale,

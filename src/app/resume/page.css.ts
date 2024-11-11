@@ -2,14 +2,7 @@ import { globalStyle, style } from "@vanilla-extract/css"
 
 export const resumePage = style({})
 
-export const employmentArticle = style({
-  marginTop: "calc(var(--typography-spacing-vertical) * .5)",
-  selectors: {
-    "&:not(:last-child)": {
-      borderBottom: "1px gray solid",
-    },
-  },
-})
+export const employmentArticle = style({})
 
 // todo: Do a proper reset, together with an actual design system
 globalStyle(`${resumePage} dl`, {
@@ -23,11 +16,11 @@ globalStyle(`${resumePage} dd`, {
 })
 
 globalStyle(`${resumePage} h2`, {
-  marginBottom: "calc(var(--typography-spacing-vertical) * .25)",
+  marginBottom: "calc(var(--pico-typography-spacing-vertical) * .25)",
 })
 
 globalStyle(`${resumePage} h3`, {
-  marginBottom: "calc(var(--typography-spacing-vertical) * .125)",
+  marginBottom: "calc(var(--pico-typography-spacing-vertical) * .125)",
 })
 
 export const skillItem = style({

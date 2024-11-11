@@ -129,10 +129,7 @@ export const canvasInner = style({
   },
   "@media": {
     "screen and (prefers-color-scheme: dark)": {
-      vars: {
-        [startColor]: COLORS.clearNightSky,
-        [endColor]: COLORS.duskBlue,
-      },
+      vars: { [startColor]: COLORS.clearNightSky, [endColor]: COLORS.duskBlue },
     },
   },
 })
