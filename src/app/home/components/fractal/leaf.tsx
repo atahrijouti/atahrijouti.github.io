@@ -1,7 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react"
 
-import _random from "lodash/random"
-import _shuffle from "lodash/shuffle"
 import classNames from "classnames"
 
 import { coefficientVar, leaf, leafInner, leftLeaf, rightLeaf } from "./leaf.css"
@@ -9,6 +7,10 @@ import { assignInlineVars } from "@vanilla-extract/dynamic"
 import { fullLeafVar, growingLeafVar, leafBackgroundVar } from "./fractal.css"
 
 const MAX_LEVEL = 5
+
+const shuffledOrientations = (): LeafProps["orientation"][] => {
+  return Math.random() < 0.5 ? ["left", "right"] : ["right", "left"]
+}
 
 type LeafProps = {
   orientation?: "left" | "right"
@@ -34,15 +36,20 @@ export const Leaf = React.memo(({ orientation, level = 0 }: LeafProps) => {
   useEffect(() => {
     let timeouts: NodeJS.Timeout[] = []
     if (level < MAX_LEVEL) {
-      const fireTime = _random(333, 555)
-      const [first, second] = _shuffle(["left", "right"]) as LeafProps["orientation"][]
+      const fireTime = (222 * Math.random() + 333) | 0
+      const [first, second] = shuffledOrientations()
+
       timeouts = [
         setTimeout(() => {
           setChildren([first])
         }, fireTime),
-        setTimeout(() => {
-          setChildren([first, second])
-        }, _random(fireTime, 777)),
+
+        setTimeout(
+          () => {
+            setChildren([first, second])
+          },
+          ((777 - fireTime) * Math.random() + fireTime) | 0,
+        ),
       ]
     }
 
