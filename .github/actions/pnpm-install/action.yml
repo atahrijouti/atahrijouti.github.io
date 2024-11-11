@@ -6,7 +6,7 @@ inputs:
   node-version:
     description: Node version to install
     required: false
-    default: 18.x
+    default: 22.x
   install-params:
     description: Parameters to pass into `pnpm install`
     required: false
@@ -21,7 +21,7 @@ runs:
 
   steps:
     # Set up node
-    - uses: actions/setup-node@v3
+    - uses: actions/setup-node@v4
       with:
         node-version: ${{ inputs.node-version }}
 
