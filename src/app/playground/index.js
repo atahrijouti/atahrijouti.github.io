@@ -3,5 +3,5 @@ export const metadata = {
 };
 
 export const content = () => {
-  return `hello playgroud`;
+  return `Hello Playgroud`;
 };

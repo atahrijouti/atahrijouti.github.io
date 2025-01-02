@@ -16,10 +16,9 @@
             html {
                 background: #333333;
                 color: #efefef;
-
-                a {
-                    color: cornflowerblue;
-                }
+            }
+            a {
+                color: cornflowerblue;
             }
         </style>
     </head>
@@ -46,5 +45,20 @@
                 </main>
             </div>
         </div>
+        <script>
+            const ws = new WebSocket("ws://localhost:3000");
+            ws.onmessage = function (event) {
+                if (event.data === "reload") {
+                    console.log("File change detected, reloading page...");
+                    window.location.reload();
+                }
+            };
+            ws.onerror = function (error) {
+                console.error("WebSocket error:", error);
+            };
+            ws.onclose = function () {
+                console.log("WebSocket connection closed");
+            };
+        </script>
     </body>
 </html>

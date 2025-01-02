@@ -1,9 +1,20 @@
 import { assemblePage } from "./utils/assemble-page";
+import { watch } from "fs";
+import type { ServerWebSocket } from "bun";
 
-// Serve dynamically assembled pages
+const watcher = watch("./src");
+const reloadPageMessage = (event: string, ws: ServerWebSocket<unknown>) => {
+  console.log(`Change detected ${event}`);
+  ws.send("reload");
+};
+
 const server = Bun.serve({
   port: 3000,
-  fetch: async (req) => {
+  fetch: async (req, server) => {
+    if (server.upgrade(req)) {
+      return undefined;
+    }
+
     const url = new URL(req.url);
 
     // Serve assets from the /app route
@@ -22,6 +33,18 @@ const server = Bun.serve({
       console.error(err);
       return new Response("<h1>404 - Page Not Found</h1>", { status: 404 });
     }
+  },
+  websocket: {
+    open(ws) {
+      // watcher.on("change", (event) => {
+      // reloadPageMessage(event, ws);
+      // });
+      console.log(ws);
+    },
+    async message(ws) {},
+    close(ws, code, reason) {
+      console.log("closing watcher", ws);
+    },
   },
 });
 
