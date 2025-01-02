@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>{{title}}</title>
+        <!-- {{scripts}} -->
+        <!-- {{styles}} -->
+        <!-- {{preload-links}} -->
+        <!-- {{async-scripts}} -->
+        <!-- {{prefetch-links}} -->
+        <!-- {{prerender-links}} -->
+        <!-- {{metadata}} -->
+        <script type="module" src="/app/home/index.js"></script>
+        <style>
+            html {
+                background: #333333;
+                color: #efefef;
+
+                a {
+                    color: cornflowerblue;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="root">
+            <div class="layout">
+                <aside>
+                    <nav class="nav">
+                        <ul class="menu">
+                            <li>
+                                <a href="/">Home</a>
+                            </li>
+                            <li>
+                                <a href="/playground">Playground</a>
+                            </li>
+                            <li>
+                                <a href="/resume">Resumé</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </aside>
+                <main class="main">
+                    <!-- {{content}} -->
+                </main>
+            </div>
+        </div>
+    </body>
+</html>
