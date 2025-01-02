@@ -1,17 +1,12 @@
 import { file, write, $ } from "bun";
 import { assemblePage } from "./utils/assemble-page";
-import { mkdir, rm } from "node:fs/promises";
 
 const distDir = "./dist";
 
 const build = async () => {
-  try {
-    await rm(distDir, { recursive: true, force: true });
-  } catch {}
-
-  await mkdir(distDir);
-
-  await $`cp -R ./src/app ./dist/`;
+  await $`rm -rf ${distDir}`;
+  await $`mkdir ${distDir}`;
+  await $`cp -R ./src/app ${distDir}/`;
 
   const pages = ["home", "playground"];
   for (const page of pages) {
