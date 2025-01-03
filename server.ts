@@ -23,7 +23,7 @@ const server = Bun.serve({
     if (server.upgrade(req)) {
       return undefined;
     }
-
+    //
     const url = new URL(req.url);
 
     // Serve assets from the /app route
