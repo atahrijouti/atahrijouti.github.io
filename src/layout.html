@@ -17,6 +17,7 @@
                 background: #333333;
                 color: #efefef;
             }
+
             a {
                 color: cornflowerblue;
             }
@@ -40,25 +41,8 @@
                         </ul>
                     </nav>
                 </aside>
-                <main class="main">
-                    <!-- {{content}} -->
-                </main>
+                <main class="main"><!-- {{content}} --></main>
             </div>
         </div>
-        <script>
-            const ws = new WebSocket("ws://localhost:3000");
-            ws.onmessage = function (event) {
-                if (event.data === "reload") {
-                    console.log("File change detected, reloading page...");
-                    window.location.reload();
-                }
-            };
-            ws.onerror = function (error) {
-                console.error("WebSocket error:", error);
-            };
-            ws.onclose = function () {
-                console.log("WebSocket connection closed");
-            };
-        </script>
     </body>
 </html>

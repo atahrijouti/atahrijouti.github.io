@@ -2,11 +2,20 @@ import { assemblePage } from "./utils/assemble-page";
 import { watch } from "fs";
 import type { ServerWebSocket } from "bun";
 
-const watcher = watch("./src");
 const reloadPageMessage = (event: string, ws: ServerWebSocket<unknown>) => {
   console.log(`Change detected ${event}`);
   ws.send("reload");
 };
+
+const sockets = new Set<ServerWebSocket<unknown>>();
+
+const watcher = watch("./src", { recursive: true });
+watcher.on("change", (event) => {
+  console.log(`Change detected, issuing reload to ${sockets.size} clients`);
+  sockets.forEach((ws) => {
+    reloadPageMessage(event, ws);
+  });
+});
 
 const server = Bun.serve({
   port: 3000,
@@ -36,14 +45,13 @@ const server = Bun.serve({
   },
   websocket: {
     open(ws) {
-      // watcher.on("change", (event) => {
-      // reloadPageMessage(event, ws);
-      // });
-      console.log(ws);
+      console.log("Socket opened");
+      sockets.add(ws);
     },
     async message(ws) {},
-    close(ws, code, reason) {
-      console.log("closing watcher", ws);
+    close: (ws) => {
+      console.log("WebSocket connection closed");
+      sockets.delete(ws);
     },
   },
 });

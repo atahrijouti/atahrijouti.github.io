@@ -1,7 +1,7 @@
 export const metadata = {
-  title: "playground is home",
+  title: "Playground is home",
 };
 
 export const content = () => {
-  return `Hello Playgroud`;
+  return `Hello Playgroud.`;
 };
