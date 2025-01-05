@@ -31,6 +31,10 @@ const server = Bun.serve({
       return new Response(Bun.file("./src" + url.pathname));
     }
 
+    if (url.pathname.endsWith("favicon.ico")) {
+      return new Response();
+    }
+
     const pageName = url.pathname === "/" ? "home" : url.pathname.slice(1);
 
     try {
