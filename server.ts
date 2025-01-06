@@ -1,6 +1,6 @@
 import { assemblePage } from "./utils/assemble-page";
-import { watch } from "fs";
-import type { ServerWebSocket } from "bun";
+import { readdirSync, watch } from "fs";
+import { type ServerWebSocket } from "bun";
 
 const reloadPageMessage = (event: string, ws: ServerWebSocket<unknown>) => {
   console.log(`Change detected ${event}`);
@@ -31,30 +31,33 @@ const server = Bun.serve({
       return new Response(Bun.file("./src" + url.pathname));
     }
 
-    if (url.pathname.endsWith("favicon.ico")) {
-      return new Response();
-    }
-
     const pageName = url.pathname === "/" ? "home" : url.pathname.slice(1);
 
-    try {
-      const html = await assemblePage(pageName);
-      return new Response(html, {
-        headers: { "Content-Type": "text/html" },
-      });
-    } catch (err) {
-      console.error(err);
-      return new Response("<h1>404 - Page Not Found</h1>", { status: 404 });
+    const pages = new Set(readdirSync("./src/app"));
+
+    if (pages.has(pageName)) {
+      try {
+        const html = await assemblePage(pageName);
+        return new Response(html, {
+          headers: { "Content-Type": "text/html" },
+        });
+      } catch (err) {
+        console.error(err);
+        return new Response(
+          "<h1>500 - the page folder doesn't contain an index most probably</h1>",
+          { status: 500 },
+        );
+      }
     }
+
+    return new Response(Bun.file("./public" + url.pathname));
   },
   websocket: {
     open(ws) {
-      console.log("Socket opened");
       sockets.add(ws);
     },
     async message(ws) {},
     close: (ws) => {
-      console.log("WebSocket connection closed");
       sockets.delete(ws);
     },
   },
