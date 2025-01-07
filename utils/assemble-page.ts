@@ -1,4 +1,19 @@
-// Helper to load a file using Bun.file
+const HMR_STRING = `<script>
+  const ws = new WebSocket("ws://localhost:3000");
+  ws.onmessage = function (event) {
+      if (event.data === "reload") {
+          console.log("File change detected, reloading page...");
+          window.location.reload();
+      }
+  };
+  ws.onerror = function (error) {
+      console.error("WebSocket error:", error);
+  };
+  ws.onclose = function () {
+      console.log("WebSocket connection closed");
+  };
+  </script>`;
+
 const loadFile = async (filePath: string) => {
   try {
     const fileContent = await Bun.file(filePath).text(); // Efficient file reading with Bun
@@ -20,23 +35,8 @@ export const assemblePage = async (pageName: string) => {
     .replace("{{title}}", metadata.title)
     .replace(
       "<!-- {{scripts}} -->",
-      `
-      <script type="module" src="/app/${pageName}/index.js"></script>
-      <script>
-          const ws = new WebSocket("ws://localhost:3000");
-          ws.onmessage = function (event) {
-              if (event.data === "reload") {
-                  console.log("File change detected, reloading page...");
-                  window.location.reload();
-              }
-          };
-          ws.onerror = function (error) {
-              console.error("WebSocket error:", error);
-          };
-          ws.onclose = function () {
-              console.log("WebSocket connection closed");
-          };
-      </script>`,
+      `<script type="module" src="/app/${pageName}/index.js"></script>
+      ${HMR_STRING}`,
     )
     .replace("<!-- {{content}} -->", content());
 };
