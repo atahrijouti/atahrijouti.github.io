@@ -50,7 +50,7 @@ const server = Bun.serve({
       }
     }
 
-    return new Response(Bun.file("./public" + url.pathname));
+    return new Response(Bun.file("./dist" + url.pathname));
   },
   websocket: {
     open(ws) {

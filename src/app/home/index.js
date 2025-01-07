@@ -1,3 +1,5 @@
+import "./style.css";
+
 export const metadata = {
   title: "Home is home",
 };

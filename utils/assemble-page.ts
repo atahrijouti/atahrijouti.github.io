@@ -1,5 +1,5 @@
 const HMR_STRING = `<script>
-  const ws = new WebSocket("ws://localhost:3000");
+  let ws = new WebSocket("ws://localhost:3000");
   ws.onmessage = function (event) {
       if (event.data === "reload") {
           console.log("File change detected, reloading page...");
@@ -11,6 +11,7 @@ const HMR_STRING = `<script>
   };
   ws.onclose = function () {
       console.log("WebSocket connection closed");
+      setTimeout(()=>{ window.location.reload(); }, 1000)
   };
   </script>`;
 
@@ -29,14 +30,38 @@ export const assemblePage = async (pageName: string) => {
   const { metadata, content } = await import(
     `../src/app/${pageName}/index.js?cache-bust=${timestamp}`
   );
-  const layout = await loadFile("./src/layout.html");
 
-  return layout
-    .replace("{{title}}", metadata.title)
-    .replace(
-      "<!-- {{scripts}} -->",
-      `<script type="module" src="/app/${pageName}/index.js"></script>
-      ${HMR_STRING}`,
-    )
-    .replace("<!-- {{content}} -->", content());
+  const distHtmlName = pageName === "home" ? "index" : pageName;
+
+  const builtHtml = await Bun.build({
+    entrypoints: [`${distHtmlName}.html`],
+    outdir: "./dist",
+    minify: false,
+    html: true,
+    experimentalCss: true,
+    plugins: [
+      {
+        name: "inject-metadata",
+        setup({ onLoad }) {
+          onLoad({ filter: /\.html$/ }, async (args) => {
+            const html = await Bun.file("./src/layout.html").text();
+
+            return {
+              contents: html
+                .replace("{{title}}", metadata.title)
+                .replace(
+                  "<!-- {{scripts}} -->",
+                  `<script type="module" src="/src/app/${pageName}/index.js"></script>
+                  ${HMR_STRING}`,
+                )
+                .replace("<!-- {{content}} -->", content()),
+              loader: "html",
+            };
+          });
+        },
+      },
+    ],
+  });
+
+  return Bun.file(`./dist/${distHtmlName}.html`);
 };
