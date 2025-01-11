@@ -28,7 +28,7 @@ const server = Bun.serve({
 
     // Serve assets from the /app route
     if (url.pathname.startsWith("/app")) {
-      return new Response(Bun.file("./src" + url.pathname));
+      return new Response(Bun.file("./dist/app" + url.pathname));
     }
 
     const pageName = url.pathname === "/" ? "home" : url.pathname.slice(1);

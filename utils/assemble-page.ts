@@ -15,53 +15,21 @@ const HMR_STRING = `<script>
   };
   </script>`;
 
-const loadFile = async (filePath: string) => {
-  try {
-    const fileContent = await Bun.file(filePath).text(); // Efficient file reading with Bun
-    return fileContent;
-  } catch (err) {
-    console.error(`Error loading file: ${filePath}`, err);
-    return "";
-  }
-};
-
 export const assemblePage = async (pageName: string) => {
   const timestamp = Date.now();
   const { metadata, content } = await import(
     `../src/app/${pageName}/index.js?cache-bust=${timestamp}`
   );
 
-  const distHtmlName = pageName === "home" ? "index" : pageName;
+  const html = await Bun.file("./src/layout.html").text();
 
-  const builtHtml = await Bun.build({
-    entrypoints: [`${distHtmlName}.html`],
-    outdir: "./dist",
-    minify: false,
-    html: true,
-    experimentalCss: true,
-    plugins: [
-      {
-        name: "inject-metadata",
-        setup({ onLoad }) {
-          onLoad({ filter: /\.html$/ }, async (args) => {
-            const html = await Bun.file("./src/layout.html").text();
-
-            return {
-              contents: html
-                .replace("{{title}}", metadata.title)
-                .replace(
-                  "<!-- {{scripts}} -->",
-                  `<script type="module" src="/src/app/${pageName}/index.js"></script>
-                  ${HMR_STRING}`,
-                )
-                .replace("<!-- {{content}} -->", content()),
-              loader: "html",
-            };
-          });
-        },
-      },
-    ],
-  });
-
-  return Bun.file(`./dist/${distHtmlName}.html`);
+  return html
+    .replace("{{title}}", metadata.title)
+    .replace(
+      "<!-- {{scripts}} -->",
+      `<script type="module" src="/src/app/${pageName}/index.js"></script>
+      ${HMR_STRING}
+      `,
+    )
+    .replace("<!-- {{content}} -->", content());
 };
