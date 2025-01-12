@@ -1,5 +1,7 @@
 import { watch } from "fs";
+import { readdirSync } from "fs";
 import { type ServerWebSocket } from "bun";
+import { assemblePage } from "./utils/assemble-page";
 
 const reloadPageMessage = (event: string, ws: ServerWebSocket<unknown>) => {
   console.log(`Change detected ${event}`);
@@ -24,6 +26,29 @@ const server = Bun.serve({
     }
 
     const url = new URL(req.url);
+
+    const pageName = url.pathname === "/" ? "home" : url.pathname.slice(1);
+
+    const pages = new Set(readdirSync("./src/app"));
+
+    if (pages.has(pageName)) {
+      try {
+        const html = await assemblePage(pageName);
+        return new Response(html, {
+          headers: { "Content-Type": "text/html" },
+        });
+      } catch (err) {
+        console.error(err);
+        return new Response(
+          "<h1>500 - the page folder doesn't contain an index most probably</h1>",
+          { status: 500 },
+        );
+      }
+    }
+
+    if (url.pathname === "/public/favicon.ico") {
+      return new Response(" ");
+    }
 
     return new Response(Bun.file("./dist" + url.pathname));
   },

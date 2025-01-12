@@ -21,13 +21,15 @@ export const assemblePage = async (pageName: string) => {
     `../src/app/${pageName}/index.js?cache-bust=${timestamp}`
   );
 
+  console.log(content);
+
   const html = await Bun.file("./src/layout.html").text();
 
   return html
     .replace("{{title}}", metadata.title)
     .replace(
       "<!-- {{scripts}} -->",
-      `<script type="module" src="/src/app/${pageName}/index.js"></script>
+      `<script type="module" src="/app/${pageName}/index.js"></script>
       ${HMR_STRING}
       `,
     )
