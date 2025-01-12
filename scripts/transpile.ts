@@ -1,9 +1,15 @@
+import { watch } from "fs/promises";
 import { $ } from "bun";
 import { readdirSync, statSync, writeFileSync, mkdirSync } from "fs";
 import path from "path";
 
 const SRC_FOLDER = "./src";
 const DIST_FOLDER = "./dist";
+
+const transpiler = new Bun.Transpiler({
+  loader: "ts",
+  target: "browser",
+});
 
 function listTypeScriptFiles(dir: string): string[] {
   const files: string[] = [];
@@ -21,17 +27,12 @@ function listTypeScriptFiles(dir: string): string[] {
   return files;
 }
 
-async function transpileAndWriteFiles() {
+async function remakeDist() {
   await $`rm -rf ${DIST_FOLDER}`;
   await $`mkdir ${DIST_FOLDER}`;
+}
 
-  const transpiler = new Bun.Transpiler({
-    loader: "ts",
-    target: "browser",
-  });
-
-  const tsFiles = listTypeScriptFiles(SRC_FOLDER);
-
+async function transpileAndWriteFiles(tsFiles: string[]) {
   for (const file of tsFiles) {
     const code = await Bun.file(file).text();
 
@@ -51,6 +52,13 @@ async function transpileAndWriteFiles() {
   }
 }
 
-transpileAndWriteFiles().catch((err) => {
+await remakeDist();
+
+transpileAndWriteFiles(listTypeScriptFiles(SRC_FOLDER)).catch((err) => {
   console.error("Error during transpilation:", err);
 });
+
+const watcher = watch("./src", { recursive: true, persistent: true });
+
+for await (const event of watcher)
+  transpileAndWriteFiles([`${SRC_FOLDER}/${event.filename}`]);

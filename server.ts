@@ -1,5 +1,4 @@
-import { assemblePage } from "./utils/assemble-page";
-import { readdirSync, watch } from "fs";
+import { watch } from "fs";
 import { type ServerWebSocket } from "bun";
 
 const reloadPageMessage = (event: string, ws: ServerWebSocket<unknown>) => {
@@ -9,7 +8,7 @@ const reloadPageMessage = (event: string, ws: ServerWebSocket<unknown>) => {
 
 const sockets = new Set<ServerWebSocket<unknown>>();
 
-const watcher = watch("./src", { recursive: true });
+const watcher = watch("./dist", { recursive: true });
 watcher.on("change", (event) => {
   console.log(`Change detected, issuing reload to ${sockets.size} clients`);
   sockets.forEach((ws) => {
@@ -23,32 +22,8 @@ const server = Bun.serve({
     if (server.upgrade(req)) {
       return undefined;
     }
-    //
+
     const url = new URL(req.url);
-
-    // Serve assets from the /app route
-    if (url.pathname.startsWith("/app")) {
-      return new Response(Bun.file("./dist/app" + url.pathname));
-    }
-
-    const pageName = url.pathname === "/" ? "home" : url.pathname.slice(1);
-
-    const pages = new Set(readdirSync("./src/app"));
-
-    if (pages.has(pageName)) {
-      try {
-        const html = await assemblePage(pageName);
-        return new Response(html, {
-          headers: { "Content-Type": "text/html" },
-        });
-      } catch (err) {
-        console.error(err);
-        return new Response(
-          "<h1>500 - the page folder doesn't contain an index most probably</h1>",
-          { status: 500 },
-        );
-      }
-    }
 
     return new Response(Bun.file("./dist" + url.pathname));
   },
