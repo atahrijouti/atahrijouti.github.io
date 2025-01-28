@@ -1,4 +1,4 @@
-import { watch } from "fs/promises";
+// import { watch } from "fs/promises";
 import { $ } from "bun";
 import { readdirSync, statSync, writeFileSync, mkdirSync } from "fs";
 import path from "path";
@@ -58,7 +58,7 @@ transpileAndWriteFiles(listTypeScriptFiles(SRC_FOLDER)).catch((err) => {
   console.error("Error during transpilation:", err);
 });
 
-const watcher = watch("./src", { recursive: true, persistent: true });
+// const watcher = watch("./src", { recursive: true, persistent: true });
 
-for await (const event of watcher)
-  transpileAndWriteFiles([`${SRC_FOLDER}/${event.filename}`]);
+// for await (const event of watcher)
+//   transpileAndWriteFiles([`${SRC_FOLDER}/${event.filename}`]);

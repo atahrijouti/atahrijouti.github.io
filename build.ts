@@ -1,4 +1,4 @@
-import { file, write, $ } from "bun";
+import { write, $ } from "bun";
 import { assemblePage } from "./utils/assemble-page";
 
 const distDir = "./dist";

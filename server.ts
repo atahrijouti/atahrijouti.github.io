@@ -56,7 +56,7 @@ const server = Bun.serve({
     open(ws) {
       sockets.add(ws);
     },
-    async message(ws) {},
+    async message() {},
     close: (ws) => {
       sockets.delete(ws);
     },
