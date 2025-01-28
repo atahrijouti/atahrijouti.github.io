@@ -36,19 +36,20 @@ async function transpileAndWriteFiles(tsFiles: string[]) {
   for (const file of tsFiles) {
     const code = await Bun.file(file).text();
 
-    const result = transpiler.transformSync(code);
-
     const relativePath = path.relative(SRC_FOLDER, file);
     const outputPath = path.join(
       DIST_FOLDER,
       relativePath.replace(/\.ts$/, ".js"),
     );
 
-    mkdirSync(path.dirname(outputPath), { recursive: true });
+    // const result = transpiler.transformSync(code);
+    console.log(relativePath, transpiler.scanImports(code));
 
-    writeFileSync(outputPath, result, "utf8");
+    // mkdirSync(path.dirname(outputPath), { recursive: true });
 
-    console.log(`Transpiled: ${file} -> ${outputPath}`);
+    // writeFileSync(outputPath, result, "utf8");
+
+    // console.log(`Transpiled: ${file} -> ${outputPath}`);
   }
 }
 

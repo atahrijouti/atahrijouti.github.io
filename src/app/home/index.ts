@@ -1,4 +1,4 @@
-import { HelloComponent } from "./component.js";
+import { HelloComponent } from "./component";
 
 export const metadata = {
   title: "Home is home..",
