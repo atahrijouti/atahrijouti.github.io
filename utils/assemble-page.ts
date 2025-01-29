@@ -13,17 +13,17 @@ const HMR_STRING = `<script>
       console.log("WebSocket connection closed");
       setTimeout(()=>{ window.location.reload(); }, 1000)
   };
-  </script>`;
+  </script>`
 
 export const assemblePage = async (pageName: string) => {
-  const timestamp = Date.now();
+  const timestamp = Date.now()
   const { metadata, content } = await import(
     `../src/app/${pageName}/index.js?cache-bust=${timestamp}`
-  );
+  )
 
-  console.log(content);
+  console.log(content)
 
-  const html = await Bun.file("./src/layout.html").text();
+  const html = await Bun.file("./src/layout.html").text()
 
   return html
     .replace("{{title}}", metadata.title)
@@ -33,5 +33,5 @@ export const assemblePage = async (pageName: string) => {
       ${HMR_STRING}
       `,
     )
-    .replace("<!-- {{content}} -->", content());
-};
+    .replace("<!-- {{content}} -->", content())
+}
