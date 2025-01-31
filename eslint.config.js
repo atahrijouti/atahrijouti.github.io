@@ -5,6 +5,7 @@ import my from "./eslint/my.js"
 
 /** @type {import('eslint').Linter.Config[]} */
 export default [
+  { files: ["**/**.ts"] },
   {
     files: ["src/**/*.ts"],
     plugins: { my },
