@@ -3,7 +3,5 @@ export const metadata = {
 }
 
 export const content = () => {
-  return `Hello resumé`
+  return `changed again..`
 }
-
-console.log("Resumé loaded")

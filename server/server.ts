@@ -1,9 +1,9 @@
 import { watch, readdirSync } from "fs"
 import { type ServerWebSocket } from "bun"
-import { assemblePage } from "./utils/assemble-page"
+import { assemblePage } from "./assemble-page"
 
 const reloadPageMessage = (event: string, ws: ServerWebSocket<unknown>) => {
-  console.log(`Change detected ${event}`)
+  console.log(`Server Dist Watcher : Change detected, send WS reload message`)
   ws.send("reload")
 }
 
@@ -11,7 +11,7 @@ const sockets = new Set<ServerWebSocket<unknown>>()
 
 const watcher = watch("./dist", { recursive: true })
 watcher.on("change", (event) => {
-  console.log(`Change detected, issuing reload to ${sockets.size} clients`)
+  // console.log(`Change detected, issuing reload to ${sockets.size} clients`)
   sockets.forEach((ws) => {
     reloadPageMessage(event, ws)
   })
@@ -32,6 +32,7 @@ const server = Bun.serve({
 
     if (pages.has(pageName)) {
       try {
+        console.log(pageName)
         const html = await assemblePage(pageName)
         return new Response(html, {
           headers: { "Content-Type": "text/html" },

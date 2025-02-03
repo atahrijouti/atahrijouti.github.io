@@ -21,7 +21,7 @@ export const assemblePage = async (pageName: string) => {
     `../src/app/${pageName}/index.js?cache-bust=${timestamp}`
   )
 
-  console.log(content)
+  console.log(`AssemblePage: the content -> ${content()}`)
 
   const html = await Bun.file("./src/layout.html").text()
 

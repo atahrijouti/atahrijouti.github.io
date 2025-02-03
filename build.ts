@@ -1,5 +1,5 @@
 import { write, $ } from "bun"
-import { assemblePage } from "./utils/assemble-page"
+import { assemblePage } from "./server/assemble-page"
 
 const distDir = "./dist"
 
