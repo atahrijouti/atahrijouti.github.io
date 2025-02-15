@@ -3,5 +3,5 @@ export const metadata = {
 }
 
 export const content = () => {
-  return `changed again..`
+  return `changed again.`
 }

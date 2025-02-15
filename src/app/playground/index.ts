@@ -3,7 +3,7 @@ export const metadata = {
 }
 
 export const content = () => {
-  return `Hello Playgroud.`
+  return `Hello Playgroud`
 }
 
 console.log("Playground")

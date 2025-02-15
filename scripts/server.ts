@@ -1,4 +1,6 @@
-import { watch, readdirSync } from "fs"
+import { readdirSync } from "fs"
+import { watch } from "fs/promises"
+
 import { type ServerWebSocket } from "bun"
 import { assemblePage } from "./assemble-page"
 
@@ -9,13 +11,21 @@ const reloadPageMessage = (event: string, ws: ServerWebSocket<unknown>) => {
 
 const sockets = new Set<ServerWebSocket<unknown>>()
 
-const watcher = watch("./dist", { recursive: true })
-watcher.on("change", (event) => {
-  // console.log(`Change detected, issuing reload to ${sockets.size} clients`)
-  sockets.forEach((ws) => {
-    reloadPageMessage(event, ws)
-  })
-})
+const watchDist = async () => {
+  const watcher = watch("./dist", { recursive: true, persistent: true })
+
+  for await (const event of watcher) {
+    console.log(`Server : File Watcher - ${event.filename}`)
+  }
+}
+
+watchDist()
+// watcher.on("change", (event) => {
+// console.log(`Change detected, issuing reload to ${sockets.size} clients`)
+// sockets.forEach((ws) => {
+// reloadPageMessage(event, ws)
+// })
+// })
 
 const server = Bun.serve({
   port: 3000,

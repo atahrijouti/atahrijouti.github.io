@@ -55,11 +55,15 @@ transpileAndWriteFiles(listTypeScriptFiles(SRC_FOLDER)).catch((err) => {
   console.error("Error during transpilation:", err)
 })
 
-const watcher = watch("./src", { recursive: true, persistent: true })
+async function transpileFutureChanges() {
+  const watcher = watch("./src", { recursive: true, persistent: true })
 
-for await (const event of watcher) {
-  console.log(`Transpile Watcher detected change on ${SRC_FOLDER}/${event.filename}`)
-  if (event.filename?.endsWith(".ts")) {
-    transpileAndWriteFiles([`${SRC_FOLDER}/${event.filename}`])
+  for await (const event of watcher) {
+    console.log(`Transpile Watcher detected change on ${SRC_FOLDER}/${event.filename}`)
+    if (event.filename?.endsWith(".ts")) {
+      transpileAndWriteFiles([`${SRC_FOLDER}/${event.filename}`])
+    }
   }
 }
+
+transpileFutureChanges()
