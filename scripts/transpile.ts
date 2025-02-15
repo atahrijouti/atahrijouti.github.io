@@ -1,6 +1,5 @@
-import { watch } from "fs/promises"
 import { $ } from "bun"
-import { readdirSync, statSync, writeFileSync, mkdirSync } from "fs"
+import { mkdirSync, readdirSync, statSync, watch, writeFileSync } from "fs"
 import path from "path"
 
 const SRC_FOLDER = "./src"
@@ -11,7 +10,7 @@ const transpiler = new Bun.Transpiler({
   target: "browser",
 })
 
-function listTypeScriptFiles(dir: string): string[] {
+const listTypeScriptFiles = (dir: string): string[] => {
   const files: string[] = []
   const entries = readdirSync(dir)
 
@@ -27,12 +26,12 @@ function listTypeScriptFiles(dir: string): string[] {
   return files
 }
 
-async function remakeDist() {
+const remakeDist = async () => {
   await $`rm -rf ${DIST_FOLDER}`
   await $`mkdir ${DIST_FOLDER}`
 }
 
-async function transpileAndWriteFiles(tsFiles: string[]) {
+const transpileAndWriteFiles = async (tsFiles: string[]) => {
   for (const file of tsFiles) {
     const code = await Bun.file(file).text()
 
@@ -49,21 +48,25 @@ async function transpileAndWriteFiles(tsFiles: string[]) {
   }
 }
 
-await remakeDist()
-
-transpileAndWriteFiles(listTypeScriptFiles(SRC_FOLDER)).catch((err) => {
-  console.error("Error during transpilation:", err)
-})
-
-async function transpileFutureChanges() {
+const transpileFutureChanges = () => {
   const watcher = watch("./src", { recursive: true, persistent: true })
 
-  for await (const event of watcher) {
-    console.log(`Transpile Watcher detected change on ${SRC_FOLDER}/${event.filename}`)
-    if (event.filename?.endsWith(".ts")) {
-      transpileAndWriteFiles([`${SRC_FOLDER}/${event.filename}`])
+  watcher.on("change", (_event, filename) => {
+    console.log(`Transpile Watcher detected change on ${SRC_FOLDER}/${filename}`)
+    if (filename.toString().endsWith(".ts")) {
+      transpileAndWriteFiles([`${SRC_FOLDER}/${filename}`])
     }
-  }
+  })
 }
 
-transpileFutureChanges()
+const program = async () => {
+  await remakeDist()
+
+  transpileAndWriteFiles(listTypeScriptFiles(SRC_FOLDER)).catch((err) => {
+    console.error("Error during transpilation:", err)
+  })
+
+  transpileFutureChanges()
+}
+
+program()
