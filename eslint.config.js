@@ -12,8 +12,7 @@ export default tseslint.config(
   {
     files: ["src/**/*.ts"],
     plugins: { my },
-    settings: {},
-    rules: {},
+    rules: my.configs.recommended.rules,
   },
   //
   { languageOptions: { globals: globals.browser } },
