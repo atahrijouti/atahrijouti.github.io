@@ -16,15 +16,15 @@
     "@picocss/pico": "2.0.6",
     "classnames": "2.5.1",
     "next": "15.0.3",
-    "react": "18.3.1",
-    "react-dom": "18.3.1"
+    "react": "19.0.0",
+    "react-dom": "19.0.0"
   },
   "devDependencies": {
     "@tsconfig/node22": "22.0.0",
     "@types/lodash": "4.17.13",
     "@types/node": "22.9.0",
-    "@types/react": "18.3.12",
-    "@types/react-dom": "18.3.1",
+    "@types/react": "19.0.10",
+    "@types/react-dom": "19.0.4",
     "@vanilla-extract/css": "1.16.0",
     "@vanilla-extract/dynamic": "2.1.2",
     "@vanilla-extract/next-plugin": "2.4.6",
