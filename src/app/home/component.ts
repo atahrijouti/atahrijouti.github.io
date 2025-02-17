@@ -1,3 +1,3 @@
 export const HelloComponent = () => {
-  return "Hello from the component"
+  return "Hello from the component 🔨"
 }

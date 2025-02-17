@@ -16,12 +16,11 @@ const HMR_STRING = `<script>
   </script>`
 
 export const assemblePage = async (pageName: string) => {
-  const timestamp = Date.now()
-  const { metadata, content } = await import(
-    `../src/app/${pageName}/index.js?cache-bust=${timestamp}`
-  )
+  const relativeModulePath = `../src/app/${pageName}/index.ts`
 
-  console.log(`AssemblePage: the content -> ${content()}`)
+  const { metadata, content } = await import(relativeModulePath)
+
+  // console.log(`AssemblePage :\tcontent [${content()}]`)
 
   const html = await Bun.file("./src/layout.html").text()
 

@@ -1,5 +1,4 @@
-import { $ } from "bun"
-import { mkdirSync, readdirSync, statSync, watch, writeFileSync } from "fs"
+import { mkdirSync, readdirSync, statSync, writeFileSync } from "fs"
 import path from "path"
 
 const SRC_FOLDER = "./src"
@@ -10,7 +9,7 @@ const transpiler = new Bun.Transpiler({
   target: "browser",
 })
 
-const listTypeScriptFiles = (dir: string): string[] => {
+export const listTypeScriptFiles = (dir: string): string[] => {
   const files: string[] = []
   const entries = readdirSync(dir)
 
@@ -26,12 +25,7 @@ const listTypeScriptFiles = (dir: string): string[] => {
   return files
 }
 
-const remakeDist = async () => {
-  await $`rm -rf ${DIST_FOLDER}`
-  await $`mkdir ${DIST_FOLDER}`
-}
-
-const transpileAndWriteFiles = async (tsFiles: string[]) => {
+export const transpileAndWriteFiles = async (tsFiles: string[]) => {
   for (const file of tsFiles) {
     const code = await Bun.file(file).text()
 
@@ -44,29 +38,6 @@ const transpileAndWriteFiles = async (tsFiles: string[]) => {
 
     writeFileSync(outputPath, transpiledCode, "utf8")
 
-    console.log(`Transpiled: ${file} -> ${outputPath}`)
+    // console.log(`Transpile :\t${file} -> ${outputPath}`)
   }
 }
-
-const transpileFutureChanges = () => {
-  const watcher = watch("./src", { recursive: true, persistent: true })
-
-  watcher.on("change", (_event, filename) => {
-    console.log(`Transpile Watcher detected change on ${SRC_FOLDER}/${filename}`)
-    if (filename.toString().endsWith(".ts")) {
-      transpileAndWriteFiles([`${SRC_FOLDER}/${filename}`])
-    }
-  })
-}
-
-const program = async () => {
-  await remakeDist()
-
-  transpileAndWriteFiles(listTypeScriptFiles(SRC_FOLDER)).catch((err) => {
-    console.error("Error during transpilation:", err)
-  })
-
-  transpileFutureChanges()
-}
-
-program()

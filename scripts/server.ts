@@ -1,38 +1,48 @@
 import { readdirSync, watch } from "fs"
-import { watch as w } from "fs/promises"
 
-import { type ServerWebSocket } from "bun"
+import { $, type ServerWebSocket } from "bun"
 import { assemblePage } from "./assemble-page"
+import { listTypeScriptFiles, transpileAndWriteFiles } from "./transpile"
+import { clearImportCache, debounce } from "./utils"
 
-const reloadPageMessage = (event: string, ws: ServerWebSocket<unknown>) => {
-  console.log(`Server Dist Watcher : Change detected, send WS reload message`)
-  ws.send("reload")
-}
+const SRC_FOLDER = "./src"
+const DIST_FOLDER = "./dist"
 
 const sockets = new Set<ServerWebSocket<unknown>>()
 
-const watchDistBlock = async () => {
-  const watcher = w("./dist", { recursive: true, persistent: true })
-  console.log("created server watcher")
-
-  for await (const event of watcher) {
-    console.log(`Server : File Watcher - ${event.filename}`)
-  }
+const remakeDist = async () => {
+  await $`rm -rf ${DIST_FOLDER}`
+  await $`mkdir ${DIST_FOLDER}`
 }
 
-const watchDist = async () => {
-  const watcher = watch("./dist", { recursive: true, persistent: true })
-  console.log("created server watcher")
+const reloadPageMessage = (ws: ServerWebSocket<unknown>) => {
+  // console.log(`WebSocket :\tChange detected, reload the browser`)
+  ws.send("reload")
+}
 
-  watcher.on("change", (event, filename) => {
-    console.log(`Server : File Watcher - ${filename}`)
-    sockets.forEach((ws) => {
-      reloadPageMessage(event, ws)
-    })
+const reloadDevEnvironment = debounce(() => {
+  clearImportCache()
+  sockets.forEach((ws) => {
+    reloadPageMessage(ws)
   })
+}, 750)
+
+await remakeDist()
+
+try {
+  await transpileAndWriteFiles(listTypeScriptFiles(SRC_FOLDER))
+} catch (err) {
+  console.error("Error during transpilation:", err)
 }
 
-watchDist()
+const watcher = watch("./src", { recursive: true, persistent: true })
+watcher.on("change", async (event, filename) => {
+  // console.log(`File Watcher :\tevent [${event}], file[${SRC_FOLDER}/${filename}]`)
+  if (filename.toString().endsWith(".ts")) {
+    await transpileAndWriteFiles([`${SRC_FOLDER}/${filename}`])
+  }
+  reloadDevEnvironment()
+})
 
 const server = Bun.serve({
   port: 3000,
@@ -49,7 +59,7 @@ const server = Bun.serve({
 
     if (pages.has(pageName)) {
       try {
-        console.log(pageName)
+        // console.log(`Route :\t ${pageName}`)
         const html = await assemblePage(pageName)
         return new Response(html, {
           headers: { "Content-Type": "text/html" },
@@ -63,7 +73,7 @@ const server = Bun.serve({
       }
     }
 
-    if (url.pathname === "/public/favicon.ico") {
+    if (url.pathname === "/favicon.ico") {
       return new Response(" ")
     }
 
