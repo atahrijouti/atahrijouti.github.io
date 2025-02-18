@@ -30,7 +30,7 @@ export const assemblePage = async (pageName: string) => {
     console.error("ts file dont exist")
     return {
       status: 500,
-      html: `<title>${pageName} - 500</title><p>Can't access ${modulePath}</p>${HMR_STRING}`,
+      html: `<title>${pageName} - 500</title><p>Can't access module : ${modulePath}</p>${HMR_STRING}`,
     }
   }
 
@@ -38,7 +38,7 @@ export const assemblePage = async (pageName: string) => {
     console.error("layout file dont exist")
     return {
       status: 500,
-      html: `<title>${pageName} - 500</title><p>Can't access ${layoutPath}</p>${HMR_STRING}`,
+      html: `<title>${pageName} - 500</title><p>Can't access layout : ${layoutPath}</p>${HMR_STRING}`,
     }
   }
 
@@ -52,7 +52,7 @@ export const assemblePage = async (pageName: string) => {
     console.error(`mal-constructed ${modulePath}`, err)
     return {
       status: 400,
-      html: `<title>${pageName} - 400</title><p>mal constructed page file ${modulePath}</p><p>${err}</p>${HMR_STRING}`,
+      html: `<title>${pageName} - 400</title><p>missing module essentials - ${modulePath}</p><p>${err}</p>${HMR_STRING}`,
     }
   }
 
