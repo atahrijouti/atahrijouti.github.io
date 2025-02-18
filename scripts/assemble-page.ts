@@ -43,12 +43,16 @@ export const assemblePage = async (pageName: string) => {
   }
 
   try {
-    ;({ metadata, content } = await import(modulePath))
+    ; ({ metadata, content } = await import(modulePath))
+
+    if (metadata == null || content == null) {
+      throw new Error("metadata or content unavailable")
+    }
   } catch (err) {
     console.error(`mal-constructed ${modulePath}`, err)
     return {
       status: 400,
-      html: `<title>${pageName} - 400</title><p>mal constructed page file ${modulePath}</p>${HMR_STRING}`,
+      html: `<title>${pageName} - 400</title><p>mal constructed page file ${modulePath}</p><p>${err}</p>${HMR_STRING}`,
     }
   }
 
