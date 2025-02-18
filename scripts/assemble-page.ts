@@ -1,3 +1,5 @@
+import path from "path"
+
 const HMR_STRING = `<script>
   let ws = new WebSocket("ws://localhost:3000");
   ws.onmessage = function (event) {
@@ -16,21 +18,54 @@ const HMR_STRING = `<script>
   </script>`
 
 export const assemblePage = async (pageName: string) => {
-  const relativeModulePath = `../src/app/${pageName}/index.ts`
+  const layoutPath = path.resolve("./src/layout.html")
+  const modulePath = path.resolve(`./src/app/${pageName}/index.ts`)
 
-  const { metadata, content } = await import(relativeModulePath)
+  let content = () => "things arent working..."
+  let metadata = {
+    title: `${pageName} - 500`,
+  }
+
+  if (!(await Bun.file(modulePath).exists())) {
+    console.error("ts file dont exist")
+    return {
+      status: 500,
+      html: `<title>${pageName} - 500</title><p>Can't access ${modulePath}</p>${HMR_STRING}`,
+    }
+  }
+
+  if (!(await Bun.file(layoutPath).exists())) {
+    console.error("layout file dont exist")
+    return {
+      status: 500,
+      html: `<title>${pageName} - 500</title><p>Can't access ${layoutPath}</p>${HMR_STRING}`,
+    }
+  }
+
+  try {
+    ;({ metadata, content } = await import(modulePath))
+  } catch (err) {
+    console.error(`mal-constructed ${modulePath}`, err)
+    return {
+      status: 400,
+      html: `<title>${pageName} - 400</title><p>mal constructed page file ${modulePath}</p>${HMR_STRING}`,
+    }
+  }
 
   // console.log(`AssemblePage :\tcontent [${content()}]`)
 
-  const html = await Bun.file("./src/layout.html").text()
+  const responseHtml = await Bun.file(layoutPath).text()
 
-  return html
-    .replace("{{title}}", metadata.title)
-    .replace(
-      "<!-- {{scripts}} -->",
-      `<script type="module" src="/app/${pageName}/index.js"></script>
+  return {
+    status: 200,
+    html: responseHtml
+      .replace("{{title}}", metadata.title)
+      .replace(
+        "<!-- {{scripts}} -->",
+        `<script type="module" src="/app/${pageName}/index.js"></script>
       ${HMR_STRING}
       `,
-    )
-    .replace("<!-- {{content}} -->", content())
+      )
+      .replace("<!-- {{content}} -->", content()),
+  }
 }

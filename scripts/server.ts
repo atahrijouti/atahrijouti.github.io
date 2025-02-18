@@ -52,25 +52,17 @@ const server = Bun.serve({
     }
 
     const url = new URL(req.url)
-
     const pageName = url.pathname === "/" ? "home" : url.pathname.slice(1)
 
     const pages = new Set(readdirSync("./src/app"))
 
     if (pages.has(pageName)) {
-      try {
-        // console.log(`Route :\t ${pageName}`)
-        const html = await assemblePage(pageName)
-        return new Response(html, {
-          headers: { "Content-Type": "text/html" },
-        })
-      } catch (err) {
-        console.error(err)
-        return new Response(
-          "<h1>500 - the page folder doesn't contain an index most probably</h1>",
-          { status: 500 },
-        )
-      }
+      console.log(`Route :\t ${pageName} - ${Date.now()}`)
+      const page = await assemblePage(pageName)
+      return new Response(page.html, {
+        headers: { "Content-Type": "text/html" },
+        status: page.status,
+      })
     }
 
     if (url.pathname === "/favicon.ico") {
@@ -83,7 +75,7 @@ const server = Bun.serve({
     open(ws) {
       sockets.add(ws)
     },
-    async message() {},
+    async message() { },
     close: (ws) => {
       sockets.delete(ws)
     },
