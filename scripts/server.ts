@@ -2,7 +2,7 @@ import { readdirSync, watch } from "fs"
 
 import { $, type ServerWebSocket } from "bun"
 import { assemblePage } from "./assemble-page"
-import { listTypeScriptFiles, transpileAndWriteFiles } from "./transpile"
+import { listAllFiles, transpileOrCopyFiles } from "./transpile"
 import { clearImportCache, debounce } from "./utils"
 
 const SRC_FOLDER = "./src"
@@ -30,7 +30,7 @@ const reloadDevEnvironment = debounce(() => {
 await remakeDist()
 
 try {
-  await transpileAndWriteFiles(listTypeScriptFiles(SRC_FOLDER))
+  await transpileOrCopyFiles(listAllFiles(SRC_FOLDER))
 } catch (err) {
   console.error("Error during transpilation:", err)
 }
@@ -40,7 +40,7 @@ watcher.on("change", async (_, filename) => {
   // console.log(`File Watcher :\tevent [${event}], file[${SRC_FOLDER}/${filename}]`)
   if (filename.toString().endsWith(".ts")) {
     try {
-      await transpileAndWriteFiles([`${SRC_FOLDER}/${filename}`])
+      await transpileOrCopyFiles([`${SRC_FOLDER}/${filename}`])
     } catch (err) {
       console.error("Error during transpilation:", err)
     }
@@ -79,7 +79,7 @@ const server = Bun.serve({
     open(ws) {
       sockets.add(ws)
     },
-    async message() { },
+    async message() {},
     close: (ws) => {
       sockets.delete(ws)
     },

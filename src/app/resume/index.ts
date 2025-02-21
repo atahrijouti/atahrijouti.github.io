@@ -1,7 +1,18 @@
-export const metadata = {
-  title: "Am I the resumé, or is it, me",
+import type { Metadata } from "../../types.js"
+import { html } from "../../utils/html.js"
+
+import employments from "./data.json"
+
+console.log(employments)
+
+export const metadata: Metadata = {
+  title: "Resumé",
+  description: "A summary of each step and turn my career took",
 }
 
 export const content = () => {
-  return `Hello from the resumé`
+  return html`<div class="resume-page">
+    <h1>Resumé</h1>
+    <section></section>
+  </div>`
 }
