@@ -36,10 +36,14 @@ try {
 }
 
 const watcher = watch("./src", { recursive: true, persistent: true })
-watcher.on("change", async (event, filename) => {
+watcher.on("change", async (_, filename) => {
   // console.log(`File Watcher :\tevent [${event}], file[${SRC_FOLDER}/${filename}]`)
   if (filename.toString().endsWith(".ts")) {
-    await transpileAndWriteFiles([`${SRC_FOLDER}/${filename}`])
+    try {
+      await transpileAndWriteFiles([`${SRC_FOLDER}/${filename}`])
+    } catch (err) {
+      console.error("Error during transpilation:", err)
+    }
   }
   reloadDevEnvironment()
 })
