@@ -4,8 +4,6 @@ import { html } from "../../utils/html.js"
 import employments from "./data.json" with { type: "json" }
 import type { EmploymentData, Task } from "./types.js"
 
-console.log(employments)
-
 type DateDetailProps = {
   startDate: string
   endDate?: string
@@ -16,7 +14,7 @@ const Skills = ({ skills }: SkillsProps) => {
   return html`
     <small>
       <strong>Skills</strong>:&nbsp;
-      <em>${skills?.map((skill) => html`<span class="skill-item"> ${skill} </span>`)}</em>
+      <em>${skills?.map((skill) => html`<span class="skill-item"> ${skill} </span>`).join("")}</em>
     </small>
   `
 }
@@ -33,7 +31,7 @@ const EmployerDetail = ({
   url: EmploymentData["employerUrl"]
 }) => {
   if (url) {
-    return html`<a href="${url}" title="${name} on Linkedin" class="secondary"> ${name} </a>`
+    return html`<a href="${url}" title="${name}'s url" class="secondary"> ${name} </a>`
   } else {
     return html`<u>${name}</u>`
   }
@@ -42,23 +40,30 @@ const EmployerDetail = ({
 type TasksProps = { tasks: Task[] }
 const Tasks = ({ tasks }: TasksProps) => {
   return html`<ul>
-    ${tasks.map((task) => {
-      if (typeof task === "string") {
-        return html`<li>${task}</li>`
-      }
-      return html`<li>
-        ${task.task}
-        <ul>
-          ${task.subTasks.map((task) => {
-            return html`<li>${task}</li>`
-          })}
-        </ul>
-      </li>`
-    })}
+    ${tasks
+      .map((task) => {
+        if (typeof task === "string") {
+          return html`<li>${task}</li>`
+        }
+        return html`<li>
+          ${task.task}
+          <ul>
+            ${task.subTasks
+              .map((task) => {
+                return html`<li>${task}</li>`
+              })
+              .join("")}
+          </ul>
+        </li>`
+      })
+      .join("")}
   </ul>`
 }
 
-const SinglePosition = (employment: EmploymentData) => {
+type SinglePositionProps = {
+  employment: EmploymentData
+}
+const SinglePosition = ({ employment }: SinglePositionProps) => {
   const { title, tasks, skills } = employment.positions[0]
 
   return html`<h2>${title}</h2>
@@ -82,13 +87,55 @@ const SinglePosition = (employment: EmploymentData) => {
     </dl>`
 }
 
+type MultiplePositionsProps = {
+  employment: EmploymentData
+}
+const MultiplePositions = ({ employment }: MultiplePositionsProps) => {
+  const { positions } = employment
+  return html`<dl>
+    <dt>
+      <h2>
+        ${EmployerDetail({
+          name: employment.employerName,
+          url: employment.employerUrl,
+        })}
+      </h2>
+    </dt>
+    <dd>
+      ${employment.employmentType}&nbsp;&#183;&nbsp;
+      ${DateDetail({ startDate: employment.startDate, endDate: employment.endDate })}
+    </dd>
+    <dd>
+      <span>
+        <small>${employment.location}&nbsp;&#183;&nbsp;${employment.locationType}</small>
+      </span>
+    </dd>
+    <dd>
+      ${positions
+        .map((position) => {
+          return html`<dl>
+            <dt>
+              <h3>${position.title}</h3>
+            </dt>
+
+            ${position.startDate &&
+            html`<dd>
+              ${DateDetail({ startDate: position.startDate, endDate: position.endDate })}
+            </dd>`}
+            ${position.tasks && html`<dd>${Tasks({ tasks: position.tasks })}</dd>`}
+            ${position.skills && html`<dd>${Skills({ skills: position.skills })}</dd>`}
+          </dl>`
+        })
+        .join("")}
+    </dd>
+  </dl>`
+}
+
 const Employment = (employment: EmploymentData) => {
   const hasMultiplePositions = employment.positions.length > 1
 
   return html`<article class="employment-article">
-    ${hasMultiplePositions
-      ? html`<MultiplePositions employment="{employment" as EmploymentWithMultiplePositions} />`
-      : SinglePosition(employment)}
+    ${hasMultiplePositions ? MultiplePositions({ employment }) : SinglePosition({ employment })}
   </article>`
 }
 
