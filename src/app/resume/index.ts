@@ -1,7 +1,7 @@
 import type { Metadata } from "../../types.js"
 import { html } from "../../utils/html.js"
 
-import employments from "./data.json"
+import employments from "./data.json" with { type: "json" }
 
 console.log(employments)
 

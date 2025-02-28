@@ -7,7 +7,7 @@ const DIST_FOLDER = "./dist"
 
 const transpiler = new Bun.Transpiler({
   loader: "ts",
-  target: "browser",
+  target: "bun",
 })
 
 export const listAllFiles = (dir: string): string[] => {
