@@ -17,7 +17,7 @@
 }
 
 .skill-item:not(:first-child):before {
-  content: "\u00B7";
+  content: "·";
   padding-left: 0.25rem;
   padding-left: 0.25rem;
 }

@@ -122,8 +122,8 @@ const MultiplePositions = ({ employment }: MultiplePositionsProps) => {
             html`<dd>
               ${DateDetail({ startDate: position.startDate, endDate: position.endDate })}
             </dd>`}
-            ${position.tasks && html`<dd>${Tasks({ tasks: position.tasks })}</dd>`}
-            ${position.skills && html`<dd>${Skills({ skills: position.skills })}</dd>`}
+            ${position.tasks ? html`<dd>${Tasks({ tasks: position.tasks })}</dd>` : ""}
+            ${position.skills ? html`<dd>${Skills({ skills: position.skills })}</dd>` : ""}
           </dl>`
         })
         .join("")}
