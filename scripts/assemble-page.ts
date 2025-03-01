@@ -1,4 +1,6 @@
 import path from "path"
+import type { Metadata } from "../src/types"
+import { html } from "../src/utils/tags"
 
 const HMR_STRING = `<script>
   let ws = new WebSocket("ws://localhost:3000");
@@ -24,13 +26,13 @@ export const assemblePage = async (pageName: string) => {
   let content = () => "things arent working..."
   let metadata = {
     title: `${pageName} - 500`,
-  }
+  } as Metadata
 
   if (!(await Bun.file(modulePath).exists())) {
     console.error("ts file dont exist")
     return {
       status: 500,
-      html: `<title>${pageName} - 500</title><p>Can't access module : ${modulePath}</p>${HMR_STRING}`,
+      html: `<title>${pageName} - 500</title><stylesheetp>Can't access module : ${modulePath}</p>${HMR_STRING}`,
     }
   }
 
@@ -60,6 +62,11 @@ export const assemblePage = async (pageName: string) => {
 
   const responseHtml = await Bun.file(layoutPath).text()
 
+  const styles =
+    metadata.styles
+      ?.map((file) => html`<link rel="stylesheet" href="/app/${pageName}/${file}" />`)
+      .join("") ?? ""
+
   return {
     status: 200,
     html: responseHtml
@@ -70,6 +77,7 @@ export const assemblePage = async (pageName: string) => {
       ${HMR_STRING}
       `,
       )
+      .replace("<!-- {{styles}} -->", styles)
       .replace("<!-- {{content}} -->", content()),
   }
 }

@@ -1,4 +1,5 @@
 export type Metadata = {
-  title: string,
+  title: string
   description: string
+  styles?: string[]
 }

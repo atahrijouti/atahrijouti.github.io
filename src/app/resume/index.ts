@@ -1,8 +1,8 @@
 import type { Metadata } from "../../types.js"
-import { html } from "../../utils/html.js"
+import { html } from "../../utils/tags.js"
+import type { EmploymentData, Task } from "./types.js"
 
 import employments from "./data.json" with { type: "json" }
-import type { EmploymentData, Task } from "./types.js"
 
 type DateDetailProps = {
   startDate: string
@@ -142,6 +142,7 @@ const Employment = (employment: EmploymentData) => {
 export const metadata: Metadata = {
   title: "Resumé",
   description: "A summary of each step and turn my career took",
+  styles: ["./styles.css"],
 }
 
 export const content = () => {
