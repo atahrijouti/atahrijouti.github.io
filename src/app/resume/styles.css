@@ -9,15 +9,15 @@
 }
 
 .resume-page h2 {
-  margin-bottom: "calc(var(--pico-typography-spacing-vertical) * .25)";
+  margin-bottom: calc(var(--pico-typography-spacing-vertical) * 0.25);
 }
 
 .resume-page h3 {
-  margin-bottom: "calc(var(--pico-typography-spacing-vertical) * .125)";
+  margin-bottom: calc(var(--pico-typography-spacing-vertical) * 0.125);
 }
 
 .skill-item:not(:first-child):before {
   content: "\u00B7";
-  padding-left: ".25rem";
-  padding-left: ".25rem";
+  padding-left: 0.25rem;
+  padding-left: 0.25rem;
 }
