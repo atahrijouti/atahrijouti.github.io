@@ -18,7 +18,7 @@ const HMR_STRING = `<script>
   </script>`
 
 export const assemblePage = async (pageName: string) => {
-  const layoutPath = path.resolve("./src/layout.html")
+  const layoutPath = path.resolve("./src/main.layout.html")
   const modulePath = path.resolve(`./src/app/${pageName}/index.ts`)
 
   let content = () => "things arent working..."
@@ -43,7 +43,7 @@ export const assemblePage = async (pageName: string) => {
   }
 
   try {
-    ; ({ metadata, content } = await import(modulePath))
+    ;({ metadata, content } = await import(modulePath))
 
     if (metadata == null || content == null) {
       throw new Error("metadata or content unavailable")
