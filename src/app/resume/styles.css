@@ -1,3 +1,23 @@
-body {
-  background: rosybrown;
+.resume-page dl {
+  padding-left: 0;
+  padding-inline-start: 0;
+}
+
+.resume-page dd {
+  margin-left: 0;
+  margin-inline-start: 0;
+}
+
+.resume-page h2 {
+  margin-bottom: "calc(var(--pico-typography-spacing-vertical) * .25)";
+}
+
+.resume-page h3 {
+  margin-bottom: "calc(var(--pico-typography-spacing-vertical) * .125)";
+}
+
+.skill-item:not(:first-child):before {
+  content: "\u00B7";
+  padding-left: ".25rem";
+  padding-left: ".25rem";
 }

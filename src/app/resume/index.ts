@@ -148,6 +148,6 @@ export const metadata: Metadata = {
 export const content = () => {
   return html`<div class="resume-page">
     <h1>Resumé</h1>
-    <section>${employments.map((employment) => Employment(employment))}</section>
+    <section>${employments.map((employment) => Employment(employment)).join("")}</section>
   </div>`
 }

@@ -38,12 +38,10 @@ try {
 const watcher = watch("./src", { recursive: true, persistent: true })
 watcher.on("change", async (_, filename) => {
   // console.log(`File Watcher :\tevent [${event}], file[${SRC_FOLDER}/${filename}]`)
-  if (filename.toString().endsWith(".ts")) {
-    try {
-      await transpileOrCopyFiles([`${SRC_FOLDER}/${filename}`])
-    } catch (err) {
-      console.error("Error during transpilation:", err)
-    }
+  try {
+    await transpileOrCopyFiles([`${SRC_FOLDER}/${filename}`])
+  } catch (err) {
+    console.error("Error during transpilation:", err)
   }
   reloadDevEnvironment()
 })
@@ -73,7 +71,7 @@ const server = Bun.serve({
       return new Response(" ")
     }
 
-    return new Response(Bun.file("./dist" + url.pathname))
+    return new Response(Bun.file(`./dist${url.pathname}`))
   },
   websocket: {
     open(ws) {

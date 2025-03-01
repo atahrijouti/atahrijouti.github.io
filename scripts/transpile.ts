@@ -39,7 +39,7 @@ export const transpileTypeScriptfile = async (file: string) => {
   // console.log(`Transpile :\t${file} -> ${outputPath}`)
 }
 
-export const copyAssetFiles = async (file: string) => {
+export const copyAssetFile = async (file: string) => {
   const fileRelativePath = path.relative(SRC_FOLDER, file)
   const outputPath = path.join(DIST_FOLDER, fileRelativePath)
 
@@ -53,7 +53,7 @@ export const transpileOrCopyFiles = async (tsFiles: string[]) => {
     if (file.endsWith(".ts")) {
       transpileTypeScriptfile(file)
     } else {
-      copyAssetFiles(file)
+      copyAssetFile(file)
     }
   }
 }
