@@ -1,5 +1,6 @@
 import type { Metadata } from "../../types.js"
-import { HelloComponent } from "./component.js"
+import { html } from "../../utils/tags.js"
+import { Fractal } from "./components/fractal.js"
 
 export const metadata: Metadata = {
   title: "Abderrahmane TAHRI JOUTI",
@@ -8,5 +9,7 @@ export const metadata: Metadata = {
 }
 
 export const content = () => {
-  return HelloComponent()
+  return html`<div class="home-page">
+    <div class="canvas-outer">${Fractal()}</div>
+  </div>`
 }
