@@ -1,0 +1,19 @@
+.home-page {
+  position: relative;
+  display: flex;
+  min-height: 100%;
+  justify-content: center;
+  @media screen and (max-width: 576px) {
+    justify-content: start;
+  }
+}
+
+.canvas-outer {
+  position: absolute;
+  max-width: 65%;
+  max-width: calc(85vh - (4 * var(--pico-spacing)));
+  aspect-ratio: 1;
+  @media screen and (max-width: 576px) {
+    width: 95%;
+  }
+}

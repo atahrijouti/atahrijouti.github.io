@@ -3,7 +3,7 @@ import { html } from "../../utils/tags.js"
 import type { EmploymentData, Task } from "./types.js"
 
 import employments from "./data.json" with { type: "json" }
-
+console.log(employments)
 type DateDetailProps = {
   startDate: string
   endDate?: string
@@ -11,12 +11,10 @@ type DateDetailProps = {
 
 type SkillsProps = { skills: string[] }
 const Skills = ({ skills }: SkillsProps) => {
-  return html`
-    <small>
-      <strong>Skills</strong>:&nbsp;
-      <em>${skills?.map((skill) => html`<span class="skill-item"> ${skill} </span>`).join("")}</em>
-    </small>
-  `
+  return html`<small>
+    <strong>Skills</strong>:&nbsp;
+    <em>${skills?.map((skill) => html`<span class="skill-item">${skill}</span>`).join("")}</em>
+  </small> `
 }
 
 const DateDetail = ({ startDate, endDate }: DateDetailProps) => {
@@ -31,7 +29,7 @@ const EmployerDetail = ({
   url: EmploymentData["employerUrl"]
 }) => {
   if (url) {
-    return html`<a href="${url}" title="${name}'s url" class="secondary"> ${name} </a>`
+    return html`<a href="${url}" title="${name}'s url" class="secondary">${name}</a>`
   } else {
     return html`<u>${name}</u>`
   }
