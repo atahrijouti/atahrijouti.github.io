@@ -3,7 +3,7 @@ import { html } from "../../utils/tags.js"
 import type { EmploymentData, Task } from "./types.js"
 
 import employments from "./data.json" with { type: "json" }
-console.log(employments)
+
 type DateDetailProps = {
   startDate: string
   endDate?: string
@@ -12,13 +12,14 @@ type DateDetailProps = {
 type SkillsProps = { skills: string[] }
 const Skills = ({ skills }: SkillsProps) => {
   return html`<small>
-    <strong>Skills</strong>:&nbsp;
-    <em>${skills?.map((skill) => html`<span class="skill-item">${skill}</span>`).join("")}</em>
-  </small> `
+    <strong>Skills</strong>:&nbsp;<em
+      >${skills?.map((skill) => html`<span class="skill-item">${skill}</span>`).join("")}</em
+    >
+  </small>`
 }
 
 const DateDetail = ({ startDate, endDate }: DateDetailProps) => {
-  return html` <span><em>${startDate}</em> - <em>${endDate ?? "Present"}</em></span>`
+  return html`<span><em>${startDate}</em> - <em>${endDate ?? "Present"}</em></span>`
 }
 
 const EmployerDetail = ({
@@ -66,19 +67,17 @@ const SinglePosition = ({ employment }: SinglePositionProps) => {
 
   return html`<h2>${title}</h2>
     <dl>
-      <dd>
-        ${EmployerDetail({
-          name: employment.employerName,
-          url: employment.employerUrl,
-        })}
-        &nbsp;&#183;&nbsp;${employment.employmentType}
+      <dd class="employer-detail">
+        <span>
+          ${EmployerDetail({
+            name: employment.employerName,
+            url: employment.employerUrl,
+          })}</span
+        ><span>${employment.employmentType}</span>
       </dd>
       <dd>${DateDetail({ startDate: employment.startDate, endDate: employment.endDate })}</dd>
-      <dd>
-        <span>
-          <small>${employment.location}</small>&nbsp;&#183;&nbsp;
-          <small>${employment.locationType}</small>
-        </span>
+      <dd class="location">
+        <span><small>${employment.location}</small><small>${employment.locationType}</small></span>
       </dd>
       ${tasks && html`<dd>${Tasks({ tasks })}</dd>`}
       ${skills && html`<dd>${Skills({ skills })}</dd>`}
@@ -100,13 +99,13 @@ const MultiplePositions = ({ employment }: MultiplePositionsProps) => {
       </h2>
     </dt>
     <dd>
-      ${employment.employmentType}&nbsp;&#183;&nbsp;
-      ${DateDetail({ startDate: employment.startDate, endDate: employment.endDate })}
+      <span>${employment.employmentType}</span>
+      <span>${DateDetail({ startDate: employment.startDate, endDate: employment.endDate })}</span>
     </dd>
     <dd>
-      <span>
-        <small>${employment.location}&nbsp;&#183;&nbsp;${employment.locationType}</small>
-      </span>
+      <span class="location"
+        ><small>${employment.location}</small><small>${employment.locationType}</small></span
+      >
     </dd>
     <dd>
       ${positions
@@ -115,7 +114,6 @@ const MultiplePositions = ({ employment }: MultiplePositionsProps) => {
             <dt>
               <h3>${position.title}</h3>
             </dt>
-
             ${position.startDate &&
             html`<dd>
               ${DateDetail({ startDate: position.startDate, endDate: position.endDate })}
