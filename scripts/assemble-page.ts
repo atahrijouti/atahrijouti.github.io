@@ -67,17 +67,25 @@ export const assemblePage = async (pageName: string) => {
       ?.map((file) => html`<link rel="stylesheet" href="/app/${pageName}/${file}" />`)
       .join("") ?? ""
 
+  let assembledHtml = responseHtml.replace("{{title}}", metadata.title)
+  assembledHtml = assembledHtml.replace(
+    "<!-- {{scripts}} -->",
+    `<script type="module" src="/app/${pageName}/index.js"></script>
+        ${HMR_STRING}
+        `,
+  )
+
+  if (await Bun.file(path.resolve(`./src/app/${pageName}/styles.css`)).exists()) {
+    assembledHtml = assembledHtml.replace(
+      "<!-- {{styles}} -->",
+      `<link rel="stylesheet" href="/app/${pageName}/styles.css" />`,
+    )
+  }
+
+  assembledHtml = assembledHtml.replace("<!-- {{content}} -->", content())
+
   return {
     status: 200,
-    html: responseHtml
-      .replace("{{title}}", metadata.title)
-      .replace(
-        "<!-- {{scripts}} -->",
-        `<script type="module" src="/app/${pageName}/index.js"></script>
-      ${HMR_STRING}
-      `,
-      )
-      .replace("<!-- {{styles}} -->", styles)
-      .replace("<!-- {{content}} -->", content()),
+    html: assembledHtml,
   }
 }

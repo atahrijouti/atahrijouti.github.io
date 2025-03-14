@@ -138,7 +138,6 @@ const Employment = (employment: EmploymentData) => {
 export const metadata: Metadata = {
   title: "Resumé",
   description: "A summary of each step and turn my career took",
-  styles: ["./styles.css"],
 }
 
 export const content = () => {
