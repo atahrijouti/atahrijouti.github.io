@@ -1,7 +1,7 @@
 import type { Metadata } from "../../types.js"
 import { html } from "../../utils/tags.js"
 import { Fractal } from "./components/fractal.js"
-import { COLORS } from "./utils/constants.js"
+import { COLORS, GEOMETRY } from "./utils/constants.js"
 
 export const metadata: Metadata = {
   title: "Abderrahmane TAHRI JOUTI",
@@ -18,6 +18,10 @@ export const content = () => {
         --clear-day-sky-color: ${COLORS.clearDaySky};
         --clear-night-sky-color: ${COLORS.clearNightSky};
         --dusk-blue-color: ${COLORS.duskBlue};
+        --canvas-to-base-node-ratio: ${GEOMETRY.canvasToBaseNodeRatio * 100};
+      }
+      .canvas-outer {
+        --canvas-width: ${GEOMETRY.pageToCanvasRatio * 100};
       }
     </style>
     <div class="canvas-outer">${Fractal()}</div>
