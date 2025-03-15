@@ -6,10 +6,10 @@ import path from "path"
 const SRC_FOLDER = "./src"
 const DIST_FOLDER = "./dist"
 
-const transpiler = new Bun.Transpiler({
-  loader: "ts",
-  target: "browser",
-})
+// const transpiler = new Bun.Transpiler({
+//   loader: "ts",
+//   target: "browser",
+// })
 
 export const listAllFiles = (dir: string): string[] => {
   const files: string[] = []

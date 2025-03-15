@@ -1,6 +1,5 @@
 import path from "path"
 import type { Metadata } from "../src/types"
-import { html } from "../src/utils/tags"
 
 const HMR_STRING = `<script>
   let ws = new WebSocket("ws://localhost:3000");
@@ -61,11 +60,6 @@ export const assemblePage = async (pageName: string) => {
   // console.log(`AssemblePage :\tcontent [${content()}]`)
 
   const responseHtml = await Bun.file(layoutPath).text()
-
-  const styles =
-    metadata.styles
-      ?.map((file) => html`<link rel="stylesheet" href="/app/${pageName}/${file}" />`)
-      .join("") ?? ""
 
   let assembledHtml = responseHtml.replace("{{title}}", metadata.title)
   assembledHtml = assembledHtml.replace(
