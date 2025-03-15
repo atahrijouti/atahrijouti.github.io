@@ -1,0 +1,101 @@
+.canvas {
+  display: flex;
+  width: 100%;
+  aspect-ratio: 1;
+  position: relative;
+  z-index: 1;
+  touch-action: none;
+  &:before {
+    content: "";
+    z-index: -1;
+    position: absolute;
+    background: rgb(var(--growing-leaf-var));
+    transition:
+      background var(--color-transition) ease-in,
+      top var(--movement-transition) ease-out,
+      left var(--movement-transition) ease-out;
+    transition-timing-function: ease-in-out;
+    width: 100%;
+    height: "100%";
+    top: calc(-10% * -1 * var(--polarity-y));
+    left: calc(-10% * var(--polarity-x));
+    filter: blur(100px);
+  }
+  &:after {
+    content: "";
+    z-index: -2;
+    position: absolute;
+    background: rgba(var(--growing-leaf-var), 0.5);
+    transition: background var(--color-transition) ease-in`;
+    transition-timing-function: ease-in-out;
+    width: 100%;
+    height: 100%;
+    top: 4%;
+    left: 4%;
+    filter: invert(100%);
+  }
+}
+
+.canvas-inner {
+  --start-color: var(--clear-day-sky-color);
+  --end-color: white;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(circle at 50% -1000%, var(--start-color) 92%, var(--end-color) 96%);
+  @media screen and (prefers-color-scheme: dark) {
+    --start-color: var(--clear-night-sky-color);
+    --end-color: var(--dusk-blue-color);
+  }
+}
+
+.base {
+  width: 12.5%;
+  height: 12.5%;
+  z-index: 2;
+}
+
+.visual-target {
+  position: absolute;
+  top: var(--visual-y);
+  left: var(--visual-x);
+  width: 12%;
+  height: 12%;
+  translate: -50% -50%;
+  transition: all 100ms ease-out;
+  user-select: none;
+  z-index: 1;
+}
+
+.target-ball {
+  --target-color: var(--sun-color);
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  opacity: 0.9;
+  background: var(--target-color);
+  box-shadow: 0px 0px 40px 15px var(--target-color);
+  @media screen and (prefers-color-scheme: dark) {
+    --target-color: var(--moon-color);
+  }
+}
+
+.ball-inner {
+  position: relative;
+  height: 100%;
+  &:before {
+    content: "← drag me";
+    position: absolute;
+    top: 50%;
+    translate: 0 -50%;
+    left: calc(100% + 20px);
+    whitespace: nowrap;
+  }
+  &.hidden:before {
+    visibility: hidden;
+  }
+}

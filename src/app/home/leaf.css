@@ -1,0 +1,33 @@
+.leaf-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.leaf.left {
+  top: -100%;
+  left: 0;
+  transform-origin: bottom left;
+  transform: scale(var(--left-scale)) rotate(var(--left-rotation));
+}
+)
+
+.leaf.right {
+  right: 0;
+  top: -100%;
+  transform-origin: bottom right;
+  transform: scale(var(--right-scale)) rotate(var(--right-rotation));
+}
+
+.leaf {
+  --leaf-background-color: rgba(var(--leaf-background), var(--coefficient));
+  width: 100%;
+  height: 100%;
+  background-color: var(--leaf-background-color);
+  transition:
+    background var(--color-transition),
+    transform var(--visual-target-transition);
+  .leaf-inner > & {
+    position: absolute;
+  }
+}
