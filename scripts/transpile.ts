@@ -32,12 +32,16 @@ export const transpileTypeScriptfile = async (file: string) => {
   const outputPath = path.join(DIST_FOLDER, fileRelativePath.replace(/\.ts$/, ".js"))
 
   const code = await Bun.file(file).text()
-  const transpiledCode = transformSync(code, { loader: "ts", target: "esnext", format: "esm" })
 
-  mkdirSync(path.dirname(outputPath), { recursive: true })
-  writeFileSync(outputPath, transpiledCode.code, "utf8")
+  try {
+    const transpiledCode = transformSync(code, { loader: "ts", target: "esnext", format: "esm" })
+    mkdirSync(path.dirname(outputPath), { recursive: true })
+    writeFileSync(outputPath, transpiledCode.code, "utf8")
 
-  // console.log(`Transpile :\t${file} -> ${outputPath}`)
+    // console.log(`Transpile :\t${file} -> ${outputPath}`)
+  } catch (e) {
+    console.log(`Why the hell is this breakingagain???? ${e}`)
+  }
 }
 
 export const copyAssetFile = async (file: string) => {
