@@ -1,3 +1,7 @@
+:root {
+  --light-yellow-color: "254, 254, 215";
+}
+
 .home-page {
   position: relative;
   display: flex;
