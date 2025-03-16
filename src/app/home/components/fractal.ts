@@ -17,7 +17,7 @@ export const Leaf = ({ level = 0, orientation }: LeafProps = {}) => {
   return html`<div
     id="${id}"
     class="leaf ${orientationClass}"
-    style="--coefficient: ${levelCoefficient}">
+    style="--coefficient: ${levelCoefficient}; --leaf-background: var(--growing-leaf);">
     <div class="leaf-inner"></div>
   </div>`
 }
@@ -86,6 +86,7 @@ const sprout = ({ level, node }: SproutProps) => {
     setTimeout(
       () => {
         sow({ level: nextLevel, orientation: second, soil: inner })
+        node.style.setProperty("--leaf-background", "var(--full-leaf)")
       },
       ((765 - fireTime) * Math.random() + fireTime) | 0,
     ),

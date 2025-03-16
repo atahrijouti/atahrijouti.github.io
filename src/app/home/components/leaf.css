@@ -25,7 +25,7 @@
   background-color: var(--leaf-background-color);
   transition:
     background var(--color-transition),
-    transform all 100ms;
+    transform 100ms ease-out;
   .leaf-inner > & {
     position: absolute;
   }
