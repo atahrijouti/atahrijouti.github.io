@@ -1,5 +1,6 @@
 import path from "path"
 import type { Metadata } from "../src/types"
+import { html } from "../src/utils/tags"
 
 const HMR_STRING = `<script>
   let ws = new WebSocket("ws://localhost:3000");
@@ -64,11 +65,11 @@ export const assemblePage = async (pageName: string) => {
   let assembledHtml = responseHtml.replace("{{title}}", metadata.title)
   assembledHtml = assembledHtml.replace(
     "<!-- {{scripts}} -->",
-    `<script type="module">
-      import {onLoad} from "/app/${pageName}/index.js"
-      onLoad()
-    </script>
-    ${HMR_STRING}`,
+    html`<script type="module">
+        import { onLoad } from "/app/${pageName}/index.js"
+        document.addEventListener("DOMContentLoaded", onLoad)
+      </script>
+      ${HMR_STRING}`,
   )
 
   if (await Bun.file(path.resolve(`./src/app/${pageName}/styles.css`)).exists()) {
