@@ -64,9 +64,11 @@ export const assemblePage = async (pageName: string) => {
   let assembledHtml = responseHtml.replace("{{title}}", metadata.title)
   assembledHtml = assembledHtml.replace(
     "<!-- {{scripts}} -->",
-    `<script type="module" src="/app/${pageName}/index.js"></script>
-        ${HMR_STRING}
-        `,
+    `<script type="module">
+      import {onLoad} from "/app/${pageName}/index.js"
+      onLoad()
+    </script>
+    ${HMR_STRING}`,
   )
 
   if (await Bun.file(path.resolve(`./src/app/${pageName}/styles.css`)).exists()) {
