@@ -2,7 +2,7 @@ import { textToHTML } from "../../../utils/html.js"
 import { html } from "../../../utils/tags.js"
 import { LeafColorNumbers } from "./utils/colors.js"
 import { COLORS, GEOMETRY, ThemeTimeout } from "./utils/constants.js"
-import { lookAtPoint } from "./utils/math.js"
+import { lookAtPoint, type FractalGeometry } from "./utils/math.js"
 import { geometryToStyles } from "./utils/style.js"
 
 type LeafProps = {
@@ -40,12 +40,59 @@ const startupGeometry = lookAtPoint(
   startupCoords.canvasRect,
 )
 
+const cloneStartupGeometry = () => ({ ...startupGeometry })
+const loopGeometry: FractalGeometry = cloneStartupGeometry()
+
 export const leafColors = {
   "--leafy-green": LeafColorNumbers["leafyGreen"],
   "--pink-red": LeafColorNumbers["pinkRed"],
   "--plum-purple": LeafColorNumbers["plumPurple"],
-  "--mid-gray": LeafColorNumbers["midGray"],
 } as const
+
+const LeafColorVarNames = Object.keys(leafColors)
+
+const randomLeafColor = () => LeafColorVarNames[(Math.random() * LeafColorVarNames.length) | 0]
+
+const fractalVars = html`
+  <style>
+    .fractal {
+        /* rgb colors */
+      --sun-color: ${COLORS.goldenSun};
+      --moon-color: ${COLORS.moonGlow};
+      --clear-day-sky-color: ${COLORS.clearDaySky};
+      --clear-night-sky-color: ${COLORS.clearNightSky};
+      --midnight-blue-color: ${COLORS.midnightBlue};
+
+      /* just the numbers of the leaf colors */
+      ${Object.entries(leafColors)
+      .map(([key, value]) => `${key}: ${value};`)
+      .join("\n")}
+
+      --mid-gray: ${LeafColorNumbers["midGray"]};
+
+      /* default theme */
+      --growing-leaf: var(--leafy-green);
+      --leaf-background: var(--growing-leaf);
+      --full-leaf: var(--mid-gray);
+
+      /* animation config */
+      --color-transition: ${ThemeTimeout / 2}ms;
+      --movement-transition: ${ThemeTimeout / 3}ms;
+
+      /* angles and rotations */
+      --right-rotation: var(--right-angle);
+      --left-rotation: calc(-1 * var(--left-angle));
+
+      /* design variables */
+      --canvas-to-base-node-ratio: ${GEOMETRY.canvasToBaseNodeRatio * 100};
+    }
+  </style>
+  <style id="live-fractal-styles">
+    .fractal {
+      ${geometryToStyles(loopGeometry)}
+    }
+  </style>
+`
 
 const MAX_DEPTH = 5
 const shuffledOrientations = (): LeafProps["orientation"][] => {
@@ -95,14 +142,80 @@ const sprout = ({ level, node }: SproutProps) => {
 
 export const unload = () => {
   timeouts.forEach((timeout) => clearTimeout(timeout))
+
+  loop = false
+  isRepaintNeeded = false
+  dragging = false
 }
+
+let loop = false
+let isRepaintNeeded = false
+let dragging = false
 
 export const ready = () => {
   const root = document.getElementById("root-node")
-  if (!root) {
-    console.error("No root-node found")
+  const canvas = document.getElementById("canvas")
+  const fractalStyle = document.getElementById("live-fractal-styles")
+  const visualTarget = document.querySelector("#visual-target .ball-inner")
+
+  if (!root || !canvas || !fractalStyle || !visualTarget) {
+    console.error("No root-node | canvas | live-fractal-styles | visual-target found")
     return
   }
+
+  canvas.style.setProperty("--growing-leaf", `var(${randomLeafColor()})`)
+  loop = true
+  isRepaintNeeded = true
+  let showTooltip = true
+
+  const styleLoop = () => {
+    if (isRepaintNeeded) {
+      fractalStyle.innerHTML = `
+        .fractal {
+          ${geometryToStyles(loopGeometry)}
+        }`
+
+      isRepaintNeeded = false
+    }
+
+    if (loop) {
+      window.requestAnimationFrame(styleLoop)
+    }
+  }
+
+  const handlePointerDown = (e: MouseEvent) => {
+    isRepaintNeeded = true
+    dragging = true
+    if (showTooltip) {
+      showTooltip = false
+      visualTarget.classList.add("hidden")
+    }
+    Object.assign(
+      loopGeometry,
+      lookAtPoint(e.clientX, e.clientY, canvas.getBoundingClientRect() ?? ({} as DOMRect)),
+    )
+  }
+
+  const handlePointerMove = (e: MouseEvent) => {
+    if (dragging) {
+      isRepaintNeeded = true
+      Object.assign(
+        loopGeometry,
+        lookAtPoint(e.clientX, e.clientY, canvas.getBoundingClientRect() ?? ({} as DOMRect)),
+      )
+    }
+  }
+
+  const handlePointerUp = () => {
+    dragging = false
+  }
+
+  styleLoop()
+
+  // TODO: create a custom even this functin could listen to, and remove the bollow listners when that even has fired
+  window.addEventListener("pointerdown", handlePointerDown)
+  window.addEventListener("pointermove", handlePointerMove)
+  window.addEventListener("pointerup", handlePointerUp)
 
   sprout({ level: 0, node: root })
 }
@@ -110,43 +223,7 @@ export const ready = () => {
 export const Fractal = () => {
   // todo: add class hidden to ball inner upon first drag
   return html`<div id="canvas" class="fractal canvas">
-    <style id="live-fractal-styles">
-      .fractal {
-        ${geometryToStyles(startupGeometry)}
-      }
-    </style>
-    <style>
-      .fractal {
-          /* rgb colors */
-        --sun-color: ${COLORS.goldenSun};
-        --moon-color: ${COLORS.moonGlow};
-        --clear-day-sky-color: ${COLORS.clearDaySky};
-        --clear-night-sky-color: ${COLORS.clearNightSky};
-        --midnight-blue-color: ${COLORS.midnightBlue};
-
-        /* just the numbers of the leaf colors */
-        ${Object.entries(leafColors)
-        .map(([key, value]) => `${key}: ${value};`)
-        .join("\n")}
-
-        /* default theme */
-        --growing-leaf: var(--leafy-green);
-        --leaf-background: var(--growing-leaf);
-        --full-leaf: var(--mid-gray);
-
-        /* animation config */
-        --color-transition: ${ThemeTimeout / 2}ms;
-        --movement-transition: ${ThemeTimeout / 3}ms;
-
-        /* angles and rotations */
-        --right-rotation: var(--right-angle);
-        --left-rotation: calc(-1 * var(--left-angle));
-
-        /* design variables */
-        --canvas-to-base-node-ratio: ${GEOMETRY.canvasToBaseNodeRatio * 100};
-      }
-    </style>
-
+    ${fractalVars}
     <div class="canvas-inner">
       <div id="base" class="base">${Leaf()}</div>
       <div id="visual-target" class="visual-target">
