@@ -1,6 +1,6 @@
 import type { Metadata } from "../../types.js"
 import { html } from "../../utils/tags.js"
-import { Fractal } from "./components/fractal.js"
+import { Fractal, ready as fractalReady } from "./components/fractal.js"
 import { GEOMETRY } from "./components/utils/constants.js"
 
 export const metadata: Metadata = {
@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 }
 
 export const ready = () => {
-  console.log("hi from onLoad")
+  fractalReady()
 }
 
 export const content = () => {

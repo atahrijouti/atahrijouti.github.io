@@ -1,3 +1,4 @@
+import { textToHTML } from "../../../utils/html.js"
 import { html } from "../../../utils/tags.js"
 import { LeafColorNumbers } from "./utils/colors.js"
 import { COLORS, GEOMETRY, ThemeTimeout } from "./utils/constants.js"
@@ -16,7 +17,9 @@ export const Leaf = ({ level = 0, orientation }: LeafProps = {}) => {
   return html`<div
     id="${id}"
     class="leaf ${orientationClass}"
-    style="--coefficient: ${levelCoefficient}"></div>`
+    style="--coefficient: ${levelCoefficient}">
+    <div class="leaf-inner"></div>
+  </div>`
 }
 
 export const startupCoords = {
@@ -31,7 +34,7 @@ export const startupCoords = {
   },
 }
 
-export const startupGeometry = lookAtPoint(
+const startupGeometry = lookAtPoint(
   startupCoords.target.x,
   startupCoords.target.y,
   startupCoords.canvasRect,
@@ -43,6 +46,61 @@ export const leafColors = {
   "--plum-purple": LeafColorNumbers["plumPurple"],
   "--mid-gray": LeafColorNumbers["midGray"],
 } as const
+
+const MAX_DEPTH = 5
+const shuffledOrientations = (): LeafProps["orientation"][] => {
+  return Math.random() < 0.5 ? ["left", "right"] : ["right", "left"]
+}
+let timeouts = []
+
+type SowingProps = {
+  soil: Node
+  level: number
+  orientation: LeafProps["orientation"]
+}
+const sow = ({ soil, level, orientation }: SowingProps) => {
+  const seed = textToHTML(Leaf({ level, orientation }))
+  soil.appendChild(seed)
+  sprout({ level, node: seed })
+}
+
+type SproutProps = { level: number; node: HTMLElement }
+const sprout = ({ level, node }: SproutProps) => {
+  if (level >= MAX_DEPTH) {
+    return
+  }
+
+  const inner = node.firstElementChild
+  if (!inner) {
+    return
+  }
+
+  const nextLevel = level + 1
+  const fireTime = (231 * Math.random() + 321) | 0
+  const [first, second] = shuffledOrientations()
+  timeouts.push(
+    setTimeout(() => {
+      sow({ level: nextLevel, orientation: first, soil: inner })
+    }, fireTime),
+
+    setTimeout(
+      () => {
+        sow({ level: nextLevel, orientation: second, soil: inner })
+      },
+      ((765 - fireTime) * Math.random() + fireTime) | 0,
+    ),
+  )
+}
+
+export const ready = () => {
+  const root = document.getElementById("root-node")
+  if (!root) {
+    console.error("No root-node found")
+    return
+  }
+
+  sprout({ level: 0, node: root })
+}
 
 export const Fractal = () => {
   // todo: add class hidden to ball inner upon first drag
