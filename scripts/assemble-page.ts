@@ -19,6 +19,33 @@ const HMR_STRING = `<script>
   };
   </script>`
 
+const assembleMetadata = (metadata: Metadata) => {
+  const metaTags: string[] = []
+  for (const [key, value] of Object.entries(metadata)) {
+    if (!value) continue
+
+    switch (key) {
+      case "theme-color":
+      case "color-scheme":
+      case "description":
+        metaTags.push(
+          html`<meta
+            name="${key}"
+            content="${value.replaceAll('"', "&quot;").replaceAll("'", "&#39;")}" />`,
+        )
+        break
+      case "manifest":
+        metaTags.push(html`<link rel="manifest" href="${value}" />`)
+        break
+      case "icon":
+        metaTags.push(html`<link rel="icon" href="${value}" type="image/png" />`)
+        break
+    }
+  }
+
+  return metaTags.join("\n")
+}
+
 export const assemblePage = async (pageName: string) => {
   const layoutPath = path.resolve("./src/main.layout.html")
   const modulePath = path.resolve(`./src/app/${pageName}/index.ts`)
@@ -81,14 +108,7 @@ export const assemblePage = async (pageName: string) => {
     )
   }
 
-  assembledHtml = assembledHtml.replace(
-    "<!-- {{metadata}} -->",
-    html`
-      <meta
-        name="description"
-        content="${metadata.description.replaceAll('"', "&quot;").replaceAll("'", "&#39;")}" />
-    `,
-  )
+  assembledHtml = assembledHtml.replace("<!-- {{metadata}} -->", assembleMetadata(metadata))
   assembledHtml = assembledHtml.replace("<!-- {{content}} -->", content())
 
   return {
