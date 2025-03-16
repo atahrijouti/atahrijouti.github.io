@@ -10,7 +10,6 @@
   transform-origin: bottom left;
   transform: scale(var(--left-scale)) rotate(var(--left-rotation));
 }
-)
 
 .leaf.right {
   right: 0;
@@ -26,7 +25,7 @@
   background-color: var(--leaf-background-color);
   transition:
     background var(--color-transition),
-    transform var(--visual-target-transition);
+    transform all 100ms;
   .leaf-inner > & {
     position: absolute;
   }
