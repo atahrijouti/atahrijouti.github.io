@@ -9,10 +9,14 @@ type LeafProps = {
   level?: number
 }
 export const Leaf = ({ level = 0, orientation }: LeafProps = {}) => {
+  const levelCoefficient = Math.pow(0.87, level)
   const id = level === 0 ? "root-node" : `Node-${level}-${orientation == "right" ? 0 : 1}`
   const orientationClass = orientation ? (orientation === "right" ? orientation : "left") : ""
   //
-  return html`<div id="${id}" class="leaf ${orientationClass}"></div>`
+  return html`<div
+    id="${id}"
+    class="leaf ${orientationClass}"
+    style="--coefficient: ${levelCoefficient}"></div>`
 }
 
 export const startupCoords = {
