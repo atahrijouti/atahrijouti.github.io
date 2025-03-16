@@ -1,5 +1,5 @@
-@import url("./fractal.css");
-@import url("./leaf.css");
+@import url("./components/fractal.css");
+@import url("./components/leaf.css");
 
 .home-page {
   position: relative;

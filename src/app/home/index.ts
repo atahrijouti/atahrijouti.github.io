@@ -1,7 +1,7 @@
 import type { Metadata } from "../../types.js"
 import { html } from "../../utils/tags.js"
 import { Fractal } from "./components/fractal.js"
-import { GEOMETRY } from "./utils/constants.js"
+import { GEOMETRY } from "./components/utils/constants.js"
 
 export const metadata: Metadata = {
   title: "Abderrahmane TAHRI JOUTI",

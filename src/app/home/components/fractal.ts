@@ -1,7 +1,8 @@
 import { html } from "../../../utils/tags.js"
-import { LeafColorNumbers } from "../utils/colors.js"
-import { COLORS, GEOMETRY, ThemeTimeout } from "../utils/constants.js"
-import { lookAtPoint } from "../utils/math.js"
+import { LeafColorNumbers } from "./utils/colors.js"
+import { COLORS, GEOMETRY, ThemeTimeout } from "./utils/constants.js"
+import { lookAtPoint } from "./utils/math.js"
+import { geometryToStyles } from "./utils/style.js"
 
 type LeafProps = {
   orientation?: "left" | "right"
@@ -42,6 +43,11 @@ export const leafColors = {
 export const Fractal = () => {
   // todo: add class hidden to ball inner upon first drag
   return html`<div id="canvas" class="fractal canvas">
+    <style id="live-fractal-styles">
+      .fractal {
+        ${geometryToStyles(startupGeometry)}
+      }
+    </style>
     <style>
       .fractal {
           /* rgb colors */
@@ -65,16 +71,7 @@ export const Fractal = () => {
         --color-transition: ${ThemeTimeout / 2}ms;
         --movement-transition: ${ThemeTimeout / 3}ms;
 
-        /* startup geometry */
-        --left-scale: ${startupGeometry.leftScale};
-        --right-scale: ${startupGeometry.rightScale};
-        --left-angle: ${startupGeometry.leftAngle}deg;
-        --right-angle: ${startupGeometry.rightAngle}deg;
-        --polarity-x: ${startupGeometry.polarityX};
-        --polarity-y: ${startupGeometry.polarityY};
-        --visual-x: ${startupGeometry.visualTargetX}%;
-        --visual-y: ${startupGeometry.visualTargetY}%;
-
+        /* angles and rotations */
         --right-rotation: var(--right-angle);
         --left-rotation: calc(-1 * var(--left-angle));
 
