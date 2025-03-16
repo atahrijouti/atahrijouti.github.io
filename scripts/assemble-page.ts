@@ -81,6 +81,14 @@ export const assemblePage = async (pageName: string) => {
     )
   }
 
+  assembledHtml = assembledHtml.replace(
+    "<!-- {{metadata}} -->",
+    html`
+      <meta
+        name="description"
+        content="${metadata.description.replaceAll('"', "&quot;").replaceAll("'", "&#39;")}" />
+    `,
+  )
   assembledHtml = assembledHtml.replace("<!-- {{content}} -->", content())
 
   return {
