@@ -66,8 +66,10 @@ export const assemblePage = async (pageName: string) => {
   assembledHtml = assembledHtml.replace(
     "<!-- {{scripts}} -->",
     html`<script type="module">
-        import { onLoad } from "/app/${pageName}/index.js"
-        document.addEventListener("DOMContentLoaded", onLoad)
+        import * as pageModule from "/app/${pageName}/index.js"
+        if (typeof pageModule.ready === "function") {
+          document.addEventListener("DOMContentLoaded", pageModule.ready)
+        }
       </script>
       ${HMR_STRING}`,
   )

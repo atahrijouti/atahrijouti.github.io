@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     "Product oriented Technical professional with a strong background in building web applications.",
 }
 
-export const onLoad = () => {
+export const ready = () => {
   console.log("hi from onLoad")
 }
 
