@@ -9,14 +9,14 @@
     content: "";
     z-index: -1;
     position: absolute;
-    background: rgb(var(--growing-leaf-var));
+    background: rgb(var(--growing-leaf));
     transition:
       background var(--color-transition) ease-in,
       top var(--movement-transition) ease-out,
       left var(--movement-transition) ease-out;
     transition-timing-function: ease-in-out;
     width: 100%;
-    height: "100%";
+    height: 100%;
     top: calc(-10% * -1 * var(--polarity-y));
     left: calc(-10% * var(--polarity-x));
     filter: blur(100px);
@@ -25,7 +25,7 @@
     content: "";
     z-index: -2;
     position: absolute;
-    background: rgba(var(--growing-leaf-var), 0.5);
+    background: rgba(var(--growing-leaf), 0.5);
     transition: background var(--color-transition) ease-in`;
     transition-timing-function: ease-in-out;
     width: 100%;
@@ -93,7 +93,7 @@
     top: 50%;
     translate: 0 -50%;
     left: calc(100% + 20px);
-    whitespace: nowrap;
+    white-space: nowrap;
   }
   &.hidden:before {
     visibility: hidden;

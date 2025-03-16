@@ -51,7 +51,7 @@ const MAX_DEPTH = 5
 const shuffledOrientations = (): LeafProps["orientation"][] => {
   return Math.random() < 0.5 ? ["left", "right"] : ["right", "left"]
 }
-let timeouts = []
+const timeouts: Timer[] = []
 
 type SowingProps = {
   soil: Node
@@ -90,6 +90,10 @@ const sprout = ({ level, node }: SproutProps) => {
       ((765 - fireTime) * Math.random() + fireTime) | 0,
     ),
   )
+}
+
+export const unload = () => {
+  timeouts.forEach((timeout) => clearTimeout(timeout))
 }
 
 export const ready = () => {
