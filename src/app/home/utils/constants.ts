@@ -19,11 +19,12 @@ export type Rgb = `rgb(${RgbNumbers})`
 export const COLORS = {
   clearDaySky: "rgb(46, 181, 229)",
   clearNightSky: "rgb(0, 0, 30)",
-  duskBlue: "rgb(0, 0, 70)",
-  sun: "rgb(253, 184, 19)",
-  moon: "rgb(246, 241, 213)",
+  midnightBlue: "rgb(0, 0, 70)",
+  goldenSun: "rgb(253, 184, 19)",
+  moonGlow: "rgb(246, 241, 213)",
 
   leafyGreen: "rgb(135, 191, 67)",
   pinkRed: "rgb(246, 62, 98)",
-  mudPurple: "rgb(132, 74, 135)",
-} as Record<string, Rgb>
+  plumPurple: "rgb(132, 74, 135)",
+  midGray: "rgb(128, 128, 128)",
+} as const satisfies Record<string, Rgb>

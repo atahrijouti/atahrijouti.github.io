@@ -1,10 +1,6 @@
 @import url("./fractal.css");
 @import url("./leaf.css");
 
-:root {
-  --light-yellow-color: "254, 254, 215";
-}
-
 .home-page {
   position: relative;
   display: flex;

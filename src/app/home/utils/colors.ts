@@ -1,17 +1,18 @@
 import { COLORS, type Rgb, type RgbNumbers } from "./constants.js"
 
-const { leafyGreen, mudPurple, pinkRed } = COLORS
+const { leafyGreen, plumPurple, pinkRed, midGray } = COLORS
 
 export const RgbLeafColors = {
   leafyGreen,
   pinkRed,
-  mudPurple,
+  plumPurple,
+  midGray,
 } as const
 
-type ColorNames = keyof typeof RgbLeafColors
+type LeafColorNames = keyof typeof RgbLeafColors
 
 export const LeafColorNumbers = (() => {
-  const entries = Object.entries(RgbLeafColors) as [ColorNames, Rgb][]
+  const entries = Object.entries(RgbLeafColors) as [LeafColorNames, Rgb][]
   return entries.reduce(
     (acc, [colorName, rgbValue]) => {
       acc[colorName] = rgbValue.replace(/\)|rgb\(|\s/g, "").trim() as RgbNumbers
