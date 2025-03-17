@@ -113,6 +113,10 @@ export const assemblePage = async (pageName: string): Promise<{ status: number; 
   assembledHtml = assembledHtml.replace("<!-- {{metadata}} -->", assembleMetadata(metadata))
   assembledHtml = assembledHtml.replace("<!-- {{content}} -->", content())
 
+  if (process.env.NODE_ENV != "development") {
+    const HTML_COMMENT_REGEX = /<!--\s*{{[^}]+}}\s*-->/g
+    assembledHtml = assembledHtml.replace(HTML_COMMENT_REGEX, "")
+  }
   return {
     status: 200,
     html: await prettier.format(assembledHtml, { parser: "html" }),
