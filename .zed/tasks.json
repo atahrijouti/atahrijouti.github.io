@@ -1,0 +1,6 @@
+[
+  {
+    "label": "Run project",
+    "command": "bun run dev"
+  }
+]

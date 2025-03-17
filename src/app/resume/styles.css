@@ -1,0 +1,32 @@
+.resume-page dl {
+  padding-left: 0;
+  padding-inline-start: 0;
+}
+
+.resume-page dd {
+  margin-left: 0;
+  margin-inline-start: 0;
+}
+
+.resume-page h2 {
+  margin-bottom: calc(var(--pico-typography-spacing-vertical) * 0.25);
+}
+
+.resume-page h3 {
+  margin-bottom: calc(var(--pico-typography-spacing-vertical) * 0.125);
+}
+
+.skill-item:not(:first-child):before,
+.employer-detail span:not(:first-child):before,
+.location small:not(:first-child):before {
+  content: "\00B7";
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+}
+
+.location {
+  display: inline;
+  small {
+    white-space: nowrap;
+  }
+}

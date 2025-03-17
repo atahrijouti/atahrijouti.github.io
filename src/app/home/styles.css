@@ -1,0 +1,22 @@
+@import url("./components/fractal.css");
+@import url("./components/leaf.css");
+
+.home-page {
+  position: relative;
+  display: flex;
+  min-height: 100%;
+  justify-content: center;
+  @media screen and (max-width: 576px) {
+    justify-content: start;
+  }
+}
+
+.canvas-outer {
+  position: absolute;
+  width: calc(var(--canvas-width) * 1%);
+  max-width: calc(85vh - (4 * var(--pico-spacing)));
+  aspect-ratio: 1;
+  @media screen and (max-width: 576px) {
+    width: 95%;
+  }
+}
