@@ -1,0 +1,51 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  min-height: 100vh;
+}
+
+.root {
+  display: flex;
+  flex: 1 1 auto;
+}
+
+.nav {
+  grid-area: "nav";
+}
+
+.menu {
+  list-style-type: none;
+  padding: 0;
+  li {
+    list-style: none;
+  }
+}
+
+.main {
+  grid-area: main;
+}
+
+.layout {
+  display: grid;
+  grid-template: "nav main" 1fr / auto 1fr;
+
+  gap: calc(var(--pico-spacing) * 3);
+  flex: 1;
+  padding-left: calc(var(--pico-spacing) * 1.5);
+  padding-top: calc(var(--pico-spacing) * 1.5);
+  padding-right: calc(var(--pico-spacing) * 3);
+}
+
+@media screen and (max-width: 576px) {
+  grid-template: "construction-notice" auto "nav" auto "main" 1fr / minmax(0, 1fr);
+  gap: var(--pico-spacing);
+  padding-left: var(--pico-spacing);
+  padding-right: var(--pico-spacing);
+}

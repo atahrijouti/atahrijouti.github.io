@@ -1,37 +1,19 @@
 {
-  "private": true,
-  "name": "tahri.dev",
-  "engines": {
-    "node": "22"
-  },
+  "name": "vanilla.tahri.dev",
+  "module": "index.ts",
+  "type": "module",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "export": "next export",
-    "lint": "next lint",
-    "typecheck": "tsc"
-  },
-  "dependencies": {
-    "@picocss/pico": "2.0.6",
-    "classnames": "2.5.1",
-    "next": "15.0.3",
-    "react": "18.3.1",
-    "react-dom": "18.3.1"
+    "dev": "NODE_ENV=development bun run scripts/server.ts",
+    "build": "bun run scripts/build.ts"
   },
   "devDependencies": {
-    "@tsconfig/node22": "22.0.0",
-    "@types/lodash": "4.17.13",
-    "@types/node": "22.9.0",
-    "@types/react": "18.3.12",
-    "@types/react-dom": "18.3.1",
-    "@vanilla-extract/css": "1.16.0",
-    "@vanilla-extract/dynamic": "2.1.2",
-    "@vanilla-extract/next-plugin": "2.4.6",
-    "eslint": "9.14.0",
-    "eslint-config-next": "15.0.3",
-    "prettier": "3.3.3",
-    "typescript": "5.6.3"
-  },
-  "packageManager": "pnpm@9.12.3"
+    "@eslint/js": "^9.19.0",
+    "@types/bun": "^1.2.1",
+    "eslint": "^9.19.0",
+    "globals": "^15.14.0",
+    "prettier": "^3.4.2",
+    "typescript": "^5.7.3",
+    "typescript-eslint": "^8.22.0",
+    "esbuild": "^0.25.0"
+  }
 }

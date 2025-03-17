@@ -5,9 +5,6 @@ on:
     branches:
       - main
 
-env:
-  NEXT_TELEMETRY_DISABLED: 1
-
 jobs:
   lint:
     runs-on: ubuntu-latest
@@ -16,24 +13,27 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: ./.github/actions/pnpm-install
+      - uses: oven-sh/setup-bun@v2
+
+      - run: bun install
 
       - name: ESLint
         shell: bash
-        run: pnpm lint
+        run: bun run eslint
 
   typecheck:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - uses: ./.github/actions/pnpm-install
+      - uses: oven-sh/setup-bun@v2
+
+      - run: bun install
 
       - name: Typecheck
-        run: pnpm typecheck
+        run: bun run tsc
 
   build:
     runs-on: ubuntu-latest
@@ -47,10 +47,12 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: ./.github/actions/pnpm-install
+      - uses: oven-sh/setup-bun@v2
 
-      - name: Next.js build & export
-        run: pnpm run build
+      - run: bun install
+
+      - name: Build & export
+        run: bun run build
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v4
