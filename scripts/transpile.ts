@@ -27,7 +27,7 @@ export const listAllFiles = (dir: string): string[] => {
   return files
 }
 
-export const transpileTypeScriptfile = async (file: string) => {
+export const transpileTypeScriptFile = async (file: string) => {
   const fileRelativePath = path.relative(SRC_FOLDER, file)
   const outputPath = path.join(DIST_FOLDER, fileRelativePath.replace(/\.ts$/, ".js"))
 
@@ -56,7 +56,7 @@ export const copyAssetFile = async (file: string) => {
 export const transpileOrCopyFiles = async (tsFiles: string[]) => {
   for (const file of tsFiles) {
     if (file.endsWith(".ts")) {
-      transpileTypeScriptfile(file)
+      transpileTypeScriptFile(file)
     } else {
       copyAssetFile(file)
     }

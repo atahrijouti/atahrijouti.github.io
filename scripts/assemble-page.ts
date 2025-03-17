@@ -1,4 +1,5 @@
 import path from "path"
+import prettier from "prettier"
 import type { Metadata } from "../src/types"
 import { html } from "../src/utils/tags"
 import { defaultMetadata } from "../src/main.metadata"
@@ -29,11 +30,8 @@ const assembleMetadata = (metadata: Metadata) => {
       case "theme-color":
       case "color-scheme":
       case "description":
-        metaTags.push(
-          html`<meta
-            name="${key}"
-            content="${value.replaceAll('"', "&quot;").replaceAll("'", "&#39;")}" />`,
-        )
+        // prettier-ignore
+        metaTags.push(html`<meta name="${key}" content="${value.replaceAll('"', "&quot;").replaceAll("'", "&#39;")}" />`)
         break
       case "manifest":
         metaTags.push(html`<link rel="manifest" href="${value}" />`)
@@ -91,16 +89,19 @@ export const assemblePage = async (pageName: string): Promise<{ status: number; 
   const responseHtml = await Bun.file(layoutPath).text()
 
   let assembledHtml = responseHtml.replace("{{title}}", metadata.title)
-  assembledHtml = assembledHtml.replace(
-    "<!-- {{scripts}} -->",
-    html`<script type="module">
-        import * as pageModule from "/app/${pageName}/index.js"
-        if (typeof pageModule.ready === "function") {
-          document.addEventListener("DOMContentLoaded", pageModule.ready)
-        }
-      </script>
-      ${HMR_STRING}`,
-  )
+
+  let scripts = html`<script type="module">
+    import * as pageModule from "/app/${pageName}/index.js"
+    if (typeof pageModule.ready === "function") {
+      document.addEventListener("DOMContentLoaded", pageModule.ready)
+    }
+  </script>`
+
+  if (process.env.NODE_ENV === "development") {
+    scripts = scripts.concat(HMR_STRING)
+  }
+
+  assembledHtml = assembledHtml.replace("<!-- {{scripts}} -->", scripts)
 
   if (await Bun.file(path.resolve(`./src/app/${pageName}/styles.css`)).exists()) {
     assembledHtml = assembledHtml.replace(
@@ -114,6 +115,6 @@ export const assemblePage = async (pageName: string): Promise<{ status: number; 
 
   return {
     status: 200,
-    html: assembledHtml,
+    html: await prettier.format(assembledHtml, { parser: "html" }),
   }
 }

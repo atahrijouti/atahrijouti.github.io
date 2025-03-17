@@ -1,6 +1,6 @@
 [
   {
     "label": "Run project",
-    "command": "bun run scripts/server.ts"
+    "command": "bun run dev"
   }
 ]
