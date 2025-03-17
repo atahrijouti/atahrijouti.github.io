@@ -1,9 +1,9 @@
 export type Task =
   | string
   | {
-    task: string
-    subTasks: string[]
-  }
+      task: string
+      subTasks: string[]
+    }
 
 export type Position = {
   title: string

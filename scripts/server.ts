@@ -67,11 +67,11 @@ const server = Bun.serve({
       })
     }
 
-    if (url.pathname === "/favicon.ico") {
-      return new Response(" ")
+    if (await Bun.file(`./dist${url.pathname}`).exists()) {
+      return new Response(Bun.file(`./dist${url.pathname}`))
     }
 
-    return new Response(Bun.file(`./dist${url.pathname}`))
+    return new Response(Bun.file(`./public${url.pathname}`))
   },
   websocket: {
     open(ws) {

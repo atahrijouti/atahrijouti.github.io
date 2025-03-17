@@ -1,6 +1,7 @@
 import path from "path"
 import type { Metadata } from "../src/types"
 import { html } from "../src/utils/tags"
+import { defaultMetadata } from "../src/main.metadata"
 
 const HMR_STRING = `<script>
   let ws = new WebSocket("ws://localhost:3000");
@@ -46,15 +47,12 @@ const assembleMetadata = (metadata: Metadata) => {
   return metaTags.join("\n")
 }
 
-export const assemblePage = async (pageName: string) => {
+export const assemblePage = async (pageName: string): Promise<{ status: number; html: string }> => {
   const layoutPath = path.resolve("./src/main.layout.html")
   const modulePath = path.resolve(`./src/app/${pageName}/index.ts`)
 
   let content = () => "things arent working..."
-  let metadata = {
-    title: `${pageName} - 500`,
-  } as Metadata
-
+  let metadata = { ...defaultMetadata }
   if (!(await Bun.file(modulePath).exists())) {
     console.error("ts file dont exist")
     return {
@@ -72,11 +70,14 @@ export const assemblePage = async (pageName: string) => {
   }
 
   try {
-    ;({ metadata, content } = await import(modulePath))
+    const module = await import(modulePath)
 
-    if (metadata == null || content == null) {
+    if (module.metadata == null || module.content == null) {
       throw new Error("metadata or content unavailable")
     }
+
+    content = module.content
+    metadata = { ...metadata, ...module.metadata }
   } catch (err) {
     console.error(`mal-constructed ${modulePath}`, err)
     return {
