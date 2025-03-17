@@ -41,11 +41,11 @@ body {
   padding-left: calc(var(--pico-spacing) * 1.5);
   padding-top: calc(var(--pico-spacing) * 1.5);
   padding-right: calc(var(--pico-spacing) * 3);
-}
 
-@media screen and (max-width: 576px) {
-  grid-template: "construction-notice" auto "nav" auto "main" 1fr / minmax(0, 1fr);
-  gap: var(--pico-spacing);
-  padding-left: var(--pico-spacing);
-  padding-right: var(--pico-spacing);
+  @media screen and (max-width: 576px) {
+    grid-template: "construction-notice" auto "nav" auto "main" 1fr / minmax(0, 1fr);
+    gap: var(--pico-spacing);
+    padding-left: var(--pico-spacing);
+    padding-right: var(--pico-spacing);
+  }
 }
