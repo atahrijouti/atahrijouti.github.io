@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Playground</title>
+    <title>{{title}}</title>
 
     <link rel="stylesheet" href="./pico.fluid.classless.min.css" />
     <link rel="stylesheet" href="./global-styles.css" />
@@ -13,14 +13,7 @@
     <!-- {{async-scripts}} -->
     <!-- {{prefetch-links}} -->
     <!-- {{prerender-links}} -->
-    <meta
-      name="description"
-      content="A sandbox to play with the toys I have made, this is my playground and yours"
-    />
-    <link rel="manifest" href="/manifest.webmanifest" />
-    <meta name="theme-color" content="#EF3C46" />
-    <meta name="color-scheme" content="light dark" />
-    <link rel="icon" href="/favicon.ico" type="image/png" />
+    <!-- {{metadata}} -->
     <link rel="icon" href="/favicon.ico" />
   </head>
   <body>
@@ -41,19 +34,9 @@
             </ul>
           </nav>
         </aside>
-        <main class="main">
-          <div>
-            <h1>Playground</h1>
-            <p>This is a place where I showcase all my playthings</p>
-          </div>
-        </main>
+        <main class="main"><!-- {{content}} --></main>
       </div>
     </div>
-    <script type="module">
-      import * as pageModule from "/app/playground/index.js";
-      if (typeof pageModule.ready === "function") {
-        document.addEventListener("DOMContentLoaded", pageModule.ready);
-      }
-    </script>
+    <!-- {{scripts}} -->
   </body>
 </html>
