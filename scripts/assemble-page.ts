@@ -113,6 +113,14 @@ export const assemblePage = async (pageName: string): Promise<{ status: number; 
   assembledHtml = assembledHtml.replace("<!-- {{metadata}} -->", assembleMetadata(metadata))
   assembledHtml = assembledHtml.replace("<!-- {{content}} -->", content())
 
+  /**
+    Cleanup
+    1. After this line, we remove template comments
+    2. We reformat the html using prettier
+  **/
+  const HTML_COMMENT_REGEX = /<!--\s*{{[^}]+}}\s*-->/g
+  assembledHtml = assembledHtml.replace(HTML_COMMENT_REGEX, "")
+
   return {
     status: 200,
     html: await prettier.format(assembledHtml, { parser: "html" }),
