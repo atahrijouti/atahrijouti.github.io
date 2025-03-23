@@ -37,10 +37,8 @@ export const transpileTypeScriptFile = async (file: string) => {
     const transpiledCode = transformSync(code, { loader: "ts", target: "esnext", format: "esm" })
     mkdirSync(path.dirname(outputPath), { recursive: true })
     writeFileSync(outputPath, transpiledCode.code, "utf8")
-
-    // console.log(`Transpile :\t${file} -> ${outputPath}`)
   } catch (e) {
-    console.log(`Why the hell is this breakingagain???? ${e}`)
+    console.log(`Error transpiling file ${file}:`, e)
   }
 }
 
@@ -53,12 +51,14 @@ export const copyAssetFile = async (file: string) => {
   await $`cp ${file} ${outputPath}`
 }
 
-export const transpileOrCopyFiles = async (tsFiles: string[]) => {
-  for (const file of tsFiles) {
+export const transpileOrCopyFiles = async (files: string[]) => {
+  const promises = files.map((file) => {
     if (file.endsWith(".ts")) {
-      transpileTypeScriptFile(file)
+      return transpileTypeScriptFile(file)
     } else {
-      copyAssetFile(file)
+      return copyAssetFile(file)
     }
-  }
+  })
+
+  await Promise.all(promises)
 }
