@@ -11,13 +11,16 @@ const PUBLIC_FOLDER = "./public"
 const pages = readdirSync("./src/app")
 
 const build = async () => {
+  console.log("Starting build process...")
+
   await $`rm -rf ${OUT_DIR}`
-  await $`mkdir ${OUT_DIR}`
+  await $`mkdir -p ${OUT_DIR}`
 
   try {
     await transpileOrCopyFiles(listAllFiles(SRC_FOLDER))
   } catch (err) {
     console.error("Error during transpilation:", err)
+    process.exit(1)
   }
 
   await $`cp -r ${PUBLIC_FOLDER}/* ${OUT_DIR}/`
@@ -30,6 +33,8 @@ const build = async () => {
     await Bun.write(outputFile, html)
     console.log(`Generated: ${outputFile}`)
   }
+
+  console.log("Build completed successfully!")
 }
 
 build().catch(console.error)
