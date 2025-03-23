@@ -52,15 +52,15 @@ export const assemblePage = async (pageName: string): Promise<{ status: number; 
   let content = () => "things arent working..."
   let metadata = { ...defaultMetadata }
   if (!(await Bun.file(modulePath).exists())) {
-    console.error("ts file dont exist")
+    console.error("Can't access module : ${modulePath}")
     return {
       status: 500,
-      html: `<title>${pageName} - 500</title><stylesheetp>Can't access module : ${modulePath}</p>${HMR_STRING}`,
+      html: `<title>${pageName} - 500</title><p>Can't access module : ${modulePath}</p>${HMR_STRING}`,
     }
   }
 
   if (!(await Bun.file(layoutPath).exists())) {
-    console.error("layout file dont exist")
+    console.error("Can't access layout : ${layoutPath}")
     return {
       status: 500,
       html: `<title>${pageName} - 500</title><p>Can't access layout : ${layoutPath}</p>${HMR_STRING}`,
@@ -77,10 +77,10 @@ export const assemblePage = async (pageName: string): Promise<{ status: number; 
     content = module.content
     metadata = { ...metadata, ...module.metadata }
   } catch (err) {
-    console.error(`mal-constructed ${modulePath}`, err)
+    console.error(`Missing module essentials - ${modulePath}`, err)
     return {
       status: 400,
-      html: `<title>${pageName} - 400</title><p>missing module essentials - ${modulePath}</p><p>${err}</p>${HMR_STRING}`,
+      html: `<title>${pageName} - 400</title><p>Missing module essentials - ${modulePath}</p><p>${err}</p>${HMR_STRING}`,
     }
   }
 
