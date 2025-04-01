@@ -6,3 +6,8 @@ export type Metadata = {
   "color-scheme"?: string
   icon?: string
 }
+
+export type Module = {
+  metadata: Metadata
+  content: () => string
+}
