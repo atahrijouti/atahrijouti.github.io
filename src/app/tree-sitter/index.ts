@@ -1,5 +1,6 @@
 import type { Metadata } from "../../types.js"
 import { html } from "../../utils/tags.js"
+import * as test from "/node_modules/web-tree-sitter/tree-sitter.js"
 
 export const metadata: Metadata = {
   title: "Tree sitter preview",
@@ -7,6 +8,7 @@ export const metadata: Metadata = {
 }
 
 export const ready = async () => {
+  console.log(test)
   console.log("tree sitter things")
 }
 
