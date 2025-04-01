@@ -1,3 +1,4 @@
 {
-  "web-tree-sitter": "./node_modules/web-tree-sitter/tree-sitter.js"
+  "web-tree-sitter": "./node_modules/web-tree-sitter/tree-sitter.js",
+  "web-tree-sitter/tree-sitter.wasm": "./node_modules/web-tree-sitter/tree-sitter.wasm"
 }

@@ -1,6 +1,6 @@
 import type { Metadata } from "../../types.js"
 import { html } from "../../utils/tags.js"
-import * as test from "web-tree-sitter"
+import { Language, Parser } from "web-tree-sitter"
 
 export const metadata: Metadata = {
   title: "Tree sitter preview",
@@ -8,8 +8,13 @@ export const metadata: Metadata = {
 }
 
 export const ready = async () => {
-  console.log(test)
-  console.log("tree sitter things")
+  await Parser.init({})
+  const parser = new Parser()
+  const JavaScript = await Language.load("/tree-sitter-javascript.wasm")
+  parser.setLanguage(JavaScript)
+  const sourceCode = "let x = 1; console.log(x);"
+  const tree = parser.parse(sourceCode)
+  console.log(tree)
 }
 
 export const content = () => {

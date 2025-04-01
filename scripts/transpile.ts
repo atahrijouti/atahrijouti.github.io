@@ -33,13 +33,13 @@ export const transpileTypeScriptFile = async (file: string) => {
   try {
     mkdirSync(path.dirname(outputPath), { recursive: true })
 
-    const transpiledCode = transformSync(code, {
+    const transpiled = transformSync(code, {
       loader: "ts",
       target: "esnext",
       format: "esm",
-    }).code
+    })
 
-    writeFileSync(outputPath, transpiledCode, "utf8")
+    writeFileSync(outputPath, transpiled.code, "utf8")
   } catch (e) {
     console.log(`Error transpiling file ${file}:`, e)
   }
