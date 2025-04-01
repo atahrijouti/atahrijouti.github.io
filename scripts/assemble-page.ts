@@ -1,6 +1,6 @@
 import path from "path"
 import prettier from "prettier"
-import type { Metadata } from "../src/types"
+import type { Metadata, Module } from "../src/types"
 import { html } from "../src/utils/tags"
 import { defaultMetadata } from "../src/main.metadata"
 
@@ -68,7 +68,7 @@ export const assemblePage = async (pageName: string): Promise<{ status: number; 
   }
 
   try {
-    const module = await import(modulePath)
+    const module: Module = await import(modulePath)
 
     if (module.metadata == null || module.content == null) {
       throw new Error("metadata or content unavailable")
@@ -88,7 +88,7 @@ export const assemblePage = async (pageName: string): Promise<{ status: number; 
 
   let assembledHtml = responseHtml.replace("{{title}}", metadata.title)
 
-  let scripts = html`<script type="module">
+  let scriptsHtml = html`<script type="module">
     import * as pageModule from "/app/${pageName}/index.js"
     if (typeof pageModule.ready === "function") {
       document.addEventListener("DOMContentLoaded", pageModule.ready)
@@ -96,10 +96,10 @@ export const assemblePage = async (pageName: string): Promise<{ status: number; 
   </script>`
 
   if (process.env.NODE_ENV === "development") {
-    scripts = scripts.concat(HMR_STRING)
+    scriptsHtml = scriptsHtml.concat(HMR_STRING)
   }
 
-  assembledHtml = assembledHtml.replace("<!-- {{scripts}} -->", scripts)
+  assembledHtml = assembledHtml.replace("<!-- {{scripts}} -->", scriptsHtml)
 
   if (await Bun.file(path.resolve(`./src/app/${pageName}/styles.css`)).exists()) {
     assembledHtml = assembledHtml.replace(
@@ -111,10 +111,18 @@ export const assemblePage = async (pageName: string): Promise<{ status: number; 
   assembledHtml = assembledHtml.replace("<!-- {{metadata}} -->", assembleMetadata(metadata))
   assembledHtml = assembledHtml.replace("<!-- {{content}} -->", content())
 
+  if (process.env.NODE_ENV === "development") {
+    assembledHtml = assembledHtml.replace(
+      /<!-- {{build-only:start}} -->[\s\S]*?<!-- {{build-only:end}} -->/g,
+      "",
+    )
+  }
+
   if (process.env.NODE_ENV != "development") {
     const HTML_COMMENT_REGEX = /<!--\s*{{[^}]+}}\s*-->/g
     assembledHtml = assembledHtml.replace(HTML_COMMENT_REGEX, "")
   }
+
   return {
     status: 200,
     html: await prettier.format(assembledHtml, { parser: "html" }),
