@@ -1,0 +1,3 @@
+{
+  "web-tree-sitter": "./node_modules/web-tree-sitter/tree-sitter.js"
+}

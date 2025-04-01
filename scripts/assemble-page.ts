@@ -3,6 +3,7 @@ import prettier from "prettier"
 import type { Metadata, Module } from "../src/types"
 import { html } from "../src/utils/tags"
 import { defaultMetadata } from "../src/main.metadata"
+import importMap from "../src/import-map.json"
 
 const HMR_STRING = `<script>
   let ws = new WebSocket("ws://localhost:3000");
@@ -88,12 +89,17 @@ export const assemblePage = async (pageName: string): Promise<{ status: number; 
 
   let assembledHtml = responseHtml.replace("{{title}}", metadata.title)
 
-  let scriptsHtml = html`<script type="module">
-    import * as pageModule from "/app/${pageName}/index.js"
-    if (typeof pageModule.ready === "function") {
-      document.addEventListener("DOMContentLoaded", pageModule.ready)
-    }
-  </script>`
+  let scriptsHtml = html`<script type="importmap">
+      {
+        "imports": ${JSON.stringify(importMap)}
+      }
+    </script>
+    <script type="module">
+      import * as pageModule from "/app/${pageName}/index.js"
+      if (typeof pageModule.ready === "function") {
+        document.addEventListener("DOMContentLoaded", pageModule.ready)
+      }
+    </script>`
 
   if (process.env.NODE_ENV === "development") {
     scriptsHtml = scriptsHtml.concat(HMR_STRING)

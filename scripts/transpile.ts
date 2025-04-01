@@ -2,6 +2,7 @@ import { $ } from "bun"
 import { transformSync } from "esbuild"
 import { mkdirSync, readdirSync, statSync, writeFileSync } from "fs"
 import path from "path"
+import importMap from "../src/import-map.json"
 
 const SRC_FOLDER = "./src"
 const DIST_FOLDER = "./dist"
@@ -23,26 +24,6 @@ export const listAllFiles = (dir: string): string[] => {
   return files
 }
 
-const scanForNodeModulesImports = (fileContent: string): string[] => {
-  const regex =
-    /import\s+(?:.*\s+from\s+)?['"]\/node_modules\/[^'"]+['"]|from\s+['"]\/node_modules\/[^'"]+['"]/g
-
-  const matches = fileContent.match(regex) || []
-
-  const imports = matches
-    .map((match) => {
-      const pathMatch = match.match(/['"]\/node_modules\/[^'"]+['"]/)
-      if (pathMatch) {
-        // Remove quotes
-        return pathMatch[0].slice(1, -1)
-      }
-      return null
-    })
-    .filter((match) => match != null)
-
-  return imports
-}
-
 export const transpileTypeScriptFile = async (file: string) => {
   const fileRelativePath = path.relative(SRC_FOLDER, file)
   const outputPath = path.join(DIST_FOLDER, fileRelativePath.replace(/\.ts$/, ".js"))
@@ -57,15 +38,6 @@ export const transpileTypeScriptFile = async (file: string) => {
       target: "esnext",
       format: "esm",
     }).code
-
-    const imports = scanForNodeModulesImports(transpiledCode)
-    imports.map((filePath) =>
-      copyKeepingStructure(
-        path.join("./node_modules", filePath.replace(/^\/node_modules\//, "")),
-        NODE_MODULES_FOLDER,
-        `${DIST_FOLDER}/node_modules`,
-      ),
-    )
 
     writeFileSync(outputPath, transpiledCode, "utf8")
   } catch (e) {
@@ -83,7 +55,7 @@ export const copyKeepingStructure = async (file: string, src: string, dest: stri
 }
 
 export const transpileOrCopyFiles = async (files: string[]) => {
-  const promises = files.map((file) => {
+  const srcPromises = files.map((file) => {
     if (file.endsWith(".ts")) {
       return transpileTypeScriptFile(file)
     } else {
@@ -91,5 +63,14 @@ export const transpileOrCopyFiles = async (files: string[]) => {
     }
   })
 
-  await Promise.all(promises)
+  const nodeModulesPromises = Object.values(importMap)
+    .filter((target) => target.startsWith("./node_modules/"))
+    .map((target) => {
+      const relativeToNodeModules = target.replace("./node_modules/", "")
+      const src = path.join(NODE_MODULES_FOLDER, relativeToNodeModules)
+      const dest = path.join(`${DIST_FOLDER}/node_modules`, relativeToNodeModules)
+      copyKeepingStructure(target, src, dest)
+    })
+
+  await Promise.all([...srcPromises, ...nodeModulesPromises])
 }
