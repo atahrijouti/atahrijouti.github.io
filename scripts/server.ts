@@ -1,9 +1,13 @@
+#!/usr/bin/env bun
+
 import { readdirSync, watch } from "fs"
 
 import { $, type ServerWebSocket } from "bun"
 import { assemblePage } from "./assemble-page"
 import { listAllFiles, transpileOrCopyFiles } from "./transpile"
 import { clearImportCache, debounce } from "./utils"
+
+process.env.NODE_ENV = "development"
 
 const SRC_FOLDER = "./src"
 const DIST_FOLDER = "./dist"

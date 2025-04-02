@@ -1,9 +1,8 @@
 {
-  "name": "vanilla.tahri.dev",
-  "module": "index.ts",
+  "name": "atahrijouti.github.io",
   "type": "module",
   "scripts": {
-    "dev": "NODE_ENV=development bun run scripts/server.ts",
+    "dev": "bun run scripts/server.ts",
     "build": "bun run scripts/build.ts"
   },
   "devDependencies": {

@@ -117,9 +117,9 @@ export const assemblePage = async (pageName: string): Promise<{ status: number; 
   assembledHtml = assembledHtml.replace("<!-- {{metadata}} -->", assembleMetadata(metadata))
   assembledHtml = assembledHtml.replace("<!-- {{content}} -->", content())
 
-  if (process.env.NODE_ENV === "development") {
+  if (process.env.NODE_ENV !== "production") {
     assembledHtml = assembledHtml.replace(
-      /<!-- {{build-only:start}} -->[\s\S]*?<!-- {{build-only:end}} -->/g,
+      /<!-- {{production-only:start}} -->[\s\S]*?<!-- {{production-only:end}} -->/g,
       "",
     )
   }
