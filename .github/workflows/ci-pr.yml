@@ -50,4 +50,4 @@ jobs:
       - run: bun install
 
       - name: Build & export
-        run: bun run build
+        run: bun run build:prod

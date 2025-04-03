@@ -3,7 +3,8 @@
   "type": "module",
   "scripts": {
     "serve": "bun run unbundle-serve",
-    "build": "bun run unbundle-build"
+    "build": "bun run unbundle-build",
+    "build:prod": "NODE_ENV=production bun run unbundle-build"
   },
   "trustedDependencies": [
     "unbundle"

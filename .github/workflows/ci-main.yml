@@ -52,7 +52,7 @@ jobs:
       - run: bun install
 
       - name: Build & export
-        run: bun run build
+        run: bun run build:prod
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v4
