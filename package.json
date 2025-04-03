@@ -2,8 +2,8 @@
   "name": "atahrijouti.github.io",
   "type": "module",
   "scripts": {
-    "dev": "bun run scripts/server.ts",
-    "build": "bun run scripts/build.ts"
+    "serve": "bun run unbundle-serve",
+    "build": "bun run unbundle-build"
   },
   "devDependencies": {
     "@eslint/js": "^9.19.0",
@@ -13,7 +13,8 @@
     "globals": "^15.14.0",
     "prettier": "^3.4.2",
     "typescript": "^5.7.3",
-    "typescript-eslint": "^8.22.0"
+    "typescript-eslint": "^8.22.0",
+    "unbundle": "link:unbundle"
   },
   "dependencies": {
     "web-tree-sitter": "^0.25.3"

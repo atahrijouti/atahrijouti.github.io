@@ -1,4 +1,4 @@
-import type { Metadata } from "./types.js"
+import type { Metadata } from "unbundle"
 
 export const defaultMetadata: Metadata = {
   title: "Abderrahmane TAHRI JOUTI",

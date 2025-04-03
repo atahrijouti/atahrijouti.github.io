@@ -1,4 +1,5 @@
 {
   "web-tree-sitter": "./node_modules/web-tree-sitter/tree-sitter.js",
+  "unbundle": "./node_modules/unbundle/dist/client/index.js",
   "web-tree-sitter/tree-sitter.wasm": "./node_modules/web-tree-sitter/tree-sitter.wasm"
 }

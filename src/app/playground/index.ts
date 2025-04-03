@@ -1,5 +1,4 @@
-import type { Metadata } from "../../types.js"
-import { html } from "../../utils/tags.js"
+import { html, type Metadata } from "unbundle"
 
 export const metadata: Metadata = {
   title: "Playground",
