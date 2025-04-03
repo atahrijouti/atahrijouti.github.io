@@ -1,6 +1,6 @@
 [
   {
     "label": "Run project",
-    "command": "bun run dev"
+    "command": "bun run serve"
   }
 ]

@@ -1,9 +1,7 @@
-import type { Metadata } from "../../types.js"
-import { html } from "../../utils/tags.js"
 import type { EmploymentData, Task } from "./types.js"
 
 import employments from "./data.json" with { type: "json" }
-import { $loop } from "../../utils/render.js"
+import { $loop, html, type Metadata } from "unbundle"
 
 type DateDetailProps = {
   startDate: string

@@ -1,7 +1,7 @@
 import globals from "globals"
 import eslint from "@eslint/js"
 import tseslint from "typescript-eslint"
-import my from "./eslint/my.js"
+import unbundle from "unbundle/eslint"
 
 /** @type {import('eslint').Linter.Config[]} */
 export default tseslint.config(
@@ -11,8 +11,8 @@ export default tseslint.config(
   },
   {
     files: ["src/**/*.ts"],
-    plugins: { my },
-    rules: my.configs.recommended.rules,
+    plugins: { unbundle },
+    rules: unbundle.configs.recommended.rules,
   },
   //
   { languageOptions: { globals: globals.browser } },

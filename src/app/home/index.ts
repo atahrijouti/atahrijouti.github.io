@@ -1,5 +1,4 @@
-import type { Metadata } from "../../types.js"
-import { html } from "../../utils/tags.js"
+import { html, type Metadata } from "unbundle"
 import { Fractal, ready as fractalReady } from "./components/fractal.js"
 import { GEOMETRY } from "./components/utils/constants.js"
 

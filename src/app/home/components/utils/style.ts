@@ -1,4 +1,4 @@
-import { css } from "../../../../utils/tags.js"
+import { css } from "unbundle"
 import type { FractalGeometry } from "./math.js"
 
 export const geometryToStyles = (geometry: FractalGeometry) => css`
