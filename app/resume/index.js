@@ -1,6 +1,5 @@
-import { html } from "../../utils/tags.js";
 import employments from "./data.json" with { type: "json" };
-import { $loop } from "../../utils/render.js";
+import { $loop, html } from "unbundle";
 const Skills = ({ skills }) => {
   const theSkills = $loop(skills, (skill) => html`<span class="skill-item">${skill}</span>`);
   return html`<small><strong>Skills</strong> : <em>${theSkills}</em></small>`;

@@ -14,10 +14,6 @@
       name="description"
       content="Product oriented Technical professional with a strong background in building web applications."
     />
-    <link rel="manifest" href="/manifest.webmanifest" />
-    <meta name="theme-color" content="#EF3C46" />
-    <meta name="color-scheme" content="light dark" />
-    <link rel="icon" href="/favicon.ico" type="image/png" />
     <link rel="icon" href="/favicon.ico" />
   </head>
   <body>
@@ -118,16 +114,18 @@
         </main>
       </div>
     </div>
+    <script type="importmap">
+      {
+        "imports": {
+          "unbundle": "./node_modules/unbundle/dist/client/index.js"
+        }
+      }
+    </script>
     <script type="module">
       import * as pageModule from "/app/home/index.js";
       if (typeof pageModule.ready === "function") {
         document.addEventListener("DOMContentLoaded", pageModule.ready);
       }
     </script>
-    <script
-      defer
-      src="https://static.cloudflareinsights.com/beacon.min.js"
-      data-cf-beacon='{"token": "f262040c05ca4158a7cd6be56b3f1028"}'
-    ></script>
   </body>
 </html>

@@ -1,4 +1,4 @@
-import { html } from "../../utils/tags.js";
+import { html } from "unbundle";
 import { Fractal, ready as fractalReady } from "./components/fractal.js";
 import { GEOMETRY } from "./components/utils/constants.js";
 const metadata = {

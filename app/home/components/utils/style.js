@@ -1,4 +1,4 @@
-import { css } from "../../../../utils/tags.js";
+import { css } from "unbundle";
 const geometryToStyles = (geometry) => css`
   --left-scale: ${geometry.leftScale};
   --right-scale: ${geometry.rightScale};

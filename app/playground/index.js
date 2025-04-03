@@ -1,4 +1,4 @@
-import { html } from "../../utils/tags.js";
+import { html } from "unbundle";
 const metadata = {
   title: "Playground",
   description: "A sandbox to play with the toys I have made, this is my playground and yours"

@@ -1,5 +1,4 @@
-import { textToHTML } from "../../../utils/html.js";
-import { html } from "../../../utils/tags.js";
+import { html, textToHTML } from "unbundle";
 import { LeafColorNumbers } from "./utils/colors.js";
 import { COLORS, GEOMETRY, ThemeTimeout } from "./utils/constants.js";
 import { lookAtPoint } from "./utils/math.js";

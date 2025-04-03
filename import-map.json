@@ -1,0 +1,3 @@
+{
+  "unbundle": "./node_modules/unbundle/dist/client/index.js"
+}
