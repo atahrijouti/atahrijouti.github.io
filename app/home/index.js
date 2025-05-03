@@ -1,13 +1,14 @@
-import { html } from "unbundle";
-import { Fractal, ready as fractalReady } from "./components/fractal.js";
-import { GEOMETRY } from "./components/utils/constants.js";
+import { html } from "unbundle"
+import { Fractal, ready as fractalReady } from "./components/fractal.js"
+import { GEOMETRY } from "./components/utils/constants.js"
 const metadata = {
   title: "Abderrahmane TAHRI JOUTI",
-  description: "Product oriented Technical professional with a strong background in building web applications."
-};
+  description:
+    "Product oriented Technical professional with a strong background in building web applications.",
+}
 const ready = () => {
-  fractalReady();
-};
+  fractalReady()
+}
 const content = () => {
   return html`<div class="home-page">
     <style>
@@ -16,10 +17,7 @@ const content = () => {
       }
     </style>
     <div class="canvas-outer">${Fractal()}</div>
-  </div>`;
-};
-export {
-  content,
-  metadata,
-  ready
-};
+  </div>`
+}
+document.addEventListener("DOMContentLoaded", ready)
+export { content, metadata, ready }

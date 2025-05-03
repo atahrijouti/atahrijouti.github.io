@@ -121,12 +121,7 @@
         }
       }
     </script>
-    <script type="module">
-      import * as pageModule from "/app/home/index.js";
-      if (typeof pageModule.ready === "function") {
-        document.addEventListener("DOMContentLoaded", pageModule.ready);
-      }
-    </script>
+    <script type="module" src="/app/home/index.js"></script>
 
     <script
       defer

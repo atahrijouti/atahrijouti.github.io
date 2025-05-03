@@ -1,4 +1,4 @@
-import { css } from "unbundle";
+import { css } from "unbundle"
 const geometryToStyles = (geometry) => css`
   --left-scale: ${geometry.leftScale};
   --right-scale: ${geometry.rightScale};
@@ -8,7 +8,5 @@ const geometryToStyles = (geometry) => css`
   --polarity-y: ${geometry.polarityY};
   --visual-x: ${geometry.visualTargetX}%;
   --visual-y: ${geometry.visualTargetY}%;
-`;
-export {
-  geometryToStyles
-};
+`
+export { geometryToStyles }
