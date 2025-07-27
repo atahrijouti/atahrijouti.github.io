@@ -10,13 +10,13 @@
     "unbundle"
   ],
   "devDependencies": {
-    "@eslint/js": "^9.26.0",
-    "@types/bun": "^1.2.11",
-    "eslint": "^9.26.0",
+    "@eslint/js": "^9.32.0",
+    "@types/bun": "^1.2.19",
+    "eslint": "^9.32.0",
     "globals": "^15.15.0",
-    "prettier": "^3.5.3",
+    "prettier": "^3.6.2",
     "typescript": "^5.8.3",
-    "typescript-eslint": "^8.31.1",
-    "unbundle": "github:atahrijouti/unbundle#6409ebe"
+    "typescript-eslint": "^8.38.0",
+    "unbundle": "github:atahrijouti/unbundle#cbc8b7c"
   }
 }
