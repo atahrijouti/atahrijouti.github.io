@@ -11,7 +11,7 @@
         "prettier": "^3.6.2",
         "typescript": "^5.8.3",
         "typescript-eslint": "^8.38.0",
-        "unbundle": "github:atahrijouti/unbundle#cbc8b7c",
+        "unbundle": "github:atahrijouti/unbundle#51c6d24",
       },
     },
   },
@@ -303,7 +303,7 @@
 
     "typescript-eslint": ["typescript-eslint@8.38.0", "", { "dependencies": { "@typescript-eslint/eslint-plugin": "8.38.0", "@typescript-eslint/parser": "8.38.0", "@typescript-eslint/typescript-estree": "8.38.0", "@typescript-eslint/utils": "8.38.0" }, "peerDependencies": { "eslint": "^8.57.0 || ^9.0.0", "typescript": ">=4.8.4 <5.9.0" } }, "sha512-FsZlrYK6bPDGoLeZRuvx2v6qrM03I0U0SnfCLPs/XCCPCFD80xU9Pg09H/K+XFa68uJuZo7l/Xhs+eDRg2l3hg=="],
 
-    "unbundle": ["unbundle@github:atahrijouti/unbundle#cbc8b7c", { "dependencies": { "@eslint/js": "^9.23.0", "@types/bun": "^1.2.8", "esbuild": "^0.25.2", "eslint": "^9.23.0", "globals": "^16.0.0", "prettier": "^3.5.3", "typescript": "^5.8.2", "typescript-eslint": "^8.29.0" }, "bin": { "unbundle-serve": "./lib/server/index.ts", "unbundle-build": "./lib/server/build.ts" } }, "atahrijouti-unbundle-cbc8b7c"],
+    "unbundle": ["unbundle@github:atahrijouti/unbundle#51c6d24", { "dependencies": { "@eslint/js": "^9.23.0", "@types/bun": "^1.2.8", "esbuild": "^0.25.2", "eslint": "^9.23.0", "globals": "^16.0.0", "prettier": "^3.5.3", "typescript": "^5.8.2", "typescript-eslint": "^8.29.0" }, "bin": { "unbundle-serve": "./lib/server/index.ts", "unbundle-build": "./lib/server/build.ts" } }, "atahrijouti-unbundle-51c6d24"],
 
     "undici-types": ["undici-types@6.20.0", "", {}, "sha512-Ny6QZ2Nju20vw1SRHe3d9jVu6gJ+4e3+MMpqu7pqE5HT6WsTSlce++GQmK5UXS8mzV8DSYHrQH+Xrf2jVcuKNg=="],
 
