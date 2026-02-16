@@ -9,14 +9,26 @@
     "positions": [
       {
         "title": "Web Chapter Lead",
+        "tasks": [
+          "Helped establish chapter lead responsibilities with other chapter leads.",
+          "Kept chapter forum meetings on a steady monthly cadence and improved attendance.",
+          "Structured chapter documentation to make it easier for engineers and partner teams to navigate.",
+          "Drove knowledge-sharing initiatives across chapter members and adjacent teams.",
+          "Helped define role-to-skill expectations for hiring and interview calibration.",
+          "Supported promotion input, mentoring, and onboarding across multiple colleagues."
+        ],
         "startDate": "2023-10"
       },
       {
         "title": "Tech Lead",
         "tasks": [
-          "Contributed to a wide range of initiatives with Area leads and new colleagues alike to improve both third-party integrators and the merchant experience",
-          "Collaborated with other teams to reduce technical debts in the company's products",
-          "Built and documented our Area & Team's domains and processes into a living Knowledge Base"
+          "Kept Accounting Integrations running and owned technical continuity for the domain.",
+          "Supported product decision-making, roadmap shaping, and prioritization.",
+          "Drove technical debt reduction and modernization efforts (micro-frontends migration, database upgrade, GitHub Actions migration initiation, backend AWS SSO migration).",
+          "Built and maintained a team knowledge base as a source of truth for domain and process documentation.",
+          "Established and owned the quality review process for third-party integration requests to be listed on the back-office.",
+          "Implemented SSO-based authentication for two external partners.",
+          "Coordinated cross-team technical initiatives and partner-facing integration work."
         ],
         "skills": ["Team Leadership", "Solution Architecture"],
         "startDate": "2021-11"
@@ -24,9 +36,9 @@
       {
         "title": "Product Manager",
         "tasks": [
-          "Managed third party integrations and put in place a review process for publishing third-party apps on our marketplace",
-          "Responsible for delivering the release of a new accounting integration in a new market",
-          "Set the roadmap and priorities for the team Based on Metrics, User Feedback & company’s goals"
+          "Managed third-party integration initiatives and supported release planning for a new market.",
+          "Set roadmap and priorities based on user feedback, metrics, and company goals.",
+          "Coordinated internal and external stakeholders to move integration initiatives forward."
         ],
         "skills": [
           "Data-driven Decision Making",
@@ -38,7 +50,7 @@
         "endDate": "2021-03"
       },
       {
-        "title": "Web Developer",
+        "title": "Software Engineer (Web)",
         "tasks": [
           "Contributed to the implementation of technical requirements for 3 different projects using React & Java/Kotlin",
           "Collaborated with colleagues from other teams to insure a coherent UX across the entire company offering",
