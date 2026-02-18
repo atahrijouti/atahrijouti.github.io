@@ -157,3 +157,12 @@ a {
 .employment-article {
   break-inside: avoid;
 }
+
+.education {
+  dt {
+    font-weight: bold;
+    &:not(:first-of-type) {
+      margin-top: 1rem;
+    }
+  }
+}
