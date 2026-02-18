@@ -72,5 +72,13 @@ export const content = () => {
         <dd>Faculté des Sciences et Techniques de Fès, Morocco</dd>
       </dl>
     </section>
+    <section class="languages">
+      <h1>Languages</h1>
+      <ul>
+        <li>Swedish : <strong>Intermediate</strong></li>
+        <li>English & French : <strong>Fluent</strong></li>
+        <li>Arabic : <strong>Native</strong></li>
+      </ul>
+    </section>
   </div>`
 }
