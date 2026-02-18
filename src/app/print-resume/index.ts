@@ -1,6 +1,7 @@
 import { $loop, html, type Config, type Metadata } from "unbundle"
 import { Employment } from "../resume/index.js"
 import employments from "../resume/data.json" with { type: "json" }
+import { isBrowser } from "../../helpers/environment.js"
 
 let contactInfoData = {
   email: "hello@example.com",
@@ -9,7 +10,7 @@ let contactInfoData = {
   linkedin: "example",
 }
 
-if (await Bun.file("./private/contact-info-data.json").exists()) {
+if (!isBrowser && (await Bun.file("./private/contact-info-data.json").exists())) {
   contactInfoData = {
     ...contactInfoData,
     ...(await Bun.file("./private/contact-info-data.json").json()),
@@ -51,7 +52,11 @@ export const config: Config = {
 export const content = () => {
   return html`<div class="print-resume-page">
     <section class="contact-info">
-      <h1><strong>Abderrahmane</strong> Tahri Jouti</h1>
+      <h1 class="name"><strong>Abderrahmane</strong> Tahri Jouti</h1>
+      <h2 class="title">Senior Software Engineer</h2>
+      <p class="description">
+        Full-stack Web Developer since 2006, with a Master’s degree in Artificial Intelligence.
+      </p>
       ${contactInfo()}
     </section>
     <section class="experience">

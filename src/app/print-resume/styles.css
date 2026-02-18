@@ -44,6 +44,14 @@ a {
   font-weight: bold;
 }
 
+.name,
+.title {
+  margin: 0;
+}
+.description {
+  font-size: 11pt;
+}
+
 .skill-item:not(:first-child):before,
 .employer-detail span:not(:first-child):before,
 .location small:not(:first-child):before {
