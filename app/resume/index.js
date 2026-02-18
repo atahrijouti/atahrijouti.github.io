@@ -9,9 +9,9 @@ const DateDetail = ({ startDate, endDate }) => {
 }
 const EmployerDetail = ({ name, url }) => {
   if (url) {
-    return html`<a href="${url}" title="${name}'s url" class="secondary">${name}</a>`
+    return html`<a href="${url}" title="${name}'s url" class="employer-name secondary">${name}</a>`
   } else {
-    return html`<u>${name}</u>`
+    return html`<u class="employer-name">${name}</u>`
   }
 }
 const Tasks = ({ tasks }) => {
@@ -37,23 +37,27 @@ const SinglePosition = ({ employment }) => {
     name: employment.employerName,
     url: employment.employerUrl,
   })
-  return html`<h2>${title}</h2>
-    <dl>
-      <dd class="employer-detail">
-        <span>${employer}</span><span>${employment.employmentType}</span>
-      </dd>
-      <dd>${DateDetail({ startDate: employment.startDate, endDate: employment.endDate })}</dd>
-      <dd class="location">
-        <small>${employment.location}</small><small>${employment.locationType}</small>
-      </dd>
-      ${tasks && html`<dd>${Tasks({ tasks })}</dd>`}
-      ${skills && html`<dd>${Skills({ skills })}</dd>`}
-    </dl>`
+  return html` <dl class="single-position">
+    <dt class="position-title"><h2>${title}</h2></dt>
+    <dd class="employer-detail">
+      <span class="employer-name">${employer}</span
+      ><span class="employment-type">${employment.employmentType}</span>
+    </dd>
+    <dd class="employment-dates">
+      ${DateDetail({ startDate: employment.startDate, endDate: employment.endDate })}
+    </dd>
+    <dd class="location">
+      <small class="location-city">${employment.location}</small
+      ><small class="location-type">${employment.locationType}</small>
+    </dd>
+    ${tasks && html`<dd class="position-tasks">${Tasks({ tasks })}</dd>`}
+    ${skills && html`<dd class="position-skills">${Skills({ skills })}</dd>`}
+  </dl>`
 }
 const MultiplePositions = ({ employment }) => {
   const { positions } = employment
   return html`<dl>
-    <dt>
+    <dt class="employer-detail">
       <h2>
         ${EmployerDetail({
           name: employment.employerName,
@@ -61,25 +65,32 @@ const MultiplePositions = ({ employment }) => {
         })}
       </h2>
     </dt>
-    <dd>
-      <span>${employment.employmentType}</span>
-      <span>${DateDetail({ startDate: employment.startDate, endDate: employment.endDate })}</span>
+    <dd class="employment-type-and-dates">
+      <span class="employment-type">${employment.employmentType}</span>
+      <span class="employment-dates"
+        >${DateDetail({ startDate: employment.startDate, endDate: employment.endDate })}</span
+      >
     </dd>
     <dd class="location">
-      <small>${employment.location}</small><small>${employment.locationType}</small>
+      <small class="location-city">${employment.location}</small
+      ><small class="location-type">${employment.locationType}</small>
     </dd>
-    <dd>
+    <dd class="positions">
       ${$loop(positions, (position) => {
-        return html`<dl>
-          <dt>
+        return html`<dl class="position">
+          <dt class="position-title">
             <h3>${position.title}</h3>
           </dt>
           ${position.startDate &&
-          html`<dd>
+          html`<dd class="position-dates">
             ${DateDetail({ startDate: position.startDate, endDate: position.endDate })}
           </dd>`}
-          ${position.tasks ? html`<dd>${Tasks({ tasks: position.tasks })}</dd>` : ""}
-          ${position.skills ? html`<dd>${Skills({ skills: position.skills })}</dd>` : ""}
+          ${position.tasks
+            ? html`<dd class="position-tasks">${Tasks({ tasks: position.tasks })}</dd>`
+            : ""}
+          ${position.skills
+            ? html`<dd class="position-skills">${Skills({ skills: position.skills })}</dd>`
+            : ""}
         </dl>`
       })}
     </dd>
@@ -87,7 +98,8 @@ const MultiplePositions = ({ employment }) => {
 }
 const Employment = (employment) => {
   const hasMultiplePositions = employment.positions.length > 1
-  return html`<article class="employment-article">
+  return html`<article
+    class="employment-article ${hasMultiplePositions ? "multiple-positions" : ""}">
     ${hasMultiplePositions ? MultiplePositions({ employment }) : SinglePosition({ employment })}
   </article>`
 }
@@ -101,4 +113,4 @@ const content = () => {
     <section>${$loop(employments, (employment) => Employment(employment))}</section>
   </div>`
 }
-export { content, metadata }
+export { Employment, content, metadata }
