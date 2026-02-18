@@ -42,6 +42,9 @@ a,
 a {
   color: var(--cv-primary);
   font-weight: bold;
+  .contact-info & {
+    color: var(--cv-secondary);
+  }
 }
 
 .name,

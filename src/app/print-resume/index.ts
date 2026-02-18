@@ -66,9 +66,9 @@ export const content = () => {
     <section class="education">
       <h1>Education</h1>
       <dl>
-        <dt>Master in Artificial Intelligence and Networking, 2014</dt>
+        <dt>Masters degree in Artificial Intelligence and Networking, 2014</dt>
         <dd>Faculté des Sciences et Techniques de Fès, Morocco</dd>
-        <dt>Bachelors in Computer Engineering, 2011</dt>
+        <dt>Bachelors degree in Computer Engineering, 2011</dt>
         <dd>Faculté des Sciences et Techniques de Fès, Morocco</dd>
       </dl>
     </section>
