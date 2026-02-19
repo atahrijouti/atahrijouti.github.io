@@ -48,10 +48,11 @@ const config = {
 const content = () => {
   return html`<div class="print-resume-page">
     <section class="contact-info">
-      <h1 class="name"><strong>Abderrahmane</strong> Tahri Jouti</h1>
-      <h2 class="title">Senior Software Engineer</h2>
+      <h1 class="name"><strong>Abderrahmane</strong> <span class="last-name">Tahri Jouti</span></h1>
+      <h2 class="title">Engineering Lead</h2>
       <p class="description">
-        Full-stack Web Developer since 2006, with a Master’s degree in Artificial Intelligence.
+        Engineering Leader with 10+ years of full-stack experience and product leadership, aligning
+        technical decisions with user needs and business priorities.
       </p>
       ${contactInfo()}
     </section>
