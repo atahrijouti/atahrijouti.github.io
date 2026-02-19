@@ -169,3 +169,7 @@ a {
     }
   }
 }
+
+.last-name {
+  font-weight: lighter;
+}
