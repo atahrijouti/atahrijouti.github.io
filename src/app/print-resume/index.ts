@@ -55,7 +55,8 @@ export const content = () => {
       <h1 class="name"><strong>Abderrahmane</strong> Tahri Jouti</h1>
       <h2 class="title">Senior Software Engineer</h2>
       <p class="description">
-        Full-stack Web Developer since 2006, with a Master’s degree in Artificial Intelligence.
+        Engineering Leader at the intersection of platform architecture, product strategy, and
+        organizational execution.
       </p>
       ${contactInfo()}
     </section>
