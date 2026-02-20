@@ -30,13 +30,13 @@
       {
         "title": "Engineering Lead",
         "tasks": [
-          "Established and owned the quality review process for third-party integration requests to be listed on the Zettle Apps Marketplace.",
-          "Supported product decision-making, roadmap shaping, and prioritization.",
-          "Built and maintained a team knowledge base as a source of truth for Integrations domain and process documentation.",
-          "Drove technical debt reduction and modernization efforts (micro-frontends migration, database upgrades, GitHub Actions migration initiation, backend AWS SSO migration).",
-          "Kept Accounting Integrations running and owned technical continuity for the domain.",
+          "Led technical discovery and migration strategy for the Zettle backoffice to PayPal, defining architecture and hiring the initial frontend team.",
+          "Established and owned the quality review process for 20+ third-party integrations on the Zettle Apps Marketplace.",
+          "Partnered with Product on roadmap shaping, prioritization, and strategic decision-making.",
+          "Defined and established the accounting integrations team operating model, clarifying ownership, stakeholder landscape, and the end-to-end integration lifecycle.",
+          "Drove modernization and technical debt reduction (micro-frontend migration, database upgrades, GitHub Actions adoption, backend AWS SSO migration).",
           "Implemented SSO-based authentication for two external partners.",
-          "Coordinated cross-team technical initiatives and partner-facing integration work."
+          "Represented the Accounting Integrations domain in cross-team initiatives (e.g., Refunds & Exchange), ensuring architectural alignment and mitigating impact on merchant workflows."
         ],
         "skills": ["Team Leadership", "Solution Architecture"],
         "startDate": "2021-11"
@@ -44,7 +44,7 @@
       {
         "title": "Product Manager",
         "tasks": [
-          "Managed third-party integration initiatives and supported release planning for two new markets.",
+          "Managed accounting integration initiatives and delivered Quickbooks in the US & UniEconomy in Norway.",
           "Set roadmap and priorities based on user feedback, metrics, and company goals.",
           "Coordinated internal and external stakeholders to move integration initiatives forward."
         ],
