@@ -8,6 +8,34 @@
     "startDate": "2018-10",
     "positions": [
       {
+        "title": "Engineering Lead",
+        "tasks": [
+          "Led technical discovery and migration strategy for the Zettle backoffice to PayPal, defining architecture and hiring the initial frontend team.",
+          "Established and owned the quality review process for 20+ third-party integrations on the Zettle Apps Marketplace.",
+          "Partnered with Product on roadmap shaping, prioritization, and strategic decision-making.",
+          "Defined and established the accounting integrations team operating model, clarifying ownership, stakeholder landscape, and the end-to-end integration lifecycle.",
+          "Drove modernization and technical debt reduction (micro-frontend migration, database upgrades, GitHub Actions adoption, backend AWS SSO migration).",
+          "Implemented SSO-based authentication for two external partners.",
+          "Represented the Accounting Integrations domain in cross-team initiatives (e.g., Refunds & Exchange), ensuring architectural alignment and mitigating impact on merchant workflows."
+        ],
+        "skills": [
+          "Team Leadership",
+          "Solution Architecture",
+          "React",
+          "TypeScript",
+          "GraphQL",
+          "AWS",
+          "Opsgenie",
+          "Postgres",
+          "Github Actions",
+          "Circle CI",
+          "Kotlin",
+          "Java",
+          "Splunk"
+        ],
+        "startDate": "2021-11"
+      },
+      {
         "title": "Web Chapter Lead",
         "tasks": [
           "Defined role-to-skill expectations for hiring and interview calibration in the Web Chapter.",
@@ -26,20 +54,6 @@
           "Career Development"
         ],
         "startDate": "2023-10"
-      },
-      {
-        "title": "Engineering Lead",
-        "tasks": [
-          "Led technical discovery and migration strategy for the Zettle backoffice to PayPal, defining architecture and hiring the initial frontend team.",
-          "Established and owned the quality review process for 20+ third-party integrations on the Zettle Apps Marketplace.",
-          "Partnered with Product on roadmap shaping, prioritization, and strategic decision-making.",
-          "Defined and established the accounting integrations team operating model, clarifying ownership, stakeholder landscape, and the end-to-end integration lifecycle.",
-          "Drove modernization and technical debt reduction (micro-frontend migration, database upgrades, GitHub Actions adoption, backend AWS SSO migration).",
-          "Implemented SSO-based authentication for two external partners.",
-          "Represented the Accounting Integrations domain in cross-team initiatives (e.g., Refunds & Exchange), ensuring architectural alignment and mitigating impact on merchant workflows."
-        ],
-        "skills": ["Team Leadership", "Solution Architecture"],
-        "startDate": "2021-11"
       },
       {
         "title": "Product Manager",
