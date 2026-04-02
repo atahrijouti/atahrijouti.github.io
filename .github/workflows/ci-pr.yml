@@ -22,7 +22,7 @@ jobs:
 
       - name: ESLint
         shell: bash
-        run: pnpm run eslint
+        run: pnpm eslint
 
   typecheck:
     runs-on: ubuntu-latest
@@ -41,7 +41,7 @@ jobs:
       - run: pnpm install
 
       - name: Typecheck
-        run: pnpm run tsc
+        run: pnpm tsc
 
   build:
     runs-on: ubuntu-latest

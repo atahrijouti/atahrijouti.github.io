@@ -97,7 +97,7 @@ const MAX_DEPTH = 5
 const shuffledOrientations = (): LeafProps["orientation"][] => {
   return Math.random() < 0.5 ? ["left", "right"] : ["right", "left"]
 }
-const timeouts: Timer[] = []
+const timeouts: NodeJS.Timeout[] = []
 
 type SowingProps = {
   soil: Node
