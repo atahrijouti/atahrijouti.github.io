@@ -11,13 +11,18 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: oven-sh/setup-bun@v2
+      - uses: pnpm/action-setup@v4
 
-      - run: bun install
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - run: pnpm install
 
       - name: ESLint
         shell: bash
-        run: bun run eslint
+        run: pnpm run eslint
 
   typecheck:
     runs-on: ubuntu-latest
@@ -26,12 +31,17 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: oven-sh/setup-bun@v2
+      - uses: pnpm/action-setup@v4
 
-      - run: bun install
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - run: pnpm install
 
       - name: Typecheck
-        run: bun run tsc
+        run: pnpm run tsc
 
   build:
     runs-on: ubuntu-latest
@@ -45,9 +55,14 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: oven-sh/setup-bun@v2
+      - uses: pnpm/action-setup@v4
 
-      - run: bun install
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - run: pnpm install
 
       - name: Build & export
-        run: bun run build:prod
+        run: pnpm run build:prod
