@@ -1,4 +1,4 @@
-import type { EmploymentData, Task } from "./types.js"
+import type { EmploymentData, Task } from "./types.ts"
 
 import employments from "./data.json" with { type: "json" }
 import { $loop, html, type Metadata } from "unbundle"

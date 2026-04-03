@@ -1,8 +1,8 @@
 import fs, { readFileSync } from "node:fs"
 import { $loop, html, type Config, type Metadata } from "unbundle"
-import { Employment } from "../resume/index.js"
+import { Employment } from "../resume/index.ts"
 import employments from "../resume/data.json" with { type: "json" }
-import { isBrowser } from "../../helpers/environment.js"
+import { isBrowser } from "../../helpers/environment.ts"
 
 let contactInfoData = {
   email: "hello@example.com",

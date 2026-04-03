@@ -1,4 +1,4 @@
-import { GEOMETRY } from "./constants.js"
+import { GEOMETRY } from "./constants.ts"
 
 export const d2r = (degree: number) => (degree * Math.PI) / 180
 export const r2d = (radian: number) => (radian / Math.PI) * 180

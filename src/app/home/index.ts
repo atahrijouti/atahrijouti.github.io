@@ -1,6 +1,6 @@
 import { html, type Metadata } from "unbundle"
-import { Fractal, ready as fractalReady } from "./components/fractal.js"
-import { GEOMETRY } from "./components/utils/constants.js"
+import { Fractal, ready as fractalReady } from "./components/fractal.ts"
+import { GEOMETRY } from "./components/utils/constants.ts"
 
 export const metadata: Metadata = {
   title: "Abderrahmane TAHRI JOUTI",
