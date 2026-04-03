@@ -1,5 +1,5 @@
 import { css } from "unbundle"
-import type { FractalGeometry } from "./math.js"
+import type { FractalGeometry } from "./math.ts"
 
 export const geometryToStyles = (geometry: FractalGeometry) => css`
   --left-scale: ${geometry.leftScale};

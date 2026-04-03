@@ -1,8 +1,8 @@
 import { html, textToHTML } from "unbundle"
-import { LeafColorNumbers } from "./utils/colors.js"
-import { COLORS, GEOMETRY, ThemeTimeout } from "./utils/constants.js"
-import { lookAtPoint, type FractalGeometry } from "./utils/math.js"
-import { geometryToStyles } from "./utils/style.js"
+import { LeafColorNumbers } from "./utils/colors.ts"
+import { COLORS, GEOMETRY, ThemeTimeout } from "./utils/constants.ts"
+import { lookAtPoint, type FractalGeometry } from "./utils/math.ts"
+import { geometryToStyles } from "./utils/style.ts"
 
 type LeafProps = {
   orientation?: "left" | "right"
@@ -97,7 +97,7 @@ const MAX_DEPTH = 5
 const shuffledOrientations = (): LeafProps["orientation"][] => {
   return Math.random() < 0.5 ? ["left", "right"] : ["right", "left"]
 }
-const timeouts: Timer[] = []
+const timeouts: NodeJS.Timeout[] = []
 
 type SowingProps = {
   soil: Node

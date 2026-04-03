@@ -1,20 +1,24 @@
 {
   "name": "atahrijouti.github.io",
   "type": "module",
+  "private": true,
+  "packageManager": "pnpm@10.33.0",
   "scripts": {
-    "serve": "bun run unbundle-serve",
-    "build": "bun run unbundle-build",
-    "build:prod": "NODE_ENV=production bun run unbundle-build"
+    "serve": "unbundle-serve",
+    "build": "unbundle-build",
+    "build:prod": "NODE_ENV=production unbundle-build"
   },
-  "trustedDependencies": ["unbundle"],
+  "trustedDependencies": [
+    "unbundle"
+  ],
   "devDependencies": {
     "@eslint/js": "^9.32.0",
-    "@types/bun": "^1.2.19",
+    "@types/node": "^25.5.0",
     "eslint": "^9.32.0",
     "globals": "^15.15.0",
     "prettier": "^3.6.2",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.38.0",
-    "unbundle": "github:atahrijouti/unbundle#93ebcf0"
+    "unbundle": "github:atahrijouti/unbundle"
   }
 }

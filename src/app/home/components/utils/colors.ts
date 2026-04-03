@@ -1,4 +1,4 @@
-import { COLORS, type Rgb, type RgbNumbers } from "./constants.js"
+import { COLORS, type Rgb, type RgbNumbers } from "./constants.ts"
 
 const { leafyGreen, plumPurple, pinkRed, midGray } = COLORS
 

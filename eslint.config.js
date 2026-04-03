@@ -7,7 +7,7 @@ import unbundle from "unbundle/eslint"
 export default tseslint.config(
   {
     files: ["**/**.ts"],
-    ignores: ["!node_modules/", "node_modules/*"],
+    ignores: ["!node_modules/", "node_modules/*", "dist/**", "out/**"],
   },
   {
     files: ["src/**/*.ts"],
