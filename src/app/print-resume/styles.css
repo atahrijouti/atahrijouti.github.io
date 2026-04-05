@@ -5,6 +5,7 @@
 
 body {
   font-size: 10pt;
+  font-family: Cambria, Georgia, serif;
   width: 210mm;
   @media not print {
     padding: 10mm;
