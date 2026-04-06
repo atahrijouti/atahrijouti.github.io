@@ -10,59 +10,87 @@
       {
         "title": "Engineering Lead",
         "tasks": [
-          "Designed the micro-frontend migration architecture for the Accounting Integrations area; coordinated cross-team implementation and reviewed all front-end changes.",
-          "Led technical discovery for migrating the Zettle backoffice to PayPal, defining the front-end architecture and hiring the initial FE team.",
-          "Maintained and evolved the product's entire stack single-handedly during a period as sole engineer on the team (2023).",
-          "Owned the front-end quality review process for 20+ third-party integrations on the Zettle Apps Marketplace.",
-          "Migrated CI/CD for 10+ services from CircleCI to GitHub Actions.",
-          "Implemented SSO-based authentication flows for two external partners.",
-          "Initiated and ran front-end tech debt days across the web chapter.",
-          "Defined role-to-skill expectations for hiring front-end engineers; drove knowledge-sharing in chapter forums.",
-          "Mentored colleagues across teams, including supporting a non-engineer's transition into a front-end developer role."
+          "Led technical discovery and migration strategy for the Zettle backoffice to PayPal, defining architecture and hiring the initial frontend team.",
+          "Established and owned the quality review process for 20+ third-party integrations on the Zettle Apps Marketplace.",
+          "Partnered with Product on roadmap shaping, prioritization, and strategic decision-making.",
+          "Defined and established the accounting integrations team operating model, clarifying ownership, stakeholder landscape, and the end-to-end integration lifecycle.",
+          "Drove modernization and technical debt reduction (micro-frontend migration, database upgrades, GitHub Actions adoption, backend AWS SSO migration).",
+          "Implemented SSO-based authentication for two external partners.",
+          "Represented the Accounting Integrations domain in cross-team initiatives (e.g., Refunds & Exchange), ensuring architectural alignment and mitigating impact on merchant workflows."
         ],
         "skills": [
+          "Team Leadership",
+          "Solution Architecture",
           "React",
           "TypeScript",
           "GraphQL",
-          "Micro-frontends",
-          "CI/CD",
-          "GitHub Actions",
-          "Solution Architecture",
-          "Technical Leadership",
-          "Mentoring",
+          "AWS",
+          "Opsgenie",
+          "Postgres",
+          "Github Actions",
+          "Circle CI",
           "Kotlin",
-          "AWS"
+          "Java",
+          "Splunk"
         ],
         "startDate": "2021-11"
       },
       {
+        "title": "Web Chapter Lead",
+        "tasks": [
+          "Defined role-to-skill expectations for hiring and interview calibration in the Web Chapter.",
+          "Established chapter lead responsibilities together with other chapter leads.",
+          "Kept chapter forum meetings on a steady monthly cadence and improved attendance.",
+          "Structured chapter documentation to make it easier for engineers and partner teams to navigate.",
+          "Drove knowledge-sharing initiatives across chapter members and adjacent teams.",
+          "Supported promotion input, mentoring, and on-boarding across multiple colleagues."
+        ],
+        "skills": [
+          "Engineering Leadership",
+          "Mentoring",
+          "Hiring and Interview Calibration",
+          "Documentation Strategy",
+          "Cross-team Collaboration",
+          "Career Development"
+        ],
+        "startDate": "2023-10"
+      },
+      {
+        "title": "Product Manager",
+        "tasks": [
+          "Managed accounting integration initiatives and delivered Quickbooks in the US & UniEconomy in Norway.",
+          "Set roadmap and priorities based on user feedback, metrics, and company goals.",
+          "Coordinated internal and external stakeholders to move integration initiatives forward."
+        ],
+        "skills": [
+          "Data-driven Decision Making",
+          "Operations Management",
+          "Strategic Planning",
+          "Jira"
+        ],
+        "startDate": "2020-11",
+        "endDate": "2021-03"
+      },
+      {
         "title": "Software Engineer (Web)",
         "tasks": [
-          "Built merchant-facing tools for creating Facebook and Google ads using React, React Native, and GraphQL.",
-          "Implemented the integrations marketplace pages: app listing, single app view, OAuth connection/disconnection flows.",
-          "Designed a JSON-schema-driven dynamic form system, enabling new integration pages without re-implementing UI.",
-          "Migrated the integrations front-end from Rails-served assets to a micro-frontends architecture with a shell monorepo.",
-          "Migrated developer.zettle.com from Koa to Next.js with MDX documentation tied to the Zettle design system.",
-          "Contributed to the GraphQL Gateway and Mapper powering the backoffice SuperGraph.",
-          "Introduced front-end observability with Sentry, later migrating to Datadog.",
-          "Adopted Storybook across all pages and components for visual testing and debugging.",
-          "Pushed adoption of GraphQL and TypeScript across front-end codebases.",
-          "Reduced stale dependency PRs from 95+ to near-zero across the backoffice."
+          "Contributed to the implementation of technical requirements for 3 different projects using React & Java/Kotlin",
+          "Collaborated with colleagues from other teams to insure a coherent UX across the entire company offering",
+          "Participated in on-call duties to keep our systems up and running"
         ],
         "skills": [
           "React",
-          "React Native",
           "TypeScript",
           "GraphQL",
-          "Next.js",
-          "Micro-frontends",
-          "Storybook",
-          "CSS",
-          "Node.js",
-          "MDX",
-          "Docker",
-          "Sentry",
-          "Datadog"
+          "AWS",
+          "Opsgenie",
+          "Heroku",
+          "Postgres",
+          "Github Actions",
+          "Circle CI",
+          "Kotlin",
+          "Java",
+          "Splunk"
         ],
         "startDate": "2018-10",
         "endDate": "2021-11"
