@@ -1,8 +1,10 @@
-import fs, { readFileSync } from "node:fs"
 import { $loop, html, type Config, type Metadata } from "unbundle"
-import { Employment } from "../resume/index.ts"
+import { isServer } from "../../helpers/environment.ts"
+import { makeMap } from "../../helpers/map.ts"
 import employments from "../resume/data.json" with { type: "json" }
-import { isBrowser } from "../../helpers/environment.ts"
+import frontendEmployments from "../resume/front-end-focus.json" with { type: "json" }
+import { Employment } from "../resume/index.ts"
+import type { EmploymentData } from "../resume/types.ts"
 
 let contactInfoData = {
   email: "hello@example.com",
@@ -10,14 +12,18 @@ let contactInfoData = {
   github: "example",
   linkedin: "example",
 }
-if (!isBrowser && fs.existsSync("./private/contact-info-data.json")) {
-  contactInfoData = {
-    ...contactInfoData,
-    ...JSON.parse(readFileSync("./private/contact-info-data.json", "utf-8")),
+
+if (isServer) {
+  const fs = await import("node:fs")
+  if (fs.existsSync("./private/contact-info-data.json")) {
+    contactInfoData = {
+      ...contactInfoData,
+      ...JSON.parse(fs.readFileSync("./private/contact-info-data.json", "utf-8")),
+    }
   }
 }
 
-const contactInfo = () => {
+const ContactInfo = () => {
   return html`<ul>
     <li>
       <strong>Email :</strong>
@@ -42,27 +48,69 @@ const contactInfo = () => {
   </ul>`
 }
 
+const focusDict = { frontend: frontendEmployments, default: employments } as const
+const focusMap = makeMap<EmploymentData[]>(focusDict)
+
+let employmentsEl: HTMLElement | null
+
+const adjustToFocus = (focus: string) => {
+  if (!employmentsEl) return
+  if (focusMap.has(focus)) {
+    employmentsEl.innerHTML = $loop(frontendEmployments, (employment) => Employment(employment))
+  }
+}
+
+const adjustContactInfo = () => {
+  const contactInfoEl = document.querySelector(".contact-info")
+  if (!contactInfoEl) {
+    return
+  }
+  contactInfoEl.innerHTML = ContactInfo()
+}
+
 export const metadata: Metadata = {
   title: "Print Resumé",
   description: "Abderrahmane Tahri Jouti's Resumé",
 }
+
 export const config: Config = {
   layout: "app/print-resume/cv.layout.html",
 }
+
+export const ready = () => {
+  // the mediocrity of this code is alarming xD
+  employmentsEl = document.querySelector(".employments")
+  const params = new URLSearchParams(document.location.search)
+  const focus = params.get("focus")
+  if (focus != null) {
+    adjustToFocus(focus)
+  }
+  const email = params.get("email")
+  const phone = params.get("phone")
+  if (email || phone) {
+    contactInfoData = {
+      ...contactInfoData,
+      ...(email && { email }),
+      ...(phone && { phone }),
+    }
+    adjustContactInfo()
+  }
+}
+
 export const content = () => {
   return html`<div class="print-resume-page">
-    <section class="contact-info">
+    <section>
       <h1 class="name"><strong>Abderrahmane</strong> <span class="last-name">Tahri Jouti</span></h1>
       <h2 class="title">Engineering Lead</h2>
       <p class="description">
         Engineering Leader with 10+ years of full-stack experience and product leadership, aligning
         technical decisions with user needs and business priorities.
       </p>
-      ${contactInfo()}
+      <div class="contact-info">${ContactInfo()}</div>
     </section>
     <section class="experience">
       <h1>Experience</h1>
-      ${$loop(employments, (employment) => Employment(employment))}
+      <div class="employments">${$loop(employments, (employment) => Employment(employment))}</div>
     </section>
     <section class="education">
       <h1>Education</h1>
