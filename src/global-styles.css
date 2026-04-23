@@ -1,3 +1,12 @@
+:root {
+  --pico-spacing: 1rem;
+  --pico-typography-spacing-vertical: 1rem;
+}
+
+:root {
+  font-family: Cambria, Georgia, serif;
+}
+
 *,
 *::before,
 *::after {
@@ -9,6 +18,14 @@ body {
   margin: 0;
   display: flex;
   min-height: 100vh;
+  background: #f2f3f7;
+  /* color: #343a54; */
+  /* color: #434b6c; */
+  color: #25293c;
+}
+
+a {
+  color: #0073e6;
 }
 
 .root {

@@ -10,9 +10,7 @@
     "build": "unbundle-build",
     "build:prod": "NODE_ENV=production unbundle-build"
   },
-  "trustedDependencies": [
-    "unbundle"
-  ],
+  "trustedDependencies": ["unbundle"],
   "devDependencies": {
     "@eslint/js": "^9.32.0",
     "@types/node": "^25.5.0",
@@ -21,6 +19,6 @@
     "prettier": "^3.6.2",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.38.0",
-    "unbundle": "github:atahrijouti/unbundle#bf2f2d8"
+    "unbundle": "github:atahrijouti/unbundle#bb5fe5d"
   }
 }
