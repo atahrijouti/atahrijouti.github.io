@@ -1,50 +1,51 @@
-/*
-shade00 = "#f2f3f7"
-shade01 = "#dadde8"
-shade02 = "#c1c6d9"
-shade03 = "#a9b0ca"
-shade04 = "#525c85"
-shade05 = "#434b6c"
-shade06 = "#343a54"
-shade07 = "#25293c"
+@layer jetbrains-cyan-light {
+  :root {
+    --color--shade00: #f2f3f7;
+    --color--shade01: #dadde8;
+    --color--shade02: #c1c6d9;
+    --color--shade03: #a9b0ca;
+    --color--shade04: #525c85;
+    --color--shade05: #434b6c;
+    --color--shade06: #343a54;
+    --color--shade07: #25293c;
 
-shade01_lighter = "#e6e8f0"
-shade03_darker = "#9199bb"
-shade04_lighter = "#616d9d"
+    --color--shade01-lighter: #e6e8f0;
+    --color--shade03-darker: #9199bb;
+    --color--shade04-lighter: #616d9d;
 
-background = "#f2f3f7"
-foreground = "#25293c"
+    --color--page-background: var(--color--shade00);
+    --color--page-foreground: var(--color--shade07);
 
-comment_gray = "#808080"
+    --color--comment-gray: #808080;
 
-gutter_blue = "#C3D6E8"
-faint_blue = "#E8Eef1"
-lighter_blue = "#d0eaff"
-light_blue = "#99ccff"
-cursor_blue = "#80bfff"
-blue = "#0073E6"
-dark_blue = "#185b93"
-darker_blue = "#000080"
+    --color--gutter-blue: #c3d6e8;
+    --color--faint-blue: #e8eef1;
+    --color--lighter-blue: #d0eaff;
+    --color--light-blue: #99ccff;
+    --color--cursor-blue: #80bfff;
+    --color--blue: #0073e6;
+    --color--dark-blue: #185b93;
+    --color--darker-blue: #000080;
 
-purple = "#660E7A"
-light_purple = "#ED9CFF"
+    --color--purple: #660e7a;
+    --color--light-purple: #ed9cff;
 
-gutter_green = "#C9DEC1"
-green = "#00733B"
-light_green = "#5DCE87"
-green_blue = "#458383"
+    --color--gutter-green: #c9dec1;
+    --color--green: #00733b;
+    --color--light-green: #5dce87;
+    --color--green-blue: #458383;
 
-yellow = "#808000"
-dark_yellow = "#7A7A43"
+    --color--yellow: #808000;
+    --color--dark-yellow: #7a7a43;
 
-light_orange = "#f9c881"
-orange = "#F49810"
+    --color--light-orange: #f9c881;
+    --color--orange: #f49810;
 
-gutter_red = "#EBBCBC"
-red = "#d90016"
-dark_red = "#7F0000"
-
-*/
+    --color--gutter-red: #ebbcbc;
+    --color--red: #d90016;
+    --color--dark-red: #7f0000;
+  }
+}
 
 :root {
   --unit: 1rem;
@@ -53,8 +54,8 @@ dark_red = "#7F0000"
 body {
   display: flex;
   min-height: 100vh;
-  background: #f2f3f7;
-  color: #25293c;
+  background: var(--color--page-background);
+  color: var(--color--page-foreground);
   font-family: Cambria, Georgia, serif;
   font-size: 16px;
   line-height: 1.5;
@@ -84,5 +85,5 @@ dl {
 }
 
 a {
-  color: #0073e6;
+  color: var(--color--blue);
 }
