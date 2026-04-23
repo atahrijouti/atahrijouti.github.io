@@ -7,11 +7,18 @@ export const metadata: Metadata = {
 
 export const content = () => {
   return html`<div>
+    <style>
+      main {
+        max-width: 720px;
+        line-height: 1.5;
+      }
+    </style>
     <h1>Playground</h1>
     <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut
-      labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-      laboris nisi ut aliquip ex ea commodo consequat.
+      When you write a Rust program, every value you create lives somewhere in memory. Most of the
+      time you don't need to think about where — the compiler figures it out. But when performance
+      matters, or when you're debugging a subtle bug, knowing exactly how Rust lays out data can
+      make all the difference.
     </p>
 
     <p>

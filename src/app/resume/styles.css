@@ -9,11 +9,11 @@
 }
 
 .resume-page h2 {
-  margin-bottom: calc(var(--pico-typography-spacing-vertical) * 0.25);
+  margin-bottom: calc(var(--unit) * 0.25);
 }
 
 .resume-page h3 {
-  margin-bottom: calc(var(--pico-typography-spacing-vertical) * 0.125);
+  margin-bottom: calc(var(--unit) * 0.125);
 }
 
 .skill-item:not(:first-child):before,
