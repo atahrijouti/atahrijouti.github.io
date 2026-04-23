@@ -7,12 +7,6 @@ export const metadata: Metadata = {
 
 export const content = () => {
   return html`<div>
-    <style>
-      main {
-        max-width: 720px;
-        line-height: 1.5;
-      }
-    </style>
     <h1>Playground</h1>
     <p>
       When you write a Rust program, every value you create lives somewhere in memory. Most of the
@@ -21,29 +15,41 @@ export const content = () => {
       make all the difference.
     </p>
 
+    <h2>Playground</h2>
+    <h3>Playground</h3>
     <p>
       Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
       pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
       mollit anim id est laborum et dolorum fuga.
     </p>
 
+    <h2>Playground</h2>
+    <h3>Playground</h3>
+    <h4>Playground</h4>
     <p>
       Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
       Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero
       sit amet quam egestas semper auctor.
     </p>
 
+    <h5>Playground</h5>
     <p>
       Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis molestie
       lacinia ultricies, arcu ipsum aliquet mauris, vitae tincidunt nisi sem quis diam. Pellentesque
       habitant morbi tristique senectus et netus malesuada.
     </p>
 
-    <p>
-      Fusce fermentum. Nullam varius nulla at mauris dignissim, vel suscipit erat luctus. Cras non
-      purus in turpis tincidunt luctus. Vivamus tincidunt, metus vel posuere ullamcorper, turpis
-      nunc volutpat libero, vitae gravida nunc turpis non nisi.
-    </p>
+    <h5>Playground</h5>
+    <h6>Playground</h6>
+    <ul>
+      <li>Fusce fermentum.</li>
+      <li>Nullam varius nulla at mauris dignissim, vel suscipit erat luctus.</li>
+      <li>Cras non purus in turpis tincidunt luctus.</li>
+      <li>
+        Vivamus tincidunt, metus vel posuere ullamcorper, turpis nunc volutpat libero, vitae gravida
+        nunc turpis non nisi.
+      </li>
+    </ul>
 
     <p>
       Maecenas ullamcorper, dui et placerat feugiat, eros pede varius nisi, condimentum viverra
