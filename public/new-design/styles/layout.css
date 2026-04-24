@@ -28,7 +28,7 @@
     font-family: var(--font-body);
     font-size: var(--text-subheading);
     font-weight: 700;
-    color: var(--text-accent);
+    color: var(--text-strong);
     line-height: 1.2;
   }
 
@@ -55,7 +55,7 @@
   }
 
   .site-nav a.is-active {
-    color: var(--text-accent);
+    color: var(--text-structural);
     font-weight: 600;
   }
 

@@ -65,7 +65,12 @@
     --text-strong: var(--shade-07); /* headings */
     --text-muted: var(--shade-04); /* secondary text, nav links */
     --text-subtle: var(--shade-03); /* meta, dates, captions */
-    --text-accent: var(--darker-blue); /* h2, strong emphasis */
+    /* The iconic blue — brand accent, reserved for moments you want
+       the eye to land. Links use it; use sparingly elsewhere. */
+    --text-accent: var(--blue);
+    /* Structural "you are here" emphasis — mirrors the code-keyword
+       role (fn, let, import). Reads near-black; structural, not loud. */
+    --text-structural: var(--darker-blue);
     --text-link: var(--blue);
     --text-link-hover: var(--dark-blue);
     --text-on-signal: var(--shade-00);

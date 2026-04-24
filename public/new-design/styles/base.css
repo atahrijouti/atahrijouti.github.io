@@ -54,7 +54,7 @@
   h2 {
     font-size: var(--text-heading);
     line-height: var(--leading-heading);
-    color: var(--text-accent);
+    color: var(--text-strong);
     font-weight: 700;
     margin-block-start: var(--space-6);
     margin-block-end: var(--space-2);

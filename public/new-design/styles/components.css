@@ -173,7 +173,7 @@
     font-family: var(--font-body);
     font-size: var(--text-subheading);
     font-weight: 700;
-    color: var(--text-accent);
+    color: var(--text-strong);
     margin-bottom: var(--space-2);
   }
 
@@ -262,7 +262,7 @@
   }
 
   .position h3 {
-    color: var(--text-accent);
+    color: var(--text-strong);
     margin-block-start: 0;
   }
 
