@@ -3,6 +3,11 @@
   padding-inline-start: 0;
 }
 
+.resume-page ul {
+  /*padding-inline-start: 1rem;*/
+  margin-bottom: 0;
+}
+
 .resume-page dd {
   margin-left: 0;
   margin-inline-start: 0;

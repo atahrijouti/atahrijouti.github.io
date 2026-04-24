@@ -55,9 +55,9 @@
 @layer semantic {
   :root {
     /* ─── Surfaces ─────────────────────────────────────────── */
-    --surface: var(--shade-00); /* page background */
-    --surface-raised: var(--shade-01-lighter); /* sidebar, cards */
-    --surface-sunken: var(--shade-01-lighter); /* code blocks */
+    --surface: white; /* page background */
+    --surface-raised: var(--shade-00); /* sidebar, cards */
+    --surface-sunken: var(--shade-00); /* code blocks */
     --surface-overlay: var(--shade-01); /* popovers, tooltips */
 
     /* ─── Text ─────────────────────────────────────────────── */
@@ -106,10 +106,10 @@
     --signal-note-edge: var(--light-purple);
 
     /* ─── Code & syntax — mirrors helix token roles ──────── */
-    --code-bg: var(--shade-01-lighter);
+    --code-bg: var(--surface-sunken);
     --code-border: var(--shade-02);
     --code-inline-bg: var(--shade-01-lighter);
-    --code-inline-fg: var(--dark-red);
+    --code-inline-fg: var(--darker-blue);
 
     --syntax-keyword: var(--darker-blue);
     --syntax-string: var(--green);
@@ -124,8 +124,8 @@
 
     /* ─── Typography ──────────────────────────────────────── */
     --font-body: Georgia, "Times New Roman", serif;
-    --font-ui: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-      "Helvetica Neue", sans-serif;
+    --font-ui:
+      system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
     --font-mono: "JetBrains Mono", "Courier New", ui-monospace, monospace;
 
     --text-display: 26px; /* h1 */

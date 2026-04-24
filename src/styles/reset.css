@@ -66,12 +66,7 @@
   ul,
   ol,
   dl {
-    list-style-position: inside;
-
-    ul,
-    ol,
-    dl {
-      padding-inline-start: 1lh;
-    }
+    list-style-position: outside;
+    padding-inline-start: 1rem;
   }
 }
