@@ -1,0 +1,157 @@
+/*
+ * Tokens are layered: palette → semantic → components.
+ * Components MUST reach for semantic tokens; they should never
+ * touch the palette directly. The palette is free to change.
+ */
+
+@layer palette, semantic;
+
+@layer palette {
+  :root {
+    /* JetBrains Cyan Light — raw palette, see public/cyan-light.toml */
+    --shade-00: #f2f3f7;
+    --shade-01: #dadde8;
+    --shade-01-lighter: #e6e8f0;
+    --shade-02: #c1c6d9;
+    --shade-03: #a9b0ca;
+    --shade-03-darker: #9199bb;
+    --shade-04: #525c85;
+    --shade-04-lighter: #616d9d;
+    --shade-05: #434b6c;
+    --shade-06: #343a54;
+    --shade-07: #25293c;
+
+    --blue: #0073e6;
+    --dark-blue: #185b93;
+    --darker-blue: #000080;
+    --light-blue: #99ccff;
+    --lighter-blue: #d0eaff;
+    --faint-blue: #e8eef1;
+    --gutter-blue: #c3d6e8;
+    --cursor-blue: #80bfff;
+
+    --purple: #660e7a;
+    --light-purple: #ed9cff;
+
+    --green: #00733b;
+    --light-green: #5dce87;
+    --green-blue: #458383;
+    --gutter-green: #c9dec1;
+
+    --yellow: #808000;
+    --dark-yellow: #7a7a43;
+
+    --orange: #f49810;
+    --light-orange: #f9c881;
+
+    --red: #d90016;
+    --dark-red: #7f0000;
+    --gutter-red: #ebbcbc;
+
+    --comment-gray: #808080;
+  }
+}
+
+@layer semantic {
+  :root {
+    /* ─── Surfaces ─────────────────────────────────────────── */
+    --surface: var(--shade-00); /* page background */
+    --surface-raised: var(--shade-01-lighter); /* sidebar, cards */
+    --surface-sunken: var(--shade-01-lighter); /* code blocks */
+    --surface-overlay: var(--shade-01); /* popovers, tooltips */
+
+    /* ─── Text ─────────────────────────────────────────────── */
+    --text: var(--shade-07); /* body copy */
+    --text-strong: var(--shade-07); /* headings */
+    --text-muted: var(--shade-04); /* secondary text, nav links */
+    --text-subtle: var(--shade-03); /* meta, dates, captions */
+    --text-accent: var(--darker-blue); /* h2, strong emphasis */
+    --text-link: var(--blue);
+    --text-link-hover: var(--dark-blue);
+    --text-on-signal: var(--shade-00);
+
+    /* ─── Edges ────────────────────────────────────────────── */
+    --border: var(--shade-02); /* visible dividers */
+    --border-muted: var(--shade-01); /* subtle separators */
+
+    /* ─── Signals — bg + fg + edge trio per role ──────────── */
+    /* info: general-purpose callouts, primary accent tag */
+    --signal-info-bg: var(--lighter-blue);
+    --signal-info-fg: var(--dark-blue);
+    --signal-info-edge: var(--blue);
+
+    /* success */
+    --signal-success-bg: #d6eedf;
+    --signal-success-fg: var(--green);
+    --signal-success-edge: var(--light-green);
+
+    /* warning */
+    --signal-warning-bg: #fff4e0;
+    --signal-warning-fg: #7a4a0a;
+    --signal-warning-edge: var(--orange);
+
+    /* danger */
+    --signal-danger-bg: var(--gutter-red);
+    --signal-danger-fg: var(--red);
+    --signal-danger-edge: var(--red);
+
+    /* note (purple, for "by the way" content) */
+    --signal-note-bg: #f0d6f5;
+    --signal-note-fg: var(--purple);
+    --signal-note-edge: var(--light-purple);
+
+    /* ─── Code & syntax — mirrors helix token roles ──────── */
+    --code-bg: var(--shade-01-lighter);
+    --code-border: var(--shade-02);
+    --code-inline-bg: var(--shade-01-lighter);
+    --code-inline-fg: var(--dark-red);
+
+    --syntax-keyword: var(--darker-blue);
+    --syntax-string: var(--green);
+    --syntax-number: var(--blue);
+    --syntax-comment: var(--comment-gray);
+    --syntax-type: var(--shade-07);
+    --syntax-function: var(--shade-07);
+    --syntax-method: var(--dark-yellow);
+    --syntax-variable: var(--green-blue);
+    --syntax-parameter: var(--purple);
+    --syntax-special: var(--dark-red);
+
+    /* ─── Typography ──────────────────────────────────────── */
+    --font-body: Georgia, "Times New Roman", serif;
+    --font-ui: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+      "Helvetica Neue", sans-serif;
+    --font-mono: "JetBrains Mono", "Courier New", ui-monospace, monospace;
+
+    --text-display: 26px; /* h1 */
+    --text-heading: 19px; /* h2 */
+    --text-subheading: 16px; /* h3 */
+    --text-body: 15.5px;
+    --text-ui: 13px; /* navs, buttons, tags */
+    --text-meta: 12px; /* dates, tiny labels */
+    --text-eyebrow: 10px; /* uppercase section labels */
+
+    --leading-body: 1.78;
+    --leading-ui: 1.5;
+    --leading-heading: 1.3;
+
+    /* ─── Space scale ─────────────────────────────────────── */
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-5: 1.5rem;
+    --space-6: 2rem;
+    --space-7: 3rem;
+    --space-8: 4rem;
+
+    /* ─── Radii ───────────────────────────────────────────── */
+    --radius-sm: 3px;
+    --radius-md: 5px;
+    --radius-lg: 8px;
+
+    /* ─── Layout constants ────────────────────────────────── */
+    --sidebar-width: 200px;
+    --content-max: 720px;
+  }
+}

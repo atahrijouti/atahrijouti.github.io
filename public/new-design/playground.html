@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Playground — Abderrahmane Tahri Jouti</title>
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="stylesheet" href="./styles/main.css" />
+  </head>
+  <body>
+    <div class="page">
+      <aside class="sidebar">
+        <div class="sidebar-identity">
+          <div class="sidebar-name">Abderrahmane Tahri Jouti</div>
+          <div class="sidebar-role">Web engineer · Stockholm</div>
+        </div>
+
+        <nav class="site-nav" aria-label="Primary">
+          <a href="./index.html">Home</a>
+          <a href="./resume.html">Resumé</a>
+          <a href="./playground.html" class="is-active">Playground</a>
+          <a href="./writing.html">Writing</a>
+        </nav>
+
+        <div class="sidebar-section">
+          <div class="sidebar-label">Filters</div>
+          <nav class="site-nav" aria-label="Filters">
+            <a href="#all">All experiments</a>
+            <a href="#canvas">Canvas &amp; graphics</a>
+            <a href="#type">Typography</a>
+            <a href="#motion">Motion</a>
+          </nav>
+        </div>
+      </aside>
+
+      <main class="main">
+        <div class="eyebrow"><a href="./index.html">Home</a> / Playground</div>
+
+        <h1>Playground</h1>
+
+        <div class="meta" style="margin-bottom: var(--space-4)">
+          <span>A sandbox of small things.</span>
+          <span class="meta-sep">·</span>
+          <span>Updated irregularly.</span>
+        </div>
+
+        <p>
+          Most of these started as a question I couldn't answer by reading. Some are half-finished;
+          a few are idle loops I like to leave running. Click any card to open the live toy.
+        </p>
+
+        <div class="callout" data-signal="info">
+          Nothing here is production-grade. They exist to learn a technique, test a hypothesis, or
+          keep my hands busy between deploys.
+        </div>
+
+        <h2 id="canvas">Canvas &amp; graphics</h2>
+
+        <div class="card-grid">
+          <a class="card" href="../../src/app/home/">
+            <div class="card-title">Fractal tree</div>
+            <p class="card-body">
+              A recursive tree drawn to canvas with parameterized angle, length decay, and
+              colour roll. The thing currently idling on the home page.
+            </p>
+            <div class="card-footer">
+              <span class="tag" data-signal="success">canvas</span>
+              <span class="tag" data-signal="note">recursion</span>
+              <span class="tag" data-signal="neutral">TypeScript</span>
+            </div>
+          </a>
+
+          <a class="card" href="#">
+            <div class="card-title">Voronoi mouse field</div>
+            <p class="card-body">
+              Voronoi cells that re-tessellate toward the cursor — a study in how spatial
+              partitioning feels when it's reactive instead of static.
+            </p>
+            <div class="card-footer">
+              <span class="tag" data-signal="success">canvas</span>
+              <span class="tag" data-signal="note">geometry</span>
+            </div>
+          </a>
+
+          <a class="card" href="#">
+            <div class="card-title">Palette weaver</div>
+            <p class="card-body">
+              Drop two hex values and watch the tool interpolate through OKLCH, LAB, and HSL — a
+              side-by-side you can stare at until one colour space wins you over.
+            </p>
+            <div class="card-footer">
+              <span class="tag" data-signal="info">colour</span>
+              <span class="tag" data-signal="neutral">OKLCH</span>
+            </div>
+          </a>
+        </div>
+
+        <h2 id="type">Typography</h2>
+
+        <div class="card-grid">
+          <a class="card" href="#">
+            <div class="card-title">Modular scale explorer</div>
+            <p class="card-body">
+              A knob-driven playground for picking type scales — ratios, base sizes, breakpoints —
+              with live previews of body, headings, and small text.
+            </p>
+            <div class="card-footer">
+              <span class="tag" data-signal="warning">type</span>
+              <span class="tag" data-signal="neutral">CSS</span>
+            </div>
+          </a>
+
+          <a class="card" href="#">
+            <div class="card-title">Variable font keyboard</div>
+            <p class="card-body">
+              Map arrow keys and modifiers to a variable font's axes. Mostly useful for convincing
+              yourself a weight axis isn't the same as a grade axis.
+            </p>
+            <div class="card-footer">
+              <span class="tag" data-signal="warning">type</span>
+              <span class="tag" data-signal="note">variable fonts</span>
+            </div>
+          </a>
+        </div>
+
+        <h2 id="motion">Motion</h2>
+
+        <div class="card-grid">
+          <a class="card" href="#">
+            <div class="card-title">Easing comparator</div>
+            <p class="card-body">
+              Run two easing curves side by side on the same path. Useful when you can't decide
+              between <span class="inline-code">ease-in-out</span> and a cubic-bezier you just
+              made up.
+            </p>
+            <div class="card-footer">
+              <span class="tag" data-signal="danger">motion</span>
+              <span class="tag" data-signal="neutral">SVG</span>
+            </div>
+          </a>
+
+          <a class="card" href="#">
+            <div class="card-title">Spring physics lab</div>
+            <p class="card-body">
+              Tweak stiffness, damping, and mass on a draggable blob. Once you've felt a spring
+              you stop using durations.
+            </p>
+            <div class="card-footer">
+              <span class="tag" data-signal="danger">motion</span>
+              <span class="tag" data-signal="note">physics</span>
+            </div>
+          </a>
+        </div>
+
+        <h2>Sketch-pad</h2>
+
+        <p>
+          Things I'm still chewing on, not yet ready to open in a browser:
+        </p>
+
+        <ul>
+          <li>A tiny visualiser that shows which cascade layer each rule on the page came from.</li>
+          <li>A WebGL shader scratchpad with the editor's syntax palette mirrored into the output.</li>
+          <li>
+            A <span class="inline-code">view-transition</span> explorer that lets you record a UI
+            flow and export the minimum CSS to make it feel like native.
+          </li>
+        </ul>
+
+        <div class="callout" data-signal="note">
+          Have an experiment you'd like to see running here? Open an issue on
+          <a href="https://github.com/atahrijouti">GitHub</a> or email me.
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
