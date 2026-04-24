@@ -35,7 +35,8 @@
       }
       .nav-links {
         display: flex;
-        gap: 1.5rem;
+        flex-direction: column;
+        gap: 1rem;
       }
       .nav-links a {
         font-family: system-ui, sans-serif;
@@ -48,15 +49,14 @@
       }
 
       .wrap {
-        max-width: 680px;
-        margin: 0 auto;
         display: grid;
-        grid-template-columns: minmax(0, 1fr) 176px;
+        grid-template-columns: 176px minmax(0, 1fr);
+        gap: 2rem;
       }
 
       .article {
-        padding: 2.25rem 2rem 3rem;
-        border-right: 1px solid #c1c6d9;
+        padding: 2.25rem 0 3rem;
+        max-width: 720px;
       }
 
       .breadcrumb {
@@ -258,7 +258,7 @@
         letter-spacing: 0.9px;
         color: #a9b0ca;
         font-weight: 600;
-        margin-bottom: 0.65rem;
+        margin-top: 1lh;
       }
       .toc-link {
         display: block;
@@ -309,40 +309,30 @@
         line-height: 1.5;
         margin: 0;
       }
-
-      footer {
-        background: #dadde8;
-        border-top: 1px solid #c1c6d9;
-        padding: 1rem 2rem;
-        font-family: system-ui, sans-serif;
-        font-size: 12px;
-        color: #a9b0ca;
-        display: flex;
-        justify-content: space-between;
-      }
-      footer a {
-        color: #525c85;
-        text-decoration: none;
-      }
     </style>
 
     <h2 class="sr-only" style="position: absolute; left: -9999px">
       Blog article mockup using JetBrains Cyan Light palette with shade07 body text
     </h2>
 
-    <nav>
-      <span class="logo">devlog</span>
-      <div class="nav-links">
-        <a href="#">Writing</a>
-        <a href="#">Projects</a>
-        <a href="#">About</a>
-      </div>
-    </nav>
-
     <div class="wrap">
-      <article class="article">
-        <div class="breadcrumb"><a href="#">Writing</a> / Systems</div>
+      <aside class="sidebar">
+        <div class="nav-links">
+          <a href="#">Writing</a>
+          <a href="#">Projects</a>
+          <a href="#">About</a>
+        </div>
 
+        <div class="about-box">
+          <h4>About the author</h4>
+          <div class="avatar">EL</div>
+          <p>
+            Erik writes about systems programming, compilers, and the occasional woodworking
+            project. Based in Stockholm.
+          </p>
+        </div>
+      </aside>
+      <article class="article">
         <h1>Understanding memory layout in Rust: stack, heap, and everything in between</h1>
 
         <div class="meta">
@@ -493,28 +483,6 @@
           </div>
         </div>
       </article>
-
-      <aside class="sidebar">
-        <h4>On this page</h4>
-        <a class="toc-link active" href="#">The stack</a>
-        <a class="toc-link" href="#">The heap</a>
-        <a class="toc-link sub" href="#">When the heap wins</a>
-        <a class="toc-link" href="#">How Rust keeps it safe</a>
-
-        <div class="about-box">
-          <h4>About the author</h4>
-          <div class="avatar">EL</div>
-          <p>
-            Erik writes about systems programming, compilers, and the occasional woodworking
-            project. Based in Stockholm.
-          </p>
-        </div>
-      </aside>
     </div>
-
-    <footer>
-      <span>© 2026 devlog</span>
-      <span><a href="#">GitHub</a> · <a href="#">RSS</a></span>
-    </footer>
   </body>
 </html>
