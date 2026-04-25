@@ -55,7 +55,7 @@
   }
 
   .site-nav a.is-active {
-    color: var(--text-structural);
+    color: var(--text);
     font-weight: 600;
   }
 
