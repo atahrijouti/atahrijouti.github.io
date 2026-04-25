@@ -56,6 +56,6 @@
   ol,
   dl {
     list-style-position: outside;
-    padding-inline-start: 1rem;
+    padding-inline-start: 1em;
   }
 }
