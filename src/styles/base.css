@@ -48,6 +48,9 @@
   dl {
     margin-bottom: 1lh;
   }
+  li > :last-child {
+    margin-bottom: 0;
+  }
 
   a {
     color: var(--text-link);

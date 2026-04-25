@@ -25,11 +25,9 @@ const EmployerDetail = ({
   name: EmploymentData["employerName"]
   url: EmploymentData["employerUrl"]
 }) => {
-  if (url) {
-    return html`<a href="${url}" title="${name}'s url" class="employer-name secondary">${name}</a>`
-  } else {
-    return html`<u class="employer-name">${name}</u>`
-  }
+  return html`<a ${url ? `href="${url}" title="${name}'s url"` : ""} class="employer-name secondary"
+    >${name}</a
+  >`
 }
 
 type TasksProps = { tasks: Task[] }

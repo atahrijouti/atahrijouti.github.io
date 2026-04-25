@@ -73,10 +73,6 @@ export const metadata: Metadata = {
   description: "Abderrahmane Tahri Jouti's Resumé",
 }
 
-export const config: Config = {
-  layout: "app/print-resume/cv.layout.html",
-}
-
 export const ready = () => {
   // the mediocrity of this code is alarming xD
   employmentsEl = document.querySelector(".employments")
@@ -99,7 +95,7 @@ export const ready = () => {
 
 export const content = () => {
   return html`<div class="print-resume-page">
-    <section>
+    <section class="intro">
       <h1 class="name"><strong>Abderrahmane</strong> <span class="last-name">Tahri Jouti</span></h1>
       <h2 class="title">Engineering Lead</h2>
       <p class="description">
