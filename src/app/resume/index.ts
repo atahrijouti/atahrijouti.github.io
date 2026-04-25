@@ -11,11 +11,12 @@ type DateDetailProps = {
 type SkillsProps = { skills: string[] }
 const Skills = ({ skills }: SkillsProps) => {
   const theSkills = $loop(skills, (skill) => html`<span class="skill-item">${skill}</span>`)
-  return html`<small><strong>Skills</strong> : <em>${theSkills}</em></small>`
+  return html`<span class="skills-label">Skills</span> : <span class="skills">${theSkills}</span>`
 }
 
 const DateDetail = ({ startDate, endDate }: DateDetailProps) => {
-  return html`<span><em>${startDate}</em> - <em>${endDate ?? "Present"}</em></span>`
+  return html`<span class="start-date">${startDate}</span> -
+    <span class="end-date">${endDate ?? "Present"}</span>`
 }
 
 const EmployerDetail = ({
@@ -25,7 +26,9 @@ const EmployerDetail = ({
   name: EmploymentData["employerName"]
   url: EmploymentData["employerUrl"]
 }) => {
-  return html`<a ${url ? `href="${url}" title="${name}'s url"` : ""} class="employer-name secondary"
+  return html`<a
+    ${url ? `href="${url}" title="${name}'s url"` : ""}
+    class="employer-name ${!url ? "placeholder" : ""}"
     >${name}</a
   >`
 }
@@ -68,8 +71,8 @@ const SinglePosition = ({ employment }: SinglePositionProps) => {
       ${DateDetail({ startDate: employment.startDate, endDate: employment.endDate })}
     </dd>
     <dd class="location">
-      <small class="location-city">${employment.location}</small
-      ><small class="location-type">${employment.locationType}</small>
+      <span class="location-item location-city">${employment.location}</span
+      ><span class="location-item location-type">${employment.locationType}</span>
     </dd>
     ${tasks && html`<dd class="position-tasks">${Tasks({ tasks })}</dd>`}
     ${skills && html`<dd class="position-skills">${Skills({ skills })}</dd>`}
@@ -97,8 +100,8 @@ const MultiplePositions = ({ employment }: MultiplePositionsProps) => {
       >
     </dd>
     <dd class="location">
-      <small class="location-city">${employment.location}</small
-      ><small class="location-type">${employment.locationType}</small>
+      <span class="location-item location-city">${employment.location}</span
+      ><span class="location-item location-type">${employment.locationType}</span>
     </dd>
     <dd class="positions">
       ${$loop(positions, (position) => {

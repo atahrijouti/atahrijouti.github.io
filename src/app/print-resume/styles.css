@@ -1,4 +1,14 @@
 @layer page {
+  .main {
+    max-width: 210mm;
+  }
+  .layout {
+    @media screen and (max-width: 720px) {
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-rows: auto 1fr;
+      gap: 0;
+    }
+  }
   @media print {
     body {
       width: 210mm;
@@ -48,7 +58,7 @@
 
     .skill-item:not(:first-child):before,
     .employer-detail span:not(:first-child):before,
-    .location small:not(:first-child):before {
+    .location-item:not(:first-child):before {
       content: " \00B7 ";
       padding-left: var(--space-1);
       padding-right: var(--space-1);
@@ -56,22 +66,12 @@
 
     .location {
       display: inline;
-      small {
-        white-space: nowrap;
-      }
     }
+    .location-item {
+      white-space: nowrap;
+    }
+
     .single-position {
-      .position-title,
-      .employer-detail,
-      .employment-dates,
-      .location {
-        display: inline-block;
-        text-transform: uppercase;
-        * {
-          font-size: var(--text-ui);
-          font-family: var(--font-ui);
-        }
-      }
       .employer-name {
         text-transform: none;
       }
@@ -87,10 +87,7 @@
         }
       }
     }
-    .employment-type,
-    .location-type {
-      display: none;
-    }
+
     .multiple-positions {
       .positions > .position:first-of-type h3 {
         margin-top: 0;
@@ -100,18 +97,6 @@
         border-left-color: rgba(213, 213, 213);
         border-left-style: dotted;
         padding-left: 1em;
-      }
-      .position-title,
-      .position-dates,
-      .employer-detail,
-      .employment-type-and-dates,
-      .location {
-        display: inline-block;
-        text-transform: uppercase;
-        * {
-          font-size: var(--text-ui);
-          font-family: var(--font-ui);
-        }
       }
       .employer-detail {
         text-transform: none;
@@ -128,6 +113,26 @@
         }
       }
     }
+
+    .employment-type,
+    .location-type {
+      display: none;
+    }
+    .position-title,
+    .position-dates,
+    .employer-detail,
+    .employment-type-and-dates,
+    .employment-dates,
+    .location {
+      display: inline-block;
+      text-transform: uppercase;
+      font-size: var(--text-ui);
+      font-family: var(--font-ui);
+      * {
+        font-size: inherit;
+        font-family: inherit;
+      }
+    }
     .employer-name {
       color: var(--text-accent);
       font-weight: bold;
@@ -137,7 +142,16 @@
       font-weight: bold;
     }
     .position-tasks > ul {
-      margin-block-end: 0;
+      margin-block-end: 0.5lh;
+    }
+
+    .position-skills {
+      font-size: var(--text-ui);
+      font-family: var(--font-ui);
+    }
+    .skills-label {
+      font-weight: 700;
+      color: var(--text-muted);
     }
 
     .contact-info ul {
