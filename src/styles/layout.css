@@ -5,38 +5,40 @@ body {
 
 .layout {
   display: grid;
-  grid-template-columns: 200px 1fr;
-  gap: calc(var(--unit) * 3);
+  grid-template-columns: var(--sidebar-width) minmax(0, 1fr);
+  gap: var(--space-6);
   flex: 1;
 
   @media screen and (max-width: 576px) {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     grid-template-rows: auto 1fr;
-    gap: var(--unit);
-    padding-left: var(--unit);
-    padding-right: var(--unit);
+    gap: 0;
   }
 }
 
 .nav {
-  padding: 1rem;
-  background-color: var(--color--shade01-lighter);
-  font-family: var(--font--sans-serif);
+  background: var(--surface-raised);
+  padding: var(--space-5) var(--space-4);
+  font-family: var(--font-ui);
+  font-size: var(--text-ui);
+  line-height: var(--leading-ui);
 }
 
 .menu {
-  list-style-type: none;
-  padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-
-  li {
-    list-style: none;
-  }
-
+  list-style-type: none;
+  gap: var(--space-3);
   a {
+    color: var(--text-muted);
     text-decoration: none;
+    &.current {
+      color: var(--text);
+      font-weight: 600;
+    }
+    &:hover {
+      color: var(--text-link);
+    }
   }
 }
 
@@ -44,4 +46,7 @@ body {
   max-width: 720px;
   line-height: 1.5;
   padding: 2rem 0 2rem;
+  @media screen and (max-width: 576px) {
+    padding: var(--space-5) var(--space-4);
+  }
 }
