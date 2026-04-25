@@ -1,4 +1,4 @@
-import { $loop, html, type Config, type Metadata } from "unbundle"
+import { $loop, html, type Metadata } from "unbundle"
 import { isServer } from "../../helpers/environment.ts"
 import { makeMap } from "../../helpers/map.ts"
 import employments from "../resume/data.json" with { type: "json" }
