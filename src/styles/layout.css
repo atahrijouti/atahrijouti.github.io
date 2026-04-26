@@ -7,7 +7,6 @@
   .layout {
     display: grid;
     grid-template-columns: var(--sidebar-width) minmax(0, 1fr);
-    gap: var(--space-6);
     flex: 1;
 
     @media screen and (max-width: 576px) {
@@ -46,7 +45,7 @@
   .main {
     max-width: 720px;
     line-height: 1.5;
-    padding: 2rem 0 2rem;
+    padding: var(--space-6);
     @media screen and (max-width: 576px) {
       padding: var(--space-5) var(--space-4);
     }

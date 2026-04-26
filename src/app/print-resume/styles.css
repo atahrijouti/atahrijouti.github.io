@@ -1,14 +1,4 @@
 @layer page {
-  .main {
-    max-width: 210mm;
-  }
-  .layout {
-    @media screen and (max-width: 720px) {
-      grid-template-columns: minmax(0, 1fr);
-      grid-template-rows: auto 1fr;
-      gap: 0;
-    }
-  }
   @media print {
     body {
       width: 210mm;
@@ -23,6 +13,18 @@
     }
     .nav {
       display: none;
+    }
+  }
+
+  .main {
+    max-width: calc(210mm + var(--space-6));
+  }
+
+  .layout {
+    @media screen and (max-width: 720px) {
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-rows: auto 1fr;
+      gap: 0;
     }
   }
 
@@ -160,7 +162,6 @@
       grid-template-columns: repeat(2, 1fr);
       grid-auto-flow: column;
 
-      gap: 10px;
       list-style-type: none;
       padding: 0;
       margin-block-end: 0.75lh;
