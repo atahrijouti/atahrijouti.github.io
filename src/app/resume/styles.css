@@ -1,37 +1,181 @@
-.resume-page dl {
-  padding-left: 0;
-  padding-inline-start: 0;
-}
+@layer page {
+  @media print {
+    body {
+      width: 210mm;
+      font-size: 11pt;
+    }
+    .main {
+      padding: 0;
+      max-width: initial;
+    }
+    .layout {
+      grid-template-columns: 1fr;
+    }
+    .nav {
+      display: none;
+    }
+  }
 
-.resume-page ul {
-  /*padding-inline-start: 1rem;*/
-  margin-bottom: 0;
-}
+  .main {
+    max-width: calc(210mm + var(--space-6));
+  }
 
-.resume-page dd {
-  margin-left: 0;
-  margin-inline-start: 0;
-}
+  .layout {
+    @media screen and (max-width: 720px) {
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-rows: auto 1fr;
+      gap: 0;
+    }
+  }
 
-.resume-page h2 {
-  margin-bottom: calc(var(--unit) * 0.25);
-}
+  .resume-page,
+  .print-resume-page {
+    h1:not(:is(.name)) {
+      margin-block-end: 0.25lh;
+    }
 
-.resume-page h3 {
-  margin-bottom: calc(var(--unit) * 0.125);
-}
+    dl {
+      padding-left: 0;
+      padding-inline-start: 0;
+    }
 
-.skill-item:not(:first-child):before,
-.employer-detail span:not(:first-child):before,
-.location small:not(:first-child):before {
-  content: "\00B7";
-  padding-left: 0.25rem;
-  padding-right: 0.25rem;
-}
+    dd {
+      margin-left: 0;
+      margin-inline-start: 0;
+    }
 
-.location {
-  display: inline;
-  small {
-    white-space: nowrap;
+    a {
+      text-decoration: none;
+      color: var(--text-accent);
+      font-weight: bold;
+      .contact-info & {
+        color: var(--text-muted);
+      }
+    }
+
+    .description {
+      margin-top: var(--space-3);
+      margin-bottom: var(--space-3);
+    }
+
+    .skill-item:not(:first-child):before,
+    .employer-detail span:not(:first-child):before,
+    .location-item:not(:first-child):before {
+      content: " \00B7 ";
+      padding-left: var(--space-1);
+      padding-right: var(--space-1);
+    }
+
+    .location {
+      display: inline;
+    }
+    .location-item {
+      white-space: nowrap;
+    }
+
+    .single-position {
+      .employer-name {
+        text-transform: none;
+      }
+      .position-title {
+        h2:after {
+          content: ",";
+        }
+      }
+      .employment-dates {
+        &:before,
+        &:after {
+          content: "—";
+        }
+      }
+    }
+
+    .multiple-positions {
+      .positions > .position:first-of-type h3 {
+        margin-top: 0;
+      }
+      .positions {
+        border-left-width: 2px;
+        border-left-color: rgba(213, 213, 213);
+        border-left-style: dotted;
+        padding-left: 1em;
+      }
+      .employer-detail {
+        text-transform: none;
+      }
+      .employment-dates {
+        &:before,
+        &:after {
+          content: " — ";
+        }
+      }
+      .position-dates {
+        &:before {
+          content: "—";
+        }
+      }
+    }
+
+    .employment-type,
+    .location-type {
+      display: none;
+    }
+    .position-title,
+    .position-dates,
+    .employer-detail,
+    .employment-type-and-dates,
+    .employment-dates,
+    .location {
+      display: inline-block;
+      text-transform: uppercase;
+      font-size: var(--text-ui);
+      font-family: var(--font-ui);
+      * {
+        font-size: inherit;
+        font-family: inherit;
+      }
+    }
+    .employer-name {
+      color: var(--text-accent);
+      font-weight: bold;
+    }
+    .position-title * {
+      color: var(--text-muted);
+      font-weight: bold;
+    }
+    .position-tasks > ul {
+      margin-block-end: 0.5lh;
+    }
+
+    .position-skills {
+      font-size: var(--text-ui);
+      font-family: var(--font-ui);
+    }
+    .skills-label {
+      font-weight: 700;
+      color: var(--text-muted);
+    }
+
+    .contact-info ul {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      list-style-type: none;
+      padding: 0;
+      margin-block-end: 0.75lh;
+    }
+    .employment-article {
+      break-inside: avoid;
+    }
+    .education {
+      dt {
+        font-weight: bold;
+        &:not(:first-of-type) {
+          margin-top: 1em;
+        }
+      }
+    }
+    .last-name {
+      font-weight: lighter;
+    }
   }
 }
