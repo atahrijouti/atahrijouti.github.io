@@ -1,0 +1,53 @@
+@layer layout {
+  body {
+    display: flex;
+    min-height: 100vh;
+  }
+
+  .layout {
+    display: grid;
+    grid-template-columns: var(--sidebar-width) minmax(0, 1fr);
+    flex: 1;
+
+    @media screen and (max-width: 576px) {
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-rows: auto 1fr;
+      gap: 0;
+    }
+  }
+
+  .nav {
+    background: var(--surface-raised);
+    padding: var(--space-5) var(--space-4);
+    font-family: var(--font-ui);
+    font-size: var(--text-ui);
+    line-height: var(--leading-ui);
+  }
+
+  .menu {
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+    gap: var(--space-3);
+    a {
+      color: var(--text-muted);
+      text-decoration: none;
+      &.current {
+        color: var(--text);
+        font-weight: 600;
+      }
+      &:hover {
+        color: var(--text-link);
+      }
+    }
+  }
+
+  .main {
+    max-width: 720px;
+    line-height: 1.5;
+    padding: var(--space-6);
+    @media screen and (max-width: 576px) {
+      padding: var(--space-5) var(--space-4);
+    }
+  }
+}

@@ -1,0 +1,155 @@
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,sans-serif;font-size:13px;background:transparent;padding:1rem 0}
+.section-label{font-size:10px;text-transform:uppercase;letter-spacing:0.9px;color:var(--color-text-tertiary);font-weight:600;margin:1.5rem 0 0.6rem}
+.section-label:first-child{margin-top:0}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px;margin-bottom:0.25rem}
+.swatch{border-radius:6px;overflow:hidden;border:0.5px solid rgba(0,0,0,0.09)}
+.swatch-color{height:52px}
+.swatch-info{padding:7px 9px;background:#fff}
+.swatch-name{font-size:11px;font-weight:600;color:var(--color-text-primary);line-height:1.3}
+.swatch-hex{font-family:monospace;font-size:11px;color:var(--color-text-secondary);margin-top:1px}
+.swatch-role{font-size:10px;color:var(--color-text-tertiary);margin-top:2px;line-height:1.3}
+.derived-dot{display:inline-block;width:5px;height:5px;border-radius:50%;background:#F49810;margin-right:4px;vertical-align:middle;position:relative;top:-1px}
+.legend{display:flex;gap:16px;margin-top:1rem;padding-top:0.75rem;border-top:0.5px solid var(--color-border-tertiary)}
+.legend-item{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--color-text-secondary)}
+.dot-src{width:7px;height:7px;border-radius:50%;background:var(--color-text-tertiary)}
+.dot-drv{width:7px;height:7px;border-radius:50%;background:#F49810}
+</style>
+
+<div class="section-label">Neutrals — from palette</div>
+<div class="grid">
+  <div class="swatch">
+    <div class="swatch-color" style="background:#f2f3f7"></div>
+    <div class="swatch-info"><div class="swatch-name">shade00</div><div class="swatch-hex">#f2f3f7</div><div class="swatch-role">page background</div></div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-color" style="background:#dadde8"></div>
+    <div class="swatch-info"><div class="swatch-name">shade01</div><div class="swatch-hex">#dadde8</div><div class="swatch-role">nav, footer, surfaces</div></div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-color" style="background:#e6e8f0"></div>
+    <div class="swatch-info"><div class="swatch-name">shade01_lighter</div><div class="swatch-hex">#e6e8f0</div><div class="swatch-role">sidebar bg</div></div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-color" style="background:#c1c6d9"></div>
+    <div class="swatch-info"><div class="swatch-name">shade02</div><div class="swatch-hex">#c1c6d9</div><div class="swatch-role">borders, dividers</div></div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-color" style="background:#a9b0ca"></div>
+    <div class="swatch-info"><div class="swatch-name">shade03</div><div class="swatch-hex">#a9b0ca</div><div class="swatch-role">muted text, meta</div></div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-color" style="background:#525c85"></div>
+    <div class="swatch-info"><div class="swatch-name">shade04</div><div class="swatch-hex">#525c85</div><div class="swatch-role">secondary text, nav links</div></div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-color" style="background:#434b6c"></div>
+    <div class="swatch-info"><div class="swatch-name">shade05</div><div class="swatch-hex">#434b6c</div><div class="swatch-role">body text (prev iteration)</div></div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-color" style="background:#343a54"></div>
+    <div class="swatch-info"><div class="swatch-name">shade06</div><div class="swatch-hex">#343a54</div><div class="swatch-role">strong secondary</div></div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-color" style="background:#25293c"></div>
+    <div class="swatch-info"><div class="swatch-name">shade07</div><div class="swatch-hex">#25293c</div><div class="swatch-role">body text (chosen)</div></div>
+  </div>
+</div>
+
+<div class="section-label">Blues — from palette</div>
+<div class="grid">
+  <div class="swatch">
+    <div class="swatch-color" style="background:#E8EEF1"></div>
+    <div class="swatch-info"><div class="swatch-name">faint_blue</div><div class="swatch-hex">#E8EEF1</div><div class="swatch-role">hero bg, cursorline</div></div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-color" style="background:#d0eaff"></div>
+    <div class="swatch-info"><div class="swatch-name">lighter_blue</div><div class="swatch-hex">#d0eaff</div><div class="swatch-role">selection, tag bg, blockquote bg</div></div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-color" style="background:#99ccff"></div>
+    <div class="swatch-info"><div class="swatch-name">light_blue</div><div class="swatch-hex">#99ccff</div><div class="swatch-role">blockquote border</div></div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-color" style="background:#0073E6"></div>
+    <div class="swatch-info"><div class="swatch-name">blue</div><div class="swatch-hex">#0073E6</div><div class="swatch-role">links, callout border</div></div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-color" style="background:#185b93"></div>
+    <div class="swatch-info"><div class="swatch-name">dark_blue</div><div class="swatch-hex">#185b93</div><div class="swatch-role">tag text, callout text, blockquote text</div></div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-color" style="background:#000080"></div>
+    <div class="swatch-info"><div class="swatch-name">darker_blue</div><div class="swatch-hex">#000080</div><div class="swatch-role">headings h1, h2</div></div>
+  </div>
+</div>
+
+<div class="section-label">Accent colors — from palette</div>
+<div class="grid">
+  <div class="swatch">
+    <div class="swatch-color" style="background:#660E7A"></div>
+    <div class="swatch-info"><div class="swatch-name">purple</div><div class="swatch-hex">#660E7A</div><div class="swatch-role">tag text, params in code</div></div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-color" style="background:#00733B"></div>
+    <div class="swatch-info"><div class="swatch-name">green</div><div class="swatch-hex">#00733B</div><div class="swatch-role">tag text, strings in code</div></div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-color" style="background:#458383"></div>
+    <div class="swatch-info"><div class="swatch-name">green_blue</div><div class="swatch-hex">#458383</div><div class="swatch-role">variables in code</div></div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-color" style="background:#7A7A43"></div>
+    <div class="swatch-info"><div class="swatch-name">dark_yellow</div><div class="swatch-hex">#7A7A43</div><div class="swatch-role">method calls in code</div></div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-color" style="background:#F49810"></div>
+    <div class="swatch-info"><div class="swatch-name">orange</div><div class="swatch-hex">#F49810</div><div class="swatch-role">warning border</div></div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-color" style="background:#d90016"></div>
+    <div class="swatch-info"><div class="swatch-name">red</div><div class="swatch-hex">#d90016</div><div class="swatch-role">errors</div></div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-color" style="background:#7F0000"></div>
+    <div class="swatch-info"><div class="swatch-name">dark_red</div><div class="swatch-hex">#7F0000</div><div class="swatch-role">inline code text</div></div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-color" style="background:#808080"></div>
+    <div class="swatch-info"><div class="swatch-name">comment_gray</div><div class="swatch-hex">#808080</div><div class="swatch-role">code comments</div></div>
+  </div>
+</div>
+
+<div class="section-label">Derived — not in the .toml file <span class="derived-dot"></span></div>
+<div class="grid">
+  <div class="swatch">
+    <div class="swatch-color" style="background:#d6eedf"></div>
+    <div class="swatch-info"><div class="swatch-name"><span class="derived-dot"></span>tag-green bg</div><div class="swatch-hex">#d6eedf</div><div class="swatch-role">green tint of #00733B, ~10% sat</div></div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-color" style="background:#f0d6f5"></div>
+    <div class="swatch-info"><div class="swatch-name"><span class="derived-dot"></span>tag-purple bg</div><div class="swatch-hex">#f0d6f5</div><div class="swatch-role">purple tint of #660E7A, ~10% sat</div></div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-color" style="background:#fff4e0"></div>
+    <div class="swatch-info"><div class="swatch-name"><span class="derived-dot"></span>callout-warn bg</div><div class="swatch-hex">#fff4e0</div><div class="swatch-role">orange tint of #F49810, ~5% sat</div></div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-color" style="background:#7a4a0a"></div>
+    <div class="swatch-info"><div class="swatch-name"><span class="derived-dot"></span>callout-warn text</div><div class="swatch-hex">#7a4a0a</div><div class="swatch-role">dark brown, orange hue family</div></div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-color" style="background:#ffe8e8"></div>
+    <div class="swatch-info"><div class="swatch-name"><span class="derived-dot"></span>callout-error bg</div><div class="swatch-hex">#ffe8e8</div><div class="swatch-role">red tint of #d90016, ~8% sat</div></div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-color" style="background:#800010"></div>
+    <div class="swatch-info"><div class="swatch-name"><span class="derived-dot"></span>callout-error text</div><div class="swatch-hex">#800010</div><div class="swatch-role">dark red, same hue family</div></div>
+  </div>
+</div>
+
+<div class="legend">
+  <div class="legend-item"><div class="dot-src"></div> from .toml palette</div>
+  <div class="legend-item"><div class="dot-drv"></div> derived / extrapolated</div>
+</div>

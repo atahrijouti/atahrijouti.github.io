@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Resumé — Abderrahmane Tahri Jouti</title>
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="stylesheet" href="./styles/main.css" />
+  </head>
+  <body>
+    <div class="page">
+      <aside class="sidebar">
+        <div class="sidebar-identity">
+          <div class="sidebar-name">Abderrahmane Tahri Jouti</div>
+          <div class="sidebar-role">Web engineer · Stockholm</div>
+        </div>
+
+        <nav class="site-nav" aria-label="Primary">
+          <a href="./index.html">Home</a>
+          <a href="./resume.html" class="is-active">Resumé</a>
+          <a href="./playground.html">Playground</a>
+          <a href="./writing.html">Writing</a>
+        </nav>
+
+        <div class="sidebar-section">
+          <div class="sidebar-label">On this page</div>
+          <nav class="site-nav" aria-label="Sections">
+            <a href="#paypal">PayPal · Zettle</a>
+            <a href="#calyos">Calyos</a>
+            <a href="#casapplanca">Casapplanca</a>
+            <a href="#mis">MIS Laboratory</a>
+            <a href="#synergie">Synergie Media</a>
+          </nav>
+        </div>
+      </aside>
+
+      <main class="main">
+        <div class="eyebrow"><a href="./index.html">Home</a> / Resumé</div>
+
+        <h1>Fifteen years of shipping for the web</h1>
+
+        <div class="meta">
+          <span class="meta-emph">Abderrahmane Tahri Jouti</span>
+          <span class="meta-sep">·</span>
+          <span>Stockholm, Sweden</span>
+          <span class="meta-sep">·</span>
+          <a href="mailto:tj.abderrahmane@gmail.com">tj.abderrahmane@gmail.com</a>
+        </div>
+
+        <hr />
+
+        <p>
+          I've been building for the web since 2011 — WordPress plugins in Agadir, AngularJS apps in
+          Casablanca, a 3D cathedral in Amiens, and most recently seven years of micro-frontends,
+          GraphQL, and design-system work at PayPal's Zettle division in Stockholm.
+        </p>
+
+        <article class="experience" id="paypal">
+          <div class="experience-header">
+            <h2>
+              <a href="https://paypal.com">PayPal / iZettle</a>
+            </h2>
+          </div>
+          <div class="experience-meta">
+            Full-time<span class="dot">·</span>Oct 2018 → Present<span class="dot">·</span>Stockholm,
+            Sweden<span class="dot">·</span>On-site
+          </div>
+
+          <div class="position">
+            <h3>Engineering Lead</h3>
+            <div class="position-dates">Nov 2021 → Present</div>
+            <ul>
+              <li>
+                Designed the <strong>micro-frontend migration architecture</strong> for the
+                Accounting Integrations area; coordinated cross-team implementation and reviewed
+                all front-end changes.
+              </li>
+              <li>
+                Led technical discovery for migrating the Zettle backoffice to PayPal, defining the
+                front-end architecture and hiring the initial FE team.
+              </li>
+              <li>
+                Maintained and evolved the product's entire stack single-handedly during a period
+                as sole engineer on the team (2023).
+              </li>
+              <li>
+                Owned the front-end quality review process for 20+ third-party integrations on the
+                Zettle Apps Marketplace.
+              </li>
+              <li>Migrated CI/CD for 10+ services from CircleCI to GitHub Actions.</li>
+              <li>Implemented SSO-based authentication flows for two external partners.</li>
+              <li>
+                Defined role-to-skill expectations for hiring front-end engineers; drove
+                knowledge-sharing in chapter forums.
+              </li>
+              <li>
+                Mentored colleagues across teams, including supporting a non-engineer's transition
+                into a front-end developer role.
+              </li>
+            </ul>
+            <div class="skills">
+              <span class="tag" data-signal="info">React</span>
+              <span class="tag" data-signal="info">TypeScript</span>
+              <span class="tag" data-signal="success">GraphQL</span>
+              <span class="tag" data-signal="note">Micro-frontends</span>
+              <span class="tag" data-signal="neutral">CI/CD</span>
+              <span class="tag" data-signal="neutral">GitHub Actions</span>
+              <span class="tag" data-signal="neutral">AWS</span>
+              <span class="tag" data-signal="warning">Solution Architecture</span>
+              <span class="tag" data-signal="warning">Technical Leadership</span>
+              <span class="tag" data-signal="warning">Mentoring</span>
+            </div>
+          </div>
+
+          <div class="position">
+            <h3>Software Engineer (Web)</h3>
+            <div class="position-dates">Oct 2018 → Nov 2021</div>
+            <ul>
+              <li>
+                Built merchant-facing tools for creating Facebook and Google ads using React, React
+                Native, and GraphQL.
+              </li>
+              <li>
+                Implemented the integrations marketplace pages: app listing, single app view,
+                OAuth connection/disconnection flows.
+              </li>
+              <li>
+                Designed a <strong>JSON-schema-driven dynamic form system</strong>, enabling new
+                integration pages without re-implementing UI.
+              </li>
+              <li>
+                Migrated the integrations front-end from Rails-served assets to a micro-frontends
+                architecture with a shell monorepo.
+              </li>
+              <li>
+                Migrated <span class="inline-code">developer.zettle.com</span> from Koa to Next.js
+                with MDX documentation tied to the Zettle design system.
+              </li>
+              <li>
+                Contributed to the GraphQL Gateway and Mapper powering the backoffice SuperGraph.
+              </li>
+              <li>
+                Introduced front-end observability with Sentry, later migrating to Datadog.
+              </li>
+              <li>
+                Adopted Storybook across all pages and components for visual testing and debugging.
+              </li>
+              <li>Reduced stale dependency PRs from 95+ to near-zero across the backoffice.</li>
+            </ul>
+            <div class="skills">
+              <span class="tag" data-signal="info">React</span>
+              <span class="tag" data-signal="info">React Native</span>
+              <span class="tag" data-signal="info">TypeScript</span>
+              <span class="tag" data-signal="success">GraphQL</span>
+              <span class="tag" data-signal="info">Next.js</span>
+              <span class="tag" data-signal="note">Micro-frontends</span>
+              <span class="tag" data-signal="neutral">Storybook</span>
+              <span class="tag" data-signal="neutral">Node.js</span>
+              <span class="tag" data-signal="neutral">MDX</span>
+              <span class="tag" data-signal="neutral">Docker</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="experience" id="calyos">
+          <div class="experience-header">
+            <h2>Calyos / Scale It</h2>
+          </div>
+          <div class="experience-meta">
+            Full-time<span class="dot">·</span>Mar 2017 → Sep 2018<span class="dot">·</span>Fès,
+            Morocco<span class="dot">·</span>On-site
+          </div>
+
+          <div class="position">
+            <h3>Software Engineer</h3>
+            <ul>
+              <li>
+                <strong>Prestacoop</strong>: led a team of 3 developers to migrate an accounting
+                product from Flash + C# to React + Laravel — oversaw the new multi-tenant
+                authentication and database design, implemented the initial front-end layout, and
+                wrote the SQL-Server-to-MySQL migration tooling.
+              </li>
+              <li>
+                <strong>Sporthome</strong>: finalized a client project while guiding junior
+                developers through code review.
+              </li>
+            </ul>
+            <div class="skills">
+              <span class="tag" data-signal="info">React</span>
+              <span class="tag" data-signal="neutral">PHP</span>
+              <span class="tag" data-signal="neutral">Laravel</span>
+              <span class="tag" data-signal="neutral">MySQL</span>
+              <span class="tag" data-signal="warning">Team Leadership</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="experience" id="casapplanca">
+          <div class="experience-header">
+            <h2>Casapplanca</h2>
+          </div>
+          <div class="experience-meta">
+            Full-time<span class="dot">·</span>Jun 2015 → Feb 2017<span
+              class="dot"
+              >·</span
+            >Casablanca, Morocco<span class="dot">·</span>On-site
+          </div>
+
+          <div class="position">
+            <h3>Software Engineer</h3>
+            <ul>
+              <li>
+                Built a front-end application in AngularJS for creating emails visually, without
+                having to write HTML.
+              </li>
+              <li>
+                Worked on finalizing <strong>Kapptain</strong>, a social-marketing platform —
+                improved product quality and shipped features both on the AngularJS front-end and
+                the Ruby on Rails back-end.
+              </li>
+            </ul>
+            <div class="skills">
+              <span class="tag" data-signal="info">Angular 1.5</span>
+              <span class="tag" data-signal="danger">Ruby on Rails</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="experience" id="mis">
+          <div class="experience-header">
+            <h2><a href="https://www.mis.u-picardie.fr">MIS Laboratory</a></h2>
+          </div>
+          <div class="experience-meta">
+            Full-time<span class="dot">·</span>Feb 2014 → Jan 2015<span class="dot">·</span>Amiens,
+            France<span class="dot">·</span>On-site
+          </div>
+
+          <div class="position">
+            <h3>Software Engineer (Masters project)</h3>
+            <ul>
+              <li>
+                Built a navigational-aid tool inside a 3D model of
+                <em>La Cathédrale d'Amiens</em> using a Protégé plugin (Java), C++, and Ogre3D —
+                my Masters graduation project.
+              </li>
+            </ul>
+            <div class="skills">
+              <span class="tag" data-signal="note">Research</span>
+              <span class="tag" data-signal="neutral">C++</span>
+              <span class="tag" data-signal="neutral">Ogre 3D</span>
+              <span class="tag" data-signal="neutral">Java</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="experience" id="synergie">
+          <div class="experience-header">
+            <h2><a href="https://synergie-media.com">Synergie Media</a></h2>
+          </div>
+          <div class="experience-meta">
+            Full-time<span class="dot">·</span>Apr 2011 → Sep 2012<span class="dot">·</span>Agadir,
+            Morocco<span class="dot">·</span>On-site
+          </div>
+
+          <div class="position">
+            <h3>Software Engineer</h3>
+            <ul>
+              <li>
+                Built several WordPress plugins and client sites; worked on CSS3-based animations
+                and a handful of small front-end applications.
+              </li>
+            </ul>
+            <div class="skills">
+              <span class="tag" data-signal="neutral">PHP</span>
+              <span class="tag" data-signal="neutral">WordPress</span>
+              <span class="tag" data-signal="neutral">jQuery</span>
+            </div>
+          </div>
+        </article>
+
+        <div class="callout" data-signal="note">
+          Looking for a printable version? See the
+          <a href="../../src/app/print-resume/cv.layout.html">print layout</a> — same content,
+          tuned for A4.
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

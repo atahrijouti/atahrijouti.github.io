@@ -1,146 +1,99 @@
-import type { EmploymentData, Task } from "./types.ts"
-
-import employments from "./data.json" with { type: "json" }
 import { $loop, html, type Metadata } from "unbundle"
+import { makeMap } from "../../helpers/map.ts"
+import employments from "./data/default.json" with { type: "json" }
+import frontendEmployments from "./data/front-end-focus.json" with { type: "json" }
+import type { EmploymentData } from "./types.ts"
+import {
+  ContactInfo,
+  contactInfoJson,
+  contactInfoPresent,
+  defaultContactInfoData,
+  type ContactInfoData,
+} from "./components/contact-info.ts"
+import { Employment } from "./components/employment.ts"
 
-type DateDetailProps = {
-  startDate: string
-  endDate?: string
-}
+const focusDict = { frontend: frontendEmployments, default: employments } as const
+const focusMap = makeMap<EmploymentData[]>(focusDict)
 
-type SkillsProps = { skills: string[] }
-const Skills = ({ skills }: SkillsProps) => {
-  const theSkills = $loop(skills, (skill) => html`<span class="skill-item">${skill}</span>`)
-  return html`<small><strong>Skills</strong> : <em>${theSkills}</em></small>`
-}
+let employmentsEl: HTMLElement | null
 
-const DateDetail = ({ startDate, endDate }: DateDetailProps) => {
-  return html`<span><em>${startDate}</em> - <em>${endDate ?? "Present"}</em></span>`
-}
-
-const EmployerDetail = ({
-  name,
-  url,
-}: {
-  name: EmploymentData["employerName"]
-  url: EmploymentData["employerUrl"]
-}) => {
-  if (url) {
-    return html`<a href="${url}" title="${name}'s url" class="employer-name secondary">${name}</a>`
-  } else {
-    return html`<u class="employer-name">${name}</u>`
+const adjustToFocus = (focus: string) => {
+  if (!employmentsEl) return
+  if (focusMap.has(focus)) {
+    employmentsEl.innerHTML = $loop(frontendEmployments, (employment) => Employment(employment))
   }
 }
 
-type TasksProps = { tasks: Task[] }
-const Tasks = ({ tasks }: TasksProps) => {
-  return html`<ul>
-    ${$loop(tasks, (task) => {
-      if (typeof task === "string") {
-        return html`<li>${task}</li>`
-      }
-      return html`<li>
-        ${task.task}
-        <ul>
-          ${$loop(task.subTasks, (task) => {
-            return html`<li>${task}</li>`
-          })}
-        </ul>
-      </li>`
-    })}
-  </ul>`
-}
-
-type SinglePositionProps = {
-  employment: EmploymentData
-}
-const SinglePosition = ({ employment }: SinglePositionProps) => {
-  const { title, tasks, skills } = employment.positions[0]
-  const employer = EmployerDetail({
-    name: employment.employerName,
-    url: employment.employerUrl,
-  })
-  return html` <dl class="single-position">
-    <dt class="position-title"><h2>${title}</h2></dt>
-    <dd class="employer-detail">
-      <span class="employer-name">${employer}</span
-      ><span class="employment-type">${employment.employmentType}</span>
-    </dd>
-    <dd class="employment-dates">
-      ${DateDetail({ startDate: employment.startDate, endDate: employment.endDate })}
-    </dd>
-    <dd class="location">
-      <small class="location-city">${employment.location}</small
-      ><small class="location-type">${employment.locationType}</small>
-    </dd>
-    ${tasks && html`<dd class="position-tasks">${Tasks({ tasks })}</dd>`}
-    ${skills && html`<dd class="position-skills">${Skills({ skills })}</dd>`}
-  </dl>`
-}
-
-type MultiplePositionsProps = {
-  employment: EmploymentData
-}
-const MultiplePositions = ({ employment }: MultiplePositionsProps) => {
-  const { positions } = employment
-  return html`<dl>
-    <dt class="employer-detail">
-      <h2>
-        ${EmployerDetail({
-          name: employment.employerName,
-          url: employment.employerUrl,
-        })}
-      </h2>
-    </dt>
-    <dd class="employment-type-and-dates">
-      <span class="employment-type">${employment.employmentType}</span>
-      <span class="employment-dates"
-        >${DateDetail({ startDate: employment.startDate, endDate: employment.endDate })}</span
-      >
-    </dd>
-    <dd class="location">
-      <small class="location-city">${employment.location}</small
-      ><small class="location-type">${employment.locationType}</small>
-    </dd>
-    <dd class="positions">
-      ${$loop(positions, (position) => {
-        return html`<dl class="position">
-          <dt class="position-title">
-            <h3>${position.title}</h3>
-          </dt>
-          ${position.startDate &&
-          html`<dd class="position-dates">
-            ${DateDetail({ startDate: position.startDate, endDate: position.endDate })}
-          </dd>`}
-          ${position.tasks
-            ? html`<dd class="position-tasks">${Tasks({ tasks: position.tasks })}</dd>`
-            : ""}
-          ${position.skills
-            ? html`<dd class="position-skills">${Skills({ skills: position.skills })}</dd>`
-            : ""}
-        </dl>`
-      })}
-    </dd>
-  </dl>`
-}
-
-export const Employment = (employment: EmploymentData) => {
-  const hasMultiplePositions = employment.positions.length > 1
-
-  return html`<article
-    class="employment-article ${hasMultiplePositions ? "multiple-positions" : ""}">
-    ${hasMultiplePositions ? MultiplePositions({ employment }) : SinglePosition({ employment })}
-  </article>`
+let readyContractInfo: ContactInfoData = { ...defaultContactInfoData }
+const adjustContactInfo = () => {
+  const contactInfoEl = document.querySelector(".contact-info")
+  if (!contactInfoEl) {
+    return
+  }
+  contactInfoEl.innerHTML = ContactInfo(readyContractInfo)
 }
 
 export const metadata: Metadata = {
-  title: "Resumé",
-  description: "A summary of each step and turn my career took",
+  title: "Print Resumé",
+  description: "Abderrahmane Tahri Jouti's Resumé",
+}
+
+export const ready = () => {
+  employmentsEl = document.querySelector(".employments")
+  const params = new URLSearchParams(document.location.search)
+  const focus = params.get("focus")
+  if (focus != null) {
+    adjustToFocus(focus)
+  }
+  const email = params.get("email")
+  const github = params.get("github")
+  const phone = params.get("phone")
+  const linkedin = params.get("linkedin")
+  if (email || github || phone || linkedin) {
+    readyContractInfo = {
+      ...readyContractInfo,
+      ...(email && { email }),
+      ...(github && { github }),
+      ...(phone && { phone }),
+      ...(linkedin && { linkedin }),
+    }
+    adjustContactInfo()
+  }
 }
 
 export const content = () => {
-  return html`<div class="resume-page">
-    <h1>Resumé</h1>
-    <section>${$loop(employments, (employment) => Employment(employment))}</section>
+  return html`<div class="print-resume-page">
+    <section class="intro">
+      <h1 class="name"><strong>Abderrahmane</strong> <span class="last-name">Tahri Jouti</span></h1>
+      <h2 class="title">Engineering Lead</h2>
+      <p class="description">
+        Engineering Leader with 10+ years of full-stack experience and product leadership, aligning
+        technical decisions with user needs and business priorities.
+      </p>
+      <div class="contact-info">
+        ${contactInfoPresent(contactInfoJson) ? ContactInfo(contactInfoJson) : ""}
+      </div>
+    </section>
+    <section class="experience">
+      <h1>Experience</h1>
+      <div class="employments">${$loop(employments, (employment) => Employment(employment))}</div>
+    </section>
+    <section class="education">
+      <h1>Education</h1>
+      <dl>
+        <dt>Masters degree in Artificial Intelligence and Networking, 2014</dt>
+        <dd>Faculté des Sciences et Techniques de Fès, Morocco</dd>
+        <dt>Bachelors degree in Computer Engineering, 2011</dt>
+        <dd>Faculté des Sciences et Techniques de Fès, Morocco</dd>
+      </dl>
+    </section>
+    <section class="languages">
+      <h1>Languages</h1>
+      <ul>
+        <li>Swedish : <strong>Intermediate</strong></li>
+        <li>English & French : <strong>Fluent</strong></li>
+        <li>Arabic : <strong>Native</strong></li>
+      </ul>
+    </section>
   </div>`
 }

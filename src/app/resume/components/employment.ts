@@ -1,0 +1,133 @@
+import { $loop, html } from "unbundle"
+import type { EmploymentData, Task } from "../types.ts"
+
+type DateDetailProps = {
+  startDate: string
+  endDate?: string
+}
+
+type SkillsProps = { skills: string[] }
+const Skills = ({ skills }: SkillsProps) => {
+  const theSkills = $loop(skills, (skill) => html`<span class="skill-item">${skill}</span>`)
+  return html`<span class="skills-label">Skills</span> : <span class="skills">${theSkills}</span>`
+}
+
+const DateDetail = ({ startDate, endDate }: DateDetailProps) => {
+  return html`<span class="start-date">${startDate}</span> -
+    <span class="end-date">${endDate ?? "Present"}</span>`
+}
+
+const EmployerDetail = ({
+  name,
+  url,
+}: {
+  name: EmploymentData["employerName"]
+  url: EmploymentData["employerUrl"]
+}) => {
+  return html`<a
+    ${url ? `href="${url}" title="${name}'s url"` : ""}
+    class="employer-name ${!url ? "placeholder" : ""}"
+    >${name}</a
+  >`
+}
+
+type TasksProps = { tasks: Task[] }
+const Tasks = ({ tasks }: TasksProps) => {
+  return html`<ul>
+    ${$loop(tasks, (task) => {
+      if (typeof task === "string") {
+        return html`<li>${task}</li>`
+      }
+      return html`<li>
+        ${task.task}
+        <ul>
+          ${$loop(task.subTasks, (task) => {
+            return html`<li>${task}</li>`
+          })}
+        </ul>
+      </li>`
+    })}
+  </ul>`
+}
+
+type SinglePositionProps = {
+  employment: EmploymentData
+}
+const SinglePosition = ({ employment }: SinglePositionProps) => {
+  const { title, tasks, skills } = employment.positions[0]
+  const employer = EmployerDetail({
+    name: employment.employerName,
+    url: employment.employerUrl,
+  })
+  return html` <dl class="single-position">
+    <dt class="position-title"><h2>${title}</h2></dt>
+    <dd class="employer-detail">
+      <span class="employer-name">${employer}</span
+      ><span class="employment-type">${employment.employmentType}</span>
+    </dd>
+    <dd class="employment-dates">
+      ${DateDetail({ startDate: employment.startDate, endDate: employment.endDate })}
+    </dd>
+    <dd class="location">
+      <span class="location-item location-city">${employment.location}</span
+      ><span class="location-item location-type">${employment.locationType}</span>
+    </dd>
+    ${tasks && html`<dd class="position-tasks">${Tasks({ tasks })}</dd>`}
+    ${skills && html`<dd class="position-skills">${Skills({ skills })}</dd>`}
+  </dl>`
+}
+
+type MultiplePositionsProps = {
+  employment: EmploymentData
+}
+const MultiplePositions = ({ employment }: MultiplePositionsProps) => {
+  const { positions } = employment
+  return html`<dl>
+    <dt class="employer-detail">
+      <h2>
+        ${EmployerDetail({
+          name: employment.employerName,
+          url: employment.employerUrl,
+        })}
+      </h2>
+    </dt>
+    <dd class="employment-type-and-dates">
+      <span class="employment-type">${employment.employmentType}</span>
+      <span class="employment-dates"
+        >${DateDetail({ startDate: employment.startDate, endDate: employment.endDate })}</span
+      >
+    </dd>
+    <dd class="location">
+      <span class="location-item location-city">${employment.location}</span
+      ><span class="location-item location-type">${employment.locationType}</span>
+    </dd>
+    <dd class="positions">
+      ${$loop(positions, (position) => {
+        return html`<dl class="position">
+          <dt class="position-title">
+            <h3>${position.title}</h3>
+          </dt>
+          ${position.startDate &&
+          html`<dd class="position-dates">
+            ${DateDetail({ startDate: position.startDate, endDate: position.endDate })}
+          </dd>`}
+          ${position.tasks
+            ? html`<dd class="position-tasks">${Tasks({ tasks: position.tasks })}</dd>`
+            : ""}
+          ${position.skills
+            ? html`<dd class="position-skills">${Skills({ skills: position.skills })}</dd>`
+            : ""}
+        </dl>`
+      })}
+    </dd>
+  </dl>`
+}
+
+export const Employment = (employment: EmploymentData) => {
+  const hasMultiplePositions = employment.positions.length > 1
+
+  return html`<article
+    class="employment-article ${hasMultiplePositions ? "multiple-positions" : ""}">
+    ${hasMultiplePositions ? MultiplePositions({ employment }) : SinglePosition({ employment })}
+  </article>`
+}
