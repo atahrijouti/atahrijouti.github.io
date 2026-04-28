@@ -1,7 +1,7 @@
 import { html } from "unbundle"
 import { isServer } from "../../../helpers/environment.ts"
 
-const possibleKeys = new Set(["email", "phone", "github", "linkedin"])
+export const possibleKeys = new Set(["email", "phone", "github", "linkedin"])
 
 export const defaultContactInfoData = {
   github: "atahrijouti",
@@ -14,24 +14,14 @@ export type ContactInfoData = {
   github?: string
   linkedin?: string
 }
-export let contactInfoJson: ContactInfoData = { ...defaultContactInfoData }
-
-export const contactInfoPresent = (contactInfoData: ContactInfoData) => {
-  const keys = Object.keys(contactInfoData)
-  for (const key of keys) {
-    if (possibleKeys.has(key)) {
-      return true
-    }
-  }
-  return false
-}
+export let contactInfo: ContactInfoData = { ...defaultContactInfoData }
 
 if (isServer) {
   try {
     const fs = await import("node:fs")
     if (fs.existsSync("./private/contact-info-data.json")) {
-      contactInfoJson = {
-        ...contactInfoJson,
+      contactInfo = {
+        ...contactInfo,
         ...JSON.parse(fs.readFileSync("./private/contact-info-data.json", "utf-8")),
       }
     }

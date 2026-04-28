@@ -1,182 +1,184 @@
-[
-  {
-    "employerName": "PayPal / iZettle",
-    "employerUrl": "https://paypal.com",
-    "employmentType": "Full-time",
-    "location": "Stockholm, Sweden",
-    "locationType": "On-site",
-    "startDate": "2018-10",
-    "positions": [
-      {
-        "title": "Engineering Lead",
-        "tasks": [
-          "Led technical discovery and migration strategy for the Zettle backoffice to PayPal, defining architecture and hiring the initial frontend team.",
-          "Established and owned the quality review process for 20+ third-party integrations on the Zettle Apps Marketplace.",
-          "Partnered with Product on roadmap shaping, prioritization, and strategic decision-making.",
-          "Defined and established the accounting integrations team operating model, clarifying ownership, stakeholder landscape, and the end-to-end integration lifecycle.",
-          "Drove modernization and technical debt reduction (micro-frontend migration, database upgrades, GitHub Actions adoption, backend AWS SSO migration).",
-          "Implemented SSO-based authentication for two external partners.",
-          "Represented the Accounting Integrations domain in cross-team initiatives (e.g., Refunds & Exchange), ensuring architectural alignment and mitigating impact on merchant workflows."
-        ],
-        "skills": [
-          "Team Leadership",
-          "Solution Architecture",
-          "React",
-          "TypeScript",
-          "GraphQL",
-          "AWS",
-          "Opsgenie",
-          "Postgres",
-          "Github Actions",
-          "Circle CI",
-          "Kotlin",
-          "Java",
-          "Splunk"
-        ],
-        "startDate": "2021-11"
-      },
-      {
-        "title": "Web Chapter Lead",
-        "tasks": [
-          "Defined role-to-skill expectations for hiring and interview calibration in the Web Chapter.",
-          "Established chapter lead responsibilities together with other chapter leads.",
-          "Kept chapter forum meetings on a steady monthly cadence and improved attendance.",
-          "Structured chapter documentation to make it easier for engineers and partner teams to navigate.",
-          "Drove knowledge-sharing initiatives across chapter members and adjacent teams.",
-          "Supported promotion input, mentoring, and on-boarding across multiple colleagues."
-        ],
-        "skills": [
-          "Engineering Leadership",
-          "Mentoring",
-          "Hiring and Interview Calibration",
-          "Documentation Strategy",
-          "Cross-team Collaboration",
-          "Career Development"
-        ],
-        "startDate": "2023-10"
-      },
-      {
-        "title": "Product Manager",
-        "tasks": [
-          "Managed accounting integration initiatives and delivered Quickbooks in the US & UniEconomy in Norway.",
-          "Set roadmap and priorities based on user feedback, metrics, and company goals.",
-          "Coordinated internal and external stakeholders to move integration initiatives forward."
-        ],
-        "skills": [
-          "Data-driven Decision Making",
-          "Operations Management",
-          "Strategic Planning",
-          "Jira"
-        ],
-        "startDate": "2020-11",
-        "endDate": "2021-03"
-      },
-      {
-        "title": "Software Engineer (Web)",
-        "tasks": [
-          "Contributed to the implementation of technical requirements for 3 different projects using React & Java/Kotlin",
-          "Collaborated with colleagues from other teams to insure a coherent UX across the entire company offering",
-          "Participated in on-call duties to keep our systems up and running"
-        ],
-        "skills": [
-          "React",
-          "TypeScript",
-          "GraphQL",
-          "AWS",
-          "Opsgenie",
-          "Heroku",
-          "Postgres",
-          "Github Actions",
-          "Circle CI",
-          "Kotlin",
-          "Java",
-          "Splunk"
-        ],
-        "startDate": "2018-10",
-        "endDate": "2021-11"
-      }
-    ]
-  },
-  {
-    "employerName": "Calyos / Scale It",
-    "employerUrl": "https://goo.gl/maps/pA5UrmRmoBhR9f3m7",
-    "employmentType": "Full-time",
-    "location": "Fès, Morocco",
-    "locationType": "On-site",
-    "startDate": "2017-03",
-    "endDate": "2018-09",
-    "excerpt": "I was involved in multiple client projects both on the front-end and the back-end wearing multiple hats",
-    "positions": [
-      {
-        "title": "Software Engineer",
-        "tasks": [
-          {
-            "task": "Prestacoop: Was responsible for leading a team of 3 developers to migrate an old accounting software code-base built in Flash and C# to React and Laravel",
-            "subTasks": [
-              "Oversaw the design of the new database, the multi-tenant architecture of the authentication system",
-              "Implemented the initial layout of the front-end",
-              "Implemented tools to help with the migration of the existing data from SQL Server to MySQL"
-            ]
-          },
-          "Sporthome: Was responsible for finalizing work on a client project and guiding junior developers and code review."
-        ],
-        "skills": ["React", "php", "Laravel", "MySQL", "Team Leadership", "Solution Architecture"]
-      }
-    ]
-  },
-  {
-    "employerName": "Casapplanca",
-    "employmentType": "Full-time",
-    "location": "Casablanca, Morocco",
-    "locationType": "On-site",
-    "startDate": "2015-06",
-    "endDate": "2017-02",
-    "positions": [
-      {
-        "title": "Software Engineer",
-        "tasks": [
-          "Built a font-end application in AngularJS, for creating emails visually, without having to code it by hand",
-          "Worked on finalizing Kapptain, a social marketing management web platform. Improved the product quality and added new features, both on the front-end in AngularJS, and the back-end in Ruby On Rails"
-        ],
-        "skills": ["Angular 1.5", "Ruby on Rails"]
-      }
-    ]
-  },
-  {
-    "employerName": "MIS Laboratory",
-    "employerUrl": "https://www.mis.u-picardie.fr",
-    "employmentType": "Full-time",
-    "location": "Amiens, France",
-    "locationType": "On-site",
-    "startDate": "2014-02",
-    "endDate": "2015-01",
-    "positions": [
-      {
-        "title": "Software Engineer",
-        "tasks": [
-          "Built a tool for navigational aid inside a 3D Model of “La Cathédrale d’Amiens”, as part of my Masters graduation project. (Plugin Protégé [Java], C++, Ogre3D)"
-        ],
-        "skills": ["Computer Science Research", "C++", "Ogre 3D", "Java"]
-      }
-    ]
-  },
-  {
-    "employerName": "Synergie Media",
-    "employerUrl": "https://synergie-media.com",
-    "employmentType": "Full-time",
-    "location": "Agadir, Morocco",
-    "locationType": "On-site",
-    "startDate": "2011-04",
-    "endDate": "2012-09",
-    "positions": [
-      {
-        "title": "Software Engineer",
-        "tasks": [
-          "Built several WordPress plugins as well as websites such as http://polarvagnen.com , http://sinobaler.com",
-          "Worked on several CSS3 based animations and few front-end applications"
-        ],
-        "skills": ["php", "WordPress", "jQuery"]
-      }
-    ]
-  }
-]
+{
+  "employments": [
+    {
+      "employerName": "PayPal / iZettle",
+      "employerUrl": "https://paypal.com",
+      "employmentType": "Full-time",
+      "location": "Stockholm, Sweden",
+      "locationType": "On-site",
+      "startDate": "2018-10",
+      "positions": [
+        {
+          "title": "Engineering Lead",
+          "tasks": [
+            "Led technical discovery and migration strategy for the Zettle backoffice to PayPal, defining architecture and hiring the initial frontend team.",
+            "Established and owned the quality review process for 20+ third-party integrations on the Zettle Apps Marketplace.",
+            "Partnered with Product on roadmap shaping, prioritization, and strategic decision-making.",
+            "Defined and established the accounting integrations team operating model, clarifying ownership, stakeholder landscape, and the end-to-end integration lifecycle.",
+            "Drove modernization and technical debt reduction (micro-frontend migration, database upgrades, GitHub Actions adoption, backend AWS SSO migration).",
+            "Implemented SSO-based authentication for two external partners.",
+            "Represented the Accounting Integrations domain in cross-team initiatives (e.g., Refunds & Exchange), ensuring architectural alignment and mitigating impact on merchant workflows."
+          ],
+          "skills": [
+            "Team Leadership",
+            "Solution Architecture",
+            "React",
+            "TypeScript",
+            "GraphQL",
+            "AWS",
+            "Opsgenie",
+            "Postgres",
+            "Github Actions",
+            "Circle CI",
+            "Kotlin",
+            "Java",
+            "Splunk"
+          ],
+          "startDate": "2021-11"
+        },
+        {
+          "title": "Web Chapter Lead",
+          "tasks": [
+            "Defined role-to-skill expectations for hiring and interview calibration in the Web Chapter.",
+            "Established chapter lead responsibilities together with other chapter leads.",
+            "Kept chapter forum meetings on a steady monthly cadence and improved attendance.",
+            "Structured chapter documentation to make it easier for engineers and partner teams to navigate.",
+            "Drove knowledge-sharing initiatives across chapter members and adjacent teams.",
+            "Supported promotion input, mentoring, and on-boarding across multiple colleagues."
+          ],
+          "skills": [
+            "Engineering Leadership",
+            "Mentoring",
+            "Hiring and Interview Calibration",
+            "Documentation Strategy",
+            "Cross-team Collaboration",
+            "Career Development"
+          ],
+          "startDate": "2023-10"
+        },
+        {
+          "title": "Product Manager",
+          "tasks": [
+            "Managed accounting integration initiatives and delivered Quickbooks in the US & UniEconomy in Norway.",
+            "Set roadmap and priorities based on user feedback, metrics, and company goals.",
+            "Coordinated internal and external stakeholders to move integration initiatives forward."
+          ],
+          "skills": [
+            "Data-driven Decision Making",
+            "Operations Management",
+            "Strategic Planning",
+            "Jira"
+          ],
+          "startDate": "2020-11",
+          "endDate": "2021-03"
+        },
+        {
+          "title": "Software Engineer (Web)",
+          "tasks": [
+            "Contributed to the implementation of technical requirements for 3 different projects using React & Java/Kotlin",
+            "Collaborated with colleagues from other teams to insure a coherent UX across the entire company offering",
+            "Participated in on-call duties to keep our systems up and running"
+          ],
+          "skills": [
+            "React",
+            "TypeScript",
+            "GraphQL",
+            "AWS",
+            "Opsgenie",
+            "Heroku",
+            "Postgres",
+            "Github Actions",
+            "Circle CI",
+            "Kotlin",
+            "Java",
+            "Splunk"
+          ],
+          "startDate": "2018-10",
+          "endDate": "2021-11"
+        }
+      ]
+    },
+    {
+      "employerName": "Calyos / Scale It",
+      "employerUrl": "https://goo.gl/maps/pA5UrmRmoBhR9f3m7",
+      "employmentType": "Full-time",
+      "location": "Fès, Morocco",
+      "locationType": "On-site",
+      "startDate": "2017-03",
+      "endDate": "2018-09",
+      "excerpt": "I was involved in multiple client projects both on the front-end and the back-end wearing multiple hats",
+      "positions": [
+        {
+          "title": "Software Engineer",
+          "tasks": [
+            {
+              "task": "Prestacoop: Was responsible for leading a team of 3 developers to migrate an old accounting software code-base built in Flash and C# to React and Laravel",
+              "subTasks": [
+                "Oversaw the design of the new database, the multi-tenant architecture of the authentication system",
+                "Implemented the initial layout of the front-end",
+                "Implemented tools to help with the migration of the existing data from SQL Server to MySQL"
+              ]
+            },
+            "Sporthome: Was responsible for finalizing work on a client project and guiding junior developers and code review."
+          ],
+          "skills": ["React", "php", "Laravel", "MySQL", "Team Leadership", "Solution Architecture"]
+        }
+      ]
+    },
+    {
+      "employerName": "Casapplanca",
+      "employmentType": "Full-time",
+      "location": "Casablanca, Morocco",
+      "locationType": "On-site",
+      "startDate": "2015-06",
+      "endDate": "2017-02",
+      "positions": [
+        {
+          "title": "Software Engineer",
+          "tasks": [
+            "Built a font-end application in AngularJS, for creating emails visually, without having to code it by hand",
+            "Worked on finalizing Kapptain, a social marketing management web platform. Improved the product quality and added new features, both on the front-end in AngularJS, and the back-end in Ruby On Rails"
+          ],
+          "skills": ["Angular 1.5", "Ruby on Rails"]
+        }
+      ]
+    },
+    {
+      "employerName": "MIS Laboratory",
+      "employerUrl": "https://www.mis.u-picardie.fr",
+      "employmentType": "Full-time",
+      "location": "Amiens, France",
+      "locationType": "On-site",
+      "startDate": "2014-02",
+      "endDate": "2015-01",
+      "positions": [
+        {
+          "title": "Software Engineer",
+          "tasks": [
+            "Built a tool for navigational aid inside a 3D Model of “La Cathédrale d’Amiens”, as part of my Masters graduation project. (Plugin Protégé [Java], C++, Ogre3D)"
+          ],
+          "skills": ["Computer Science Research", "C++", "Ogre 3D", "Java"]
+        }
+      ]
+    },
+    {
+      "employerName": "Synergie Media",
+      "employerUrl": "https://synergie-media.com",
+      "employmentType": "Full-time",
+      "location": "Agadir, Morocco",
+      "locationType": "On-site",
+      "startDate": "2011-04",
+      "endDate": "2012-09",
+      "positions": [
+        {
+          "title": "Software Engineer",
+          "tasks": [
+            "Built several WordPress plugins as well as websites such as http://polarvagnen.com , http://sinobaler.com",
+            "Worked on several CSS3 based animations and few front-end applications"
+          ],
+          "skills": ["php", "WordPress", "jQuery"]
+        }
+      ]
+    }
+  ]
+}
