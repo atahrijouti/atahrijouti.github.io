@@ -28,8 +28,7 @@
     }
   }
 
-  .resume-page,
-  .print-resume-page {
+  .resume-page {
     h1:not(:is(.name)) {
       margin-block-end: 0.25lh;
     }

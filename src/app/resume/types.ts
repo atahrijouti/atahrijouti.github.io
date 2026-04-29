@@ -24,3 +24,7 @@ export type EmploymentData = {
   excerpt?: string
   positions: [Position] | Position[]
 }
+
+export type Resume = {
+  employment: EmploymentData[]
+}

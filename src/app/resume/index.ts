@@ -1,18 +1,23 @@
 import { $loop, html, type Metadata } from "unbundle"
 import { makeMap } from "../../helpers/map.ts"
-import employments from "./data/default.json" with { type: "json" }
-import frontendEmployments from "./data/front-end-focus.json" with { type: "json" }
+import defaultResume from "./data/default.json" with { type: "json" }
+import paypal4Positions from "./data/paypal-4-positions.json" with { type: "json" }
 import type { EmploymentData } from "./types.ts"
 import {
   ContactInfo,
-  contactInfoJson,
-  contactInfoPresent,
+  contactInfo,
   defaultContactInfoData,
+  possibleKeys,
   type ContactInfoData,
 } from "./components/contact-info.ts"
 import { Employment } from "./components/employment.ts"
+import { hasKeysOf } from "../../helpers/functions.ts"
 
-const focusDict = { frontend: frontendEmployments, default: employments } as const
+const focusDict = {
+  "paypal-4-positions": paypal4Positions.employments,
+  default: defaultResume.employments,
+} as const
+
 const focusMap = makeMap<EmploymentData[]>(focusDict)
 
 let employmentsEl: HTMLElement | null
@@ -20,7 +25,8 @@ let employmentsEl: HTMLElement | null
 const adjustToFocus = (focus: string) => {
   if (!employmentsEl) return
   if (focusMap.has(focus)) {
-    employmentsEl.innerHTML = $loop(frontendEmployments, (employment) => Employment(employment))
+    const focusEmployments = focusMap.get(focus) as EmploymentData[]
+    employmentsEl.innerHTML = $loop(focusEmployments, (employment) => Employment(employment))
   }
 }
 
@@ -62,7 +68,7 @@ export const ready = () => {
 }
 
 export const content = () => {
-  return html`<div class="print-resume-page">
+  return html`<div class="resume-page">
     <section class="intro">
       <h1 class="name"><strong>Abderrahmane</strong> <span class="last-name">Tahri Jouti</span></h1>
       <h2 class="title">Engineering Lead</h2>
@@ -71,12 +77,14 @@ export const content = () => {
         technical decisions with user needs and business priorities.
       </p>
       <div class="contact-info">
-        ${contactInfoPresent(contactInfoJson) ? ContactInfo(contactInfoJson) : ""}
+        ${hasKeysOf(contactInfo, possibleKeys) ? ContactInfo(contactInfo) : ""}
       </div>
     </section>
     <section class="experience">
       <h1>Experience</h1>
-      <div class="employments">${$loop(employments, (employment) => Employment(employment))}</div>
+      <div class="employments">
+        ${$loop(defaultResume.employments, (employment) => Employment(employment))}
+      </div>
     </section>
     <section class="education">
       <h1>Education</h1>
