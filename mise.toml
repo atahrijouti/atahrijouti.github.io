@@ -1,2 +1,5 @@
 [tools]
 node = "lts"
+
+[tasks]
+build = "pnpm serve"
