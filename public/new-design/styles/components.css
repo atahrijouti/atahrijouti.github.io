@@ -53,7 +53,7 @@
   }
   .tag[data-signal="neutral"],
   .tag:not([data-signal]) {
-    background: var(--shade-01);
+    background: var(--surface-overlay);
     color: var(--text-muted);
   }
 
