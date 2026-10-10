@@ -49,13 +49,21 @@
     --gutter-red: #ebbcbc;
 
     --comment-gray: #808080;
+
+    /* Site extensions — not in the upstream helix port, appended
+       to public/cyan-light.toml under the same naming scheme. */
+    --white: #ffffff;
+    --lighter-green: #d6eedf;
+    --lighter-orange: #fff4e0;
+    --dark-orange: #7a4a0a;
+    --lighter-purple: #f0d6f5;
   }
 }
 
 @layer design-system {
   :root {
     /* ─── Surfaces ─────────────────────────────────────────── */
-    --surface: #ffffff; /* page background */
+    --surface: var(--white); /* page background */
     --surface-raised: var(--shade-00); /* sidebar, cards */
     --surface-sunken: var(--shade-00); /* code blocks */
     --surface-overlay: var(--shade-01); /* popovers, tooltips */
@@ -86,13 +94,13 @@
     --signal-info-edge: var(--blue);
 
     /* success */
-    --signal-success-bg: #d6eedf;
+    --signal-success-bg: var(--lighter-green);
     --signal-success-fg: var(--green);
     --signal-success-edge: var(--light-green);
 
     /* warning */
-    --signal-warning-bg: #fff4e0;
-    --signal-warning-fg: #7a4a0a;
+    --signal-warning-bg: var(--lighter-orange);
+    --signal-warning-fg: var(--dark-orange);
     --signal-warning-edge: var(--orange);
 
     /* danger */
@@ -101,7 +109,7 @@
     --signal-danger-edge: var(--red);
 
     /* note (purple, for "by the way" content) */
-    --signal-note-bg: #f0d6f5;
+    --signal-note-bg: var(--lighter-purple);
     --signal-note-fg: var(--purple);
     --signal-note-edge: var(--light-purple);
 

@@ -166,3 +166,11 @@ orange = "#F49810"
 gutter_red = "#EBBCBC"
 red = "#d90016"
 dark_red = "#7F0000"
+
+# Site extensions — not part of the upstream helix theme,
+# used by atahrijouti.github.io (src/styles/tokens.css)
+white = "#ffffff"
+lighter_green = "#d6eedf"
+lighter_orange = "#fff4e0"
+dark_orange = "#7a4a0a"
+lighter_purple = "#f0d6f5"
