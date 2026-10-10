@@ -13,6 +13,7 @@
   }
 
   html {
+    color-scheme: light dark;
     -webkit-font-smoothing: antialiased;
     text-size-adjust: none;
     hanging-punctuation: first allow-end last;

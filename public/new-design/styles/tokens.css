@@ -49,13 +49,31 @@
     --gutter-red: #ebbcbc;
 
     --comment-gray: #808080;
+
+    /* Site extensions — not in the upstream helix port, appended
+       to public/cyan-light.toml under the same naming scheme. */
+    --white: #ffffff;
+    --lighter-green: #d6eedf;
+    --lighter-orange: #fff4e0;
+    --dark-orange: #7a4a0a;
+    --lighter-purple: #f0d6f5;
+
+    /* Night extensions — the dark end of the shade ramp, plus light
+       variants for hues that only had dark ones. Lifted in OKLCH
+       keeping hue and chroma (the same lift reproduces the upstream
+       light-blue / light-green / light-purple almost exactly). */
+    --shade-06-darker: #2c3148;
+    --shade-08: #1c1f2e;
+    --light-red: #ff8478;
+    --light-yellow: #bcbd83;
+    --light-green-blue: #85c4c3;
   }
 }
 
 @layer semantic {
   :root {
     /* ─── Surfaces ─────────────────────────────────────────── */
-    --surface: #ffffff; /* page background */
+    --surface: var(--white); /* page background */
     --surface-raised: var(--shade-00); /* sidebar, cards */
     --surface-sunken: var(--shade-00); /* code blocks */
     --surface-overlay: var(--shade-01); /* popovers, tooltips */
@@ -86,13 +104,13 @@
     --signal-info-edge: var(--blue);
 
     /* success */
-    --signal-success-bg: #d6eedf;
+    --signal-success-bg: var(--lighter-green);
     --signal-success-fg: var(--green);
     --signal-success-edge: var(--light-green);
 
     /* warning */
-    --signal-warning-bg: #fff4e0;
-    --signal-warning-fg: #7a4a0a;
+    --signal-warning-bg: var(--lighter-orange);
+    --signal-warning-fg: var(--dark-orange);
     --signal-warning-edge: var(--orange);
 
     /* danger */
@@ -101,7 +119,7 @@
     --signal-danger-edge: var(--red);
 
     /* note (purple, for "by the way" content) */
-    --signal-note-bg: #f0d6f5;
+    --signal-note-bg: var(--lighter-purple);
     --signal-note-fg: var(--purple);
     --signal-note-edge: var(--light-purple);
 
@@ -158,5 +176,70 @@
     /* ─── Layout constants ────────────────────────────────── */
     --sidebar-width: 200px;
     --content-max: 720px;
+  }
+
+  /* ─── Night ──────────────────────────────────────────────
+     Same roles, remapped. The shade ramp mirrors (i → 7 - i, with
+     shade-08 standing in for white); each hue swaps to its light
+     variant so it keeps its identity on a dark ground. */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      /* Surfaces */
+      --surface: var(--shade-08);
+      --surface-raised: var(--shade-07);
+      --surface-sunken: var(--shade-07);
+      --surface-overlay: var(--shade-06);
+
+      /* Text — body one step off pure to soften glare */
+      --text: var(--shade-01);
+      --text-strong: var(--shade-00);
+      --text-muted: var(--shade-03);
+      --text-subtle: var(--shade-04-lighter);
+      --text-accent: var(--light-blue);
+      --text-structural: var(--lighter-blue);
+      --text-link: var(--light-blue);
+      --text-link-hover: var(--lighter-blue);
+      --text-on-signal: var(--shade-08);
+
+      /* Edges */
+      --border: var(--shade-05);
+      --border-muted: var(--shade-06);
+
+      /* Signals — bg is the hue tinted into the surface */
+      --signal-info-bg: color-mix(in oklch, var(--blue) 25%, var(--surface));
+      --signal-info-fg: var(--lighter-blue);
+      --signal-info-edge: var(--light-blue);
+
+      --signal-success-bg: color-mix(in oklch, var(--green) 30%, var(--surface));
+      --signal-success-fg: var(--light-green);
+      --signal-success-edge: var(--light-green);
+
+      --signal-warning-bg: color-mix(in oklch, var(--orange) 20%, var(--surface));
+      --signal-warning-fg: var(--light-orange);
+      --signal-warning-edge: var(--orange);
+
+      --signal-danger-bg: color-mix(in oklch, var(--red) 25%, var(--surface));
+      --signal-danger-fg: var(--light-red);
+      --signal-danger-edge: var(--light-red);
+
+      --signal-note-bg: color-mix(in oklch, var(--purple) 40%, var(--surface));
+      --signal-note-fg: var(--light-purple);
+      --signal-note-edge: var(--light-purple);
+
+      /* Code & syntax */
+      --code-border: var(--shade-05);
+      --code-inline-bg: var(--shade-06-darker);
+      --code-inline-fg: var(--lighter-blue);
+
+      --syntax-keyword: var(--lighter-blue);
+      --syntax-string: var(--light-green);
+      --syntax-number: var(--light-blue);
+      --syntax-type: var(--shade-00);
+      --syntax-function: var(--shade-00);
+      --syntax-method: var(--light-yellow);
+      --syntax-variable: var(--light-green-blue);
+      --syntax-parameter: var(--light-purple);
+      --syntax-special: var(--gutter-red);
+    }
   }
 }

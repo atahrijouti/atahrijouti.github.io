@@ -96,7 +96,7 @@
       }
       .positions {
         border-left-width: 2px;
-        border-left-color: rgba(213, 213, 213);
+        border-left-color: var(--border-muted);
         border-left-style: dotted;
         padding-left: 1em;
       }
