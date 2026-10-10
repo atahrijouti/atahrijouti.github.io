@@ -174,3 +174,11 @@ lighter_green = "#d6eedf"
 lighter_orange = "#fff4e0"
 dark_orange = "#7a4a0a"
 lighter_purple = "#f0d6f5"
+
+# Night extensions — dark end of the shade ramp, plus light
+# variants (OKLCH-lifted, hue kept) for hues that only had dark ones
+shade06_darker = "#2c3148"
+shade08 = "#1c1f2e"
+light_red = "#ff8478"
+light_yellow = "#bcbd83"
+light_green_blue = "#85c4c3"
