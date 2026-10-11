@@ -30,8 +30,8 @@ importers:
         specifier: ^8.71.1
         version: 8.71.1(eslint@10.12.0)(typescript@5.9.3)
       unbundle:
-        specifier: github:atahrijouti/unbundle#semver:^0.1.0
-        version: https://codeload.github.com/atahrijouti/unbundle/tar.gz/b0db29ee4aefabb976465e8ad7fbafc875928ff3
+        specifier: github:atahrijouti/unbundle#semver:^0.2.0
+        version: https://codeload.github.com/atahrijouti/unbundle/tar.gz/95cfc44d30eeeea7da67bde343fe4ef7b7a1a1bb
 
 packages:
 
@@ -606,9 +606,9 @@ packages:
     engines: {node: '>=14.17'}
     hasBin: true
 
-  unbundle@https://codeload.github.com/atahrijouti/unbundle/tar.gz/b0db29ee4aefabb976465e8ad7fbafc875928ff3:
-    resolution: {gitHosted: true, integrity: sha512-++4CYaN+Xyhrvgw33WKV9FrtaFUri7za71rm9qnVXa04/ndigix6AWttpiiM6PguMuhMhsv3IKT4+yIOhA2ClQ==, tarball: https://codeload.github.com/atahrijouti/unbundle/tar.gz/b0db29ee4aefabb976465e8ad7fbafc875928ff3}
-    version: 0.1.2
+  unbundle@https://codeload.github.com/atahrijouti/unbundle/tar.gz/95cfc44d30eeeea7da67bde343fe4ef7b7a1a1bb:
+    resolution: {gitHosted: true, integrity: sha512-DAqJMZe3uG9YwkWDJ49D9YxiZm42ROAtJnfmbPbOsgXUJ0Ok1nUeDgTO2u50HYJrhvL+i4oqeO8h4CJrFhyGWw==, tarball: https://codeload.github.com/atahrijouti/unbundle/tar.gz/95cfc44d30eeeea7da67bde343fe4ef7b7a1a1bb}
+    version: 0.2.0
     hasBin: true
 
   undici-types@7.24.6:
@@ -1174,7 +1174,7 @@ snapshots:
 
   typescript@5.9.3: {}
 
-  unbundle@https://codeload.github.com/atahrijouti/unbundle/tar.gz/b0db29ee4aefabb976465e8ad7fbafc875928ff3:
+  unbundle@https://codeload.github.com/atahrijouti/unbundle/tar.gz/95cfc44d30eeeea7da67bde343fe4ef7b7a1a1bb:
     dependencies:
       esbuild: 0.28.2
       prettier: 3.9.10

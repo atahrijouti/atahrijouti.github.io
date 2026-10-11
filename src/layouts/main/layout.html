@@ -4,25 +4,13 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{{title}}</title>
-    <script>
-      {
-        let theme = matchMedia("(prefers-color-scheme: dark)").matches ? "night" : "day"
-        try {
-          const stored = localStorage.getItem("theme")
-          if (stored === "day" || stored === "night") theme = stored
-        } catch {}
-        document.documentElement.dataset.theme = theme
-      }
-    </script>
     <!-- {{sync-scripts}} -->
-    <link rel="stylesheet" href="./styles/main.css" />
     <!-- {{styles}} -->
     <!-- {{preload-links}} -->
     <!-- {{async-scripts}} -->
     <!-- {{prefetch-links}} -->
     <!-- {{prerender-links}} -->
     <!-- {{metadata}} -->
-    <link rel="icon" href="/favicon.ico" />
   </head>
   <body>
     <div class="layout">
@@ -70,7 +58,6 @@
       <main class="main"><!-- {{content}} --></main>
     </div>
     <!-- {{scripts}} -->
-    <script type="module" src="./scripts/global.js"></script>
     <!-- {{production-only:start}} -->
     <script
       defer
