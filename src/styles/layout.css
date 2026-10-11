@@ -21,11 +21,47 @@
   }
 
   .nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
     background: var(--surface-raised);
     padding: var(--space-5) var(--space-4);
     font-family: var(--font-ui);
     font-size: var(--text-ui);
     line-height: var(--leading-ui);
+    @media screen and (max-width: 576px) {
+      flex-direction: row;
+    }
+  }
+
+  .theme-toggle {
+    /* Pinned to the viewport bottom when the sidebar runs past it */
+    position: sticky;
+    bottom: var(--space-5);
+    display: flex;
+    /* 24px hit area around a 20px icon, without shifting alignment */
+    padding: 2px;
+    margin: -2px;
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    &:hover {
+      color: var(--text-link);
+    }
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+    /* Shows the theme a click switches to */
+    :root:not([data-theme]) & {
+      display: none;
+    }
+    :root[data-theme="night"] & .to-night,
+    :root[data-theme="day"] & .to-day {
+      display: none;
+    }
   }
 
   .menu {

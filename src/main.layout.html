@@ -4,6 +4,17 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{{title}}</title>
+    <script>
+      {
+        let theme = matchMedia("(prefers-color-scheme: dark)").matches ? "night" : "day"
+        try {
+          const stored = localStorage.getItem("theme")
+          if (stored === "day" || stored === "night") theme = stored
+        } catch {}
+        document.documentElement.dataset.theme = theme
+      }
+    </script>
+    <!-- {{sync-scripts}} -->
     <link rel="stylesheet" href="./styles/main.css" />
     <!-- {{styles}} -->
     <!-- {{preload-links}} -->
@@ -21,6 +32,40 @@
           <a href="/playground">Playground</a>
           <a href="/resume">Resumé</a>
         </nav>
+        <button class="theme-toggle" type="button" aria-label="Night mode">
+          <!-- Icons: Lucide (ISC) and Feather (MIT), see /licenses/lucide.txt -->
+          <svg
+            class="to-night"
+            aria-hidden="true"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round">
+            <path
+              d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401" />
+          </svg>
+          <svg
+            class="to-day"
+            aria-hidden="true"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round">
+            <circle cx="12" cy="12" r="4" />
+            <path d="M12 2v2" />
+            <path d="M12 20v2" />
+            <path d="m4.93 4.93 1.41 1.41" />
+            <path d="m17.66 17.66 1.41 1.41" />
+            <path d="M2 12h2" />
+            <path d="M20 12h2" />
+            <path d="m6.34 17.66-1.41 1.41" />
+            <path d="m19.07 4.93-1.41 1.41" />
+          </svg>
+        </button>
       </aside>
       <main class="main"><!-- {{content}} --></main>
     </div>
