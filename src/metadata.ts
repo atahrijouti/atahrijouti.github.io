@@ -1,6 +1,6 @@
 import type { Metadata } from "unbundle"
 
-export const defaultMetadata: Metadata = {
+export const metadata: Metadata = {
   title: "Abderrahmane TAHRI JOUTI",
   description:
     "Product oriented Technical professional with a strong background in building web applications.",

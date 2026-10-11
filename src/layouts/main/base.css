@@ -1,5 +1,5 @@
 @layer base {
-  /* Set before first paint by the inline script in main.layout.html;
+  /* Set before first paint by sync.ts;
      without it, color-scheme stays "light dark" and follows the system. */
   :root[data-theme="day"] {
     color-scheme: light;
