@@ -172,10 +172,6 @@
     --radius-sm: 3px;
     --radius-md: 5px;
     --radius-lg: 8px;
-
-    /* ─── Layout constants ────────────────────────────────── */
-    --sidebar-width: 200px;
-    --content-max: 720px;
   }
 
   /* ─── Night ──────────────────────────────────────────────

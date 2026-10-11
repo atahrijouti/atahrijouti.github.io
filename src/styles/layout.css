@@ -1,4 +1,8 @@
 @layer layout {
+  :root {
+    --sidebar-width: 200px;
+  }
+
   body {
     display: flex;
     min-height: 100vh;
