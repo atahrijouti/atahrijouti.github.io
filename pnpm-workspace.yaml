@@ -1,4 +1,2 @@
 allowBuilds:
   esbuild: true
-  unbundle: true
-  unbundle@https://codeload.github.com/atahrijouti/unbundle/tar.gz/d0a9527bc6fd3237d171dff09327c957ea58f13c: true
