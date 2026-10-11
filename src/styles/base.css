@@ -1,4 +1,20 @@
 @layer base {
+  /* Set before first paint by the inline script in main.layout.html;
+     without it, color-scheme stays "light dark" and follows the system. */
+  :root[data-theme="day"] {
+    color-scheme: light;
+  }
+  :root[data-theme="night"] {
+    color-scheme: dark;
+  }
+  /* Paper is white */
+  @media print {
+    :root,
+    :root[data-theme] {
+      color-scheme: light;
+    }
+  }
+
   body {
     background: var(--surface);
     color: var(--text);

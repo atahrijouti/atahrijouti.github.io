@@ -71,74 +71,96 @@
 }
 
 @layer design-system {
+  /* Each colour role is light-dark(day, night), resolved by the
+     inherited color-scheme: the system setting by default, pinned by
+     :root[data-theme] (see base.css). Night mirrors the shade ramp
+     (i → 7 - i, with shade-08 standing in for white); each hue swaps
+     to its light variant so it keeps its identity on a dark ground. */
   :root {
     /* ─── Surfaces ─────────────────────────────────────────── */
-    --surface: var(--white); /* page background */
-    --surface-raised: var(--shade-00); /* sidebar, cards */
-    --surface-sunken: var(--shade-00); /* code blocks */
-    --surface-overlay: var(--shade-01); /* popovers, tooltips */
+    --surface: light-dark(var(--white), var(--shade-08)); /* page background */
+    --surface-raised: light-dark(var(--shade-00), var(--shade-07)); /* sidebar, cards */
+    --surface-sunken: light-dark(var(--shade-00), var(--shade-07)); /* code blocks */
+    --surface-overlay: light-dark(var(--shade-01), var(--shade-06)); /* popovers, tooltips */
 
     /* ─── Text ─────────────────────────────────────────────── */
-    --text: var(--shade-07); /* body copy */
-    --text-strong: var(--shade-07); /* headings */
-    --text-muted: var(--shade-04); /* secondary text, nav links */
-    --text-subtle: var(--shade-03); /* meta, dates, captions */
+    /* Night body copy sits one step off pure to soften glare. */
+    --text: light-dark(var(--shade-07), var(--shade-01)); /* body copy */
+    --text-strong: light-dark(var(--shade-07), var(--shade-00)); /* headings */
+    --text-muted: light-dark(var(--shade-04), var(--shade-03)); /* secondary text, nav links */
+    --text-subtle: light-dark(var(--shade-03), var(--shade-04-lighter)); /* meta, dates, captions */
     /* The iconic blue — brand accent, reserved for moments you want
        the eye to land. Links use it; use sparingly elsewhere. */
-    --text-accent: var(--blue);
+    --text-accent: light-dark(var(--blue), var(--light-blue));
     /* Structural "you are here" emphasis — mirrors the code-keyword
        role (fn, let, import). Reads near-black; structural, not loud. */
-    --text-structural: var(--darker-blue);
-    --text-link: var(--blue);
-    --text-link-hover: var(--dark-blue);
-    --text-on-signal: var(--shade-00);
+    --text-structural: light-dark(var(--darker-blue), var(--lighter-blue));
+    --text-link: light-dark(var(--blue), var(--light-blue));
+    --text-link-hover: light-dark(var(--dark-blue), var(--lighter-blue));
+    --text-on-signal: light-dark(var(--shade-00), var(--shade-08));
 
     /* ─── Edges ────────────────────────────────────────────── */
-    --border: var(--shade-02); /* visible dividers */
-    --border-muted: var(--shade-01); /* subtle separators */
+    --border: light-dark(var(--shade-02), var(--shade-05)); /* visible dividers */
+    --border-muted: light-dark(var(--shade-01), var(--shade-06)); /* subtle separators */
 
     /* ─── Signals — bg + fg + edge trio per role ──────────── */
+    /* Night bg is the hue tinted into the surface. */
     /* info: general-purpose callouts, primary accent tag */
-    --signal-info-bg: var(--lighter-blue);
-    --signal-info-fg: var(--dark-blue);
-    --signal-info-edge: var(--blue);
+    --signal-info-bg: light-dark(
+      var(--lighter-blue),
+      color-mix(in oklch, var(--blue) 25%, var(--surface))
+    );
+    --signal-info-fg: light-dark(var(--dark-blue), var(--lighter-blue));
+    --signal-info-edge: light-dark(var(--blue), var(--light-blue));
 
     /* success */
-    --signal-success-bg: var(--lighter-green);
-    --signal-success-fg: var(--green);
+    --signal-success-bg: light-dark(
+      var(--lighter-green),
+      color-mix(in oklch, var(--green) 30%, var(--surface))
+    );
+    --signal-success-fg: light-dark(var(--green), var(--light-green));
     --signal-success-edge: var(--light-green);
 
     /* warning */
-    --signal-warning-bg: var(--lighter-orange);
-    --signal-warning-fg: var(--dark-orange);
+    --signal-warning-bg: light-dark(
+      var(--lighter-orange),
+      color-mix(in oklch, var(--orange) 20%, var(--surface))
+    );
+    --signal-warning-fg: light-dark(var(--dark-orange), var(--light-orange));
     --signal-warning-edge: var(--orange);
 
     /* danger */
-    --signal-danger-bg: var(--gutter-red);
-    --signal-danger-fg: var(--red);
-    --signal-danger-edge: var(--red);
+    --signal-danger-bg: light-dark(
+      var(--gutter-red),
+      color-mix(in oklch, var(--red) 25%, var(--surface))
+    );
+    --signal-danger-fg: light-dark(var(--red), var(--light-red));
+    --signal-danger-edge: light-dark(var(--red), var(--light-red));
 
     /* note (purple, for "by the way" content) */
-    --signal-note-bg: var(--lighter-purple);
-    --signal-note-fg: var(--purple);
+    --signal-note-bg: light-dark(
+      var(--lighter-purple),
+      color-mix(in oklch, var(--purple) 40%, var(--surface))
+    );
+    --signal-note-fg: light-dark(var(--purple), var(--light-purple));
     --signal-note-edge: var(--light-purple);
 
     /* ─── Code & syntax — mirrors helix token roles ──────── */
     --code-bg: var(--surface-sunken);
-    --code-border: var(--shade-02);
-    --code-inline-bg: var(--shade-01-lighter);
-    --code-inline-fg: var(--darker-blue);
+    --code-border: light-dark(var(--shade-02), var(--shade-05));
+    --code-inline-bg: light-dark(var(--shade-01-lighter), var(--shade-06-darker));
+    --code-inline-fg: light-dark(var(--darker-blue), var(--lighter-blue));
 
-    --syntax-keyword: var(--darker-blue);
-    --syntax-string: var(--green);
-    --syntax-number: var(--blue);
+    --syntax-keyword: light-dark(var(--darker-blue), var(--lighter-blue));
+    --syntax-string: light-dark(var(--green), var(--light-green));
+    --syntax-number: light-dark(var(--blue), var(--light-blue));
     --syntax-comment: var(--comment-gray);
-    --syntax-type: var(--shade-07);
-    --syntax-function: var(--shade-07);
-    --syntax-method: var(--dark-yellow);
-    --syntax-variable: var(--green-blue);
-    --syntax-parameter: var(--purple);
-    --syntax-special: var(--dark-red);
+    --syntax-type: light-dark(var(--shade-07), var(--shade-00));
+    --syntax-function: light-dark(var(--shade-07), var(--shade-00));
+    --syntax-method: light-dark(var(--dark-yellow), var(--light-yellow));
+    --syntax-variable: light-dark(var(--green-blue), var(--light-green-blue));
+    --syntax-parameter: light-dark(var(--purple), var(--light-purple));
+    --syntax-special: light-dark(var(--dark-red), var(--gutter-red));
 
     /* ─── Typography ──────────────────────────────────────── */
     --font-body: Georgia, "Times New Roman", serif;
@@ -172,74 +194,5 @@
     --radius-sm: 3px;
     --radius-md: 5px;
     --radius-lg: 8px;
-
-    /* ─── Layout constants ────────────────────────────────── */
-    --sidebar-width: 200px;
-    --content-max: 720px;
-  }
-
-  /* ─── Night ──────────────────────────────────────────────
-     Same roles, remapped. The shade ramp mirrors (i → 7 - i, with
-     shade-08 standing in for white); each hue swaps to its light
-     variant so it keeps its identity on a dark ground. */
-  @media (prefers-color-scheme: dark) {
-    :root {
-      /* Surfaces */
-      --surface: var(--shade-08);
-      --surface-raised: var(--shade-07);
-      --surface-sunken: var(--shade-07);
-      --surface-overlay: var(--shade-06);
-
-      /* Text — body one step off pure to soften glare */
-      --text: var(--shade-01);
-      --text-strong: var(--shade-00);
-      --text-muted: var(--shade-03);
-      --text-subtle: var(--shade-04-lighter);
-      --text-accent: var(--light-blue);
-      --text-structural: var(--lighter-blue);
-      --text-link: var(--light-blue);
-      --text-link-hover: var(--lighter-blue);
-      --text-on-signal: var(--shade-08);
-
-      /* Edges */
-      --border: var(--shade-05);
-      --border-muted: var(--shade-06);
-
-      /* Signals — bg is the hue tinted into the surface */
-      --signal-info-bg: color-mix(in oklch, var(--blue) 25%, var(--surface));
-      --signal-info-fg: var(--lighter-blue);
-      --signal-info-edge: var(--light-blue);
-
-      --signal-success-bg: color-mix(in oklch, var(--green) 30%, var(--surface));
-      --signal-success-fg: var(--light-green);
-      --signal-success-edge: var(--light-green);
-
-      --signal-warning-bg: color-mix(in oklch, var(--orange) 20%, var(--surface));
-      --signal-warning-fg: var(--light-orange);
-      --signal-warning-edge: var(--orange);
-
-      --signal-danger-bg: color-mix(in oklch, var(--red) 25%, var(--surface));
-      --signal-danger-fg: var(--light-red);
-      --signal-danger-edge: var(--light-red);
-
-      --signal-note-bg: color-mix(in oklch, var(--purple) 40%, var(--surface));
-      --signal-note-fg: var(--light-purple);
-      --signal-note-edge: var(--light-purple);
-
-      /* Code & syntax */
-      --code-border: var(--shade-05);
-      --code-inline-bg: var(--shade-06-darker);
-      --code-inline-fg: var(--lighter-blue);
-
-      --syntax-keyword: var(--lighter-blue);
-      --syntax-string: var(--light-green);
-      --syntax-number: var(--light-blue);
-      --syntax-type: var(--shade-00);
-      --syntax-function: var(--shade-00);
-      --syntax-method: var(--light-yellow);
-      --syntax-variable: var(--light-green-blue);
-      --syntax-parameter: var(--light-purple);
-      --syntax-special: var(--gutter-red);
-    }
   }
 }

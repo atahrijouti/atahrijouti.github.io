@@ -28,6 +28,12 @@
     }
   }
 
+  .nav {
+    @media screen and (max-width: 720px) {
+      flex-direction: row;
+    }
+  }
+
   .resume-page,
   .print-resume-page {
     h1:not(:is(.name)) {

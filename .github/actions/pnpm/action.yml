@@ -1,0 +1,17 @@
+name: pnpm
+description: Install pnpm and Node, then the project's dependencies
+
+runs:
+  using: composite
+  steps:
+    - uses: pnpm/action-setup@v5
+      with:
+        version: 10
+
+    - uses: actions/setup-node@v6
+      with:
+        node-version: 24
+        cache: pnpm
+
+    - run: pnpm install
+      shell: bash
