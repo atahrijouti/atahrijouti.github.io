@@ -1,5 +1,6 @@
 [tools]
 node = "lts"
+pnpm = "10"
 
 [tasks]
 build = "pnpm serve"
