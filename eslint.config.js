@@ -5,9 +5,10 @@ import unbundle from "unbundle/eslint"
 
 /** @type {import('eslint').Linter.Config[]} */
 export default tseslint.config(
+  { ignores: ["dist/**", "out/**"] },
   {
     files: ["**/**.ts"],
-    ignores: ["!node_modules/", "node_modules/*", "dist/**", "out/**"],
+    ignores: ["!node_modules/", "node_modules/*"],
   },
   {
     files: ["src/**/*.ts"],
