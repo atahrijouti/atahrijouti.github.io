@@ -54,6 +54,7 @@ const CommandInput = () =>
     enterkeyhint="go" />`
 
 function openCommandPalette() {
+  if (document.querySelector(".command-input")) return
   const input = textToHTML(CommandInput()) as HTMLInputElement
 
   listenForCommands(input, commands)
@@ -69,8 +70,13 @@ function openCommandPalette() {
 }
 
 export function setupCommandPalette() {
-  const sidebar = document.querySelector<HTMLElement>(".sidebar")
-  if (!sidebar) return
+  document.addEventListener("keydown", (event) => {
+    if (event.ctrlKey && event.key === ",") {
+      event.preventDefault()
+      openCommandPalette()
+    }
+  })
 
-  listenForTaps(sidebar, TAPS_TO_OPEN, openCommandPalette)
+  const sidebar = document.querySelector<HTMLElement>(".sidebar")
+  if (sidebar) listenForTaps(sidebar, TAPS_TO_OPEN, openCommandPalette)
 }
