@@ -11,7 +11,13 @@
     .layout {
       grid-template-columns: 1fr;
     }
-    .nav {
+    .sidebar {
+      display: none;
+    }
+  }
+
+  @media screen {
+    .name {
       display: none;
     }
   }
@@ -20,16 +26,15 @@
     max-width: calc(210mm + var(--space-6));
   }
 
-  .layout {
-    @media screen and (max-width: 720px) {
+  /* TODO : sidebarwidth + 520. need to make it a variable */
+  @media screen and (max-width: 760px) {
+    .layout {
       grid-template-columns: minmax(0, 1fr);
       grid-template-rows: auto 1fr;
       gap: 0;
     }
-  }
 
-  .nav {
-    @media screen and (max-width: 720px) {
+    .sidebar {
       flex-direction: row;
     }
   }

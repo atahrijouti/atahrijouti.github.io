@@ -1,6 +1,6 @@
 @layer layout {
   :root {
-    --sidebar-width: 200px;
+    --sidebar-width: 240px;
   }
 
   body {
@@ -20,7 +20,7 @@
     }
   }
 
-  .nav {
+  .sidebar {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -35,10 +35,34 @@
     }
   }
 
-  .theme-toggle {
+  .sidebar-start {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-5);
+  }
+
+  .sidebar-end {
     /* Pinned to the viewport bottom when the sidebar runs past it */
     position: sticky;
     bottom: var(--space-5);
+  }
+
+  .site-name {
+    margin: 0;
+    font-weight: 600;
+    a {
+      color: var(--text);
+      text-decoration: none;
+      font-size: 1.75rem;
+      line-height: 1.15;
+      &:hover {
+        color: var(--text-link);
+      }
+    }
+  }
+
+  .theme-toggle {
     display: flex;
     /* 24px hit area around a 20px icon, without shifting alignment */
     padding: 2px;
@@ -69,6 +93,7 @@
     flex-direction: column;
     list-style-type: none;
     gap: var(--space-3);
+    font-size: 1.125rem;
     a {
       color: var(--text-muted);
       text-decoration: none;
