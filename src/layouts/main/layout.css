@@ -13,7 +13,7 @@
     grid-template-columns: var(--sidebar-width) minmax(0, 1fr);
     flex: 1;
 
-    @media screen and (max-width: 576px) {
+    @media screen and (max-width: 48rem) {
       grid-template-columns: minmax(0, 1fr);
       grid-template-rows: auto 1fr;
       gap: 0;
@@ -30,7 +30,7 @@
     font-family: var(--font-ui);
     font-size: var(--text-ui);
     line-height: var(--leading-ui);
-    @media screen and (max-width: 576px) {
+    @media screen and (max-width: 48rem) {
       flex-direction: row;
     }
   }
@@ -40,6 +40,9 @@
     flex-direction: column;
     align-items: flex-start;
     gap: var(--space-5);
+    @media screen and (max-width: 48rem) {
+      gap: var(--space-3);
+    }
   }
 
   .sidebar-end {
@@ -58,6 +61,15 @@
       line-height: 1.15;
       &:hover {
         color: var(--text-link);
+      }
+      @media screen and (max-width: 48rem) {
+        font-size: 1.25rem;
+      }
+    }
+    .last-name {
+      display: block;
+      @media screen and (max-width: 48rem) {
+        display: inline;
       }
     }
   }
@@ -94,6 +106,9 @@
     list-style-type: none;
     gap: var(--space-3);
     font-size: 1.125rem;
+    @media screen and (max-width: 48rem) {
+      flex-direction: row;
+    }
     a {
       color: var(--text-muted);
       text-decoration: none;
@@ -111,7 +126,7 @@
     max-width: 720px;
     line-height: 1.5;
     padding: var(--space-6);
-    @media screen and (max-width: 576px) {
+    @media screen and (max-width: 36rem) {
       padding: var(--space-5) var(--space-4);
     }
   }
