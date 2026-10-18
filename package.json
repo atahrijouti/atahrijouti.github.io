@@ -5,6 +5,7 @@
   "scripts": {
     "serve": "unbundle-serve",
     "lint": "eslint",
+    "format": "prettier --write .",
     "typecheck": "tsc",
     "build": "unbundle-build",
     "build:prod": "NODE_ENV=production unbundle-build"

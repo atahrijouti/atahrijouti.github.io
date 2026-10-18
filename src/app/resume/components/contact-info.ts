@@ -42,17 +42,25 @@ if (isServer) {
 
 export const ContactInfo = ({ email, phone, github, linkedin }: ContactInfoData) => {
   return html`<ul>
-    ${email
-      ? `<li><strong>Email :</strong> <a href="mailto:${email}" title="Personal Email">${email}</a></li>`
-      : ""}
-    ${phone
-      ? `<li><strong>Phone :</strong> <a href="tel:${phone}" title="Phone Number">${phone}</a></li>`
-      : ""}
-    ${github
-      ? `<li><strong>Github :</strong> <a href="https://github.com/${github}" title="Github" >${github}</a></li>`
-      : ""}
-    ${linkedin
-      ? `<li><strong>LinkedIn :</strong> <a href="https://www.linkedin.com/in/${linkedin}" title="LinkedIn Profile" >${linkedin}</a></li>`
-      : ""}
+    ${
+      email
+        ? `<li><strong>Email :</strong> <a href="mailto:${email}" title="Personal Email">${email}</a></li>`
+        : ""
+    }
+    ${
+      phone
+        ? `<li><strong>Phone :</strong> <a href="tel:${phone}" title="Phone Number">${phone}</a></li>`
+        : ""
+    }
+    ${
+      github
+        ? `<li><strong>Github :</strong> <a href="https://github.com/${github}" title="Github" >${github}</a></li>`
+        : ""
+    }
+    ${
+      linkedin
+        ? `<li><strong>LinkedIn :</strong> <a href="https://www.linkedin.com/in/${linkedin}" title="LinkedIn Profile" >${linkedin}</a></li>`
+        : ""
+    }
   </ul>`
 }

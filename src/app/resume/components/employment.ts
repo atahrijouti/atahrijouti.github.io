@@ -107,16 +107,22 @@ const MultiplePositions = ({ employment }: MultiplePositionsProps) => {
           <dt class="position-title">
             <h3>${position.title}</h3>
           </dt>
-          ${position.startDate &&
-          html`<dd class="position-dates">
-            ${DateDetail({ startDate: position.startDate, endDate: position.endDate })}
-          </dd>`}
-          ${position.tasks
-            ? html`<dd class="position-tasks">${Tasks({ tasks: position.tasks })}</dd>`
-            : ""}
-          ${position.skills
-            ? html`<dd class="position-skills">${Skills({ skills: position.skills })}</dd>`
-            : ""}
+          ${
+            position.startDate &&
+            html`<dd class="position-dates">
+              ${DateDetail({ startDate: position.startDate, endDate: position.endDate })}
+            </dd>`
+          }
+          ${
+            position.tasks
+              ? html`<dd class="position-tasks">${Tasks({ tasks: position.tasks })}</dd>`
+              : ""
+          }
+          ${
+            position.skills
+              ? html`<dd class="position-skills">${Skills({ skills: position.skills })}</dd>`
+              : ""
+          }
         </dl>`
       })}
     </dd>
