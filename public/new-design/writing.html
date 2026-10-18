@@ -44,7 +44,8 @@
 
       <main class="main">
         <div class="eyebrow">
-          <a href="./index.html">Home</a> / <a href="./writing.html">Writing</a> / Rust memory layout
+          <a href="./index.html">Home</a> / <a href="./writing.html">Writing</a> / Rust memory
+          layout
         </div>
 
         <article>
@@ -66,63 +67,66 @@
           <hr />
 
           <p>
-            When you write a Rust program, every value you create lives somewhere in memory. Most
-            of the time you don't need to think about where — the compiler figures it out. But
-            when performance matters, or when you're debugging a subtle bug, knowing exactly how
-            Rust lays out data can make all the difference.
+            When you write a Rust program, every value you create lives somewhere in memory. Most of
+            the time you don't need to think about where — the compiler figures it out. But when
+            performance matters, or when you're debugging a subtle bug, knowing exactly how Rust
+            lays out data can make all the difference.
           </p>
 
           <p>
-            This post walks through the two main regions of memory your program uses — the stack
-            and the heap — and explores how Rust decides which one to use, and why that decision
+            This post walks through the two main regions of memory your program uses — the stack and
+            the heap — and explores how Rust decides which one to use, and why that decision
             matters.
           </p>
 
           <h2 id="stack">The stack</h2>
 
           <p>
-            The stack is a contiguous block of memory that grows and shrinks as functions are
-            called and return. It's fast because allocating on the stack is just a matter of
-            moving a pointer — no searching, no bookkeeping, no locks. When a function is called,
-            a <a href="https://en.wikipedia.org/wiki/Call_stack"><em>stack frame</em></a> is
-            pushed; when it returns, that frame is popped and the memory is reclaimed instantly.
+            The stack is a contiguous block of memory that grows and shrinks as functions are called
+            and return. It's fast because allocating on the stack is just a matter of moving a
+            pointer — no searching, no bookkeeping, no locks. When a function is called, a
+            <a href="https://en.wikipedia.org/wiki/Call_stack"><em>stack frame</em></a> is pushed;
+            when it returns, that frame is popped and the memory is reclaimed instantly.
           </p>
 
           <blockquote>
             <p>
-              The stack is like a stack of dinner plates. You can only add or remove from the top
-              — and that constraint is exactly what makes it so fast.
+              The stack is like a stack of dinner plates. You can only add or remove from the top —
+              and that constraint is exactly what makes it so fast.
             </p>
           </blockquote>
 
           <p>
             In Rust, values with a size known at compile time live on the stack by default.
-            Integers, booleans, tuples, fixed-size arrays — all of these go on the stack unless
-            you explicitly move them to the heap.
+            Integers, booleans, tuples, fixed-size arrays — all of these go on the stack unless you
+            explicitly move them to the heap.
           </p>
 
           <div class="code">
-<span class="kw">fn</span> <span class="fn">main</span>() {
-    <span class="kw">let</span> <span class="vr">x</span>: <span class="ty">i32</span> = <span class="num">42</span>;                  <span class="cm">// lives on the stack</span>
-    <span class="kw">let</span> <span class="vr">arr</span>: [<span class="ty">u8</span>; <span class="num">4</span>] = [<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>, <span class="num">4</span>];    <span class="cm">// also stack</span>
-    <span class="fn">println!</span>(<span class="str">"{} {:?}"</span>, <span class="vr">x</span>, <span class="vr">arr</span>);
-}</div>
+            <span class="kw">fn</span> <span class="fn">main</span>() { <span class="kw">let</span>
+            <span class="vr">x</span>: <span class="ty">i32</span> = <span class="num">42</span>;
+            <span class="cm">// lives on the stack</span> <span class="kw">let</span>
+            <span class="vr">arr</span>: [<span class="ty">u8</span>; <span class="num">4</span>] =
+            [<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>,
+            <span class="num">4</span>]; <span class="cm">// also stack</span>
+            <span class="fn">println!</span>(<span class="str">"{} {:?}"</span>,
+            <span class="vr">x</span>, <span class="vr">arr</span>); }
+          </div>
 
           <p>
-            The compiler knows the exact size of <span class="inline-code">i32</span> (4 bytes)
-            and <span class="inline-code">[u8; 4]</span> (4 bytes) at compile time, so it can
-            reserve exactly the right amount of space in the stack frame. No runtime decision
-            needed.
+            The compiler knows the exact size of <span class="inline-code">i32</span> (4 bytes) and
+            <span class="inline-code">[u8; 4]</span> (4 bytes) at compile time, so it can reserve
+            exactly the right amount of space in the stack frame. No runtime decision needed.
           </p>
 
           <h2 id="heap">The heap</h2>
 
           <p>
-            The heap is a large pool of memory managed at runtime. Unlike the stack, it doesn't
-            grow and shrink in a simple last-in-first-out pattern — you can allocate and free
-            memory in any order. This flexibility comes at a cost: the
-            <a href="https://doc.rust-lang.org/std/alloc/">allocator</a> has to track which
-            regions are free, find suitable gaps, and handle fragmentation over time.
+            The heap is a large pool of memory managed at runtime. Unlike the stack, it doesn't grow
+            and shrink in a simple last-in-first-out pattern — you can allocate and free memory in
+            any order. This flexibility comes at a cost: the
+            <a href="https://doc.rust-lang.org/std/alloc/">allocator</a> has to track which regions
+            are free, find suitable gaps, and handle fragmentation over time.
           </p>
 
           <p>
@@ -134,34 +138,38 @@
           </p>
 
           <div class="code">
-<span class="kw">fn</span> <span class="fn">main</span>() {
-    <span class="kw">let</span> <span class="vr">s</span> = <span class="ty">String</span>::<span class="mth">from</span>(<span class="str">"hello"</span>);   <span class="cm">// heap-allocated</span>
-    <span class="kw">let</span> <span class="vr">b</span> = <span class="ty">Box</span>::<span class="mth">new</span>(<span class="num">42_i32</span>);       <span class="cm">// also heap</span>
+            <span class="kw">fn</span> <span class="fn">main</span>() { <span class="kw">let</span>
+            <span class="vr">s</span> = <span class="ty">String</span>::<span class="mth">from</span
+            >(<span class="str">"hello"</span>); <span class="cm">// heap-allocated</span>
+            <span class="kw">let</span> <span class="vr">b</span> =
+            <span class="ty">Box</span>::<span class="mth">new</span>(<span class="num">42_i32</span
+            >); <span class="cm">// also heap</span>
 
-    <span class="cm">// s: { ptr, len: 5, cap: 5 } on stack</span>
-    <span class="cm">// ^--- "hello" bytes on heap</span>
-}</div>
+            <span class="cm">// s: { ptr, len: 5, cap: 5 } on stack</span>
+            <span class="cm">// ^--- "hello" bytes on heap</span>
+            }
+          </div>
 
           <div class="callout" data-signal="info">
-            A <span class="inline-code">String</span> is really three words on the stack: a
-            pointer, a length, and a capacity. The actual character bytes live on the heap. This
-            is why <span class="inline-code">std::mem::size_of::&lt;String&gt;()</span> returns 24
-            on a 64-bit machine, regardless of how long the string is.
+            A <span class="inline-code">String</span> is really three words on the stack: a pointer,
+            a length, and a capacity. The actual character bytes live on the heap. This is why
+            <span class="inline-code">std::mem::size_of::&lt;String&gt;()</span> returns 24 on a
+            64-bit machine, regardless of how long the string is.
           </div>
 
           <h3 id="heap-wins">When the heap wins</h3>
 
           <p>
             The heap is necessary whenever you don't know the size of your data at compile time. A
-            vector that grows as you push items, a string read from a file, a tree structure with
-            an unknown depth — all of these require heap allocation because the compiler can't
-            know how much space to reserve in advance.
+            vector that grows as you push items, a string read from a file, a tree structure with an
+            unknown depth — all of these require heap allocation because the compiler can't know how
+            much space to reserve in advance.
           </p>
 
           <div class="callout" data-signal="warning">
-            Heap allocation involves a system call under the hood. In tight loops or real-time
-            code, prefer stack-allocated buffers with a fixed upper bound, or use an arena
-            allocator to amortize the cost.
+            Heap allocation involves a system call under the hood. In tight loops or real-time code,
+            prefer stack-allocated buffers with a fixed upper bound, or use an arena allocator to
+            amortize the cost.
           </div>
 
           <h2 id="safety">How Rust keeps it safe</h2>
@@ -169,18 +177,18 @@
           <p>
             In languages like C, the programmer is responsible for matching every
             <span class="inline-code">malloc</span> with a <span class="inline-code">free</span>.
-            Forget to free and you leak memory. Free twice and you corrupt the heap. Rust
-            eliminates both classes of bug through
+            Forget to free and you leak memory. Free twice and you corrupt the heap. Rust eliminates
+            both classes of bug through
             <a href="https://doc.rust-lang.org/book/ch04-00-understanding-ownership.html"
               >ownership</a
-            >: every heap allocation has exactly one owner, and when that owner goes out of
-            scope, the memory is freed automatically — no garbage collector required.
+            >: every heap allocation has exactly one owner, and when that owner goes out of scope,
+            the memory is freed automatically — no garbage collector required.
           </p>
 
           <p>
             This is what makes Rust's approach unusual. You get the control of manual memory
-            management and the safety of a garbage-collected language, at the cost of learning
-            the ownership rules. Most people find it's a good trade.
+            management and the safety of a garbage-collected language, at the cost of learning the
+            ownership rules. Most people find it's a good trade.
           </p>
 
           <div class="callout" data-signal="note">

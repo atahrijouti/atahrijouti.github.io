@@ -30,9 +30,25 @@
     font-family: var(--font-ui);
     font-size: var(--text-ui);
     line-height: var(--leading-ui);
+    touch-action: manipulation;
     @media screen and (max-width: 48rem) {
       flex-direction: row;
     }
+  }
+
+  .command-input {
+    position: fixed;
+    z-index: 100;
+    inset: var(--space-4) var(--space-4) auto;
+    max-width: 24rem;
+    margin-inline: auto;
+    padding: var(--space-2) var(--space-3);
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    color: var(--text);
+    background: var(--surface-overlay);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
   }
 
   .sidebar-start {
