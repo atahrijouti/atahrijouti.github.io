@@ -1,6 +1,6 @@
 @layer layout {
   :root {
-    --sidebar-width: 200px;
+    --sidebar-width: 240px;
   }
 
   body {
@@ -13,14 +13,14 @@
     grid-template-columns: var(--sidebar-width) minmax(0, 1fr);
     flex: 1;
 
-    @media screen and (max-width: 576px) {
+    @media screen and (max-width: 48rem) {
       grid-template-columns: minmax(0, 1fr);
       grid-template-rows: auto 1fr;
       gap: 0;
     }
   }
 
-  .nav {
+  .sidebar {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -30,15 +30,51 @@
     font-family: var(--font-ui);
     font-size: var(--text-ui);
     line-height: var(--leading-ui);
-    @media screen and (max-width: 576px) {
+    @media screen and (max-width: 48rem) {
       flex-direction: row;
     }
   }
 
-  .theme-toggle {
+  .sidebar-start {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-5);
+    @media screen and (max-width: 48rem) {
+      gap: var(--space-3);
+    }
+  }
+
+  .sidebar-end {
     /* Pinned to the viewport bottom when the sidebar runs past it */
     position: sticky;
     bottom: var(--space-5);
+  }
+
+  .site-name {
+    margin: 0;
+    font-weight: 600;
+    a {
+      color: var(--text);
+      text-decoration: none;
+      font-size: 1.75rem;
+      line-height: 1.15;
+      &:hover {
+        color: var(--text-link);
+      }
+      @media screen and (max-width: 48rem) {
+        font-size: 1.25rem;
+      }
+    }
+    .last-name {
+      display: block;
+      @media screen and (max-width: 48rem) {
+        display: inline;
+      }
+    }
+  }
+
+  .theme-toggle {
     display: flex;
     /* 24px hit area around a 20px icon, without shifting alignment */
     padding: 2px;
@@ -69,6 +105,10 @@
     flex-direction: column;
     list-style-type: none;
     gap: var(--space-3);
+    font-size: 1.125rem;
+    @media screen and (max-width: 48rem) {
+      flex-direction: row;
+    }
     a {
       color: var(--text-muted);
       text-decoration: none;
@@ -86,7 +126,7 @@
     max-width: 720px;
     line-height: 1.5;
     padding: var(--space-6);
-    @media screen and (max-width: 576px) {
+    @media screen and (max-width: 36rem) {
       padding: var(--space-5) var(--space-4);
     }
   }

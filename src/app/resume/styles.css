@@ -11,27 +11,19 @@
     .layout {
       grid-template-columns: 1fr;
     }
-    .nav {
+    .sidebar {
+      display: none;
+    }
+  }
+
+  @media screen {
+    .name {
       display: none;
     }
   }
 
   .main {
     max-width: calc(210mm + var(--space-6));
-  }
-
-  .layout {
-    @media screen and (max-width: 720px) {
-      grid-template-columns: minmax(0, 1fr);
-      grid-template-rows: auto 1fr;
-      gap: 0;
-    }
-  }
-
-  .nav {
-    @media screen and (max-width: 720px) {
-      flex-direction: row;
-    }
   }
 
   .resume-page,
