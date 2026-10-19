@@ -6,33 +6,20 @@
   z-index: 1;
   touch-action: none;
   &:before {
+    --frame: 14px;
     content: "";
+    position: absolute;
     z-index: -1;
-    position: absolute;
-    background: rgb(var(--growing-leaf));
-    transition:
-      background var(--color-transition) ease-in,
-      top var(--movement-transition) ease-out,
-      left var(--movement-transition) ease-out;
-    transition-timing-function: ease-in-out;
-    width: 100%;
-    height: 100%;
-    top: calc(-10% * -1 * var(--polarity-y));
-    left: calc(-10% * var(--polarity-x));
-    filter: blur(100px);
-  }
-  &:after {
-    content: "";
-    z-index: -2;
-    position: absolute;
-    background: rgba(var(--growing-leaf), 0.5);
-    transition: background var(--color-transition) ease-in;
-    transition-timing-function: ease-in-out;
-    width: 100%;
-    height: 100%;
-    top: 4%;
-    left: 4%;
-    filter: invert(100%);
+    inset: calc(-1 * var(--frame));
+    border: var(--frame) solid;
+    border-color: #c89a62 #b0844f #9a7243 #bd8f58;
+    outline: 2px solid #6e4b2a;
+    outline-offset: calc(-1 * var(--frame));
+    box-shadow: 0 6px 14px rgb(0 0 0 / 35%);
+    pointer-events: none;
+    @media screen and (max-width: 576px) {
+      --frame: 8px;
+    }
   }
 }
 
